@@ -1,6 +1,6 @@
 # Linux {#concept_u5y_3lv_vdb .concept}
 
-Logtail客户端是日志服务提供的日志采集客户端，请参考本文档，在Linxu服务器上安装Logtail客户端。
+Logtail客户端是日志服务提供的日志采集客户端，请参考本文档，在Linux服务器上安装Logtail客户端。
 
 ## 支持的系统 {#section_tjc_wlv_vdb .section}
 
