@@ -64,7 +64,7 @@ After the Web Tracking function is enabled for Logstore, you can use any of the 
 -   **Use HTTP  GET request **
 
     ```
-    curl --request GET 'http://${project}.${host}/logstores/${logstore}/track? APIVersion=0.6.0&key1=val1&key2=val2'
+    curl --request GET 'http://${project}.${host}/logstores/${logstore}/track?APIVersion=0.6.0&key1=val1&key2=val2'
     ```
 
     The parameter meanings are as follows.
@@ -81,8 +81,8 @@ After the Web Tracking function is enabled for Logstore, you can use any of the 
 -   **Use HTML img tag**
 
     ```
-    <img src='http://${project}.${host}/logstores/${logstore}/track.gif? APIVersion=0.6.0&key1=val1&key2=val2'/>
-    <img src='http://${project}.${host}/logstores/${logstore}/track_ua.gif? APIVersion=0.6.0&key1=val1&key2=val2'/>
+    <img src='http://${project}.${host}/logstores/${logstore}/track.gif?APIVersion=0.6.0&key1=val1&key2=val2'/>
+    <img src='http://${project}.${host}/logstores/${logstore}/track_ua.gif?APIVersion=0.6.0&key1=val1&key2=val2'/>
     ```
 
     The parameter meanings are the same as those in Use HTTP GET request. 
@@ -90,7 +90,7 @@ After the Web Tracking function is enabled for Logstore, you can use any of the 
 -   **Use JS SDK **
     1.  Copy loghub-tracking.js    to the web directory, and introduce the following script on the page: 
 
-        [Click to download.](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/31752/cn_zh/1462870126706/loghub-tracking.js?spm=5176.doc31752.2.3.SOoim2&file=loghub-tracking.js)
+        [Click to download.](http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/31752/cn_zh/1462870126706/loghub-tracking.js?file=loghub-tracking.js)
 
         ```
         <script type="text/javascript" src="loghub-tracking.js" async></script>
