@@ -30,6 +30,7 @@ This document describes the procedure for collecting Elastic Compute Service \(E
     ```
     wget http://logtail-release.oss-cn-hangzhou-internal.aliyuncs.com/linux64/logtail.sh; chmod 755 logtail.sh; sh logtail.sh install cn_hangzhou
     ```
+    If you are overseas replace download url the following instead [http://logtail-release-global.log-global.aliyuncs.com/linux64/logtail.sh](http://logtail-release-global.log-global.aliyuncs.com/linux64/logtail.sh)
 
 2.  Check the operation status of Logtail.
 
