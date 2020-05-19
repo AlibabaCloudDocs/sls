@@ -36,7 +36,7 @@ Logtail配置叫做config，每个Project默认可以创建100个配置（config
 
 此处以json模式为例，更多示例请参考[配置示例](#)。
 
-## Lotail配置参数 {#section_zvx_2sc_mgb .section}
+## Logtail配置参数 {#section_zvx_2sc_mgb .section}
 
 |参数|类型|是否必须|描述|
 |:-|:-|:---|:-|
