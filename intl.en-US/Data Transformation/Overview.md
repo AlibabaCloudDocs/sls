@@ -54,6 +54,6 @@ After the data is transformed, you can view the data in the destination Logstore
 
 ## Billing
 
--   You are charged for reading data from the source Logstore and writing data to destination Logstores. For more information, see [Pay-as-you-go](/intl.en-US/Pricing/Pay-as-you-go.md). The server and network resources that are consumed when you use the data transformation feature are free of charge during the public preview. Bills will be generated for the consumed resources starting from August 31, 2020, but you will not be charged for the resources. Starting from September 30, 2020, you will be charged for the consumed resources. The cost of raw data reads from the source Logstore is USD 0.0375 per gigabyte.
+-   You are charged for reading data from the source Logstore and writing data to destination Logstores. For more information, see [Pay-as-you-go](/intl.en-US/Pricing/Pay-as-you-go.md). The server and network resources that are consumed when you use the data transformation feature are free of charge during the public preview.
 -   You can delete the indexes that you create in the source Logstore and set a relatively short retention period for the data. This reduces your costs. For more information about how to reduce costs, see [Performance guide](/intl.en-US/Data Transformation/Performance guide.md) or [Cost optimization guide](/intl.en-US/Data Transformation/Cost optimization guide.md).
 
