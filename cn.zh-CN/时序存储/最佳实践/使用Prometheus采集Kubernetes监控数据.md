@@ -95,7 +95,7 @@ Grafana是一个开源的度量分析与可视化套件，兼容所有的Prometh
 
 1.  登录Grafana。
 
-2.  在左侧导航栏，单击**![G1](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7664559951/p112522.png)** \> **Data Sources**。
+2.  在左侧导航栏，单击**![G1](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7664559951/p112522.png)图标** \> **Data Sources**。
 
 3.  在Data Sources页签，单击**Add data source**。
 
