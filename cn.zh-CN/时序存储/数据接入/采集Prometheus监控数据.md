@@ -53,7 +53,7 @@ minShards: 100
 
     2.  在Project列表区域，单击目标Project。
 
-    3.  在**监控数据** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)** \> **消费预览**。
+    3.  在**监控数据** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)图标** \> **消费预览**。
 
         在消费预览页面，如果有数据，则表示配置成功。
 
