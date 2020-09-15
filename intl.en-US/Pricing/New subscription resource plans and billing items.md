@@ -4,7 +4,7 @@ This topic describes the new subscription resource plans and billing items of Lo
 
 ## Features and billing items
 
-Log Service provides the time series data storage, data transformation and shipping, and alert notification \(by text message or phone call\) features. This section describes the features and billing items.
+Log Service provides the time series data storage, data transformation and shippingfeatures. This section describes the features and billing items.
 
 -   Effective date: You are charged for using these features from September 25, 2020.
 -   Features and billing items:
@@ -34,13 +34,6 @@ Log Service provides the time series data storage, data transformation and shipp
         |Shipping data to TSDB|USD 0.0272/GB|
         |Shipping data to ClickHouse|USD 0.0272/GB|
 
-    -   Alert notification by text message or phone call: provides improved alert performance and an unlimited number of alert notifications by text message or phone call. You are charged for the alert notification feature based on the formula: number of API calls × Unit price.
-
-        |Billing item|Alibaba Cloud|
-        |------------|-------------|
-        |Text message|USD 0.00680 per message|
-        |Phone call|USD 0.02041 per call|
-
     -   Remarks
 
         Other features are still charged based on the pay-as-you-go method. The unit price of these features remains unchanged. For more information, see [Price details page](https://www.alibabacloud.com/product/log-service/pricing?spm=a3c0i.139163.9288850920.1.6498637aCPWnWp).
@@ -50,7 +43,9 @@ Log Service provides the time series data storage, data transformation and shipp
 
 A subscription resource plan specifies a quota on resource usage. If you purchase a subscription resource plan, the resources that you use are deducted from the resource plan. If the quota is exceeded, you are charged for the excess resources based on the pay-as-you-go method.
 
-Log Service provides multiple new subscription resource plans. You can save more money by purchasing a resource plan that has a higher quota or a longer validity period. You can use a new subscription resource plan to deduct the resource usage of multiple billing items such as occupied storage space, read/write requests, data transformation, data shipping, text message alert notification, and phone call alert notification.
+**Note:** You are charged for using new subscription resource plans from October 25, 2020.
+
+Log Service provides multiple new subscription resource plans. You can save more money by purchasing a resource plan that has a higher quota or a longer validity period. You can use a new subscription resource plan to deduct the resource usage of multiple billing items such as occupied storage space, read/write requests, data transformation, and data shipping.
 
 -   Type: New subscription resource plans are classified into yearly subscription resource plans and monthly subscription resource plans. A yearly subscription resource plan expires when the quota is reached or the one-year validity period expires. A monthly subscription resource plan provides the same quota on resource usage for each month within the validity period.
 -   Discounts: All new subscription resource plans are provided at a discount. The most competitive plan reduces your costs by 63%.
@@ -77,8 +72,6 @@ Log Service provides multiple new subscription resource plans. You can save more
     |Shipping data to AnalyticDB \(per GB\)|0.0272 CU|
     |Shipping data to TSDB \(per GB\)|0.0272 CU|
     |Shipping data to ClickHouse \(per GB\)|0.0272 CU|
-    |Alert notification by text message \(per message \)|0.0068 CU|
-    |Alert notification by phone call \(per call\)|0.02041 CU|
 
 
 New subscription resource plans are classified into yearly subscription resource plans and monthly subscription resource plans:
