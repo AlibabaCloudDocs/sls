@@ -25,5 +25,5 @@ If you need to use a RAM user to manage logs of Alibaba Cloud services, you must
 
 You can use the permission assistant feature to configure permissions for a RAM user. For more information, see [Configure the permission assistant feature](/intl.en-US/Developer Guide/Access control RAM/Configure the permission assistant feature.md).
 
-![RAM user authorization](../images/p127811.png)
+![RAM授权](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3187320061/p127811.png)
 
