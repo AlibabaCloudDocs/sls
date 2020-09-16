@@ -2,7 +2,7 @@
 
 This topic describes how to enable the log analysis feature in the Apsara File Storage NAS console and dump logs to Log Service.
 
--   A file system that uses the Network File System \(NFS\) protocol is created and mounted on a server. For more information, see [Mount an NFS file system in Linux]().
+-   A file system that uses the Network File System \(NFS\) protocol is created and mounted on a server. For more information, see [Mount an NFS file system]().
 -   NAS is authorized to use the role AliyunNASLogArchiveRole to access Log Service.
 
     Click [Cloud Resource Access Authorization](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22:%7B%22request1%22:%7B%22RoleName%22:%22AliyunNASLogArchiveRole%22,%22TemplateId%22:%22LogArchiveRole%22%7D%7D,%22ReturnUrl%22:%22https:%2F%2Fnasnext.console.aliyun.com%2F%22,%22Service%22:%22NAS%22%7D), and authorize NAS as prompted.
