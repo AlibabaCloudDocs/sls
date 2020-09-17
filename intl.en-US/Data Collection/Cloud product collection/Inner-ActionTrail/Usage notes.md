@@ -2,7 +2,7 @@
 
 ActionTrail provides the inner-ActionTrail feature. You can use this feature to ship platform operations logs from ActionTrail to Log Service in real time. Log Service allows you to query, transform, and consume the logs in real time. This topic describes the resources, billings, and limits that are related to the inner-ActionTrail feature.
 
-**Note:** You can use this feature to collect platform operations logs of OSS buckets, ECS instances, and RDS instances.
+**Note:** You can use this feature to collect platform operations logs of OSS buckets, ECS instances, RDS instances, Container Service for Kubernetes clusters, and E-MapReduce clusters.
 
 ## Resources
 
