@@ -9,5 +9,5 @@ This lightweight log monitoring solution is easy to use and suitable for various
 -   Cloud Monitor provides reliable and stable log monitoring services.
 -   The software as a service \(SaaS\) platform provides enterprise-level capabilities of real-time log monitoring. It requires less costs for time, labor, and O&M.
 
-For information about how to use Cloud Monitor to monitor logs, see [Manage log monitoring](https://help.aliyun.com/document_detail/50843.html).
+For information about how to use Cloud Monitor to monitor logs, see [Manage log monitoring]().
 
