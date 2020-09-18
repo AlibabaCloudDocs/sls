@@ -14,18 +14,17 @@ After log data is sent to Log Service, you can process the data in the following
 
 ## Real-time log consumption
 
--   [t248948.md\#section\_9ph\_v1t\_uoq](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consume logs.md)
+-   [Use an SDK to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consume log data.md)
 
     Log Service provides SDKs in various programming languages, such as Java, Python, and Go. You can use an SDK to consume log data. For more information about the SDKs, see [SDK reference](/intl.en-US/Developer Guide/SDK Reference/Overview.md).
 
--   [Use consumer groups to consume logs](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consumption by consumer groups/Use consumer groups to consume logs.md)
--   [Configure Function Compute log consumption](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Fuction Compute to cosume LogHub Logs/Configure Function Compute log consumption.md)
+-   [Use consumer groups to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consumption by consumer groups/Use consumer groups to consume log data.md)
+-   [Use Function Compute to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Function Compute to consume log data/Use Function Compute to consume log data.md)
 -   Consume logs by using cloud services
-    -   [Use Storm to consume LogHub logs](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Storm to consume LogHub logs.md)
+    -   [Use LogHub Storm to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use LogHub Storm to consume log data.md)
     -   [Use Spark Streaming to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Spark Streaming to consume log data.md)
-    -   [Use Realtime Compute to consume LogHub logs](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Realtime Compute to consume LogHub logs.md)
-    -   [Use CloudMonitor to consume LogHub logs](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use CloudMonitor to consume LogHub logs.md)
-    -   [Use Logstash to consume LogHub logs](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Logstash to consume LogHub logs.md)
+    -   [Use Realtime Compute to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Realtime Compute to consume log data.md)
+    -   [Use Logstash to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Logstash to consume log data.md)
 -   Consume logs by using open source services
     -   [Use Flume to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Flume to consume log data.md)
     -   [Use open source Flink to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use open source Flink to consume log data.md)
