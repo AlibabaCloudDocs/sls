@@ -178,7 +178,7 @@ For more information, see [Use custom policies to grant permissions to a RAM use
         ![Write permissions](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9943749951/p107689.png)
 
 
-You must configure an AccessKey pair for a RAM user when you create a data transformation rule. For more information, see [Create a data transformation task](/intl.en-US/Data Transformation/Create a data transformation task.md). Enter the AccessKey pair that you create for the RAM user to access the source Logstore in the first red box. For more information, see [Create an AccessKey pair for a RAM user to access a source Logstore](#section_bp1_fos_oep). Enter the AccessKey pair that you create for the RAM user to access the destination Logstore in the second red box. For more information, see [Create an AccessKey pair for a RAM user to access a destination Logstore](#section_6rs_1c4_9h8).
+You must configure an AccessKey pair for a RAM user when you create a data transformation rule. For more information, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md). Enter the AccessKey pair that you create for the RAM user to access the source Logstore in the first red box. For more information, see [Create an AccessKey pair for a RAM user to access a source Logstore](#section_bp1_fos_oep). Enter the AccessKey pair that you create for the RAM user to access the destination Logstore in the second red box. For more information, see [Create an AccessKey pair for a RAM user to access a destination Logstore](#section_6rs_1c4_9h8).
 
-![Modify the transformation rule](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2708280061/p58759.png)
+![Modify the transformation rule](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8032380061/p58759.png)
 
