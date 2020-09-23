@@ -8,8 +8,10 @@ The traffic information captured by the flow log feature is written as log data 
 
 -   Projects and Logstores
 
-    **Note:** You must not delete the projects or Logstores that are related to VPC flow logs. Otherwise, the flow logs cannot be sent to Log Service.
+    **Note:**
 
+    -   You must not delete the projects or Logstores that are related to VPC flow logs. Otherwise, the flow logs cannot be sent to Log Service.
+    -   After the VPC flow log feature is enabled, the data retention period of the Logstores that store VPC flow logs is forcibly changed to 7 days.
 -   Dedicated dashboards
 
     After you enable the VPC flow log feature, three dedicated dashboards are automatically created for VPC flow logs.
