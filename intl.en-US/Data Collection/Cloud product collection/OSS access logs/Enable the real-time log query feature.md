@@ -12,7 +12,7 @@ Before you query Object Storage Service \(OSS\) access logs in the OSS console, 
 
     **Note:**
 
-    -   You need to perform this operation only if Log Service was not authorized to assume the AliyunActionTrailDefaultRole role.
+    -   You need to perform this operation only if Log Service was not authorized to assume the AliyunActionTrailDefaultRole role by using an Alibaba Cloud account.
     -   If you use a RAM user to log on to OSS, you must authorize the RAM user by using an Alibaba Cloud account. For more information, see [RAM user authorization](/intl.en-US/Data Collection/Cloud product collection/Common operations on logs of Alibaba Cloud services.md).
     -   You must not delete the RAM role or revoke the permissions from the RAM role. Otherwise, logs cannot be shipped to Log Service.
 
