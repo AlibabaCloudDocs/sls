@@ -30,9 +30,10 @@ For more information, see [Use consumer groups to consume log data](/intl.en-US/
 
 -   Obtain an AccessKey pair that is used to access Log Service.
 
-    You can use the AccessKey pair of a RAM user to access a Log Service project. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md) or [Configure AccessKey pairs for RAM users to access source and destination Logstores](/intl.en-US/Data Transformation/Configure access authorization/Configure AccessKey pairs for RAM users to access source and destination Logstores.md).
+    You can use the AccessKey pair of a RAM user to access a Log Service project. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md) or [Configure an AccessKey pair for a RAM user to access a source Logstore and a destination Logstore](/intl.en-US/Data Transformation/Authorize Log Service/Configure an AccessKey pair for a RAM user to access a source Logstore and a destination
+         Logstore.md).
 
-    You can use the permission assistant feature to grant permissions to a RAM user. For more information, see [Configure the permission assistant feature](/intl.en-US/Developer Guide/Access control RAM/Configure the permission assistant feature.md). The following example shows the common permission policy configured for a RAM user.
+    You can use the permission assistant feature to grant permissions to a RAM user. For more information, see [Use the permission assistant to grant permissions](/intl.en-US/Developer Guide/Access control RAM/Use the permission assistant to grant permissions.md). The following example shows the common permission policy configured for a RAM user.
 
     **Note:** <Project name\> specifies the name of the target project in Log Service. <Logstore name\> specifies the name of the target Logstore. Replace the values based on your business scenarios. You can use the wildcard character \(\*\) to specify multiple projects and Logstores.
 
@@ -245,10 +246,8 @@ You can log on to the Splunk web interface and use one of the following methods 
             -   The indexer acknowledgment feature is disabled.
 -   What do I do if a consumption delay occurs?
 
-    -   Check whether the [service log](/intl.en-US/Developer Guide/Monitor Log Servic/Service log/Overview.md) feature is enabled. If the feature is enabled, perform the following operations:
-        -   Open the consumer group monitoring dashboard and view the status of consumer groups. For more information, see [Service log dashboards](/intl.en-US/Developer Guide/Monitor Log Servic/Service log/Service log dashboards.md).
-        -   Create alerts for the charts on the consumer group monitoring dashboard. For more information, see [Create an alert rule](/intl.en-US/Query and visualization/Alarm/Create an alert rule.md).
-    -   If the service log feature is disabled, view the status of consumer groups in the Log Service console. For more information, see [View consumer group status](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consumption by consumer groups/Use consumer groups to consume log data.md).
+    You can view the status of consumer groups in the Log Service console. For more information, see [View consumer group status](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consumption by consumer groups/Use consumer groups to consume log data.md).
+
     Increase the number of shards in the Logstore or create more data inputs in the same consumer group. For more information, see [Performance and security](#section_0p1_mj7_a9l).
 
 -   What do I do if network jitters occur?
