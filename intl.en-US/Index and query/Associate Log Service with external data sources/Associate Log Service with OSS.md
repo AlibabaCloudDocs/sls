@@ -32,7 +32,7 @@ This topic describes how to create an external store and associate Log Service w
     Create an external store named user\_meta1 and map the data in the store to objects of the specified OSS bucket. If the execution **result** is **true**, an external store is created and data is mapped.
 
     ```
-    * | create table user_meta ( userid bigint, nick varchar, gender varchar, province varchar, gender varchar,age bigint) with ( endpoint='oss-cn-hangzhou.aliyuncs.com',accessid='LTA288',accesskey ='EjsowA',bucket='testossconnector',objects=ARRAY['user.csv'],type='oss')
+    * | create table user_meta1 ( userid bigint, nick varchar, gender varchar, province varchar, gender varchar,age bigint) with ( endpoint='oss-cn-hangzhou-internal.aliyuncs.com',accessid='**************************',accesskey ='****************************',bucket='testoss*********',objects=ARRAY['user.csv'],type='oss')
     ```
 
     ![External store](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5131201061/p8538.png)
@@ -65,7 +65,7 @@ This topic describes how to create an external store and associate Log Service w
     For example, you can run the following statement to join data in Log Service and OSS by using the id log field and the userid field in OSS objects. test\_accesslog is the name of the Logstore. user\_meta1 is the name of the external store. Replace the parameter values based on your business requirements.
 
     ```
-    * | select * from test_accesslog l join user_meta u on l.userid = u.userid
+    * | select * from test_accesslog l join user_meta1 u on l.userid = u.userid
     ```
 
     ![Join data](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5131201061/p8540.png)
