@@ -1,6 +1,6 @@
 # Common operations on logs of Alibaba Cloud services
 
-After you enable the log analysis feature in the console of an Alibaba Cloud service,Log Service collects logs of the Alibaba Cloud service. This topic describes the common operations that you can perform on logs of Alibaba Cloud services in the Log Service console.
+After you enable the log analysis feature in the console of an Alibaba Cloud service, Log Service collects logs of the Alibaba Cloud service. This topic describes the common operations that you can perform on logs of Alibaba Cloud services in the Log Service console.
 
 ## Common operations
 
@@ -23,7 +23,7 @@ The following table describes the operations that you can perform after you coll
 
 If you need to use a RAM user to manage logs of Alibaba Cloud services, you must use your Alibaba Cloud account to authorize the RAM user.
 
-You can use the permission assistant feature to configure permissions for a RAM user. For more information, see [Configure the permission assistant feature](/intl.en-US/Developer Guide/Access control RAM/Configure the permission assistant feature.md).
+You can use the permission assistant feature to configure permissions for a RAM user. For more information, see [Use the permission assistant to grant permissions](/intl.en-US/Developer Guide/Access control RAM/Use the permission assistant to grant permissions.md).
 
 ![RAM授权](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3187320061/p127811.png)
 
