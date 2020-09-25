@@ -58,7 +58,7 @@ This topic describes how to create an external store and associate Log Service w
     select * from user_meta1
     ```
 
-    ![Verify the settings](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4338101061/p8539.png)
+    ![Verify the settings](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6051201061/p8539.png)
 
 6.  Use the JOIN syntax to join data in Log Service and OSS.
 
