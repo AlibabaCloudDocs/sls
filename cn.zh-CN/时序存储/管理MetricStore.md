@@ -10,7 +10,7 @@
 
 2.  在Project列表区域，单击目标Project。
 
-3.  在**监控数据** \> **时序库**页签中，单击**+**图标。
+3.  在**时序存储** \> **时序库**页签中，单击**+**图标。
 
 4.  在创建MetricStore页面中，配置如下参数。
 
@@ -25,7 +25,7 @@
 
 ## 修改MetricsStore配置
 
-1.  在**监控数据** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png) 图标** \> **修改**。
+1.  在**时序存储** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png) 图标** \> **修改**。
 
 2.  在**MetricStore属性**页面中，单击**修改**。
 
@@ -45,7 +45,7 @@
 -   如果该MetricStore上还启用了数据投递，建议删除前停止向该MetricStore写入新数据，并确认MetricStore中已有的数据已经全部投递成功。
 -   如果您使用主账号删除MetricStore提示权限不足，请提[工单](https://selfservice.console.aliyun.com/ticket/category/sls/today)进行删除。
 
-1.  在**监控数据** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)图标** \> **删除**。
+1.  在**时序存储** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)图标** \> **删除**。
 
     **警告：** MetricStore一旦删除，其存储的时序数据将会被永久删除，不可恢复，请谨慎操作。
 
