@@ -184,7 +184,7 @@ You can locate and analyze IP addresses with certain error codes or high latency
 
 -   Keyword alerting
 
-    [Enable alerting by CloudMonitor.]()
+    [Cloud Monitor](/intl.en-US/Developer Guide/Monitor Log Servic/Cloud Monitor.md)
 
 -   Log query permission management
 
