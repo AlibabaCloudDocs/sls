@@ -34,7 +34,7 @@ Prometheus是一款面向云原生的监控软件，支持众多软件、系统�
     |basic\_auth|鉴权信息，以Remote Write协议写入数据到日志服务需要BasicAuth鉴权，其中username为您的阿里云账号AccessKeyID，password为您的阿里云AccessKeySecret。建议您使用只具备日志服务Project写入权限的RAM用户AccessKey，详情请参见[授予指定Project写入权限](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。|
     |queue\_config|queue\_config用于设置写入的缓存、重试等策略。 为避免过多无效网络请求，建议min\_backoff不低于100ms，max\_backoff不低于5s。
 
-如果Prometheus数据量较大，可修改queue\_config配置，建议修改为：
+ 如果Prometheus数据量较大，可修改queue\_config配置，建议修改为：
 
     ```
 batchSendDeadline: 20s
@@ -53,7 +53,7 @@ minShards: 100
 
     2.  在Project列表区域，单击目标Project。
 
-    3.  在**监控数据** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)图标** \> **消费预览**。
+    3.  在**时序存储** \> **时序库**页签中，单击目标MetricStore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)图标** \> **消费预览**。
 
         在消费预览页面，如果有数据，则表示配置成功。
 
