@@ -17,7 +17,7 @@ Splunk Add-on架构：
 
 ![Splunk-002](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7031649951/p95070.png)
 
--   一个Data Input创建一个消费者进行日志消费。
+-   一个Data Input相当于一个消费者，对日志进行消费。
 -   一个消费组由多个消费者构成，同一个消费组下面的消费者共同消费一个Logstore中的数据，消费者之间不会重复消费数据。
 -   一个Logstore下面会有多个Shard。
     -   每个Shard只会分配到一个消费者。
