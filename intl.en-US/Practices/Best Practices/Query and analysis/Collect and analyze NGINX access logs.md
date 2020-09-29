@@ -28,7 +28,7 @@ In the Log Service console, you can create a collection configuration to collect
         * | select count(1) as c, ip_to_province(remote_addr) as address group by address limit 100
         ```
 
-        ![Distribution of IP Addresses](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3161631061/p5898.png)
+        ![Distribution of IP Addresses](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7411731061/p5898.png)
 
     -   **HTTP Status Codes**: calculates the percentage of each HTTP status code returned in the last 24 hours by executing the following SQL statement:
 
@@ -70,7 +70,7 @@ In the Log Service console, you can create a collection configuration to collect
         * | select sum(body_bytes_sent) as net_out, sum(request_length) as net_in ,date_format(date_trunc('hour', __time__), '%m-%d %H:%i')  as time group by date_format(date_trunc('hour', __time__), '%m-%d %H:%i') order by time limit 10000
         ```
 
-        ![Inbound and Outbound Traffic](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3161631061/p164544.png)
+        ![Inbound and Outbound Traffic](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7411731061/p164544.png)
 
     -   **PV and UV Statistics**: calculates the number of PVs and UVs by executing the following SQL statement:
 
@@ -82,7 +82,7 @@ In the Log Service console, you can create a collection configuration to collect
 
     -   **Predicted PV**: predicts the number of PVs in the next 4 hours by executing the following SQL statement:
 
-        ![Predicted PV](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3161631061/p164557.png)
+        ![Predicted PV](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8411731061/p164557.png)
 
     -   **Top 10 URLs by Number of Requests**: indicates the top 10 requested URLs with the most PVs in the last 24 hours by executing the following SQL statement:
 
@@ -155,7 +155,7 @@ You can create alert rules to track performance issues, server errors, and traff
 
     **Note:** For services with high access traffic, 500 errors could occur on occasion. In this case, you can set the **Notification Trigger Threshold** parameter to 2. It indicates that an alert is triggered only when conditions are met two consecutive times.
 
-    ![Server alerts](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3161631061/p164693.png)
+    ![Server alerts](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8411731061/p164693.png)
 
 -   Performance alerts
 
