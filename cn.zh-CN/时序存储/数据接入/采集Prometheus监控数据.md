@@ -21,28 +21,32 @@ Prometheus是一款面向云原生的监控软件，支持众多软件、系统�
       password: access-key-secret
     
     queue_config:
-      batch_send_deadline: 30s
-      min_backoff: 100ms
+      batch_send_deadline: 20s
+      capacity: 20480
       max_backoff: 5s
-    
-                            
+      max_samples_per_send: 2048
+      min_backoff: 100ms
+      min_shards: 100                      
     ```
 
     |参数|说明|
     |--|--|
-    |url|日志服务MetricStore的URL，格式为https://\{project\}.\{sls-enpoint\}/prometheus/\{project\}/\{metricstore\}/api/v1/write。其中\{sls-enpoint\}请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)，\{project\}和\{metricstore\}替换为您对应的Project和MetricStore。 **说明：** 为保证传输安全性，请务必使用https。 |
+    |url|日志服务MetricStore的URL，格式为https://\{project\}.\{sls-enpoint\}/prometheus/\{project\}/\{metricstore\}/api/v1/write。其中\{sls-enpoint\}请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)，\{project\}和\{metricstore\}替换为您对应的Project和MetricStore。 **说明：**
+
+    -   如果您是在阿里云内网，请优先使用内网域名。
+    -   为保证传输安全性，请务必使用https。 |
     |basic\_auth|鉴权信息，以Remote Write协议写入数据到日志服务需要BasicAuth鉴权，其中username为您的阿里云账号AccessKeyID，password为您的阿里云AccessKeySecret。建议您使用只具备日志服务Project写入权限的RAM用户AccessKey，详情请参见[授予指定Project写入权限](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。|
     |queue\_config|queue\_config用于设置写入的缓存、重试等策略。 为避免过多无效网络请求，建议min\_backoff不低于100ms，max\_backoff不低于5s。
 
- 如果Prometheus数据量较大，可修改queue\_config配置，建议修改为：
+如果Prometheus数据量较大，可修改queue\_config配置，建议修改为：
 
     ```
-batchSendDeadline: 20s
+batch_send_deadline: 20s
 capacity: 20480
-maxBackoff: 5s
-maxSamplesPerSend: 2048
-minBackoff: 100ms
-minShards: 100
+max_backoff: 5s
+max_samples_per_send: 2048
+min_backoff: 100ms
+min_shards: 100
     ``` |
 
 3.  验证是否已上传数据到日志服务。
