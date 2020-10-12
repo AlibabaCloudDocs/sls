@@ -19,9 +19,9 @@
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
-2.  在Project列表中，单击目标Project。
+2.  在Project列表区域，单击目标Project。
 
-3.  在**日志管理** \> **日志库**页签中，单击目标Logstore。
+3.  在**日志存储** \> **日志库**页签中，单击目标Logstore。
 
 4.  输入查询分析语句，单击**查询/分析**。
 
@@ -67,5 +67,5 @@
     ![联合查询](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1440559951/p8540.png)
 
 
-关联OSS数据源的最佳实践请参见[关联Logstore与OSS外表进行查询分析](/intl.zh-CN/案例与实践/最佳实践/查询分析/查询分析-日志服务与OSS外表关联分析.md)。
+关联OSS数据源的最佳实践请参见[关联Logstore与OSS外表进行查询分析](/intl.zh-CN/案例与实践/最佳实践/查询分析/关联Logstore与OSS外表进行查询分析.md)。
 
