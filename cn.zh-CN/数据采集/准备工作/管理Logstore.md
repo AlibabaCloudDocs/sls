@@ -8,9 +8,9 @@
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
-2.  单击目标Project。
+2.  在Project列表区域，单击目标Project。
 
-3.  在**日志管理** \> **日志库**页签中，单击**+**。
+3.  在**日志存储** \> **日志库**页签中，单击**+**。
 
 4.  在创建Logstore页面中，配置如下参数。
 
@@ -31,7 +31,7 @@
 
 ## 修改Logstore配置
 
-1.  在**日志管理** \> **日志库**页签中，单击目标Logstore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)** \> **修改**。
+1.  在**日志存储** \> **日志库**页签中，单击目标Logstore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)** \> **修改**。
 
 2.  在**Logstore属性**页面中，单击**修改**。
 
@@ -44,11 +44,11 @@
 
 **说明：**
 
--   删除Logstore前必须删除其对应的所有Logtail配置。
+-   删除Logstore前需先删除其对应的所有Logtail配置。
 -   如果该Logstore上还启用了日志投递，建议删除前停止向该Logstore写入新数据，并确认Logstore中已有的数据已经全部投递成功。
 -   如果您使用主账号删除Logstore提示权限不足，请单击[工单系统](https://selfservice.console.aliyun.com/ticket/category/sls/today)提交工单进行删除。
 
-1.  在**日志管理** \> **日志库**页签中，单击目标Logstore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)** \> **删除**。
+1.  在**日志存储** \> **日志库**页签中，单击目标Logstore右侧的**![修改日志库](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0478559951/p52318.png)** \> **删除**。
 
     **警告：** Logstore一旦删除，其存储的日志数据将会被永久删除，不可恢复，请谨慎操作。
 
