@@ -1,6 +1,6 @@
 # Use Spark Streaming to consume log data
 
-After you use Log Service to collect log data, you can use Spark Streaming to consume the data.
+After log data is collected to Log Service, you can use Spark Streaming to consume the data.
 
 The Spark SDK provided by Alibaba Cloud allows you to consume log data from Log Service in Receiver or Direct mode. You must add the following Maven dependencies:
 
@@ -14,20 +14,22 @@ The Spark SDK provided by Alibaba Cloud allows you to consume log data from Log 
 
 ## Consume log data in Receiver mode
 
-In Receiver mode, a consumer group consumes data from Log Service and temporarily stores the data in a Spark executor. After a Spark Streaming job is started, it reads and processes data from the Spark executor. Each log entry is returned as a JSON string. The consumer group periodically saves checkpoints to Log Service. You do not need to update checkpoints. For more information, see [Use consumer groups to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consumption by consumer groups/Use consumer groups to consume log data.md).
+In Receiver mode, a consumer group consumes data from Log Service and temporarily stores the data in a Spark executor. After a Spark Streaming job is started, the consumer group reads and processes data from the Spark executor. Each log entry is returned as a JSON string. The consumer group periodically saves checkpoints to Log Service. You do not need to update checkpoints. For more information, see [Use consumer groups to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Consumption by consumer groups/Use consumer groups to consume log data.md).
 
--   The following table lists the parameters.
+-   Parameters
 
     |Parameter|Type|Description|
     |---------|----|-----------|
     |project|String|The name of the project in Log Service.|
     |logstore|String|The name of the Logstore in Log Service.|
     |consumerGroup|String|The name of the consumer group.|
-    |endpoint|String|The endpoint of the region where the project resides. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).|
+    |endpoint|String|The endpoint of the region where the Log Service project resides. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).|
     |accessKeyId|String|The AccessKey ID that is used to access Log Service.|
-    |accessKeySecret|String|The AccessKey secret of the Alibaba Cloud account or RAM user that is used to access Log Service.|
+    |accessKeySecret|String|The AccessKey secret that is used to access Log Service.|
 
--   Example:
+-   Example
+
+    **Note:** In Receiver mode, data loss may occur if the default configurations are used. To avoid data loss, you can enable the Write-Ahead Logs feature. This feature is available in Spark 1.2 or later. For more information about the Write-Ahead Logs feature, see [Spark](https://spark.apache.org/docs/latest/streaming-programming-guide.html#deploying-applications).
 
     ```
     import org.apache.spark.storage.StorageLevel
@@ -82,48 +84,45 @@ In Receiver mode, a consumer group consumes data from Log Service and temporaril
     ```
 
 
-**Note:** In Receiver mode, data loss may occur in some cases. To avoid data loss, you can enable the Write-Ahead Logs feature. This feature is available in Spark 1.2 or later. For more information about the Write-Ahead Logs feature, visit [Spark](https://spark.apache.org/docs/latest/streaming-programming-guide.html#deploying-applications).
-
 ## Consume log data in Direct mode
 
-In Direct mode, no consumer group is required. API operations are called to request data from Log Service. Consuming log data in Direct mode has the following benefits:
+In Direct mode, no consumer group is required. You can call API operations to request data from Log Service. Consuming log data in Direct mode has the following benefits:
 
--   Simplified parallelism. The number of Spark partitions is the same as the number of shards in a Logstore. You can split shards to improve the parallelism of tasks.
+-   Simplified concurrency. The number of Spark partitions is the same as the number of shards in a Logstore. You can split shards to improve the concurrency of tasks.
 -   Increased efficiency. You no longer need to enable the Write-Ahead Logs feature to prevent data loss.
--   Exactly-once semantics. Data is read directly from Log Service. Checkpoints are submitted after the task is successful. In some cases, data may be repeatedly consumed if the task ends due to an unexpected exit of Spark.
+-   Exactly-once semantics. Data is directly read from Log Service. Checkpoints are submitted after a task is successful.
 
-You must configure the ZooKeeper service when you consume data in Direct mode. This service is used to save the data in the intermediate status. You must set a checkpoint directory in the ZooKeeper service to store the intermediate data. To re-consume data after you restart a task, you must delete the corresponding directory from ZooKeeper and change the name of the consumer group.
+    In some cases, data may be repeatedly consumed if a task ends due to an unexpected exit of Spark.
 
--   The following table lists the parameters.
+
+You must configure the ZooKeeper service when you consume data in Direct mode. This service is used to save the data in the intermediate state. You must set a checkpoint directory in the ZooKeeper service to store the intermediate data. To re-consume data after you restart a task, you must delete the corresponding directory from ZooKeeper and change the name of the consumer group.
+
+-   Parameters
 
     |Parameter|Type|Description|
     |---------|----|-----------|
     |project|String|The name of the project in Log Service.|
     |logstore|String|The name of the Logstore in Log Service.|
     |consumerGroup|String|The name of the consumer group. This name is used only to save consumption checkpoints.|
-    |endpoint|String|The endpoint of the region where the project resides. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).|
+    |endpoint|String|The endpoint of the region where the Log Service project resides. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).|
     |accessKeyId|String|The AccessKey ID that is used to access Log Service.|
-    |accessKeySecret|String|The AccessKey secret of the Alibaba Cloud account or RAM user that is used to access Log Service.|
-    |zkAddress|String|The connection URL of the Zookeeper service.|
+    |accessKeySecret|String|The AccessKey secret that is used to access Log Service.|
+    |zkAddress|String|The connection URL of the ZooKeeper service.|
 
--   In Direct mode, you must set consumption limits.
+-   Consumption limits
 
-    You must specify the number of log entries that are consumed from each shard in each batch. Otherwise, the data reading process cannot end. You can set parameters to limit the amount of log data in a single batch. The following table describes the two parameters.
+    Spark Streaming consumes data from each shard in a single batch. You must specify the number of log entries that are consumed in each batch.
+
+    In Log Service, a log group serves as the basic unit for each write request. For example, a write request may contain multiple log entries. These log entries are stored and consumed as a log group. When you use web tracking to write logs, each write request contains only one log entry. In this case, the log group that corresponds to the request contains only one log entry. You can specify parameters to limit the amount of log data in a single batch. The following table lists the two parameters.
 
     |Parameter|Description|Default|
     |---------|-----------|-------|
-    |spark.loghub.batchGet.step|The number of log groups returned for a single request.|100|
-    |spark.streaming.loghub.maxRatePerShard|The maximum number of log entries that are read from a shard.|10000|
+    |spark.loghub.batchGet.step|The maximum number of log groups that are returned for a single consumption request.|100|
+    |spark.streaming.loghub.maxRatePerShard|The maximum number of log entries that are consumed from each shard in a single batch.|10000|
 
-    The number of log entries processed in each batch is calculated based on the following formula: `number of shards × max(spark.loghub.batchGet.step × n × number of log entries in a log group, spark.streaming.loghub.maxRatePerShard × duration)`. n: the number of requests required to increase the returned rows to `spark.streaming.loghub.maxRatePerShard x duration`. duration: the processing duration of a batch. Unit: seconds.
+    You can set the maximum number of log entries that are consumed from each shard in each batch by specifying the spark.streaming.loghub.maxRatePerShard parameter. The Spark SDK consumes log data from Log Service by obtaining the number of log groups from the spark.loghub.batchGet.step parameter and accumulating the number of log entries in these log groups. When the accumulated number reaches or exceeds the specified number in the spark.streaming.loghub.maxRatePerShard parameter, the Spark SDK stops consuming log data. The spark.streaming.loghub.maxRatePerShard parameter does not precisely control the number of consumed log entries in each batch. The number of consumed log entries in each batch is based on the spark.loghub.batchGet.step parameter and the number of log entries in each log group.
 
-    If you need to combine multiple data streams, the number of shards refers to the total number of shards in all Logstores. For example, the number of shards is 100. Each log group contains 50 log entries. The processing of each batch of log entries lasts for 2 seconds. To process 20,000 log entries in each batch, use the following configuration example:
-
-    -   `spark.loghub.batchGet.step: 4`
-    -   `spark.streaming.loghub.maxRatePerShard: 200`
-    A smaller `spark.loghub.batchGet.step` value indicates a higher accuracy of throttling and a higher number of requests. We recommend that you count the average number of log entries contained in a log group and then set the preceding two parameters.
-
--   Example:
+-   Example
 
     ```
     import com.aliyun.openservices.loghub.client.config.LogHubCursorPosition
