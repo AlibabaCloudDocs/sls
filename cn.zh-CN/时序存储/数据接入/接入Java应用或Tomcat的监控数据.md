@@ -12,7 +12,37 @@
 
 在采集Java应用监控数据或Tomcat监控数据前，您需要先将JMX协议转换为HTTP协议。日志服务支持使用[Jolokia](https://jolokia.org/)将JMX协议转换为HTTP协议。您可以按照Jolokia官方文档下载及加载Jolokia，也可以使用日志服务Logtail自带的Jolokia JavaAgent，Logtail自带的Jolokia JavaAgent位于/etc/logtail/telegraf/javaagent/jolokia-jvm.jar中。
 
-您需要在Jolokia JavaAgent中设置`KAFKA_JVM_PERFORMANCE_OPTS`环境变量，例如`export KAFKA_JVM_PERFORMANCE_OPTS=-javaagent:/tmp/jolokia-jvm.jar=port=7777`，其中7777为指定的端口号，将用于Logtail配置。
+-   如果是普通JAVA应用，需在JAVA启动参数中添加`-javaagent:/etc/logtail/telegraf/javaagent/jolokia-jvm.jar=port=7777`。
+-   如果是Tomcat，需设置`JAVA_OPTS`环境变量，例如`export JAVA_OPTS="-javaagent:/etc/ilogtail/telegraf/jolokia-jvm.jar=port=7777"`，其中7777为指定的端口号，将用于Logtail配置。
+
+**说明：** 默认Jolokia JavaAgen只在127.0.0.1上监听，即只允许本机请求。如果您的Logtail和被监控的应用不在相同的机器上，您可以在添加的脚本中补充host=字段，使其可监听其他IP地址。如果设置为host=0.0.0.0，则表示监听所有IP地址。
+
+```
+-javaagent:/tmp/jolokia-jvm.jar=port=7777,host=0.0.0.0
+```
+
+设置完成后，需重启应用。如果您暂时无法重启应用，可使用如下命令将Jolokia JavaAgent连接到指定的Java进程，实现实时生效。其中进程PID请根据实际值替换。
+
+**说明：** 该操作仅用于测试，请确保按照上述操作完成配置，否则重启后将失效。
+
+```
+java -jar /etc/logtail/telegraf/javaagent/jolokia-jvm.jar --port 7777 start 进程PID
+```
+
+如果返回如下信息则表示连接成功。
+
+```
+Jolokia is already attached to PID 752
+http://127.0.0.1:7777/jolokia/
+```
+
+连接成功后，您可以访问该URL，验证连接是否正常。
+
+```
+curl http://127.0.0.1:7777/jolokia/
+# 返回参考
+{"request":{"type":"version"},"value":{"agent":"1.6.2","protocol":"7.2","config":{"listenForHttpService":"true","maxCollectionSize":"0","authIgnoreCerts":"false","agentId":"30.43.124.186-752-5b091b5d-jvm","debug":"false","agentType":"jvm","policyLocation":"classpath:\/jolokia-access.xml","agentContext":"\/jolokia","serializeException":"false","mimeType":"text\/plain","maxDepth":"15","authMode":"basic","authMatch":"any","discoveryEnabled":"true","streaming":"true","canonicalNaming":"true","historyMaxEntries":"10","allowErrorDetails":"true","allowDnsReverseLookup":"true","realm":"jolokia","includeStackTrace":"true","maxObjects":"0","useRestrictorService":"false","debugMaxEntries":"100"},"info":{"product":"tomcat","vendor":"Apache","version":"8.5.57"}},"timestamp":1602663330,"status":200}⏎
+```
 
 ## 步骤2：创建Logtail采集配置
 
