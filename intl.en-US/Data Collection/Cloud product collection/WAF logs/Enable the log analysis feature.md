@@ -1,8 +1,8 @@
 # Enable the log analysis feature
 
-This topic describes how to enable Log Service in the Web Application Firewall \(WAF\) console. After you enable the log analysis feature, you can dump the logs of WAF to Log Service.
+This topic describes how to enable the log analysis feature in the Web Application Firewall \(WAF\) console. After you enable the log analysis feature, you can collect the logs of WAF to Log Service.
 
--   A subscription-based WAF instance is created. The edition of WAF is Pro, Business, or Enterprise. For more information, see [Activate Alibaba Cloud WAF](/intl.en-US/Pricing/Subscription/Activate Alibaba Cloud WAF.md).
+-   A subscription-based WAF instance is created. The edition of WAF is Pro, Business, or Enterprise. For more information, see [Activate Alibaba Cloud WAF](/intl.en-US/Pricing/Subscription/Purchase a WAF instance.md).
 
     **Note:**
 
@@ -14,17 +14,17 @@ This topic describes how to enable Log Service in the Web Application Firewall \
 
 2.  In the left-side navigation pane, choose **Log Management** \> **Log Service**.
 
-3.  On the Log Service page, authorize WAF to use the AliyunWAFAccessingLogRole role to access Log Service.
+3.  Authorize WAF to use the AliyunWAFAccessingLogRole role to access Log Service as prompted.
 
     **Note:**
 
-    -   This operation is required only when you enable Log Service for the first time.
-    -   If you need to enable Log Service as a Resource Access Management \(RAM\) user, the RAM user must be authorized by its parent Alibaba Cloud account.
-    -   Do not cancel the authorization or delete the RAM role. Otherwise, the logs of WAF cannot be dumped to Log Service.
+    -   This operation is required only when you enable the log analysis feature for the first time. You must complete the authorization by using your Alibaba Cloud account.
+    -   If you use a RAM user to log on to WAF, you must grant required permissions to the RAM user. For more information, see [RAM user authorization](/intl.en-US/Data Collection/Cloud product collection/Common operations on logs of Alibaba Cloud services.md).
+    -   To ensure that WAF logs can be collected to Log Service, do not revoke permissions from the RAM role or delete the RAM role.
 4.  On the Log Service page, click **Open now**.
 
 5.  On the Log Service page, select the domain name of your website that is protected by WAF, and turn on the **Status** switch to enable the log analysis feature.
 
 
-After the logs of WAF are dumped to Log Service, you can query, analyze, download, ship, and transform the dumped logs. You can also create alerts. For more information, see [Common operations on logs of Alibaba Cloud services](/intl.en-US/Data Collection/Cloud product collection/Common operations on logs of Alibaba Cloud services.md).
+After the logs of WAF are collected to Log Service, you can query, analyze, download, ship, and transform the collected logs. You can also configure alerts for the logs. For more information, see [Common operations on logs of Alibaba Cloud services](/intl.en-US/Data Collection/Cloud product collection/Common operations on logs of Alibaba Cloud services.md).
 
