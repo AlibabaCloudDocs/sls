@@ -57,7 +57,7 @@ Grafana是一个开源的度量分析与可视化套件，兼容所有的Prometh
     3.  在**参数**页签下，修改其中的配置项。
 
         -   调整prometheusSpec下的retention，建议修改为1d或12h。
-        -   将tsdb下的enable设置为true，并增加remoteWrite配置。
+        -   将tsdb下的enabled设置为true，并增加remoteWrite配置。
 
             remoteWrite配置中的url为日志服务Metricstore的URL，请根据实际值替换。格式为https://\{project\}.\{sls-enpoint\}/prometheus/\{project\}/\{metricstore\}/api/v1/write。其中\{sls-enpoint\}为日志服务的Endpoint，详情请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)，\{project\}和\{metricstore\}为您已创建的日志服务的Project和Metricstore。
 
