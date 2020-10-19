@@ -47,12 +47,12 @@ New subscription resource plans are classified into yearly subscription resource
 
     |Yearly subscription resource plan \(CU\)|Price \(USD\)|Discount \(%\)|
     |----------------------------------------|-------------|--------------|
-    |100|95|9.5|
-    |1,000|900|9.0|
-    |10,000|8,500|8.5|
-    |100,000|75,000|7.5|
-    |500,000|360,000|7.2|
-    |2,000,000|1,400,000|7.0|
+    |100|95|5|
+    |1,000|900|10|
+    |10,000|8,500|15|
+    |100,000|75,000|25|
+    |500,000|360,000|28|
+    |2,000,000|1,400,000|30|
 
 -   Monthly subscription resource plan
 
