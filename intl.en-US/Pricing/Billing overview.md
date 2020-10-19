@@ -15,7 +15,7 @@ This topic describes the billing items and billing methods of Log Service.
 
 -   Subscription resource plans
 
-    You can purchase a subscription resource plan. For example, you can purchase subscription resource plans for read/write traffic, indexing traffic, or occupied storage space. The resources that you use are deducted from the relevant resource plan. For more information, see [t125824.md\#]().
+    You can purchase a subscription resource plan. For example, you can purchase subscription resource plans for read/write traffic, indexing traffic, or occupied storage space. The resources that you use are deducted from the relevant resource plan.
 
 
 ## Billing items and methods
