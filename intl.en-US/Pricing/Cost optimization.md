@@ -1,30 +1,30 @@
-# Cost optimization {#concept_ih5_fvn_vdb .concept}
+# Cost optimization
 
-Cost is related to two factors:
+The cost of Log Service is related to two factors:
 
--   Data volume. Data volume is determined by your business needs and cannot be optimized.The amount of user data is determined by the business and cannot be optimized.
--   •Configurations. Configurations can be optimized. With the configurations matching with the amount of data, you can select the optimal solution to minimize the cost.
+-   Data volume: Data volume is determined by your business needs.
+-   Configurations: You can use configurations that match your data volume and choose the best solution to minimize the cost.
 
-## Optimizing configurations {#section_mh5_hvn_vdb .section}
+## Configurations optimization
 
-Configurations can be optimized in the following two aspects:
+The following two configurations can be optimized:
 
 -   Number of shards
 
-    The price for one shard is USD 0.04 per day, with a maximum data processing capability of 5 MB/s.  Only shards in readwrite status are charged.  Adjust the number of shards so that each shard can process data exactly at 5 MB/s.  To reduce the number of shards, merge the shards. 
+    Each shard can process data at a maximum speed of 5 MB/s. Only shards in the readwrite state incur fees. You can adjust the number of shards so that each shard can process data at a speed of 5 MB/s. You can also merge the shards to reduce the number of shards.
 
--   Storage cycle of indexes
+-   Data retention period of a Logstore
 
-    We recommend that you optimize the storage time of indexes based on your requirements for log query and storage.
+    We recommend that you optimize the data retention period of a Logstore based on your requirements for log query and storage.
 
-    -   If you collect the logs for stream computing, we recommend that you only use LogHub, without creating indexes.
+    -   If you collect logs for stream computing, we recommend that you use only LogHub and do not create indexes.
 
-    -   If you want to store and back up logs for a long time, we recommend that you configure the Object Storage Service \(OSS\) Shipper, and import the logs to OSS.
+    -   If you want to store logs for a long time, we recommend that you ship logs to OSS.
 
 
-## Other optimization recommendations {#section_mkt_3vn_vdb .section}
+## Other optimization recommendations
 
--   Use Logtail: With the functions of batch processing and breakpoint transmission, data is transmitted with optimal algorithm while guaranteeing the real-timeliness. Logtail consumes 3/4 less resources than that of the open-source software \(such as Logstash and Fluentd\), thus reducing CPU consumption.
--   Try to use large packages \(64 KB–1 MB\) to write logs by using API, thus reducing the number of requests.
--   Only index key fields \(for example, UserID and Action\), without configuring indexes for useless fields.
+-   Use Logtail: Logtail allows you to transmit data in batches and resume data transmission by using checkpoints. Logtail can transmit data in real time with an optimal algorithm. Compared with other software products such as Logstash and FluentD, Logtail reduces CPU consumption by 75%.
+-   Use large packages \(64 KB - 1 MB\) to write logs by calling API operations. This reduces the number of requests.
+-   Configure indexes only for key fields, such as UserID and Action.
 
