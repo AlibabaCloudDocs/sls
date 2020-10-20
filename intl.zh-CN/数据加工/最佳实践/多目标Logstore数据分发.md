@@ -178,7 +178,7 @@
 
     **说明：** 此场景中，动态分发的目标Project和Logstore由e\_output函数中的配置决定，与创建数据加工规则页面中默认存储目标（标号1）中配置的目标Project和Logstore无关。
 
-    ![动态分发](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/9736813061/p135945.png)
+    ![动态分发](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1556813061/p135945.png)
 
 -   加工结果
 
