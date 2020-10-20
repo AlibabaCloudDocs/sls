@@ -82,6 +82,10 @@ In the Log Service console, you can create a collection configuration to collect
 
     -   **Predicted PV**: predicts the number of PVs in the next 4 hours by executing the following SQL statement:
 
+        ```
+        * | select ts_predicate_simple(stamp, value, 6, 1, 'sum') from (select __time__ - __time__ % 60 as stamp, COUNT(1) as value from log GROUP BY stamp order by stamp) LIMIT 1000
+        ```
+
         ![Predicted PV](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8411731061/p164557.png)
 
     -   **Top 10 URLs by Number of Requests**: indicates the top 10 requested URLs with the most PVs in the last 24 hours by executing the following SQL statement:
