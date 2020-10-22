@@ -119,7 +119,8 @@ The source project name is log-project-prod. The source Logstore name is access\
   "Statement": [
     {
       "Action": [
-        "log:Post*"
+        "log:Post*",
+        "log:BatchPost*"
       ],
        "Resource": "acs:log:*:*:project/log-project-prod/logstore/access_log_output",
       "Effect": "Allow"
@@ -138,7 +139,8 @@ The source project names are log-project-dev-a, log-project-dev-b, and log-proje
   "Statement": [
     {
       "Action": [
-        "log:Post*"
+        "log:Post*",
+        "log:BatchPost*"
       ],
        "Resource": "acs:log:*:*:project/log-project-dev-*/logstore/app_*_log_output",
       "Effect": "Allow"
