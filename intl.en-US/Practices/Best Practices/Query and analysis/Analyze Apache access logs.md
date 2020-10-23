@@ -82,7 +82,7 @@ In the Log Service console, you can create a collection configuration to collect
         * | select split_part(request_uri,'?',1) as path,  count(1) as pv group by split_part(request_uri,'?',1) order by pv desc limit 10
         ```
 
-        ![Top 10 URLs by Number of Requests](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4826635751/p9386.png)
+        ![Top 10 URLs by Number of Requests](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3676443061/p9386.png)
 
     -   **Top 10 URLs by Request Latency**: indicates the top 10 requested URLs with the highest latency within the last day by executing the following SQL statement:
 
@@ -92,6 +92,6 @@ In the Log Service console, you can create a collection configuration to collect
                     order by request_time_sec desc limit 10 10
         ```
 
-        ![Top 10 URLs by Request Latency](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4826635751/p10099.png)
+        ![Top 10 URLs by Request Latency](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3676443061/p10099.png)
 
 
