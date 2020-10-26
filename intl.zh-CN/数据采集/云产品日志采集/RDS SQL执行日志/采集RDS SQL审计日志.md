@@ -2,9 +2,8 @@
 
 本文介绍如何通过日志服务控制台采集RDS SQL审计日志。
 
--   已创建RDS实例，且已开启SQL审计（RDS SQL Server实例、RDS PostgreSQL实例）或付费版的SQL洞察（RDS MySQL实例）功能。
+-   已创建RDS实例，且已开启SQL审计（RDS PostgreSQL实例）或付费版的SQL洞察（RDS MySQL实例）功能。
     -   如果是RDS MySQL实例，请参见[创建RDS MySQL实例](/intl.zh-CN/RDS MySQL 数据库/快速入门/创建RDS MySQL实例.md)、[SQL洞察](/intl.zh-CN/RDS MySQL 数据库/日志/审计/历史事件/SQL洞察.md)。
-    -   如果是RDS SQL Server实例，请参见[创建RDS SQL Server实例](/intl.zh-CN/RDS SQL Server 数据库/快速入门/创建RDS SQL Server实例.md)、[SQL审计（数据库审计）]()。
     -   如果是RDS PostgreSQL实例，请参见[创建RDS PostgreSQL实例](/intl.zh-CN/RDS PostgreSQL 数据库/快速入门/创建RDS PostgreSQL实例.md)、[SQL审计（数据库审计）](/intl.zh-CN/RDS PostgreSQL 数据库/日志/审计/历史事件/SQL审计（数据库审计）.md)。
 -   在RDS实例所在地域，已创建日志服务Project和Logstore，详情请参见[步骤1：创建Project和Logstore](/intl.zh-CN/快速入门/快速入门.md)。
 
