@@ -114,7 +114,7 @@ The following tables describe the Alibaba Cloud services from which Log Service 
     |Virtual Private Cloud \(VPC\)|[Flow log](/intl.en-US/Data Collection/Cloud product collection/VPC flow logs/Usage notes.md)|Custom project and Logstore|    -   Logstore Name-vpc\_flow\_log\_traffic\_cn
     -   Logstore Name-vpc\_flow\_log\_rejection\_cn
     -   Logstore Name-vpc\_flow\_log\_overview\_cn |
-    |Elastic IP Address \(EIP\)|[Internet traffic log]()|Custom project and Logstore|eip\_monitoring|
+    |Elastic IP Address \(EIP\)|[Internet traffic log](/intl.en-US/Data Collection/Cloud product collection/EIP logs/Overview.md)|Custom project and Logstore|eip\_monitoring|
     |API Gateway|[Access log](/intl.en-US/Data Collection/Cloud product collection/API Gateway access logs/Usage notes.md)|Custom project and Logstore|Logstore Name\_apigateway\_access\_log|
 
 -   Database
@@ -124,7 +124,7 @@ The following tables describe the Alibaba Cloud services from which Log Service 
     |ApsaraDB for RDS|[SQL audit log](/intl.en-US/Data Collection/Cloud product collection/RDS SQL execution logs/Usage notes.md)|Custom project and Logstore|    -   RDS Audit Operation Center
     -   RDS Audit Performance Center
     -   RDS Audit Security Center |
-    |ApsaraDB for Redis|    -   [Audit log]()
+    |ApsaraDB for Redis|    -   [Audit log](/intl.en-US/Data Collection/Cloud product collection/ApsaraDB for Redis logs/Overview.md)
     -   Slow query log
     -   Operational log
 |    -   Project: nosql-Alibaba Cloud account ID-region ID
