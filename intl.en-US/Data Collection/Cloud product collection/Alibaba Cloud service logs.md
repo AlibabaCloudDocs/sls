@@ -2,9 +2,9 @@
 
 Log Service can collect logs from multiple types of Alibaba Cloud services, such as elastic computing, storage, security, and database services. The logs record operational statistics, such as user operations, running statuses, and business dynamics of Alibaba Cloud services.
 
-The following tables describe the Alibaba Cloud services from which Log Service can collect logs.
+**Note:** Log Service uses the Log Audit Service application to collect logs of the following Alibaba Cloud services across accounts: ActionTrail, Container Service for Kubernetes \(ACK\), Object Storage Service \(OSS\), Apsara File Storage NAS, Server Load Balancer \(SLB\), API Gateway, ApsaraDB for RDS, PolarDB-X, Web Application Firewall \(WAF\), Cloud Firewall \(CFW\), Security Center \(SAS\), Alibaba Cloud Mobile Push, and Bastionhost \(BH\). For more information, see [Log Audit Service](/intl.en-US/Application/Log Audit Service/Overview.md).
 
-**Note:** Log Service uses the Log Audit Service application to collect logs of the following Alibaba Cloud services across accounts: ActionTrail, Alibaba Cloud Container Service for Kubernetes \(ACK\), Object Storage Service \(OSS\), Apsara File Storage NAS, Server Load Balancer \(SLB\), API Gateway, ApsaraDB for RDS, PolarDB-X, Web Application Firewall \(WAF\), Cloud Firewall, Security Center \(SAS\), Alibaba Cloud Mobile Push, and Bastionhost \(BH\). For more information, see [Log Audit Service](/intl.en-US/Application/Log Audit Service/Overview.md).
+The following tables list the Alibaba Cloud services from which Log Service can collect logs. The tables also list the related projects, Logstores, and dashboards that can be created in Log Service.
 
 -   Elastic computing
 
@@ -43,10 +43,10 @@ The following tables describe the Alibaba Cloud services from which Log Service 
 
     |Alibaba Cloud service|Log|Project and Logstore|Dashboard|
     |---------------------|---|--------------------|---------|
-    |Anti-DDoS Origin|[Full log](/intl.en-US/Data Collection/Cloud product collection/Anti-DDoS Pro logs/Usage notes.md)|    -   Anti-DDoS Origin instances in mainland China
+    |Anti-DDoS Pro \(old version\)|[Full log](/intl.en-US/Data Collection/Cloud product collection/Anti-DDoS Pro logs/Usage notes.md)|    -   Anti-DDoS Pro \(old\) instances in mainland China
         -   Project: ddos-pro-project-Alibaba Cloud account ID-cn-hangzhou
         -   Logstore: ddos-pro-logstore
-    -   Anti-DDoS Origin instances outside mainland China
+    -   Anti-DDoS Pro \(old\) instances outside mainland China
         -   Project: ddos-pro-Alibaba Cloud account ID-ap-southeast-1
         -   Logstore: ddos-pro-logstore
 |    -   DDoS Operation Center
@@ -101,7 +101,7 @@ The following tables describe the Alibaba Cloud services from which Log Service 
 |    -   Operation Center
     -   Access Center
     -   Security Center |
-    |Cloud Firewall|[Internet traffic log](/intl.en-US/Data Collection/Cloud product collection/Cloud Firewall logs/Usage notes.md)|    -   Project: cloudfirewall-project-Alibaba Cloud account ID-cn-hangzhou
+    |CFW|[Internet access log](/intl.en-US/Data Collection/Cloud product collection/Cloud Firewall logs/Usage notes.md)|    -   Project: cloudfirewall-project-Alibaba Cloud account ID-cn-hangzhou
     -   Logstore: cloudfirewall-logstore
 |Report|
 
@@ -114,7 +114,7 @@ The following tables describe the Alibaba Cloud services from which Log Service 
     |Virtual Private Cloud \(VPC\)|[Flow log](/intl.en-US/Data Collection/Cloud product collection/VPC flow logs/Usage notes.md)|Custom project and Logstore|    -   Logstore Name-vpc\_flow\_log\_traffic\_cn
     -   Logstore Name-vpc\_flow\_log\_rejection\_cn
     -   Logstore Name-vpc\_flow\_log\_overview\_cn |
-    |Elastic IP Address \(EIP\)|[Internet traffic log](/intl.en-US/Data Collection/Cloud product collection/EIP logs/Overview.md)|Custom project and Logstore|eip\_monitoring|
+    |Elastic IP Address \(EIP\)|[Internet access log](/intl.en-US/Data Collection/Cloud product collection/EIP logs/Overview.md)|Custom project and Logstore|eip\_monitoring|
     |API Gateway|[Access log](/intl.en-US/Data Collection/Cloud product collection/API Gateway access logs/Usage notes.md)|Custom project and Logstore|Logstore Name\_apigateway\_access\_log|
 
 -   Database
@@ -149,7 +149,7 @@ The following tables describe the Alibaba Cloud services from which Log Service 
     |ActionTrail|[ActionTrail access log](/intl.en-US/Data Collection/Cloud product collection/ActionTrail access logs/Usage notes.md)|    -   Project: custom project
     -   Logstore: actiontrail\_trail name
 |actiontrail\_trail name\_audit\_center\_cn|
-    |[Operations log](/intl.en-US/Data Collection/Cloud product collection/Inner-ActionTrail/Usage notes.md)|Custom project and Logstore|actiontrail\_trail name\_audit\_center\_cn|
+    |[Operations log](/intl.en-US/Data Collection/Cloud product collection/Inner-ActionTrail/Usage notes.md)|Custom project and Logstore|innertrail\_trail name\_audit\_center\_cn|
 
 -   Cloud communication
 
@@ -164,5 +164,13 @@ The following tables describe the Alibaba Cloud services from which Log Service 
     |IoT Platform|[IoT Platform log](/intl.en-US/Data Collection/Cloud product collection/IoT Platform logs/Usage notes.md)|    -   Project: iot-log-Alibaba Cloud account ID-region ID
     -   Logstore: iot\_logs
 |IoT Operation Center|
+
+-   Enterprise Mobile Application Studio \(EMAS\)
+
+    |Alibaba Cloud service|Log|Project and Logstore|Dashboard|
+    |---------------------|---|--------------------|---------|
+    |Mobile Analytics|[Operations log]()|    -   Project: man-Alibaba Cloud account ID-project-region ID
+    -   Logstore: AppKey-android
+|Custom dashboard|
 
 
