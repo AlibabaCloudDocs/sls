@@ -165,12 +165,4 @@ The following tables list the Alibaba Cloud services from which Log Service can 
     -   Logstore: iot\_logs
 |IoT Operation Center|
 
--   Enterprise Mobile Application Studio \(EMAS\)
-
-    |Alibaba Cloud service|Log|Project and Logstore|Dashboard|
-    |---------------------|---|--------------------|---------|
-    |Mobile Analytics|[Operations log]()|    -   Project: man-Alibaba Cloud account ID-project-region ID
-    -   Logstore: AppKey-android
-|Custom dashboard|
-
 
