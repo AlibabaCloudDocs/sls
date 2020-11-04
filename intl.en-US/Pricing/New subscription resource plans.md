@@ -6,8 +6,6 @@ This topic describes the new subscription resource plans of Log Service.
 
 A subscription resource plan specifies a quota on resource usage. If you purchase a subscription resource plan, the resources that you use are deducted from the resource plan. If the quota is exceeded, you are charged for the excess resources based on the pay-as-you-go method.
 
-**Note:** New subscription resource plans are released on October 25, 2020.
-
 Log Service provides multiple new subscription resource plans. You can reduce costs by purchasing a resource plan that has a higher quota or a longer validity period. You can use a new subscription resource plan to deduct the resource usage of multiple billing items such as occupied storage space, read/write requests, data transformation, and data shipping.
 
 -   Types: New subscription resource plans are classified into yearly subscription resource plans and monthly subscription resource plans. A yearly subscription resource plan expires when the quota is reached or the one-year validity period expires. A monthly subscription resource plan provides the same quota on resource usage for each month within the validity period.
