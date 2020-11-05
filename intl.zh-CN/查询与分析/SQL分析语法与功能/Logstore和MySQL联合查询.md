@@ -2,22 +2,19 @@
 
 日志服务支持通过Join语法将Logstore和MySQL数据库进行联合查询，并把查询结果保存到MySQL数据库中。
 
--   已采集日志到日志服务，详情请参见[数据采集](/intl.zh-CN/数据采集/采集方式.md)。
--   已为日志字段创建索引，详情请参见[开启并配置索引](/intl.zh-CN/查询与分析/开启并配置索引.md)。
--   已有可用的MySQL数据库。
-
-    RDS MySQL数据库详情请参见[创建数据库和账号](/intl.zh-CN/RDS MySQL 数据库/快速入门/创建数据库和账号.md)。
-
+-   已采集日志到日志服务。更多信息，请参见[数据采集](/intl.zh-CN/数据采集/采集方式.md)。
+-   已为日志字段创建索引。更多信息，请参见[开启并配置索引](/intl.zh-CN/查询与分析/开启并配置索引.md)。
+-   已有可用的MySQL数据库。更多信息，请参见[创建数据库和账号](/intl.zh-CN/RDS MySQL 数据库/快速入门/创建数据库和账号.md)。
 
 1.  设置MySQL数据库白名单。
 
-    -   如果是RDS MySQL数据库，需添加白名单地址100.104.0.0/16、11.194.0.0/16和11.201.0.0/16，详情请参见[设置白名单](/intl.zh-CN/RDS MySQL 数据库/数据安全/加密/设置白名单.md)。
+    -   如果是RDS MySQL数据库，需添加白名单地址100.104.0.0/16、11.194.0.0/16和11.201.0.0/16。更多信息，请参见[设置白名单](/intl.zh-CN/RDS MySQL 数据库/数据安全/加密/设置白名单.md)。
     -   如果是自建的MySQL数据库，需添加白名单地址100.104.0.0/16、11.194.0.0/16和11.201.0.0/16到MySQL数据库的安全组。
 2.  在MySQL数据库中，创建数据表。
 
 3.  创建ExternalStore。
 
-    1.  安装日志服务CLI，详情请参见[命令行工具CLI](/intl.zh-CN/开发指南/命令行工具CLI.md)。
+    1.  安装日志服务CLI。更多信息，请参见[命令行工具CLI](/intl.zh-CN/开发指南/命令行工具CLI.md)。
 
     2.  创建配置文件/root/config.json并添加如下脚本。
 
@@ -54,8 +51,8 @@
         |port|网络端口|
         |username|数据库用户名|
         |password|数据库密码|
-        |db|数据库|
-        |table|数据表|
+        |db|数据库名称|
+        |table|数据库表|
 
     3.  创建ExternalStore。
 
@@ -100,7 +97,7 @@
     日志服务支持通过Insert语法将查询结果插入到MySQL数据库中。Insert语法样例如下所示：
 
     ```
-    method:postlogstorelogs | insert into method_output  select cast(method as varchar(65535)),count(1)fromloggroupbymethod
+    method:postlogstorelogs | insert into method_output  select cast(method as varchar(65535)),count(1) from log group by method
     ```
 
 
