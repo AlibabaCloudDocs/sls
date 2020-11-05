@@ -90,7 +90,7 @@ MNS logs include queue logs and topic logs. The logs contain all information abo
 
     The following figure shows the query results. Sixty-one queue messages are deleted in the specified time range.
 
-    ![View the number of the messages that are deleted from a queue](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1476554061/p32451.jpg)
+    ![View the number of the messages that are deleted from a queue](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8307554061/p32451.jpg)
 
 
 ## View the tracing of a message in a topic
@@ -149,6 +149,6 @@ MNS logs include queue logs and topic logs. The logs contain all information abo
 
     The following figure shows the query results. The client processed 66 messages in the specified time range.
 
-    ![View the number of messages that are processed by a client](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2476554061/p32454.jpg)
+    ![View the number of messages that are processed by a client](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/8307554061/p32454.jpg)
 
 
