@@ -134,7 +134,7 @@ You can use Java, Python, or Go to create consumers and consume data. The follow
         }
     
         // The ClientWorker instance calls this function upon exit. You can perform a cleanup.
-        public void shutdown(ILogHubCheckPointTracker CheckPointTracker) {
+        public void shutdown(ILogHubCheckPointTracker checkPointTracker) {
             // Save checkpoints to the server.
             try {
                 checkPointTracker.saveCheckPoint(true);
