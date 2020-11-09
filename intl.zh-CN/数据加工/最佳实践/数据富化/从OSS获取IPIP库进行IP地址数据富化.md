@@ -28,15 +28,14 @@ IPIP.NET提供全球IP地址数据库，可以帮助您精确查找、确定全�
                                                      ak_id=res_local("AK_ID"),
                                                      ak_key=res_local("AK_KEY"),
                                                      bucket='your bucket', file='ipipfree.ipdb',
-                                                     format='binary',change_detect_interval=200),
-          keep_fields=(("city_name","city"),("country_name","country"),("region_name","province"))))
+                                                     format='binary',change_detect_interval=200)
     ```
 
     res\_oss\_file函数重要字段说明如下表所示。
 
     |字段|说明|
     |--|--|
-    |endpoint|OSS访问域名，详情请参见[访问域名和数据中心](/intl.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md)。|
+    |endpoint|OSS访问域名。更多信息，请参见[访问域名和数据中心](/intl.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md)。|
     |ak\_id|具备读OSS权限的AccessKey ID。出于安全考虑，建议配置为res\_local\("AK\_ID"\)，表示从高级参数配置中获取。高级参数配置操作步骤请参见[创建数据加工任务](/intl.zh-CN/数据加工/创建数据加工任务.md)。
 
 ![AccessKey](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/6452813061/p136966.png) |
