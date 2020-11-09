@@ -2,6 +2,10 @@
 
 You can use the data transformation feature of Log Service to obtain the IPIP library from Object Storage Service \(OSS\) and use the library to identify the city, state, and country to which an IP address belongs.
 
+-   AccessKey pairs are created to access an OSS bucket. For more information, see [Create an AccessKey pair for a RAM user](/intl.en-US/Security Settings/AccessKey pairs/Create an AccessKey pair for a RAM user.md).
+
+    We recommend that you create an AccessKey pair that has read-only permissions on the OSS bucket and an AccessKey pair that has write-only permissions on OSS. This way, you can use the first AccessKey pair to read data from the OSS bucket and use the second AccessKey pair to write data to the OSS bucket. For more information, see [Implement access control based on RAM policies](/intl.en-US/Developer Guide/Data security/Access and control/RAM Policy/Implement access control based on RAM policies.md).
+
 -   The IPIP library is downloaded from the IPIP.NET website and uploaded to OSS. For more information, see [Upload objects](/intl.en-US/Quick Start/Upload objects.md).
 
     We recommend that you use an AccessKey pair that has write-only permissions on OSS to upload the library.
@@ -24,8 +28,7 @@ IPIP.NET provides a global IP address library that allows you to identity geogra
                                                      ak_id=res_local("AK_ID"),
                                                      ak_key=res_local("AK_KEY"),
                                                      bucket='your bucket', file='ipipfree.ipdb',
-                                                     format='binary',change_detect_interval=200),
-          keep_fields=(("city_name","city"),("country_name","country"),("region_name","province"))))
+                                                     format='binary',change_detect_interval=200)
     ```
 
     The following table describes the fields in the res\_oss\_file function.
