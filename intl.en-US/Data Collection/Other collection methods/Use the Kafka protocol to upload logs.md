@@ -33,8 +33,8 @@ You can use Beats such as MetricBeat, PacketBeat, Winlogbeat, Auditbeat, Filebea
     output.kafka: 
       # initial brokers for reading cluster metadata 
       hosts: ["test-project-1.cn-hangzhou.log.aliyuncs.com:10012"] 
-      username: "<yourusername>" 
-      password: "<yourpassword>" 
+      username: "yourusername" 
+      password: "yourpassword" 
       ssl.certificate_authorities: 
       # message topic selection + partitioning 
       topic: 'test-logstore-1' 
@@ -68,8 +68,8 @@ Before you upload logs to Log Service, you must install the collectd-write\_kafk
       Property "metadata.broker.list" "test-project-1.cn-hangzhou.log.aliyuncs.com:10012" 
       Property "security.protocol" "sasl_ssl" 
       Property "sasl.mechanism" "PLAIN" 
-      Property "sasl.username" "<yourusername>" 
-      Property "sasl.password" "<yourpassword>" 
+      Property "sasl.username" "yourusername" 
+      Property "sasl.password" "yourpassword" 
       Property "broker.address.family" "v4"  
       <Topic "test-logstore-1">
         Format JSON 
@@ -117,8 +117,8 @@ Before you use the Kafka protocol to upload collected logs to Log Service, you m
       ## Use TLS but skip chain & host verification 
       # insecure_skip_verify = false 
       ## Optional SASL Config 
-      sasl_username = "<yourusername>" 
-      sasl_password = "<yourpassword>" 
+      sasl_username = "yourusername" 
+      sasl_password = "yourpassword" 
       ## Data format to output. 
       ## https://github.com/influxdata/telegraf/blob/master/docs/DATA_FORMATS_OUTPUT.md 
       data_format = "json"
@@ -152,8 +152,8 @@ Fluentd is compatible with multiple input plug-ins, processing plug-ins, and out
       output_include_tag true 
       output_include_time true 
       sasl_over_ssl true 
-      username <yourusername> 
-      password <yourpassword> 
+      username yourusername 
+      password yourpassword 
       ssl_ca_certs_from_system true 
       # ruby-kafka producer options 
       max_send_retries 10000 
@@ -183,8 +183,8 @@ Logstash provides a built-in Kafka output plug-in. You can configure Logstash to
         ```
         KafkaClient { 
           org.apache.kafka.common.security.plain.PlainLoginModule required 
-          username="<yourusername>" 
-          password="<yourpassword>"; 
+          username="yourusername" 
+          password="yourpassword"; 
         };
         ```
 
