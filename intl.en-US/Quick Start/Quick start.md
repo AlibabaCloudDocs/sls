@@ -4,7 +4,7 @@ This topic describes how to use Logtail to collect logs of Alibaba Cloud Elastic
 
 ## Prerequisites
 
--   An Alibaba Cloud account is created and real-name verification is passed. For more information, see [Sign up with Alibaba Cloud](https://www.alibabacloud.com/help/zh/doc-detail/50482.html).
+-   An Alibaba Cloud account is created and real-name verification is passed. For more information, see [Sign up with Alibaba Cloud](https://www.alibabacloud.com/help/doc-detail/50482.html).
 -   Log Service is activated.
 
     When you log on to the [Log Service console](https://sls.console.aliyun.com) for the first time, you must activate Log Service as prompted.
