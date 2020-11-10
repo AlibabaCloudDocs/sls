@@ -16,7 +16,7 @@ The following table describes the data sources from which Log Service can collec
 |LogBack Appender|[LogBack](https://github.com/aliyun/aliyun-log-logback-appender)|None|
 |C|[Log Service C SDK](https://github.com/aliyun/aliyun-log-c-sdk)|None|
 |Python|[Log Service Python SDK](https://github.com/aliyun/aliyun-log-python-sdk)|None|
-|Python Logging|[Python Logging Handler](https://aliyun-log-python-sdk.readthedocs.io/tutorials/tutorial_logging_handler.html)|None|
+|Python Logging|None|None|
 |PHP|[Log Service PHP SDK](https://github.com/aliyun/aliyun-log-php-sdk)|None|
 |.Net|[Log Service csharp SDK](https://github.com/aliyun/aliyun-log-chsarp-sdk)|None|
 |C++|[Log Service C++ SDK](https://github.com/aliyun/aliyun-log-cpp-sdk)|None|
@@ -40,7 +40,7 @@ The following table describes the data sources from which Log Service can collec
 |Flink|Use Flink to write data to Log Service.|[Register Log Service resources](/intl.en-US/Exclusive Mode/Flink SQL Development Guide/Data storage/Data storage resource registration/Register Log Service resources.md)|
 |Third-party software|Logstash|[Logstash](/intl.en-US/Data Collection/Other collection methods/Logstash/Create Logstash configurations for log collection and processing.md)|None|
 |Flume|[Use Flume to consume log data](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Use Flume to consume log data.md)|None|
-|Alibaba Cloud services|Elastic Compute Service \(ECS\) and OSS logs|For more information, see [Alibaba Cloud service logs](/intl.en-US/Data Collection/Cloud product collection/Cloud service logs.md).|None|
+|Alibaba Cloud services|Elastic Compute Service \(ECS\) and OSS logs|For more information, see [Alibaba Cloud service logs](/intl.en-US/Data Collection/Cloud product collection/Alibaba Cloud service logs.md).|None|
 
 ## Select a network
 
@@ -71,6 +71,6 @@ Log Service provides endpoints for different Alibaba Cloud regions. For more inf
      curl $myproject.cn-hangzhou.log.aliyuncs.com
     ```
 
-    `$myproject` specifies the project name and `cn-hangzhou.log.aliuncs.com` specifies the endpoint.
+    `$myproject` specifies the project name and `cn-hangzhou.log.aliyuncs.com` specifies the endpoint.
 
 
