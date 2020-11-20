@@ -2,42 +2,42 @@
 
 This topic describes the scenarios and benefits of the Log Audit Service application in Log Service. This topic also describes the Alibaba Cloud services that are supported by the Log Audit Service application.
 
-The Log Audit Service application supports all features of Log Service. This application allows you to collect and audit logs of cloud services across Alibaba Cloud accounts. You can store all logs in one project and query the logs. You can use the Log Audit Service application to audit logs collected from the following Alibaba Cloud services: ActionTrail, Alibaba Cloud Container Service for Kubernetes \(ACK\), Object Storage Service \(OSS\), Apsara File Storage NAS, Server Load Balancer \(SLB\), API Gateway, ApsaraDB RDS, PolarDB-X, Web Application Firewall \(WAF\), Cloud Firewall, and Security Center. You can also audit logs collected from third-party cloud services and user-created security operations centers \(SOCs\).
+The Log Audit Service application supports all features of Log Service. This application allows you to collect and audit logs of cloud services across Alibaba Cloud accounts. You can store all logs in one project and query the logs. You can use the Log Audit Service application to audit logs collected from the following Alibaba Cloud services: ActionTrail, Alibaba Cloud Container Service for Kubernetes \(ACK\), Object Storage Service \(OSS\), Apsara File Storage NAS, Server Load Balancer \(SLB\), API Gateway, ApsaraDB RDS, PolarDB-X, PolarDB for MySQL, Web Application Firewall \(WAF\), Cloud Firewall, and Security Center. You can also audit logs collected from third-party cloud services and user-created security operations centers \(SOCs\).
 
-![Log audit - 005](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5506498951/p101352.png)
+![Log audit - 005](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5506498951/p101352.png)
 
 ## Background information
 
--   Log audit is a strict legal requirement.
+-   Log audit is required by laws.
 
     Log audit is a necessity for enterprises around the world to better comply with applicable rules and regulations. For example, the Cybersecurity Law of the People's Republic of China came into effect in mainland China in 2017. In addition, the Baseline for Classified Protection of Cybersecurity 2.0 came into effect in December 2019.
 
-    ![Log audit - 001](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6506498951/p101330.png)
+    ![Log audit - 001](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6506498951/p101330.png)
 
 -   Log audit is the foundation for data security compliance of enterprises.
 
     A large number of enterprises have their own regulations and compliance teams to audit device operations, network behavior, and logs. You can use the Log Audit Service application to consume raw logs, audit logs, and generate compliance audit reports. If you have an SOC, you can consume logs in the Log Audit Service application or use Security Center to consume logs.
 
-    ![Log audit - 002](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6506498951/p102203.png)
+    ![Log audit - 002](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6506498951/p102203.png)
 
--   Log audit is a crucial part of data security and protection.
+-   Log audit is crucial for data security and protection.
 
-    Based on the M-Trends 2018 report published by FireEye, most enterprises, especially those in Asia Pacific, are vulnerable to cybersecurity attacks. The global median dwell time was 101 days in 2017. In Asia Pacific, the median dwell time was 498 days. Furthermore, the global median time for detection was 57.5 days in 2017. To shorten these time periods, enterprises need reliable log data, durable storage, and audit services.
+    Based on the M-Trends 2018 report published by FireEye, most enterprises, especially those in Asia Pacific, are vulnerable to cybersecurity attacks. The global median dwell time was 101 days in 2017. In Asia Pacific, the median dwell time was 498 days. To shorten these time periods, enterprises need reliable log data, durable storage, and audit services.
 
 
 ## Scenarios
 
 -   Log Service
 
-    Log Service is a real-time logging service that provides data collection, cleansing, analysis, visualization, and alert features. Log Service is applicable to DevOps, operation, security, and audit scenarios.
+    Log Service is a real-time logging service that allows you to collect, cleanse, and analyze log data. You can visualize log data on charts and dashboards. You can also configure alerts for logs. Log Service is applicable to DevOps, operation, security, and audit scenarios.
 
-    ![Log audit - 003](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6506498951/p101349.png)
+    ![Log audit - 003](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6506498951/p101349.png)
 
 -   Typical log audit scenarios
 
     Requirements for log audit can be classified into the following four levels:
 
-    ![Log audit - 004](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6506498951/p101350.png)
+    ![Log audit - 004](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6506498951/p101350.png)
 
     -   Basic requirements: Most small and medium-sized enterprises need automatic log collection and storage. These enterprises must meet the minimum requirements that are specified in the Baseline for Classified Protection of Cybersecurity 2.0.
     -   Intermediate requirements: Multinational enterprises, large enterprises, and some medium-sized enterprises have multiple departments that use different Alibaba Cloud accounts and separately pay bills. Therefore, these enterprises need to collect logs of the accounts by using an automatic process, send these logs to the same storage resource, and then audit the logs. In addition to the basic requirements, these types of enterprises also need to collect logs and manage accounts in a centralized manner. Most of these enterprises have an audit system and want to connect their audit systems to the Log Audit Service application in real time.
@@ -58,11 +58,11 @@ The Log Audit Service application supports all features of Log Service. This app
 
 ## Supported Alibaba Cloud services
 
-You can use the Log Audit Service application to audit logs collected from the following Alibaba Cloud services: ActionTrail, ACK, OSS, NAS, SLB, API Gateway, ApsaraDB RDS, PolarDB-X, WAF, Cloud Firewall, and Security Center. Logs that are collected from an Alibaba Cloud service are automatically stored in corresponding Logstores and displayed in corresponding dashboards.
+You can use the Log Audit Service application to audit logs collected from the following Alibaba Cloud services: ActionTrail, ACK, OSS, NAS, SLB, API Gateway, ApsaraDB RDS, PolarDB-X, PolarDB for MySQL, WAF, Cloud Firewall, and Security Center. Logs that are collected from an Alibaba Cloud service are automatically stored in corresponding Logstores. Dashboards are automatically generated for the Logstores.
 
 |Alibaba Cloud service|Audit-related log|Region|Prerequisites|Assets|
 |---------------------|-----------------|------|-------------|------|
-|ActionTrail|RAM logon logs, operations logs of Alibaba Cloud resources, and logs generated by using the API|All available regions|None|-   Logstore
+|ActionTrail|RAM logon logs, operations logs of Alibaba Cloud resources, and logs generated by using OpenAPI Explorer|All available regions|None|-   Logstore
 
 actiontrail\_log
 
@@ -86,7 +86,7 @@ apigateway\_log
 
 API Gateway Audit Center |
 |WAF|Access logs and attack logs|All available regions|-   The Pro Edition or later
--   The log analysis feature must be enabled on the **Log Service** page in the WAF console.
+-   The log analysis feature must be enabled on the **Log Service** page in the WAF console. For more information, see [Enable the log analysis feature](/intl.en-US/Data Collection/Cloud product collection/WAF logs/Enable the log analysis feature.md).
 
 |-   Logstore
 
@@ -97,7 +97,7 @@ waf\_log
     -   WAF Security Center
     -   WAF Access Center |
 |Security Center|Seven types of host logs, four types of network logs, and three types of security logs|All available regions|-   Enterprise Edition
--   The **log analysis** feature must be enabled in the Security Center console.
+-   The **log analysis** feature must be enabled in the Security Center console. For more information, see [Enable the log analysis feature](/intl.en-US/Data Collection/Cloud product collection/Security Center logs/Enable the log analysis feature.md).
 
 |-   Logstore
 
@@ -116,7 +116,7 @@ sas\_log
         -   SAS Baseline Center
         -   SAS Alarm Center |
 |Cloud Firewall|Internet access logs|None|-   The Pro Edition or later
--   The **log analysis** feature must be enabled in the Cloud Firewall console.
+-   The **log analysis** feature must be enabled in the Cloud Firewall console. For more information, see [Enable the log analysis feature](/intl.en-US/Data Collection/Cloud product collection/Cloud Firewall logs/Enable the log analysis feature.md).
 
 |-   Logstore
 
@@ -125,7 +125,7 @@ cloudfirewall\_log
 -   Dashboard
 
 Cloud Firewall Audit Center |
-|Bastionhost|Operations logs of O&M personnel|China \(Hangzhou\), China \(Shanghai\), China \(Heyuan\), and China \(Chengdu\)|Version 3.2 or later|-   Logstore
+|Bastionhost|Operations logs|China \(Hangzhou\), China \(Shanghai\), China \(Heyuan\), and China \(Chengdu\)|Version 3.2 or later|-   Logstore
 
 baston\_log
 
@@ -142,7 +142,7 @@ oss\_log
     -   OSS Operation Center
     -   OSS Performance Center
     -   OSS Overall View |
-|ApsaraDB RDS|Audit logs of ApsaraDB RDS for MySQL, SQL Server, and PostgreSQL databases|-   China \(Qingdao\), China \(Beijing\), China \(Hohhot\), China \(Hangzhou\), China \(Shanghai\), China \(Shenzhen\), China \(Chengdu\), and China \(Hong Kong\)
+|ApsaraDB RDS|Audit logs of ApsaraDB RDS for MySQL, SQL Server, and PostgreSQL databases|-   China \(Qingdao\), China \(Beijing\), China \(Zhangjiakou\), China \(Hohhot\), China \(Hangzhou\), China \(Shanghai\), China \(Shenzhen\), China \(Chengdu\), and China \(Hong Kong\)
 -   Singapore \(Singapore\), Malaysia \(Kuala Lumpur\), Indonesia \(Jakarta\), Germany \(Frankfurt\), Australia \(Sydney\), India \(Mumbai\), and Japan \(Tokyo\)
 
 |-   MySQL is not supported in the Basic Edition of ApsaraDB RDS.
@@ -158,7 +158,7 @@ rds\_log
     -   RDS Security Center
     -   RDS Performance Center
     -   RDS Overall View |
-|PolarDB-X|Audit logs|China \(Qingdao\), China \(Shenzhen\), China \(Shanghai\), China \(Beijing\), China \(Hangzhou\), China \(Zhangjiakou-Beijing Winter Olympics\), China \(Chengdu\), and China \(Hong Kong\)|None|-   Logstore
+|PolarDB-X|Audit logs|China \(Qingdao\), China \(Shenzhen\), China \(Shanghai\), China \(Beijing\), China \(Hangzhou\), China \(Zhangjiakou\), China \(Chengdu\), and China \(Hong Kong\)|None|-   Logstore
 
 drds\_log
 
@@ -166,6 +166,13 @@ drds\_log
     -   PolarDB-X Operation Center
     -   PolarDB-X Performance Center
     -   PolarDB-X Security Center |
+|PolarDB for MySQL|PolarDB audit logs|China \(Qingdao\), China \(Beijing\), China \(Hangzhou\), China \(Shanghai\), China \(Shenzhen\), and China \(Hong Kong\)|SQL Explorer of related databases is automatically enabled.|-   Logstore
+
+polardb\_log
+
+-   Dashboard
+
+None |
 |NAS|Access logs|All available regions|None|-   Logstore
 
 nas\_log
@@ -185,14 +192,14 @@ cps\_log
 -   Kubernetes event centers
 -   Ingress access logs
 
-|China \(Shanghai\), China \(Beijing\), China \(Hangzhou\), China \(Shenzhen\), China \(Hohhot\), China \(Zhangjiakou-Beijing Winter Olympics\), China \(Chengdu\), and China \(Hong Kong\)|You must manually enable the log collection feature for Kubernetes logs.**Note:**
+|China \(Shanghai\), China \(Beijing\), China \(Hangzhou\), China \(Shenzhen\), China \(Hohhot\), China \(Zhangjiakou\), China \(Chengdu\), and China \(Hong Kong\)|You must manually enable the log collection feature for Kubernetes logs.**Note:**
 
 -   You must use the automatically created project named in the k8s-log-\{ClusterID\} format. Custom projects are not supported.
--   Kubernetes log collection depends on the data transformation feature. When you collect Kubernetes logs, you are charged for the data transformation feature. For more information, see [New subscription resource plans](/intl.en-US/Pricing/New subscription resource plans.md).
+-   Kubernetes log collection depends on the data transformation feature. When you collect Kubernetes logs, you are charged for the data transformation feature. For more information, see [Billing overview](/intl.en-US/Pricing/Billing overview.md).
 
--   For more information about Kubernetes audit logs, see [Use Log Service to collect Kubernetes logs](/intl.en-US/User Guide for Kubernetes Clusters/Log management/Use Log Service to collect Kubernetes cluster logs.md).
+-   For more information about Kubernetes audit logs, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Log management/Use Log Service to collect container logs.md).
 -   For more information about Kubernetes event centers, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
--   For more information about Kubernetes access logs, see [Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Analyze logs of Ingress to monitor access to Ingress.md).
+-   For more information about Kubernetes access logs, see [Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network management/Ingress management/Monitor and analyze the logs of nginx-ingress.md).
 
 |-   Logstore
     -   k8s\_log
