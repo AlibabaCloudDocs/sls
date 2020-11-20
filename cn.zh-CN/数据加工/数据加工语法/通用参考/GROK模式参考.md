@@ -22,12 +22,12 @@ GROK模式及说明如下表所示。
 |BASE16FLOAT|匹配十六进制浮点数。|
 |POSINT|匹配正整数。|
 |NONNEGINT|匹配非负整数。|
-|WORD|匹配字母或一句话。|
+|WORD|匹配字母、数字、下划线。|
 |NOTSPACE|匹配非空格内容。|
 |SPACE|匹配空格。|
 |DATA|匹配换行符。|
 |GREEDYDATA|匹配0个或多个除换行符。|
-|QUOTEDSTRING|匹配引用内容如：`I am "Iron Man"`，会匹配`Iron Man`内容。|
+|QUOTEDSTRING|匹配引用内容。例如`I am "Iron Man"`，会匹配到`Iron Man`。|
 |UUID|匹配UUID。|
 |Networking|MAC|匹配MAC地址。|
 |CISCOMAC|匹配CISCOMAC地址。|
@@ -42,9 +42,9 @@ GROK模式及说明如下表所示。
 |Paths|PATH|匹配UNIXPATH或者WINPATH。|
 |UNIXPATH|匹配UNIXPATH。|
 |WINPATH|匹配WINPATH。|
-|URIPROTO|匹配URI中的头部分，如`http://hostname.domain.tld/_astats?application=&inf.name=eth0`会匹配到`http`。|
+|URIPROTO|匹配URI中的头部分，例如`http://hostname.domain.tld/_astats?application=&inf.name=eth0`会匹配到`http`。|
 |TTY|匹配TTY路径。|
-|URIHOST|匹配IPORHOST和POSINT。还是以`http://hostname.domain.tld/_astats?application=&inf.name=eth0`为例，会匹配到`hostname.domain.tld`。|
+|URIHOST|匹配IPORHOST和POSINT，例如`http://hostname.domain.tld/_astats?application=&inf.name=eth0`，会匹配到`hostname.domain.tld`。|
 |URI|匹配内容中的URI。|
 |日期|MONTH|匹配数字或者月份英文缩写或者全拼等格式月份。|
 |MONTHNUM|匹配数字格式月份。|
@@ -55,20 +55,20 @@ GROK模式及说明如下表所示。
 |MINUTE|匹配分钟。|
 |SECOND|匹配秒。|
 |TIME|匹配完整的时间。|
-|DATE\_US|匹配Month-Day-Year链接符，也可以是`/`组合形式的日期。|
-|DATE\_EU|匹配Day-Month-Year链接符，也可以是`/`或者`.`组合形式的日期。|
-|ISO8601\_TIMEZONE|匹配ISO8601格式的Hour和Minute。|
-|ISO8601\_SECOND|匹配ISO8601格式的Second。|
-|TIMESTAMP\_ISO8601|匹配ISO8601格式的Time。|
+|DATE\_US|匹配Month-Day-Year或Month/Day/Year形式的日期。|
+|DATE\_EU|匹配Day-Month-Year、Day/Month/Year或Day.Month.Year形式的日期。|
+|ISO8601\_TIMEZONE|匹配ISO8601格式的小时和分钟。|
+|ISO8601\_SECOND|匹配ISO8601格式的秒钟。|
+|TIMESTAMP\_ISO8601|匹配ISO8601格式的时间。|
 |DATE|匹配US或EU格式的时间。|
 |DATESTAMP|匹配完整日期和时间。|
 |TZ|匹配UTC。|
 |DATESTAMP\_RFC822|匹配RFC822格式时间。|
 |DATESTAMP\_RFC2822|匹配RFC2822格式时间。|
 |DATESTAMP\_OTHER|匹配其他格式时间。|
-|DATESTAMP\_EVENTLOG|匹配EVENTLOG格式时间。|
-|HTTPDERROR\_DATE|匹配HTTPDERROR格式时间。|
-|SYSLOG|SYSLOGTIMESTAMP|匹配Syslog格式时间。|
+|DATESTAMP\_EVENTLOG|匹配EVENTLOG格式的时间。|
+|HTTPDERROR\_DATE|匹配HTTPDERROR格式的时间。|
+|SYSLOG|SYSLOGTIMESTAMP|匹配Syslog格式的时间。|
 |PROG|匹配program内容。|
 |SYSLOGPROG|匹配program和pid内容。|
 |SYSLOGHOST|匹配IPORHOST。|
@@ -80,7 +80,7 @@ GROK模式及说明如下表所示。
 |HTTPD20\_ERRORLOG|匹配HTTPD20日志。|
 |HTTPD24\_ERRORLOG|匹配HTTPD24日志。|
 |HTTPD\_ERRORLOG|匹配HTTPD日志。|
-|LOGLEVELS|LOGLEVELS|匹配Log的Level。例如warn，debug等。|
+|LOGLEVELS|LOGLEVELS|匹配Log的Level，例如warn、debug等。|
 
 ## GROK模式 - 通用
 
