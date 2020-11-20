@@ -16,13 +16,11 @@ Fees are deducted from the balance of your Alibaba Cloud account on a daily basi
 
     1.  Query logs in real time and create a dashboard to visualize data query and analysis results.
     2.  Use a Java program to subscribe to log processing events and track log processing results in real time.
-    3.  Ship logs to Object Storage Service \(OSS\).
     |Billing item|Description|
     |------------|-----------|
     |Shard|Only one Logstore and one shard are created for 31 days in a month. This billing item is within the free quota.**Note:** By default, two shards are created when you create a Logstore. You can change this number to 1 to make sure that the number of active shards is within the free quota. |
     |Read/write traffic|A total of 15 MB of raw logs are generated every day. Assume that the compression ratio is 20%. The daily read/write traffic is 6 MB \(15 MB × 20% × 2 = 6 MB\). The monthly cumulative read/write traffic is 186 MB \(6 MB/day × 31 days = 186 MB\). This billing item is within the free quota.|
     |Indexing traffic \(logs\)|The indexing traffic is 465 MB \(15 MB/day × 31 days = 465 MB\). This billing item is within the free quota.|
-    |LogShipper|The shipping traffic is 93 MB \(15 MB × 20% × 31 days = 93 MB\). This billing item is within the free quota.|
     |Read/write operations|The number of monthly read/write operations is less than 1 million. This billing item is within the free quota.|
 
 -   Example 2: real-time computing and offline computing
