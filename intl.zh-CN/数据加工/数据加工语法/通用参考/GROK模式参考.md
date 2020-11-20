@@ -22,12 +22,12 @@ GROK模式及说明如下表所示。
 |BASE16FLOAT|匹配十六进制浮点数。|
 |POSINT|匹配正整数。|
 |NONNEGINT|匹配非负整数。|
-|WORD|匹配字母或一句话。|
+|WORD|匹配字母、数字、下划线。|
 |NOTSPACE|匹配非空格内容。|
 |SPACE|匹配空格。|
 |DATA|匹配换行符。|
 |GREEDYDATA|匹配0个或多个除换行符。|
-|QUOTEDSTRING|匹配引用内容如：`I am "Iron Man"`，会匹配`Iron Man`内容。|
+|QUOTEDSTRING|匹配引用内容。例如`I am "Iron Man"`，会匹配到`Iron Man`。|
 |UUID|匹配UUID。|
 |Networking|MAC|匹配MAC地址。|
 |CISCOMAC|匹配CISCOMAC地址。|
@@ -42,9 +42,9 @@ GROK模式及说明如下表所示。
 |Paths|PATH|匹配UNIXPATH或者WINPATH。|
 |UNIXPATH|匹配UNIXPATH。|
 |WINPATH|匹配WINPATH。|
-|URIPROTO|匹配URI中的头部分，如`http://hostname.domain.tld/_astats?application=&inf.name=eth0`会匹配到`http`。|
+|URIPROTO|匹配URI中的头部分，例如`http://hostname.domain.tld/_astats?application=&inf.name=eth0`会匹配到`http`。|
 |TTY|匹配TTY路径。|
-|URIHOST|匹配IPORHOST和POSINT。还是以`http://hostname.domain.tld/_astats?application=&inf.name=eth0`为例，会匹配到`hostname.domain.tld`。|
+|URIHOST|匹配IPORHOST和POSINT，例如`http://hostname.domain.tld/_astats?application=&inf.name=eth0`，会匹配到`hostname.domain.tld`。|
 |URI|匹配内容中的URI。|
 |日期|MONTH|匹配数字或者月份英文缩写或者全拼等格式月份。|
 |MONTHNUM|匹配数字格式月份。|
@@ -55,20 +55,20 @@ GROK模式及说明如下表所示。
 |MINUTE|匹配分钟。|
 |SECOND|匹配秒。|
 |TIME|匹配完整的时间。|
-|DATE\_US|匹配MonthDay-Year链接符，也可以是`/`组合形式的日期。|
-|DATE\_EU|匹配MonthDay-Year链接符，也可以是`/`或者`.`组合形式的日期。|
-|ISO8601\_TIMEZONE|匹配ISO8601格式的Hour和Minute。|
-|ISO8601\_SECOND|匹配ISO8601格式的Second。|
-|TIMESTAMP\_ISO8601|匹配ISO8601格式的Time。|
+|DATE\_US|匹配Month-Day-Year或Month/Day/Year形式的日期。|
+|DATE\_EU|匹配Day-Month-Year、Day/Month/Year或Day.Month.Year形式的日期。|
+|ISO8601\_TIMEZONE|匹配ISO8601格式的小时和分钟。|
+|ISO8601\_SECOND|匹配ISO8601格式的秒钟。|
+|TIMESTAMP\_ISO8601|匹配ISO8601格式的时间。|
 |DATE|匹配US或EU格式的时间。|
 |DATESTAMP|匹配完整日期和时间。|
 |TZ|匹配UTC。|
 |DATESTAMP\_RFC822|匹配RFC822格式时间。|
 |DATESTAMP\_RFC2822|匹配RFC2822格式时间。|
 |DATESTAMP\_OTHER|匹配其他格式时间。|
-|DATESTAMP\_EVENTLOG|匹配EVENTLOG格式时间。|
-|HTTPDERROR\_DATE|匹配HTTPDERROR格式时间。|
-|SYSLOG|SYSLOGTIMESTAMP|匹配Syslog格式时间。|
+|DATESTAMP\_EVENTLOG|匹配EVENTLOG格式的时间。|
+|HTTPDERROR\_DATE|匹配HTTPDERROR格式的时间。|
+|SYSLOG|SYSLOGTIMESTAMP|匹配Syslog格式的时间。|
 |PROG|匹配program内容。|
 |SYSLOGPROG|匹配program和pid内容。|
 |SYSLOGHOST|匹配IPORHOST。|
@@ -80,9 +80,9 @@ GROK模式及说明如下表所示。
 |HTTPD20\_ERRORLOG|匹配HTTPD20日志。|
 |HTTPD24\_ERRORLOG|匹配HTTPD24日志。|
 |HTTPD\_ERRORLOG|匹配HTTPD日志。|
-|LOGLEVELS|LOGLEVELS|匹配Log的Level。例如warn，debug等。|
+|LOGLEVELS|LOGLEVELS|匹配Log的Level，例如warn、debug等。|
 
-## grok模式 - 通用
+## GROK模式 - 通用
 
 ```
 EXTRACTJSON (?<json>(?:\{\s*"(?:\\"|[^"])+"\s*:\s*(?:(?P>json)|"(?:\\"|[^"])+"|[-+]?(0|[1-9]\d*)(?:\.[-+]?(0|[1-9]\d*))?(?:[eE][-+]?(0|[1-9]\d*))?|(?:true|false)|null)(?:\s*,\s*"(?:\\"|[^"])+"\s*:\s*(?:(?P>json)|"(?:\\"|[^"])+"|[-+]?(0|[1-9]\d*)(?:\.[-+]?(0|[1-9]\d*))?(?:[eE][-+]?(0|[1-9]\d*))?|(?:true|false)|null))*\s*\}|\[\s*(?:(?P>json)|"(?:\\"|[^"])+"|[-+]?(0|[1-9]\d*)(?:\.[-+]?(0|[1-9]\d*))?(?:[eE][-+]?(0|[1-9]\d*))?|(?:true|false)|null)(?:\s*,\s*(?:(?P>json)|"(?:\\"|[^"])+"|[-+]?(0|[1-9]\d*)(?:\.[-+]?(0|[1-9]\d*))?(?:[eE][-+]?(0|[1-9]\d*))?|(?:true|false)|null))*\s*\]))
@@ -295,7 +295,7 @@ HTTPD_ERRORLOG %{HTTPD20_ERRORLOG}|%{HTTPD24_ERRORLOG}
 LOGLEVEL ([Aa]lert|ALERT|[Tt]race|TRACE|[Dd]ebug|DEBUG|[Nn]otice|NOTICE|[Ii]nfo|INFO|[Ww]arn?(?:ing)?|WARN?(?:ING)?|[Ee]rr?(?:or)?|ERR?(?:OR)?|[Cc]rit?(?:ical)?|CRIT?(?:ICAL)?|[Ff]atal|FATAL|[Ss]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?)
 ```
 
-## aws示例
+## AWS示例
 
 ```
 S3_REQUEST_LINE (?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})
@@ -311,7 +311,7 @@ ELB_REQUEST_LINE (?:%{WORD:verb} %{ELB_URI:request}(?: HTTP/%{NUMBER:httpversion
 ELB_ACCESS_LOG %{TIMESTAMP_ISO8601:timestamp} %{NOTSPACE:elb} %{IP:clientip}:%{INT:clientport:int} (?:(%{IP:backendip}:?:%{INT:backendport:int})|-) %{NUMBER:request_processing_time:float} %{NUMBER:backend_processing_time:float} %{NUMBER:response_processing_time:float} %{INT:response:int} %{INT:backend_response:int} %{INT:received_bytes:int} %{INT:bytes:int} "%{ELB_REQUEST_LINE}"
 ```
 
-## bacula示例
+## Bacula示例
 
 ```
 BACULA_TIMESTAMP %{MONTHDAY}-%{MONTH} %{HOUR}:%{MINUTE}
@@ -366,7 +366,7 @@ BACULA_LOG_JOB (Error: )?Bacula %{BACULA_HOST} %{BACULA_VERSION} \(%{BACULA_VERS
 BACULA_LOGLINE %{BACULA_TIMESTAMP:bts} %{BACULA_HOST:hostname} JobId %{INT:jobid}: (%{BACULA_LOG_MAX_CAPACITY}|%{BACULA_LOG_END_VOLUME}|%{BACULA_LOG_NEW_VOLUME}|%{BACULA_LOG_NEW_LABEL}|%{BACULA_LOG_WROTE_LABEL}|%{BACULA_LOG_NEW_MOUNT}|%{BACULA_LOG_NOOPEN}|%{BACULA_LOG_NOOPENDIR}|%{BACULA_LOG_NOSTAT}|%{BACULA_LOG_NOJOBS}|%{BACULA_LOG_ALL_RECORDS_PRUNED}|%{BACULA_LOG_BEGIN_PRUNE_JOBS}|%{BACULA_LOG_BEGIN_PRUNE_FILES}|%{BACULA_LOG_PRUNED_JOBS}|%{BACULA_LOG_PRUNED_FILES}|%{BACULA_LOG_ENDPRUNE}|%{BACULA_LOG_STARTJOB}|%{BACULA_LOG_STARTRESTORE}|%{BACULA_LOG_USEDEVICE}|%{BACULA_LOG_DIFF_FS}|%{BACULA_LOG_JOBEND}|%{BACULA_LOG_NOPRUNE_JOBS}|%{BACULA_LOG_NOPRUNE_FILES}|%{BACULA_LOG_VOLUME_PREVWRITTEN}|%{BACULA_LOG_READYAPPEND}|%{BACULA_LOG_CANCELLING}|%{BACULA_LOG_MARKCANCEL}|%{BACULA_LOG_CLIENT_RBJ}|%{BACULA_LOG_VSS}|%{BACULA_LOG_MAXSTART}|%{BACULA_LOG_DUPLICATE}|%{BACULA_LOG_NOJOBSTAT}|%{BACULA_LOG_FATAL_CONN}|%{BACULA_LOG_NO_CONNECT}|%{BACULA_LOG_NO_AUTH}|%{BACULA_LOG_NOSUIT}|%{BACULA_LOG_JOB}|%{BACULA_LOG_NOPRIOR})
 ```
 
-## bro示例
+## Bro示例
 
 ```
 """https://www.bro.org/sphinx/script-reference/log-files.html"""
@@ -384,7 +384,7 @@ BRO_CONN %{NUMBER:ts}\t%{NOTSPACE:uid}\t%{IP:orig_h}\t%{INT:orig_p}\t%{IP:resp_h
 BRO_FILES %{NUMBER:ts}\t%{NOTSPACE:fuid}\t%{IP:tx_hosts}\t%{IP:rx_hosts}\t%{NOTSPACE:conn_uids}\t%{GREEDYDATA:source}\t%{GREEDYDATA:depth}\t%{GREEDYDATA:analyzers}\t%{GREEDYDATA:mime_type}\t%{GREEDYDATA:filename}\t%{GREEDYDATA:duration}\t%{GREEDYDATA:local_orig}\t%{GREEDYDATA:is_orig}\t%{GREEDYDATA:seen_bytes}\t%{GREEDYDATA:total_bytes}\t%{GREEDYDATA:missing_bytes}\t%{GREEDYDATA:overflow_bytes}\t%{GREEDYDATA:timedout}\t%{GREEDYDATA:parent_fuid}\t%{GREEDYDATA:md5}\t%{GREEDYDATA:sha1}\t%{GREEDYDATA:sha256}\t%{GREEDYDATA:extracted}
 ```
 
-## exim示例
+## Exim示例
 
 ```
 EXIM_MSGID [0-9A-Za-z]{6}-[0-9A-Za-z]{6}-[0-9A-Za-z]{2}
@@ -401,7 +401,7 @@ EXIM_HEADER_ID (id=%{NOTSPACE:exim_header_id})
 EXIM_SUBJECT (T=%{QS:exim_subject})
 ```
 
-## firewalls示例
+## Firewall示例
 
 ```
 """ NetScreen firewall logs"""
@@ -492,7 +492,7 @@ SHOREWALL (%{SYSLOGTIMESTAMP:timestamp}) (%{WORD:nf_host}) kernel:.*Shorewall:(%
 """== End Shorewall"""
 ```
 
-## haproxy示例
+## Haproxy示例
 
 ```
 """ These patterns were tested w/ haproxy-1.4.15"""
@@ -532,7 +532,7 @@ HAPROXYHTTP (?:%{SYSLOGTIMESTAMP:syslog_timestamp}|%{TIMESTAMP_ISO8601:timestamp
 HAPROXYTCP (?:%{SYSLOGTIMESTAMP:syslog_timestamp}|%{TIMESTAMP_ISO8601:timestamp8601}) %{IPORHOST:syslog_server} %{SYSLOGPROG}: %{IP:client_ip}:%{INT:client_port} \[%{HAPROXYDATE:accept_date}\] %{NOTSPACE:frontend_name} %{NOTSPACE:backend_name}/%{NOTSPACE:server_name} %{INT:time_queue}/%{INT:time_backend_connect}/%{NOTSPACE:time_duration} %{NOTSPACE:bytes_read} %{NOTSPACE:termination_state} %{INT:actconn}/%{INT:feconn}/%{INT:beconn}/%{INT:srvconn}/%{NOTSPACE:retries} %{INT:srv_queue}/%{INT:backend_queue}
 ```
 
-## java示例
+## Java示例
 
 ```
 JAVACLASS (?:[a-zA-Z$_][a-zA-Z$_0-9]*\.)*[a-zA-Z$_][a-zA-Z$_0-9]*
@@ -557,7 +557,7 @@ CATALINALOG %{CATALINA_DATESTAMP:timestamp} %{JAVACLASS:class} %{JAVALOGMESSAGE:
 TOMCATLOG %{TOMCAT_DATESTAMP:timestamp} \| %{LOGLEVEL:level} \| %{JAVACLASS:class} - %{JAVALOGMESSAGE:logmessage}
 ```
 
-## junos示例
+## Junos示例
 
 ```
 """JUNOS 11.4 RT_FLOW patterns"""
@@ -570,7 +570,7 @@ RT_FLOW2 %{RT_FLOW_EVENT:event}: session created %{IP:src-ip}/%{INT:src-port}->%
 RT_FLOW3 %{RT_FLOW_EVENT:event}: session denied %{IP:src-ip}/%{INT:src-port}->%{IP:dst-ip}/%{INT:dst-port} %{DATA:service} %{INT:protocol-id}\(\d\) %{DATA:policy-name} %{DATA:from-zone} %{DATA:to-zone} .*
 ```
 
-## linux-syslog示例
+## Linux-syslog示例
 
 ```
 SYSLOG5424PRINTASCII [!-~]+
@@ -591,7 +591,7 @@ SYSLOG5424BASE %{SYSLOG5424PRI}%{NONNEGINT:syslog5424_ver} +(?:%{TIMESTAMP_ISO86
 SYSLOG5424LINE %{SYSLOG5424BASE} +%{GREEDYDATA:syslog5424_msg}
 ```
 
-## mcollective-patterns示例
+## Mcollective-patterns示例
 
 ```
 """Remember, these can be multi-line events."""
@@ -600,7 +600,7 @@ MCOLLECTIVE ., \[%{TIMESTAMP_ISO8601:timestamp} #%{POSINT:pid}\]%{SPACE}%{LOGLEV
 MCOLLECTIVEAUDIT %{TIMESTAMP_ISO8601:timestamp}:
 ```
 
-## mongodb示例
+## MongoDB示例
 
 ```
 MONGO_LOG %{SYSLOGTIMESTAMP:timestamp} \[%{WORD:component}\] %{GREEDYDATA:message}
@@ -612,7 +612,7 @@ MONGO3_COMPONENT %{WORD}|-
 MONGO3_LOG %{TIMESTAMP_ISO8601:timestamp} %{MONGO3_SEVERITY:severity} %{MONGO3_COMPONENT:component}%{SPACE}(?:\[%{DATA:context}\])? %{GREEDYDATA:message}
 ```
 
-## nagios示例
+## Nagios示例
 
 ```
 NAGIOSTIME \[%{NUMBER:nagios_epoch}\]
@@ -713,14 +713,14 @@ NAGIOS_EC_LINE_SCHEDULE_HOST_DOWNTIME %{NAGIOS_TYPE_EXTERNAL_COMMAND:nagios_type
   NAGIOSLOGLINE %{NAGIOSTIME} (?:%{NAGIOS_WARNING}|%{NAGIOS_CURRENT_SERVICE_STATE}|%{NAGIOS_CURRENT_HOST_STATE}|%{NAGIOS_SERVICE_NOTIFICATION}|%{NAGIOS_HOST_NOTIFICATION}|%{NAGIOS_SERVICE_ALERT}|%{NAGIOS_HOST_ALERT}|%{NAGIOS_SERVICE_FLAPPING_ALERT}|%{NAGIOS_HOST_FLAPPING_ALERT}|%{NAGIOS_SERVICE_DOWNTIME_ALERT}|%{NAGIOS_HOST_DOWNTIME_ALERT}|%{NAGIOS_PASSIVE_SERVICE_CHECK}|%{NAGIOS_PASSIVE_HOST_CHECK}|%{NAGIOS_SERVICE_EVENT_HANDLER}|%{NAGIOS_HOST_EVENT_HANDLER}|%{NAGIOS_TIMEPERIOD_TRANSITION}|%{NAGIOS_EC_LINE_DISABLE_SVC_CHECK}|%{NAGIOS_EC_LINE_ENABLE_SVC_CHECK}|%{NAGIOS_EC_LINE_DISABLE_HOST_CHECK}|%{NAGIOS_EC_LINE_ENABLE_HOST_CHECK}|%{NAGIOS_EC_LINE_PROCESS_HOST_CHECK_RESULT}|%{NAGIOS_EC_LINE_PROCESS_SERVICE_CHECK_RESULT}|%{NAGIOS_EC_LINE_SCHEDULE_HOST_DOWNTIME}|%{NAGIOS_EC_LINE_DISABLE_HOST_SVC_NOTIFICATIONS}|%{NAGIOS_EC_LINE_ENABLE_HOST_SVC_NOTIFICATIONS}|%{NAGIOS_EC_LINE_DISABLE_HOST_NOTIFICATIONS}|%{NAGIOS_EC_LINE_ENABLE_HOST_NOTIFICATIONS}|%{NAGIOS_EC_LINE_DISABLE_SVC_NOTIFICATIONS}|%{NAGIOS_EC_LINE_ENABLE_SVC_NOTIFICATIONS})
 ```
 
-## postgresql示例
+## PostgreSQL示例
 
 ```
 """Default postgresql pg_log format pattern"""
 POSTGRESQL %{DATESTAMP:timestamp} %{TZ} %{DATA:user_id} %{GREEDYDATA:connection_id} %{POSINT:pid}
 ```
 
-## rails示例
+## Rails示例
 
 ```
 RUUID \h{32}
@@ -738,14 +738,14 @@ RAILS3PROFILE (?:\(Views: %{NUMBER:viewms}ms \| ActiveRecord: %{NUMBER:activerec
 RAILS3 %{RAILS3HEAD}(?:%{RPROCESSING})?(?<context>(?:%{DATA}\n)*)(?:%{RAILS3FOOT})?
 ```
 
-## redis示例
+## Redis示例
 
 ```
 REDISTIMESTAMP %{MONTHDAY} %{MONTH} %{TIME}
 REDISLOG \[%{POSINT:pid}\] %{REDISTIMESTAMP:timestamp} \*
 ```
 
-## ruby示例
+## Ruby示例
 
 ```
 RUBY_LOGLEVEL (?:DEBUG|FATAL|ERROR|WARN|INFO)
