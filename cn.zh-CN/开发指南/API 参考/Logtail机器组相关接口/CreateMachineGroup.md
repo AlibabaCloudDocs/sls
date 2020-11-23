@@ -6,12 +6,12 @@
 
 ```
 POST /machinegroups HTTP/1.1
-Authorization: <AuthorizationString> 
-Content-Type:application/json
-Content-Length:<Content Length>
-Content-MD5<:<Content MD5>
-Date: <GMT Date>
-Host: <ProjectName.Endpoint>
+Authorization: AuthorizationString
+Content-Type: application/json
+Content-Length: Content Length
+Content-MD5: Content MD5
+Date: GMT Date
+Host: ProjectName.Endpoint
 x-log-apiversion: 0.6.0
 x-log-signaturemethod: hmac-sha1
 {
@@ -77,7 +77,7 @@ x-log-signaturemethod: hmac-sha1
     Header :
     {
         "x-log-apiversion": "0.6.0",
-        "Authorization": "LOG <yourAccessKeyId>:<yourSignature>",
+        "Authorization": "LOG yourAccessKeyId:yourSignature",
         "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com",
         "Date": "Tue, 10 Nov 2015 17:57:33 GMT",
         "Content-Length": "187",
@@ -97,8 +97,8 @@ x-log-signaturemethod: hmac-sha1
             "externalName": "testgroup"
         },
         "machineList":     [
-            "127.0.0.1",
-            "127.0.0.2"
+            "192.0.2.1",
+            "192.0.2.2"
         ]
     }
     ```
