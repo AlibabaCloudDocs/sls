@@ -6,9 +6,9 @@
 
 ```
 GET /machinegroups?offset=1&size=100 HTTP/1.1
-Authorization: <AuthorizationString> 
-Date: <GMT Date>
-Host: <ProjectName.Endpoint>
+Authorization: AuthorizationString
+Date: GMT Date
+Host: ProjectName.Endpoint
 x-log-apiversion: 0.6.0
 x-log-signaturemethod: hmac-sha1
 ```
@@ -56,7 +56,7 @@ x-log-signaturemethod: hmac-sha1
     Header :
     {
         "x-log-apiversion": "0.6.0",
-        "Authorization": "LOG <yourAccessKeyId>:<yourSignature>",
+        "Authorization": "LOG yourAccessKeyId:yourAccessKeyId",
         "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com",
         "Date": "Tue, 10 Nov 2015 18:34:44 GMT",
         "Content-Length": "0",
