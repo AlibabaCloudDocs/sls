@@ -56,7 +56,7 @@ x-log-signaturemethod: hmac-sha1
     Header :
     {
         "x-log-apiversion": "0.6.0",
-        "Authorization": "LOG yourAccessKeyId:yourAccessKeyId",
+        "Authorization": "LOG yourAccessKeyId:yourSignature",
         "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com",
         "Date": "Tue, 10 Nov 2015 18:34:44 GMT",
         "Content-Length": "0",
