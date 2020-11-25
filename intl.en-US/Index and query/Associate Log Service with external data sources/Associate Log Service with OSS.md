@@ -35,7 +35,7 @@ This topic describes how to create an external store and associate Log Service w
     * | create table user_meta1 ( userid bigint, nick varchar, gender varchar, province varchar, gender varchar,age bigint) with ( endpoint='oss-cn-hangzhou-internal.aliyuncs.com',accessid='**************************',accesskey ='****************************',bucket='testoss*********',objects=ARRAY['user.csv'],type='oss')
     ```
 
-    ![External store](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5131201061/p8538.png)
+    ![External store](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5131201061/p8538.png)
 
     Configure the name of the external store and schema of the store in the CREATE clause and specify the information about the OSS bucket and objects in the WITH clause.
 
@@ -58,7 +58,7 @@ This topic describes how to create an external store and associate Log Service w
     select * from user_meta1
     ```
 
-    ![Verify the settings](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6051201061/p8539.png)
+    ![Verify the settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6051201061/p8539.png)
 
 6.  Use the JOIN syntax to join data in Log Service and OSS.
 
@@ -68,8 +68,8 @@ This topic describes how to create an external store and associate Log Service w
     * | select * from test_accesslog l join user_meta1 u on l.userid = u.userid
     ```
 
-    ![Join data](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5131201061/p8540.png)
+    ![Join data](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5131201061/p8540.png)
 
 
-For more information about how to associate Log Service with OSS, see [Perform an association analysis on Log Service logs and OSS tables](/intl.en-US/Practices/Best Practices/Query and analysis/Perform an association analysis on Log Service logs and OSS tables.md).
+For more information about how to associate Log Service with OSS, see [Perform an association query and analysis on Log Service logs and OSS tables](/intl.en-US/Index and query/Best practices/Perform an association query and analysis on Log Service logs and OSS tables.md).
 
