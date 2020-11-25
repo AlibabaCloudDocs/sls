@@ -4,7 +4,7 @@ If a large amount of data is returned when you query logs, the query results wil
 
 ## Paging methods
 
-Log Service allows you to query and analyze logs. You can use SQL statements to query logs by keyword and analyze the query result. You can also query logs by calling the GetLogstoreLogs API operation. You can query raw logs by keyword, analyze logs by executing SQL statements, and obtain the analysis result. Each query statement contains a search statement and an analytic statement. The search statement and analytic statement use different paging methods.
+Log Service allows you to query and analyze logs. You can use SQL statements to query logs by keyword and analyze the query result. You can also query logs by calling the [GetLogs](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/GetLogs.md) API operation. You can query raw logs by keyword, analyze logs by executing SQL statements, and obtain the analysis result. Each query statement contains a search statement and an analytic statement. The search statement and analytic statement use different paging methods.
 
 -   [Search statement](/intl.en-US/Index and query/Query/Search syntax.md): queries raw logs by keyword. To display the query result on multiple pages, you can call the GetLogtoreLogs API operation and specify the offset and lines parameters.
 -   [Analytic statement](/intl.en-US/Index and query/Real-time log analysis.md): analyzes logs and obtain the analysis result. To display the analysis result on multiple pages, you can use the LIMIT clause. For more information, see [LIMIT syntax](/intl.en-US/Index and query/Analysis grammar/LIMIT syntax.md).
