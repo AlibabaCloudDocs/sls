@@ -2,10 +2,10 @@
 
 本文介绍如何创建外部存储，建立日志服务与OSS的关联。
 
--   已采集日志，详情请参见[数据采集](/intl.zh-CN/数据采集/采集方式.md)。
--   已开启并配置索引，详情请参见[开启并配置索引](/intl.zh-CN/查询与分析/开启并配置索引.md)。
--   已创建OSS Bucket，详情请参见[创建存储空间](/intl.zh-CN/快速入门/创建存储空间.md)。
--   已上传CSV格式文件到OSS Bucket，详情请参见[上传文件](/intl.zh-CN/快速入门/上传文件.md)。
+-   已采集日志。更多信息，请参见[数据采集](/intl.zh-CN/数据采集/采集方式.md)。
+-   已开启并配置索引。更多信息，请参见[开启并配置索引](/intl.zh-CN/查询与分析/开启并配置索引.md)。
+-   已创建OSS Bucket。更多信息，请参见[创建存储空间](/intl.zh-CN/快速入门/创建存储空间.md)。
+-   已上传CSV格式文件到OSS Bucket。更多信息，请参见[上传文件](/intl.zh-CN/快速入门/上传文件.md)。
 
 ## 功能优势
 
@@ -31,7 +31,7 @@
     * | create table user_meta1 ( userid bigint, nick varchar, gender varchar, province varchar, gender varchar,age bigint) with ( endpoint='oss-cn-hangzhou-internal.aliyuncs.com',accessid='**************************',accesskey ='****************************',bucket='testoss*********',objects=ARRAY['user.csv'],type='oss')
     ```
 
-    ![外部存储](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7926703061/p8538.png)
+    ![外部存储](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7926703061/p8538.png)
 
     在查询分析语句中定义外部存储名称、表的Schema等信息，并通过WITH语法指定OSS访问信息及文件信息，详细信息如下表所示。
 
@@ -39,7 +39,7 @@
     |:--|:-|
     |外部存储名称|外部存储名称，即虚拟表的名称，例如user\_meta1。|
     |表的Schema|定义表的属性，包括表的列名及格式，例如\(userid bigint, nick varchar, gender varchar, province varchar, gender varchar,age bigint\)。|
-    |endpoint|OSS访问域名，详情请参见[访问域名和数据中心](/intl.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md)。|
+    |endpoint|OSS访问域名。更多信息，请参见[访问域名和数据中心](/intl.zh-CN/开发指南/访问域名（Endpoint）/访问域名和数据中心.md)。|
     |accessid|您的AccessKey ID。|
     |accesskey|您的AccessKey Secret。|
     |bucket|CSV文件所在的OSS Bucket名称。|
@@ -54,18 +54,18 @@
     select * from user_meta1
     ```
 
-    ![验证结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0540559951/p8539.png)
+    ![验证结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0540559951/p8539.png)
 
 6.  通过JOIN语法完成日志服务和OSS的联合查询。
 
-    例如，执行如下查询分析语句关联日志服务中日志的id和oss文件中的userid，补全日志信息。其中，test\_accesslog为Logstore名称，l为Logstore别名，user\_meta1为您定义的外部存储，请根据实际情况替换。
+    例如，执行如下查询分析语句关联日志服务中日志的ID和OSS文件中的userid，补全日志信息。其中，test\_accesslog为Logstore名称，l为Logstore别名，user\_meta1为您定义的外部存储，请根据实际情况替换。
 
     ```
     * | select * from test_accesslog l join user_meta1 u on l.userid = u.userid
     ```
 
-    ![联合查询](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1440559951/p8540.png)
+    ![联合查询](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1440559951/p8540.png)
 
 
-关联OSS数据源的最佳实践请参见[关联Logstore与OSS外表进行查询分析](/intl.zh-CN/案例与实践/最佳实践/查询分析/关联Logstore与OSS外表进行查询分析.md)。
+关联OSS数据源的最佳实践请参见[关联Logstore与OSS外表进行查询分析](/intl.zh-CN/查询与分析/最佳实践/关联Logstore与OSS外表进行查询分析.md)。
 
