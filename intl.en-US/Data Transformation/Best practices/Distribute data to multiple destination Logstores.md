@@ -6,17 +6,16 @@ The data transformation feature of Log Service allows you to distribute data tra
 
 **Note:**
 
--   Destination Logstores must reside in the same region as the Logstore that stores the data transformation results.
 -   In cross-account distribution scenarios, you can distribute data transformation results to a maximum of 20 Logstores that belong to different accounts.
--   You can use the e\_output function to send log data to the specified Logstores. In this case, after log data is sent to the specified Logstores, the following transformation rules do not take effect on the log data. If you want to use the following transformation rules to transform the log data, you can replace the e\_output function with the e\_coutput function. For more information, see [e\_output, e\_coutput](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Event processing functions.md). This topic takes the e\_output function as an example to describe how to distribute log data.
+-   You can use the e\_output function to send log data to specified Logstores. In this case, after log data is sent to the specified Logstores, the subsequent transformation rules do not take effect on the log data. If you want to use the subsequent transformation rules to transform the log data, you can replace the e\_output function with the e\_coutput function. For more information, see [e\_output, e\_coutput](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Event processing functions.md). In the following scenarios, the e\_output function is used to describe how to distribute log data.
 
-## Scenario 1: Cross-account distribution
+## Scenario 1: cross-account distribution
 
-For example, assume that all of the access log entries of your website are stored in a Logstore. You want to distribute the log entries to Logstores of different accounts based on the value of the http\_status field in the log entries.
+For example, assume that all access log entries of your website are stored in a Logstore. You want to distribute the log entries to Logstores of different accounts based on the value of the http\_status field in the log entries.
 
-This section describes how to use the data transformation feature to distribute the log entries.
+In this scenario, you can use the data transformation feature to distribute the log entries.
 
--   Raw log entry
+-   Raw log entries:
 
     ```
     http_host:  m1.abcd.com
@@ -52,7 +51,7 @@ This section describes how to use the data transformation feature to distribute 
     -   Store the log entries whose http\_status field value is 5XX as target3 in Logstore3 and set the topic of the log entries to internal\_server\_error\_event.
     The log entries that are stored as target0 belong to Account A and the log entries that are stored as target1, target2, and target3 belong to Account B.
 
--   Transformation rule
+-   Transformation rule:
 
     ```
     e_switch(e_match("status", r"2\d+"), e_set("__topic__", "success_event"),
@@ -64,18 +63,18 @@ This section describes how to use the data transformation feature to distribute 
 
 -   Storage target
 
-    On the Create Data Transformation Rule page, configure storage targets. For more information about the parameters of storage targets, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).
+    On the Create Data Transformation Rule page, configure storage targets. For information about the parameters of storage targets, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).
 
-    ![Data distribution](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3836813061/p58874.png)
+    ![Data distribution](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7444836061/p58874.png)
 
-    |Number|Storage target|Destination project and Logstore|AccessKey|
-    |------|--------------|--------------------------------|---------|
+    |Label|Storage target|Destination project and Logstore|AccessKey|
+    |-----|--------------|--------------------------------|---------|
     |1|target0|Project0 and Logstore0|The AccessKey pair of Account A|
     |2|target1|Project1 and Logstore1|The AccessKey pair of Account B|
     |3|target2|Project2 and Logstore2|The AccessKey pair of Account B|
     |4|target3|Project3 and Logstore3|The AccessKey pair of Account B|
 
--   Result
+-   Result:
 
     ```
     ## The log entries whose http\_status field value is 2XX are distributed to Logstore0 of Account A.
@@ -116,13 +115,13 @@ This section describes how to use the data transformation feature to distribute 
     ```
 
 
-## Scenario 2: Dynamic distribution
+## Scenario 2: dynamic distribution
 
-For example, assume that all of the access log entries of your website are stored in a Logstore. You want to distribute the log entries to different Logstores based on the project and logstore fields in the log entries.
+For example, assume that all access log entries of your website are stored in a Logstore. You want to distribute the log entries to different Logstores based on the project and logstore fields in the log entries.
 
-This section describes how to use the data transformation feature to distribute the log entries.
+In this scenario, you can use the data transformation feature to distribute the log entries.
 
--   Raw log entry
+-   Raw log entries:
 
     ```
     __tag__:type: dynamic_dispatch
@@ -165,23 +164,23 @@ This section describes how to use the data transformation feature to distribute 
 -   Distribution requirements
     -   Distribute log entries based on the values of the project and logstore fields.
     -   Add the \_\_tag:\_\_type field to each log entry and set the value of the field to dynamic\_dispatch.
--   Transformation rule
+-   Transformation rule:
 
     ```
     e_output(project=v("project"), logstore=v("logstore"), tags={"type": "dynamic_dispatch"})
     ```
 
-    The e\_output function extracts the values of the project and logstore fields from each log entry and distribute each log entry based on the values.
+    The e\_output function extracts the values of the project and logstore fields from each log entry and distributes each log entry based on the values.
 
 -   Storage target
 
     On the Create Data Transformation Rule page, configure storage targets.
 
-    **Note:** In this scenario, the destination projects and Logstores are determined based on the project and logstore parameter settings in the e\_output function instead of the destination project and Logstore that you configure to store the default storage target \(labelled 1\) on the Create Data Transformation Rule pane.
+    **Note:** In this scenario, the destination projects and Logstores are determined based on the settings of the project and logstore parameters in the e\_output function. These projects and Logstores are irrelevant to the destination project and Logstore that you configure to store the default storage target \(labeled 1\) on the Create Data Transformation Rule page.
 
-    ![Dynamic distribution](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3836813061/p135945.png)
+    ![Dynamic distribution](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7444836061/p135945.png)
 
--   Result
+-   Result:
 
     ```
     ## Log entry that is distributed to Logstore1 of Project1.
@@ -232,11 +231,11 @@ This section describes how to use the data transformation feature to distribute 
 
 ## Scenario 3: Dynamic cross-account distribution
 
-For example, assume that all of the access log entries of your website are stored in a Logstore. You want to distribute the log entries to Logstores of different accounts based on the project and logstore fields in the log entries.
+For example, assume that all access log entries of your website are stored in a Logstore. You want to distribute the log entries to Logstores of different accounts based on the project and logstore fields in the log entries.
 
-This section describes how to use the data transformation feature to distribute the log entries.
+In this scenario, you can use the data transformation feature to distribute the log entries.
 
--   Raw log entry
+-   Raw log entries:
 
     ```
     host:  a.b.c.com
@@ -276,7 +275,7 @@ This section describes how to use the data transformation feature to distribute 
 
     Distribute log entries to projects and Logstores of different accounts based on the values of the project and logstore fields. The destination projects include Project1 and Project2. Project1 includes two Logstores named Logstore1 and Logstore2 and belongs to Account A. Project2 includes two Logstores named Logstore1 and Logstore2 and belongs to Account B.
 
--   Transformation rule
+-   Transformation rule:
 
     ```
     e_switch(e_match(v("project"), "Project1"), e_output(name="target1", project=v("project"), logstore=v("logstore")),
@@ -285,19 +284,19 @@ This section describes how to use the data transformation feature to distribute 
 
 -   Storage target
 
-    On the Create Data Transformation Rule page, configure storage targets. For more information about the parameters of storage targets, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).
+    On the Create Data Transformation Rule page, configure storage targets. For information about the parameters of storage targets, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).
 
-    **Note:** In this scenario, the destination projects and Logstores are determined based on the project and logstore parameter settings in the e\_output function instead of the destination project and Logstore that you configure to store the default storage target \(labelled 1\) on the Create Data Transformation Rule pane.
+    **Note:** In this scenario, the destination projects and Logstores are determined based on the settings of the project and logstore parameters in the e\_output function. These projects and Logstores are irrelevant to the destination project and Logstore that you configure to store the default storage target \(labeled 1\) on the Create Data Transformation Rule page.
 
-    ![Dynamic cross-account distribution](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3836813061/p135947.png)
+    ![Dynamic cross-account distribution](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7444836061/p135947.png)
 
-    |Number|Storage target|Destination project and Logstore|AccessKey|
-    |------|--------------|--------------------------------|---------|
-    |1|target0|Project0 and Logstore0|N/A|
+    |Label|Storage target|Destination project and Logstore|AccessKey|
+    |-----|--------------|--------------------------------|---------|
+    |1|target0|Project0 and Logstore0|None|
     |2|target1|Randomly selected by the e\_output function|The AccessKey pair of Account A|
     |3|target2|Randomly selected by the e\_output function|The AccessKey pair of Account B|
 
--   Result
+-   Result:
 
     ```
     ## Log entry that is distributed to Logstore1 of Project1 that belongs to Account A.
@@ -341,13 +340,13 @@ This section describes how to use the data transformation feature to distribute 
     ```
 
 
-## Scenarios 4: Multi-source dynamic distribution
+## Scenarios 4: multi-source dynamic distribution
 
-For example, assume that you advertise a game and store log entries of all API requests of the game in a Logstore. You want to parse the user-agent request header and distribute the log entries of the requests from iOS, Android, and Windows platforms based on the User-Agent request header. You also want to analyze the ratio of advertisements that contribute to business growth based on the request\_method field.
+For example, assume that you advertise a game and store log entries of all API requests of the game in a Logstore. You want to parse the user-agent request header and then distribute the log entries of the requests from iOS, Android, and Windows platforms based on the user-agent request header. You also want to analyze the advertisement conversion rate based on the request\_method field.
 
-This section describes how to use the data transformation and query features to distribute the log entries.
+In this scenario, you can use the data transformation and query features to distribute the log entries.
 
--   Raw log entry
+-   Raw log entry:
 
     ```
     __source__:127.0.0.0
@@ -361,9 +360,9 @@ This section describes how to use the data transformation and query features to 
     -   Store log entries of requests from Windows users as target1 in Logstore1.
     -   Store log entries of requests from iOS users as target2 in Logstore2.
     -   Store log entries of requests from Android users as target3 in Logstore3.
--   Transformation rule
+-   Transformation rule:
 
-    In this scenario, you can use the [ua\_parse\_os](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Parsing functions.md) function to parse the user\_agent field and use the [dct\_get](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Dictionary functions.md) function to retrieve the information about the operating system from the user\_agent request header. Then you can use the [e\_set](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Value assignment function.md) function to add the os field to each log entry and use the e\_output and e\_if functions to distribute log entries. The value of the os field is the information about the operating system.
+    In this scenario, you can use the [ua\_parse\_os](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Parsing functions.md) function to parse the user\_agent field and use the [dct\_get](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Dictionary functions.md) function to retrieve the information of the operating system from the user\_agent request header. Then, you can use the [e\_set](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Value assignment function.md) function to add the os field to each log entry and use the e\_output and e\_if functions to distribute log entries. The value of the os field is the information of the operating system.
 
     ```
     e_set("os", dct_get(ua_parse_os(v("user_agent")),"family"))
@@ -374,20 +373,20 @@ This section describes how to use the data transformation and query features to 
 
 -   Storage target
 
-    On the Create Data Transformation Rule page, configure storage targets. For more information about the parameters of storage targets, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).
+    On the Create Data Transformation Rule page, configure storage targets. For information about the parameters of storage targets, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).
 
-    ![Default storage target](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2181813061/p133427.png)
+    ![Default storage target](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7444836061/p133427.png)
 
-    |Number|Storage target|Destination project and Logstore|
-    |------|--------------|--------------------------------|
+    |Label|Storage target|Destination project and Logstore|
+    |-----|--------------|--------------------------------|
     |1|target0|Project0 and Logstore0|
     |2|target1|Project1 and Logstore1|
     |3|target2|Project2 and Logstore2|
     |4|target3|Project3 and Logstore3|
 
--   Log search and analytics
+-   Log query and analysis
 
-    You can query log data in the destination Logstores to retrieve the ratio of advertisements that contribute to business growth. The following query results show that a higher ratio of advertisements targeted at Android users contribute to business growth. For more information about how to query log data, see [Query logs](/intl.en-US/Index and query/Query logs.md).
+    You can query log data in the destination Logstores to retrieve the advertisement conversion rate. The following query results show that Android users have a higher advertisement conversion rate. For more information about how to query log data, see [Query logs](/intl.en-US/Index and query/Query logs.md).
 
     -   On the Search & Analysis page of Logstore2, run the following query statement to retrieve the ratio of GET and POST requests from iOS users:
 
@@ -395,7 +394,7 @@ This section describes how to use the data transformation and query features to 
         * | SELECT Request_method, COUNT(*) as number GROUP BY Request_method
         ```
 
-        ![Search & Analysis](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4836813061/p133463.png)
+        ![Query and analysis result](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4836813061/p133463.png)
 
     -   On the Search & Analysis page of Logstore3, run the following query statement to retrieve the ratio of GET and POST requests from Android users:
 
@@ -403,6 +402,6 @@ This section describes how to use the data transformation and query features to 
         * | SELECT Request_method, COUNT(*) as number GROUP BY Request_method
         ```
 
-        ![Search & Analysis](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4836813061/p133470.png)
+        ![Query and analysis result](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4836813061/p133470.png)
 
 
