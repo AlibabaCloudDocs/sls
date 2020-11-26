@@ -53,7 +53,7 @@ For example, assume that a multinational information company stores the access l
         e_if(e_match("http_status", "200"), e_output("target_logstore"))
         ```
 
-        ![Transformation rule](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1143836061/p58876.png)
+        ![Transformation rule](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1373836061/p58876.png)
 
     -   Configure the following transformation rules for Logstore\_2 of Account 2. On the Create Data Transformation Rule page, set Target Name to target\_logstore, set Target Project to Project\_3, set Target Logstore to Logstore\_3, and specify the authorization method.
 
