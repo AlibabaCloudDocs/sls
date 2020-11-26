@@ -53,7 +53,7 @@
         e_if(e_match("http_status", "200"), e_output("target_logstore"))
         ```
 
-        ![加工规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3143836061/p58876.png)
+        ![加工规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7273836061/p58876.png)
 
     -   在账号2的Logstore\_2中配置如下加工规则，参见账号1配置，并且在创建数据加工规则面板中，配置目标名称为target\_logstore，目标Project为Project\_3，目标库为Logstore\_3，以及授权方式及相关信息。
 
