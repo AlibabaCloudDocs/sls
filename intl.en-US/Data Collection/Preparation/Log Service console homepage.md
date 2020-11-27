@@ -43,7 +43,7 @@ This section provides information about the following topics:
 -   Beginner's Guide: describes the basic features of Log Service based on the log collection workflow.
 -   More: provides the billing rules and permission management of Log Service.
 
-![Beginner's guide](../images/p182436.png)
+![Beginner's guide](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1103746061/p182436.png)
 
 ## Watchlist
 
