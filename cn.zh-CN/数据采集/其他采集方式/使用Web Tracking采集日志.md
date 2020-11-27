@@ -19,7 +19,7 @@
 -   控制台方式
     1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
     2.  在Project列表区域，单击目标Project。
-    3.  在**日志存储** \> **日志库**页签中，选择目标Logstore右侧的**![图标](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1140559951/p65765.png)** \> **修改**。
+    3.  在**日志存储** \> **日志库**页签中，选择目标Logstore右侧的**![图标](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1140559951/p65765.png)** \> **修改**。
     4.  在Logstore属性页面，单击右上方的**修改**。
     5.  打开**WebTracking**开关，并单击**保存**。
 -   SDK方式
@@ -89,8 +89,8 @@
         |host|是|日志服务所在地域的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。|
         |project|是|Project名称。|
         |logstore|是|Logstore名称。|
-        |time|否|发送消息的时间间隔，默认值为10，单位为秒。|
-        |count|否|发送消息的数量大小，默认值为10。|
+        |time|否|发送日志的时间间隔，默认值为10，单位为秒。|
+        |count|否|发送日志的数量大小，默认值为10。|
 
     4.  创建SlsWebLogger对象。
 
