@@ -50,7 +50,7 @@ You can use Beats such as MetricBeat, PacketBeat, Winlogbeat, Auditbeat, Filebea
 
     By default, Beats provide JSON-formatted logs in the content field. You can create a JSON index for the content field. For more information, visit [JSON](/intl.en-US/Index and query/Data types of indexes.md).
 
-    ![Beats](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4407549951/p41999.png)
+    ![Beats](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4407549951/p41999.png)
 
 
 ## Example 2: Use collectd to upload logs to Log Service
@@ -83,7 +83,7 @@ Before you upload logs to Log Service, you must install the collectd-write\_kafk
 
     Logs are sent to the Log Service console in the JSON format. The log content is included in the content field. You can create a JSON index for the content field. For more information, see [JSON](/intl.en-US/Index and query/Data types of indexes.md).
 
-    ![Collectd](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4407549951/p42000.png)
+    ![Collectd](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4407549951/p42000.png)
 
 
 ## Example 3: Use Telegraf to upload logs to Log Service
@@ -128,7 +128,7 @@ Before you use the Kafka protocol to upload collected logs to Log Service, you m
 
     Logs are sent to the Log Service console in the JSON format. The log content is included in the content field. You can create a JSON index for the content field. For more information, see [JSON](/intl.en-US/Index and query/Data types of indexes.md).
 
-    ![Telegraf](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4407549951/p42180.png)
+    ![Telegraf](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4407549951/p42180.png)
 
 
 ## Example 4: Use Fluentd to upload logs to Log Service
@@ -166,7 +166,7 @@ Fluentd is compatible with multiple input plug-ins, processing plug-ins, and out
 
     Logs are sent to the Log Service console in the JSON format. The log content is included in the content field. You can create a JSON index for the content field. For more information, see [JSON](/intl.en-US/Index and query/Data types of indexes.md).
 
-    ![Fluentd](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/4407549951/p42204.png)
+    ![Fluentd](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4407549951/p42204.png)
 
 
 ## Example 5: Use Logstash to upload logs to Log Service
@@ -190,7 +190,7 @@ Logstash provides a built-in Kafka output plug-in. You can configure Logstash to
 
     2.  Configure the SSL certificate and save the certificate to a directory, for example, /etc/kafka/client-root.truststore.jks.
 
-        The domain name of each Log Service project has a CA certificate. You only need to download the root certificate [GlobalSign Root CA](https://www.getssl.cn/support/globalsign-root-certificates/), encode the certificate in Base64, and save the certificate to a directory, for example, /etc/kafka/ca-root. Then, run the following [keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html) command to generate a JKS file. You must set a password when a JKS file is generated for the first time.
+        The domain name of each Log Service project has a CA certificate. You only need to download the root certificate [GlobalSign Root CA](https://www.getssl.com/ssl-download/), encode the certificate in Base64, and save the certificate to a directory, for example, /etc/kafka/ca-root. Then, run the following [keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html) command to generate a JKS file. You must set a password when a JKS file is generated for the first time.
 
         ```
         keytool -keystore client.truststore.jks -alias root -import -file /etc/kafka/ca-root
@@ -224,7 +224,7 @@ Logstash provides a built-in Kafka output plug-in. You can configure Logstash to
 
     Logs are sent to the Log Service console in the JSON format. The log content is included in the content field. You can create a JSON index for the content field. For more information, see [JSON](/intl.en-US/Index and query/Data types of indexes.md).
 
-    ![Logstash](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5407549951/p42205.png)
+    ![Logstash](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5407549951/p42205.png)
 
 
 ## Error messages
