@@ -29,13 +29,13 @@
 
     1.  在创建服务关联角色对话框中，单击AliyunServiceRoleForAnalyticDBForMySQL。
 
-        ![创建服务关联角色](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0248744061/p179192.png)
+        ![创建服务关联角色](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0248744061/p179192.png)
 
     2.  在创建服务关联角色对话框中，单击**确定**。
 
 6.  在LogHub —— 数据投递页面，配置相关参数，然后单击**确定**。
 
-    ![数据投递](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0248744061/p179204.png)
+    ![数据投递](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0248744061/p179204.png)
 
     |参数|说明|
     |--|--|
@@ -47,13 +47,13 @@
     |**表名**|选择您已创建的AnalyticDB MySQL集群中的数据库表。|
     |**账号名称**|配置为您在AnalyticDB MySQL集群中创建的数据库账号名称。|
     |**账号密码**|配置为您在AnalyticDB MySQL集群中创建的数据库账号密码。|
-    |**字段映射**|系统自动提取日志服务中最近10分钟的日志字段，同时自动映射对应的AnalyticDB MySQL数据表中的字段。左边文本框为日志字段名称，右边为AnalyticDB MySQL数据库表中的字段。![投递任务2](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8877688951/p76519.jpg) |
+    |**字段映射**|系统自动提取日志服务中最近10分钟的日志字段，同时自动映射对应的AnalyticDB MySQL数据表中的字段。左边文本框为日志字段名称，右边为AnalyticDB MySQL数据库表中的字段。![投递任务2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8877688951/p76519.jpg) |
     |**投递开始时间**|配置投递开始时间。 当日志服务采集到日志后，日志服务可以实时将数据投递到AnalyticDB MySQL。 |
-    |**是否过滤脏数据**|脏数据包括数据类型转化失败和非空字段为空等数据。    -   如果配置为**否**，则遇到脏数据时，投递任务中断。请谨慎选择。
-    -   如果配置为**是**，则遇到脏数据时，过滤掉脏数据。 |
+    |**是否过滤脏数据**|脏数据包括数据类型转化失败和非空字段为空等数据。    -   如果打开**是否过滤脏数据**开关，则遇到脏数据时，过滤掉脏数据。
+    -   如果关闭**是否过滤脏数据**开关，则遇到脏数据时，投递任务中断。请谨慎选择。 |
 
 
-创建投递任务后，您可以在日志服务控制台上管理数据投递任务，包括查看任务详情、修改投递规则以及启动、停止、删除任务等操作。更多信息，请参见[管理日志投递任务]()。
+创建投递任务后，您可以在日志服务控制台上管理数据投递任务，包括查看任务详情、修改投递规则以及启动、停止、删除任务等操作。更多信息，请参见[管理日志投递任务](/cn.zh-CN/消费与投递/数据投递/管理日志投递任务.md)。
 
 ## 查看日志数据
 
