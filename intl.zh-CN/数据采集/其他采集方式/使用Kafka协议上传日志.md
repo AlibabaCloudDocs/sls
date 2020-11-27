@@ -50,7 +50,7 @@ Beats系列软件（MetricBeat、PacketBeat、Winlogbeat、Auditbeat、Filebeat�
 
     Beats系列软件默认输出的日志为JSON类型，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/intl.zh-CN/查询与分析/索引数据类型.md)。
 
-    ![Beats系列软件](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p41999.png)
+    ![Beats系列软件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p41999.png)
 
 
 ## 示例2：通过Collectd采集日志到日志服务
@@ -83,7 +83,7 @@ Beats系列软件（MetricBeat、PacketBeat、Winlogbeat、Auditbeat、Filebeat�
 
     使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/intl.zh-CN/查询与分析/索引数据类型.md)。
 
-    ![Collectd](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42000.png)
+    ![Collectd](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42000.png)
 
 
 ## 使用Telegraf采集日志到日志服务
@@ -128,7 +128,7 @@ Beats系列软件（MetricBeat、PacketBeat、Winlogbeat、Auditbeat、Filebeat�
 
     使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/intl.zh-CN/查询与分析/索引数据类型.md)。
 
-    ![Telegraf](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42180.png)
+    ![Telegraf](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42180.png)
 
 
 ## 使用Fluentd采集日志到日志服务
@@ -166,7 +166,7 @@ Fluentd支持众多输入、处理、输出插件，支持通过Kafka插件将�
 
     使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/intl.zh-CN/查询与分析/索引数据类型.md)。
 
-    ![Fluentd](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42204.png)
+    ![Fluentd](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42204.png)
 
 
 ## 示例5：使用Logstash采集日志到日志服务
@@ -190,7 +190,7 @@ Logstash内置Kafka输出插件，您可以配置Logstash实现日志通过kafka
 
     2.  配置SSL信任证书，保存到任意路径（例如：/etc/kafka/client-root.truststore.jks）。
 
-        日志服务的域名均为可信任证书，您只需下载[GlobalSign Root CA](https://www.getssl.cn/support/globalsign-root-certificates/)根证书，保存base64编码的根证书到任意路径（例如/etc/kafka/ca-root）即可。然后输入[keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html)命令生成.jks格式的文件（首次生成时，需要配置密码）。
+        日志服务的域名均为可信任证书，您只需下载[GlobalSign Root CA](https://www.getssl.com/ssl-download/)根证书，保存base64编码的根证书到任意路径（例如/etc/kafka/ca-root）即可。然后输入[keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html)命令生成.jks格式的文件（首次生成时，需要配置密码）。
 
         ```
         keytool -keystore client.truststore.jks -alias root -import -file /etc/kafka/ca-root
@@ -224,7 +224,7 @@ Logstash内置Kafka输出插件，您可以配置Logstash实现日志通过kafka
 
     使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/intl.zh-CN/查询与分析/索引数据类型.md)。
 
-    ![Logstash](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42205.png)
+    ![Logstash](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42205.png)
 
 
 ## 错误信息
