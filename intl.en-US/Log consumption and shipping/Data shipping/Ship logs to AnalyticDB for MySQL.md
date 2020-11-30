@@ -53,8 +53,6 @@ After you collect logs by using Log Service, you can ship the logs to AnalyticDB
     -   If you turn **on** this switch, dirty data is filtered out. |
 
 
-After you create a log shipping task, you can manage the task in the Log Service console. You can view the task details, modify the shipping rules, and start, stop, or delete the task. For more information, see [t13186.md\#]().
-
 ## View log data
 
 After logs are shipped to AnalyticDB for MySQL, you can execute the [SELECT]() statement to query log data.
