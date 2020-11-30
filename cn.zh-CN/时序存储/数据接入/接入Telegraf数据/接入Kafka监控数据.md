@@ -2,19 +2,16 @@
 
 您可使用Telegraf采集Kafka监控数据，再通过日志服务Logtail将Telegraf数据上传到MetricStore中，搭建Kafka可视化监控方案。本文介绍如何通过日志服务来完成Kafka监控数据的采集和可视化。
 
-已在服务器上安装Logtail（Linux Logtail 0.16.48及以上版本），详情请参见[安装Logtail（Linux系统）](/cn.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md)。
-
-## 使用限制
-
-仅支持Java 1.6及以上版本。
+-   已在服务器上安装Linux Logtail 0.16.48或以上版本。更多信息，请参见[安装Logtail（Linux系统）](/cn.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md)。
+-   已在服务器上安装Java 1.6或以上版本 。
 
 ## 步骤1：配置JavaAgent
 
-在采集Kafka监控数据前，您需要先将JMX协议转换为HTTP协议。日志服务支持使用[Jolokia](https://jolokia.org/)将JMX协议转换为HTTP协议。您可以按照Jolokia官方文档下载及加载Jolokia，也可以使用日志服务Logtail自带的Jolokia JavaAgent，Logtail自带的Jolokia JavaAgent位于`/etc/logtail/telegraf/javaagent/jolokia-jvm.jar`中。
+在采集Kafka监控数据前，您需要先将JMX协议转换为HTTP协议。日志服务支持使用[Jolokia](https://jolokia.org/)将JMX协议转换为HTTP协议。您可以按照Jolokia官方文档下载及加载Jolokia，也可以使用日志服务Logtail自带的Jolokia JavaAgent。Logtail自带的Jolokia JavaAgent位于`/etc/logtail/telegraf/javaagent/jolokia-jvm.jar`中。
 
-您需要在kafka所在机器上设置`KAFKA_JVM_PERFORMANCE_OPTS`环境变量，例如`export KAFKA_JVM_PERFORMANCE_OPTS=-javaagent:/etc/logtail/telegraf/javaagent/jolokia-jvm.jar=port=7777`，其中7777为指定的端口号，将用于Logtail配置。
+您需要在kafka所在机器上设置`KAFKA_JVM_PERFORMANCE_OPTS`环境变量，例如`export KAFKA_JVM_PERFORMANCE_OPTS=-javaagent:/etc/logtail/telegraf/javaagent/jolokia-jvm.jar=port=7777`，其中7777为指定的端口号，用于Logtail配置。
 
-**说明：** 默认Jolokia JavaAgen只在127.0.0.1上监听，即只允许本机请求。如果您的Logtail和被监控的应用不在相同的机器上，您可以在添加的脚本中补充host=字段，使其可监听其他IP地址。如果设置为host=0.0.0.0，则表示监听所有IP地址。
+**说明：** 默认Jolokia JavaAgent只在127.0.0.1上监听，即只允许本机请求。如果您的Logtail和被监控的应用不在相同的机器上，您可以在添加的脚本中补充host=字段，使其可监听其他IP地址。如果设置为host=0.0.0.0，则表示监听所有IP地址。相关命令如下所示：
 
 ```
 -javaagent:/tmp/jolokia-jvm.jar=port=7777,host=0.0.0.0
@@ -25,7 +22,7 @@
 **说明：** 该操作仅用于测试，请确保按照上述操作完成配置，否则重启后将失效。
 
 ```
-java -jar /etc/logtail/telegraf/javaagent/jolokia-jvm.jar --port 7777 start 进程PID
+java -jar /etc/ilogtail/telegraf/javaagent/jolokia-jvm.jar --port 7777 start 进程PID
 ```
 
 如果返回如下信息则表示连接成功。
@@ -51,36 +48,36 @@ curl http://127.0.0.1:7777/jolokia/
 
 3.  在选择日志空间页签中，选择目标Project和MetricStore，单击**下一步**。
 
-    您也可以单击**立即创建**，重新创建Project和MetricStore，详情请参见[创建Project](/cn.zh-CN/数据采集/准备工作/管理Project.md)和[创建MetricStore](/cn.zh-CN/时序存储/管理MetricStore.md)。
+    您也可以单击**立即创建**，重新创建Project和MetricStore。更多信息，请参见[创建Project](/cn.zh-CN/数据采集/准备工作/管理Project.md)和[创建MetricStore](/cn.zh-CN/时序存储/管理MetricStore.md)。
 
 4.  在创建机器组页签中，创建机器组。
 
     -   如果您已有可用的机器组，请单击**使用现有机器组**。
     -   如果您还没有可用的机器组，请执行以下操作（以ECS为例）：
-        1.  选择ECS实例安装Logtail，详情请参见[安装Logtail（ECS实例）](/cn.zh-CN/数据采集/Logtail采集/安装/安装Logtail（ECS实例）.md)。
+        1.  选择ECS实例安装Logtail。更多信息，请参见[安装Logtail（ECS实例）](/cn.zh-CN/数据采集/Logtail采集/安装/安装Logtail（ECS实例）.md)。
 
-            如果已在ECS上安装Logtail，请直接单击**确认安装完毕**。
+            如果已在ECS上安装Logtail，请单击**确认安装完毕**。
 
-            **说明：** 如果是自建集群、其他云厂商服务器，需要手动安装Logtail，详情请参见[安装Logtail（Linux系统）](/cn.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md#)。
+            **说明：** 如果是自建集群、其他云厂商服务器，需要手动安装Logtail。更多信息，请参见[安装Logtail（Linux系统）](/cn.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md#)。
 
         2.  安装完成后，单击**确认安装完毕**。
-        3.  创建机器组，详情请参见[创建IP地址机器组](/cn.zh-CN/数据采集/Logtail采集/机器组/创建IP地址机器组.md)或[创建用户自定义标识机器组](/cn.zh-CN/数据采集/Logtail采集/机器组/创建用户自定义标识机器组.md)。
+        3.  创建机器组。
+
+            如何创建机器组，请参见[创建IP地址机器组](/cn.zh-CN/数据采集/Logtail采集/机器组/创建IP地址机器组.md)或[创建用户自定义标识机器组](/cn.zh-CN/数据采集/Logtail采集/机器组/创建用户自定义标识机器组.md)。
+
 5.  在机器组配置页签中，应用机器组。
 
     选择一个机器组，将该机器组从**源机器组**移动到**应用机器组**。
 
-6.  在安装Telegraf页签中，根据页面提示，完成安装。
-
-    如果您已安装Telegraf，可直接单击**下一步**。
-
-7.  在数据源设置页签中，配置如下参数。
+6.  在数据源设置页签中，配置如下参数。
 
     |参数名称|说明|
     |----|--|
     |配置名称|Logtail配置名称。|
     |集群名称|Kafka集群名称。配置该参数后，日志服务会为您的数据添加cluster=集群名称的标签。**说明：** 请确保该集群名称唯一，否则可能出现数据冲突。 |
-    |服务器列表|单击**+**，添加Kafka服务器信息，支持添加多台Kafka服务器信息。    -   **地址**：Kafka服务器的连接地址。
-    -   **端口**：配置为您在[步骤1：配置JavaAgent](#section_uj1_fpu_0rx)中配置的端口号。 |
+    |服务器列表|单击**+**，添加Kafka服务器信息。    -   **地址**：Kafka服务器的连接地址。
+    -   **端口**：配置为您在[步骤1：配置JavaAgent](#section_uj1_fpu_0rx)中配置的端口号。
+您可以根据业务需求，添加多台Kafka服务器信息。 |
     |自定义标签|一个MetricStore下可创建多个Logtail配置，您可以使用**自定义标签**为通过该Logtail配置采集到的数据添加标签。单击**+**，添加自定义标签，支持添加多个标签。添加的标签将加入到每一条数据中。 |
 
 
