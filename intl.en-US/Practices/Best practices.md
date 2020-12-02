@@ -60,10 +60,6 @@ This topic lists the best practices of Log Service.
 -   [Consume metering and billing logs](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Best practices/Consume metering and billing logs.md)
 -   [Use a consumer library to consume logs in high reliability mode](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Best practices/Use a consumer library to consume logs in high reliability mode.md)
 
-## MetricStore
-
-[Use Prometheus to collect Kubernetes metric data]()
-
 ## Application center
 
 [Use a resource directory to authorize Log Service to collect and synchronize logs across multiple accounts](/intl.en-US/Application/Log Audit Service/Best Practices/Use a resource directory to authorize Log Service to collect and synchronize logs
