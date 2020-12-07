@@ -1,21 +1,22 @@
 # GetProject
 
-调用GetProject接口查询Project信息。
+调用GetProject接口查询目标Project的详细信息。
 
 ## 请求语法
 
 ```
 GET / HTTP/1.1
-Authorization: <AuthorizationString>
+Content-Length: 0
 x-log-bodyrawsize: 0
-User-Agent: <UserAgent>
 x-log-apiversion: 0.6.0
-Host: <Project Endpoint>
 x-log-signaturemethod: hmac-sha1
-Date: <GMT Date>
-Content-Type: application/x-protobuf
-Connection: Keep-Alive
+Host: ProjectName.Endpoint
+Date: GMT Date
+Authorization: LOG yourAccessKeyId:yourSignature
+x-log-date: GMT Date
 ```
+
+其中，Host由Project名称和日志服务Endpoint构成，您需要在Host中指定Project。
 
 ## 请求参数
 
@@ -38,14 +39,14 @@ Connection: Keep-Alive
 
 -   响应元素
 
-    HTTP状态码返回200，表示GetProject请求成功。其响应Body中包含Project的详细信息，如下所示：
+    HTTP状态码返回200，表示GetProject请求成功。其响应Body中包含Project的详细信息，各参数说明如下所示：
 
     |参数名称|数据类型|示例值|描述|
     |:---|:---|---|:-|
     |createTime|String|2020-11-18 16:55:57|创建Project的时间。|
-    |description|String|test|Project描述。|
+    |description|String|test|Project描述信息。|
     |lastModifyTime|String|2020-11-18 17:07:26|最后一次更新Project的时间。|
-    |owner|String|174\*\*\*\*745|创建人的阿里云账户ID。|
+    |owner|String|174\*\*\*\*745|创建人的阿里云账号ID。|
     |projectName|String|my-project-test|Project名称。|
     |status|String|Normal|Project状态。|
     |region|String|cn-hangzhou|Project所属地域。|
@@ -57,36 +58,44 @@ Connection: Keep-Alive
 
     ```
     GET / HTTP/1.1
-    Authorization: LOG <yourAccessKeyId>:<yourSignature>
-    x-log-bodyrawsize: 0
-    User-Agent: sls-java-sdk-v-0.6.1
-    x-log-apiversion: 0.6.0
-    Host: my-project-test.cn-shanghai.log.aliyuncs.com
-    x-log-signaturemethod: hmac-sha1
-    Date: Sun, 27 May 2018 08:25:04 GMT
-    Content-Type: application/x-protobuf
-    Connection: Keep-Alive
+    Header :
+    {
+        'Content-Length': '0',
+        'x-log-bodyrawsize': '0',
+        'x-log-apiversion': '0.6.0',
+        'x-log-signaturemethod': 'hmac-sha1',
+        'Host': 'my-project-test.cn-shanghai.log.aliyuncs.com',
+        'Date': 'Sun, 27 May 2018 08:25:04 GMT',
+        'Authorization': LOG yourAccessKeyId:/yourSignature,
+        'x-log-date': 'Sun, 27 May 2018 08:25:04 GMT'
+    }
     ```
 
 -   正常返回示例
 
     ```
-    HTTP/1.1 200
-    Server: nginx
-    Content-Length: 0
-    Connection: close
-    Access-Control-Allow-Origin: *
-    Date: Sun, 27 May 2018 08:25:04 GMT
-    x-log-requestid: 5B0A6B60BB6EE39764D458B5
+    HTTP/1.1 200 OK
+    Header :
     {
-        "createTime":"2020-11-18 16:55:57",
-        "description":"test",
-        "lastModifyTime":"2020-11-18 17:07:26",
-        "owner":"174****745",
-        "projectName":"my-project-test",
-        "region":"cn-hangzhou",
-        "status":"Normal"
+        'Server': 'nginx',
+        'Content-Type': 'application/json',
+        'Content-Length': '0'
+        'Connection': 'close',
+        'Access-Control-Allow-Origin': '*',
+        'Date': 'Sun, 27 May 2018 08:25:04 GMT',
+        'x-log-requestid': '5B0A6B60BB6EE39764D458B5'
     }
+    Body :
+    {
+        'createTime': '2020-11-18 16:55:57',
+        'description': 'test',
+        'lastModifyTime': '2020-11-18 17:07:26',
+        'owner': '174****745',
+        'projectName': 'my-project-test',
+        'region': 'cn-hangzhou',
+        'status': 'Normal
+    }
+                        
     ```
 
 
@@ -94,7 +103,7 @@ Connection: Keep-Alive
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
-|404|ProjectNotExist|The Project does not exist : \{Project\}|Project不存在。|
+|404|ProjectNotExist|The Project does not exist : projectName|Project不存在。|
 |500|InternalServerError|Specified Server Error Message|内部服务调用错误。|
 
 更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
