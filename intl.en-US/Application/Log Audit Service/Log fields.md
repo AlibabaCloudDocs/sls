@@ -30,7 +30,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |event.userIdentity.type|The type of an account that sends a request.|
 |event.userIdentity.userName|The username of an account that sends a request.|
 |event.errorCode|The error code of an event.|
-|addionalEventData.isMFAChecked|Indicates whether Multi-Factor Authentication \(MFA\) is enabled for the logon account that is used to log on to Log Service.|
+|addionalEventData.isMFAChecked|Indicates whether multi-factor authentication \(MFA\) is enabled for the account that is used to log on to Log Service.|
 |addionalEventData.loginAccount|The logon account.|
 
 ## Server Load Balancer \(SLB\)
@@ -51,8 +51,8 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |http\_referer|The HTTP Referer header in a request message that is received by the proxy.|
 |http\_user\_agent|The User-Agent HTTP header in a request message that is received by the proxy.|
 |http\_x\_forwarded\_for|The X-Forwarded-For \(XFF\) HTTP header in a request message that is received by the proxy.|
-|http\_x\_real\_ip|The actual IP address of a client.|
-|read\_request\_time|The duration that the proxy uses to read a request message. Unit: milliseconds.|
+|http\_x\_real\_ip|The real IP address of a client.|
+|read\_request\_time|The duration in which the proxy reads a request message. Unit: milliseconds.|
 |request\_length|The length of a request message. This field includes the start-line, HTTP headers, and HTTP body.|
 |request\_method|The request method.|
 |request\_time|The duration between the time when the proxy receives the first request message and the time when the proxy returns a response message. Unit: seconds.|
@@ -64,20 +64,20 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |ssl\_cipher|The used cipher suite, for example, ECDHE-RSA-AES128-GCM-SHA256.|
 |ssl\_protocol|The protocol that is used to establish an SSL connection, for example, TLSv1.2.|
 |status|The HTTP status code that is sent from the proxy.|
-|tcpinfo\_rtt|The RTT of TCP packets. Unit: milliseconds.|
+|tcpinfo\_rtt|The RTT of TCP packets. Unit: microseconds.|
 |time|The time when a log entry is recorded.|
 |upstream\_addr|The IP address and port number of the backend server.|
 |upstream\_response\_time|The duration of the connection between the proxy and backend server. Unit: seconds.|
 |upstream\_status|The HTTP status code that is received by the proxy from the backend server.|
 |vip\_addr|The virtual IP address.|
-|write\_response\_time|The duration for which the proxy writes a response message. Unit: milliseconds.|
+|write\_response\_time|The duration in which the proxy writes a response message. Unit: milliseconds.|
 
 ## API Gateway
 
 |Log field|Description|
 |---------|-----------|
 |owner\_id|The ID of the account to which an API belongs.|
-|apiGroupUid|The ID of the group to which an API operation belongs.|
+|apiGroupUid|The ID of the group to which an API belongs.|
 |apiGroupName|The name of the group to which an API belongs.|
 |apiUid|API ID|
 |apiName|The name of an API.|
@@ -106,17 +106,18 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |\_\_topic\_\_|The topic of a log entry. Valid value: waf\_access\_log.|
 |owner\_id|The ID of an Alibaba Cloud account.|
 |acl\_action|The action that is performed by WAF. This is the action that is triggered in response to a request based on an HTTP ACL policy, for example, pass, drop, or captcha. **Note:** If the value is null or a hyphen \(-\), this field also indicates the pass action. |
-|acl\_blocks|Indicates whether a request is blocked by an HTTP ACL policy. If the value is 1, the request is blocked. If the value is not 1, the request is passed.|
+|acl\_blocks|Indicates whether a request is blocked by an HTTP ACL policy.-   If the value is 1, the request is blocked.
+-   If the value is not 1, the request is passed. |
 |antibot|The type of an Anti-Bot Service protection policy that is triggered. Valid values: -   ratelimit: frequency control
 -   sdk: app protection
 -   algorithm: intelligent algorithm
 -   intelligence: bot threat intelligence
 -   acl: HTTP ACL policy
 -   blacklist: blacklist |
-|antibot\_action|The action that is performed based on an Anti-Bot Service protection policy. Valid values: -   challenge: verify a request by using an embedded JavaScript
--   drop: block
--   report: log access events
--   captcha: verify a request by using a slider captcha |
+|antibot\_action|The action that is performed based on an Anti-Bot Service protection policy. Valid values: -   challenge: verifies a request by using an embedded JavaScript.
+-   drop: blocks bot threats.
+-   report: logs access events.
+-   captcha: verifies a request by using a slider captcha. |
 |block\_action|The type of a WAF protection feature that is triggered. Valid values: -   tmd: protection against HTTP flood attacks
 -   waf: protection against Web application attacks
 -   acl: HTTP ACL policy
@@ -124,20 +125,21 @@ This topic describes the fields of log entries that are collected from Alibaba C
 -   antifraud: data risk control
 -   antibot: anti-bot |
 |body\_bytes\_sent|The size of an HTTP message body that is sent to a client. Unit: bytes.|
-|cc\_action|The action that is performed based on an HTTP flood protection policy. The action can be captcha, challenge, close, login, n, none, pass, or wait.|
-|cc\_blocks|Indicates whether a request is blocked by the HTTP flood protection feature. If the value is 1, the request is blocked. If the value is not 1, the request is passed.|
+|cc\_action|The action that is performed based on an HTTP flood protection policy. The action can be none, challenge, pass, close, captcha, wait, login, or n.|
+|cc\_blocks|Indicates whether the request is blocked by the HTTP flood protection feature.-   If the value is 1, the request is blocked.
+-   If the value is not 1, the request is passed. |
 |cc\_phase|The HTTP flood protection policy that is triggered. The policy can be seccookie, server\_ip\_blacklist, static\_whitelist, server\_header\_blacklist, server\_cookie\_blacklist, server\_args\_blacklist, or qps\_overmax.|
 |content\_type|The content type of an access request.|
 |host|The origin server.|
-|http\_cookie|The HTTP Cookie header. This field includes client information.|
+|http\_cookie|The HTTP Cookie header. This field includes the information of a client.|
 |http\_referer|The HTTP Referer header. This field includes the information of the source URL. If no information of the source URL is logged, a hyphen \(-\) is displayed.|
 |http\_user\_agent|The User-Agent HTTP header. This field includes information such as a client browser and an operating system.|
-|http\_x\_forwarded\_for|The XFF HTTP header. This field identifies the or original IP address of a client that connects to a web server by using an HTTP proxy or load balancing device.|
+|http\_x\_forwarded\_for|The XFF HTTP header. This field identifies the original IP address of a client that connects to a web server by using an HTTP proxy or load balancing device.|
 |https|Indicates whether a request is an HTTPS request. Valid values: -   true: The request is an HTTPS request.
 -   false: The request is an HTTP request. |
 |matched\_host|The matched origin server. This can be a wildcard domain name. If no origin server is matched, a hyphen \(-\) is displayed.|
 |querystring|The query string in a request URL.|
-|real\_client\_ip|The actual IP address of a client. If no actual IP address is obtained, a hyphen \(-\) is displayed.|
+|real\_client\_ip|The real IP address of a client. If no real IP address is obtained, a hyphen \(-\) is displayed.|
 |region|The region where a WAF instance resides.|
 |remote\_addr|The IP address of a client that sends a request.|
 |remote\_port|The port number of a client.|
@@ -161,9 +163,11 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |upstream\_response\_time|The duration in which an origin server processes a WAF request. Unit: seconds. If a hyphen \(-\) is returned, this field indicates that the response times out.|
 |upstream\_status|The status code that an origin server returns to WAF. If a hyphen \(-\) is returned, the request is blocked by WAF or the response from the origin server times out.|
 |user\_id|The ID of an Alibaba Cloud account.|
-|waf\_action|The action that is performed based on a web attack protection policy. If the value is bloc, the request is blocked. If the value is not bloc, the request is passed.|
+|waf\_action|The action that is performed based on a web attack protection policy. If the value is block, the request is blocked. If the value is not block, the request is passed.|
 |web\_attack\_type|The type of a web attack, for example, xss, code\_exec, webshell, sqli, lfilei, rfilei, or other.|
 |waf\_rule\_id|The ID of a WAF rule that is matched.|
+|ssl\_cipher|The SSL cipher suite.|
+|ssl\_protocol|The version of the SSL protocol.|
 
 ## Security Center
 
@@ -196,7 +200,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
         -   4: China \(Shanghai\)
         -   5: China \(Shenzhen\)
         -   6: Others |
-        |response\_datetime|The time when a response is returned. The time is in the datetime format.|
+        |response\_datetime|The time when a response is returned.|
         |src\_ip|The IP address of a source server.|
         |src\_port|The source port.|
 
@@ -236,7 +240,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |dst\_ip|The IP address of a destination server.|
         |dst\_port|The destination port.|
         |proto|The type of a transport layer protocol, for example, TCP or UDP.|
-        |session\_time|The time when a request is sent.|
+        |session\_time|The duration of a session.|
         |src\_ip|The IP address of a source server.|
         |src\_port|The source port.|
 
@@ -250,10 +254,10 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |dst\_ip|The IP address of a destination server.|
         |dst\_port|The destination port.|
         |host|The hostname of a web server.|
-        |jump\_location|The IP address of an HTTP redirect|
+        |jump\_location|The IP address of an HTTP redirect.|
         |method|The HTTP request method.|
         |referer|The HTTP Referer header. This field includes the address of the web page that sends a request.|
-        |request\_datetime|The time when a request is sent. The time is in the datetime format.|
+        |request\_datetime|The time when a request is sent.|
         |ret\_code|The HTTP status code.|
         |rqs\_content\_type|The content type of an HTTP request message.|
         |rsp\_content\_type|The content type of an HTTP response message.|
@@ -272,9 +276,9 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |owner\_id|The ID of an Alibaba Cloud account.|
         |name|The name of a vulnerability.|
         |alias\_name|The alias of a vulnerability.|
-        |op|The action that is performed on a vulnerability. Valid values:         -   new: detects a new vulnerability
-        -   verify: verifies the vulnerability
-        -   fix: fixes the vulnerability |
+        |op|The action that is performed on a vulnerability. Valid values:         -   new: detects a baseline.
+        -   verify: verifies the vulnerability.
+        -   fix: fixes the vulnerability. |
         |status|The status of a vulnerability. For more information, see [Table 2](#table_76m_auq_obw).|
         |tag|The tag of a vulnerability, for example, oval, system, or cms. This field is used to distinguish between different emergency \(EMG\) vulnerabilities.|
         |type|The type of a vulnerability. Valid values:         -   sys: Windows vulnerability
@@ -290,8 +294,8 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |\_\_topic\_\_|The topic of a log entry. Valid value: sas-hc-log.|
         |owner\_id|The ID of an Alibaba Cloud account.|
         |level|The level of a baseline. Valid values: low, medium, and high.|
-        |op|The action that is performed on a baseline. Valid values:         -   new: detects a baseline
-        -   verify: verifies the baseline |
+        |op|The action that is performed on a baseline. Valid values:         -   new: detects a baseline.
+        -   verify: verifies the baseline. |
         |risk\_name|The name of a baseline risk.|
         |status|The status of a baseline. For more information, see [Table 2](#table_76m_auq_obw).|
         |sub\_type\_alias|The subtype alias of a baseline.|
@@ -347,10 +351,10 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |5|Rolling back.|
         |6|Verifying.|
         |7|Fixed.|
-        |8|Fixed. Requires restart.|
+        |8|Fixed. Waiting for a restart.|
         |9|Rollback succeeded.|
         |10|Ignored.|
-        |11|Rollback succeeded. Requires restart.|
+        |11|Rollback succeeded. Waiting for a restart.|
         |12|No longer exists.|
         |20|Expired.|
 
@@ -367,8 +371,8 @@ This topic describes the fields of log entries that are collected from Alibaba C
         -   dealing: The alert is being processed. |
         |status|The status of an alert. For more information, see [Table 2](#table_76m_auq_obw).|
         |uuid|The UUID of a client.|
-        |detail|The detail of an alert, for example, \{"loginSourceIp":"120.27.28.118","loginTimes":1,"type":"login\_common\_location","loginDestinationPort":22,"loginUser":"aike","protocol":2,"protocolName":"SSH","location":"Qingdao"\}|
-        |unique\_info|The unique identifier of an alert for a single server. For example, 2536dd765f804916a1fa3b9516b5d512.|
+        |detail|The detail of an alert, for example, \{"loginSourceIp":"120.27.28.118","loginTimes":1,"type":"login\_common\_location","loginDestinationPort":22,"loginUser":"aike","protocol":2,"protocolName":"SSH","location":"Qingdao"\}.|
+        |unique\_info|The unique identifier of an alert for a single server, for example, 2536dd765f804916a1fa3b9516b5d512.|
 
         |Value|Description|
         |-----|-----------|
@@ -409,7 +413,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |pid|The ID of a process.|
         |name|The name of a process file.|
         |path|The full path of a process file.|
-        |md5|The MD5 hash of a process file. If the process file exceeds 1 MB, the MD5 hash is not performed.|
+        |md5|The MD5 hash of a process file. If the process file exceeds 1 MB, the MD5 hash is not calculated.|
         |pname|The name of a parent process file.|
         |start\_time|The time when a process starts. This field is a built-in field.|
         |user|The username.|
@@ -417,7 +421,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
 
     -   Logon logs
 
-        Logon attempts within 1 minute are recorded in one log entry.
+        The logon attempts within 1 minute are recorded in one log entry.
 
         |Log field|Description|
         |---------|-----------|
@@ -464,8 +468,8 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |proto|The protocol that is used to establish a network connection, for example, TCP, UDP, or raw \(raw socket\).|
         |status|The connection status. For more information, see [Table 4](#table_v7l_b25_hii).|
 
-        |Status code|Description|
-        |-----------|-----------|
+        |Status|Description|
+        |------|-----------|
         |1|closed|
         |2|listen|
         |3|syn send|
@@ -500,12 +504,12 @@ This topic describes the fields of log entries that are collected from Alibaba C
         |owner\_id|The ID of an Alibaba Cloud account.|
         |name|The name of a vulnerability.|
         |alias\_name|The alias of a vulnerability.|
-        |op|The action that is performed on a vulnerability. Valid values:         -   new: detects a new vulnerability
-        -   verify: verifies the vulnerability
-        -   fix: fixes the vulnerability |
+        |op|The action that is performed on a vulnerability. Valid values:         -   new: detects a new vulnerability.
+        -   verify: verifies the vulnerability.
+        -   fix: fixes the vulnerability. |
         |status|The connection status. For more information, see [Table 4](#table_v7l_b25_hii).|
         |tag|The tag of a vulnerability, for example, oval, system, or cms. This field is used to distinguish between different emergency \(EMG\) vulnerabilities.|
-        |type|The type of a vulnerability.         -   sys: Windows vulnerability
+        |type|The type of a vulnerability. Valid values:         -   sys: Windows vulnerability
         -   cve: Linux vulnerability
         -   cms: Web CMS vulnerability
         -   EMG: Emergency vulnerability |
@@ -528,7 +532,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |sql|The SQL statement.|
 |trace\_id|The trace ID of an SQL statement when it is executed. If a transaction is executed, it is tracked by using an ID. The ID consists of the trace ID, a hyphen \(-\), and a number, for example, drdsabcdxyz-1 and drdsabcdxyz-2.|
 |sql\_code|The hash value of a template SQL statement.|
-|hint|The hint that is used to execute an SQL query.|
+|hint|The hint that is used to execute an SQL statement.|
 |table\_name|The names of the tables that are involved in a query. Multiple tables are separated by commas \(,\).|
 |sql\_type|The type of an SQL statement. Valid values: Select, Insert, Update, Delete, Set, Alter, Create, Drop, Truncate, Replace, and Other.|
 |sql\_type\_detail|The name of an SQL parser.|
@@ -540,8 +544,8 @@ This topic describes the fields of log entries that are collected from Alibaba C
 
 ## Cloud Firewall
 
-|Log field|Procedure|
-|---------|---------|
+|Log field|Description|
+|---------|-----------|
 |\_\_topic\_\_|The topic of a log entry. Valid value: cloudfirewall\_access\_log.|
 |owner\_id|The ID of an Alibaba Cloud account.|
 |log\_type|The type of a log entry.|
@@ -566,7 +570,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
 -   alert: An alert is triggered when data packets attempt to pass Cloud Firewall.
 -   drop: Data packets are dropped. |
 |src\_ip|The IP address of a source server.|
-|src\_port|The source port.|
+|src\_port|The source port of a host that sends traffic data.|
 |start\_time|The time when a session starts. Unit: seconds \(UNIX timestamp\).|
 |start\_time\_min|The time when a session starts. The value of this field is rounded up to the next minute. Unit: seconds \(UNIX timestamp\).|
 |tcp\_seq|The sequence number of a TCP segment.|
@@ -595,7 +599,7 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |log\_level|The severity of a log entry.|
 |resource\_address|The address of the server where a resource resides.|
 |resource\_name|The name of the resource on which an operation is performed.|
-|result|The result of the operation.|
+|result|The result of an operation.|
 |session\_id|The ID of a session.|
 |user\_client\_ip|The source IP address.|
 |user\_id|The ID of a user.|
@@ -604,12 +608,12 @@ This topic describes the fields of log entries that are collected from Alibaba C
 |Event type|Description|
 |----------|-----------|
 |cmd.Command|The CMD commands.|
-|file.Upload|Uploads the file.|
-|file.Download|Downloads the file.|
-|file.Rename|Renames the file.|
-|file.Delete|Deletes the file.|
-|file.DeleteDir|Deletes the directory.|
-|file.CreateDir|Creates the directory.|
+|file.Upload|Uploads a file.|
+|file.Download|Downloads a file.|
+|file.Rename|Renames a file.|
+|file.Delete|Deletes a file.|
+|file.DeleteDir|Deletes a directory.|
+|file.CreateDir|Creates a directory.|
 |graph.Text|Text event.|
 |graph.Keyboard|Keyboard event.|
 
@@ -632,14 +636,14 @@ For information about related API operations, see [API overview](/intl.en-US/API
 |Operation|Description|
 |---------|-----------|
 |AbortMultiPartUpload|Cancels a multipart upload task.|
-|AppendObject|Appends an object to an existing object|
+|AppendObject|Appends an object to an existing object.|
 |CompleteUploadPart|Completes the multipart upload task of an object.|
 |CopyObject|Copies an object.|
 |DeleteBucket|Deletes a bucket.|
 |DeleteLiveChannel|Deletes a LiveChannel.|
 |DeleteObject|Deletes an object.|
 |DeleteObjects|Deletes multiple objects.|
-|GetBucket|Lists the information of all objects in a bucket.|
+|GetBucket|Lists all objects in a bucket.|
 |GetBucketAcl|Queries the access control list \(ACL\) of a bucket.|
 |GetBucketCors|Queries the cross-origin resource sharing \(CORS\) rules of a bucket.|
 |GetBucketEventNotification|Queries the notification configurations of a bucket.|
@@ -718,7 +722,7 @@ For information about signatures, see [Verify user signatures](/intl.en-US/API R
     |owner\_id|The ID of an Alibaba Cloud account that belongs to a bucket owner.|
     |User-Agent|The User-Agent HTTP header.|
     |logging\_flag|Indicates whether logging has been enabled to export logs to OSS buckets at regular intervals.|
-    |bucket|The name of a bucket|
+    |bucket|The name of a bucket.|
     |content\_length\_in|The value of the Content-Length field in an HTTP request. Unit: bytes.|
     |content\_length\_out|The value of the Content-Length field in an HTTP response. Unit: bytes.|
     |object|The requested URL-encoded object. You can include the select url\_decode\(object\) clause in a query statement to decode the object.|
@@ -726,9 +730,9 @@ For information about signatures, see [Verify user signatures](/intl.en-US/API R
     |operation|The API operation. For more information, see [Table 7](#table_o6k_8jw_p14).|
     |request\_uri|The URL-encoded URI of a request. This includes the query\_string parameter. You can include the select url\_decode\(request\_uri\) clause in a query statement to decode the URI.|
     |error\_code|The error code that is returned by OSS. For more information, see [Error responses](/intl.en-US/Developer Guide/Troubleshooting/Error responses.md).|
-    |request\_length|The size of an HTTP request message. Unit: bytes.|
+    |request\_length|The size of an HTTP request message that includes the header information. Unit: bytes.|
     |client\_ip|The IP address from which a request is sent. This can be the IP address of a client, firewall, or proxy.|
-    |response\_body\_length|The size of an HTTP response body.|
+    |response\_body\_length|The size of an HTTP response body that excludes the header information.|
     |http\_method|The HTTP request method.|
     |referer|The HTTP Referer header.|
     |requester\_id|The ID of an Alibaba Cloud account that belongs to a requester. If you use anonymous logon, the value of this field is a hyphen \(-\).|
@@ -739,7 +743,7 @@ For information about signatures, see [Verify user signatures](/intl.en-US/API R
     |sign\_type|The type of a signature. For more information, see [Table 9](#table_lj8_60k_knn).|
     |http\_status|The status code of an HTTP connection that is returned in a request to OSS.|
     |sync\_request|The type of a synchronization request. For more information, see [Table 8](#table_m3x_4em_7k4).|
-    |bucket\_storage\_type|The OSS storage class. For more information, see [Table 6](#table_twd_9y6_bxl).|
+    |bucket\_storage\_type|The bucket storage class. For more information, see [Table 6](#table_twd_9y6_bxl).|
     |host|The domain name of an OSS server from which resources are requested.|
     |vpc\_addr|The VPC IP address of an OSS server. The IP address is based on the domain name of the server.|
     |vpc\_id|VPC ID|
@@ -755,23 +759,23 @@ For information about signatures, see [Verify user signatures](/intl.en-US/API R
     |region|The region where a bucket resides.|
     |client\_ip|The IP address from which a request is sent. This can be the IP address of a client, firewall, or proxy.|
     |user\_agent|The User-Agent HTTP header.|
-    |bucket|The name of a bucket|
+    |bucket|The name of a bucket.|
     |error\_code|The error code that is returned by OSS. For more information, see [Error responses](/intl.en-US/Developer Guide/Troubleshooting/Error responses.md).|
-    |request\_length|The size of an HTTP request message. Unit: bytes.|
-    |response\_body\_length|The size of an HTTP response body.|
+    |request\_length|The size of an HTTP request message that includes the header information. Unit: bytes.|
+    |response\_body\_length|The size of an HTTP response body that excludes the header information.|
     |object|The requested URL-encoded object. You can include the select url\_decode\(object\) clause in a query statement to decode the object.|
     |object\_size|The size of a requested object. Unit: bytes.|
     |operation|The API operation. For more information, see [Table 7](#table_o6k_8jw_p14).|
     |bucket\_location|The cluster to which a bucket belongs.|
     |http\_method|The HTTP request method.|
-    |referer|The Referer HTTP header.|
+    |referer|The HTTP Referer header.|
     |request\_id|The ID of a request.|
     |http\_status|The HTTP status code that is returned by an OSS request.|
     |sync\_request|The type of a synchronization request. For more information, see [Table 8](#table_m3x_4em_7k4).|
     |request\_uri|The URL-encoded URI of a request. This includes the query\_string parameter. You can include the select url\_decode\(request\_uri\) clause in a query statement to decode the URI.|
     |host|The domain name of an OSS server from which resources are requested.|
     |logging\_flag|Indicates whether logging has been enabled to export logs to OSS buckets at regular intervals.|
-    |server\_cost\_time|The time that an OSS server requires to process a request. Unit: milliseconds.|
+    |server\_cost\_time|The duration in which an OSS server processes a request. Unit: milliseconds.|
     |owner\_id|The ID of an Alibaba Cloud account that belongs to a bucket owner.|
     |requester\_id|The ID of an Alibaba Cloud account that belongs to a requester. If you use anonymous logon, the value of this field is a hyphen \(-\).|
     |delta\_data\_size|The size change of an object. If the object size does not change, the value of this field is 0. If a request is not an upload request, the value of this field is a hyphen \(-\).|
@@ -782,7 +786,7 @@ For information about signatures, see [Verify user signatures](/intl.en-US/API R
     |---------|-----------|
     |\_\_topic\_\_|The topic of a log entry. Valid value: oss\_metering\_log.|
     |owner\_id|The ID of an Alibaba Cloud account that belongs to a bucket owner.|
-    |bucket|The name of a bucket|
+    |bucket|The name of a bucket.|
     |cdn\_in|The inbound traffic from CDN. Unit: bytes.|
     |cdn\_out|The outbound traffic to CDN. Unit: bytes.|
     |get\_request|The number of GET requests.|
@@ -791,7 +795,7 @@ For information about signatures, see [Verify user signatures](/intl.en-US/API R
     |network\_in|The inbound traffic from the public network. Unit: bytes.|
     |network\_out|The outbound traffic to the public network. Unit: bytes.|
     |put\_request|The number of PUT requests.|
-    |storage\_type|The OSS storage class. For more information, see [Table 6](#table_twd_9y6_bxl).|
+    |storage\_type|The bucket storage class. For more information, see [Table 6](#table_twd_9y6_bxl).|
     |storage|The storage usage of a bucket. Unit: bytes.|
     |metering\_datasize|The size of metering data of non-Standard OSS buckets.|
     |process\_img\_size|The size of a processed image. Unit: bytes.|
@@ -867,15 +871,18 @@ For information about signatures, see [Verify user signatures](/intl.en-US/API R
 |os\_version|The version of the operating system that runs on a device.|
 |isp|The ISP of a device.|
 |job\_key|The key of a job.|
+|event\_channel|The push channel.|
+|vendor\_message\_id|The message ID of a vendor channel.|
+|reason|The cause of a failed push.|
 
 ## PolarDB for MySQL
 
 |Log field|Description|
 |---------|-----------|
-|\_\_topic\_\_|The topic of a log entry. Valid value: rds\_audit\_log.|
+|\_\_topic\_\_|The topic of a log entry. Valid value: polardb\_audit\_log.|
 |owner\_id|The ID of an Alibaba Cloud account.|
 |region|The region where a PolarDB for MySQL cluster resides.|
-|cluster\_id|The ID of a PolarDB for MySQL cluster|
+|cluster\_id|The ID of a PolarDB for MySQL cluster.|
 |node\_id|The node IDs of PolarDB for MySQL.|
 |check\_rows|The number of scanned rows.|
 |db|The name of a database.|
