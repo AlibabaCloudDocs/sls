@@ -5,12 +5,15 @@
 ## 请求语法
 
 ```
-GET /logstores/<logstorename>/shards HTTP/1.1
-Authorization: <AuthorizationString>
-Date: <GMT Date>
-Host: <ProjectName.Endpoint>
+GET /logstores/logstorename/shards HTTP/1.1
+Content-Length: 0
+x-log-bodyrawsize: 0
 x-log-apiversion: 0.6.0
-x-log-signaturemethod: hmac-sha1
+x-log-signaturemethod': hmac-sha1
+Host: ProjectName.Endpoint
+Date: GMT Date
+Authorization: LOG yourAccessKeyId:yourSignature
+x-log-date: Mon, 30 Nov 2020 06:22:17 GMT   
 ```
 
 其中，Host由Project名称和日志服务Endpoint构成，您需要在Host中指定Project。
@@ -25,6 +28,7 @@ x-log-signaturemethod: hmac-sha1
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
+    |projectName|String|是|ali-test-project|Project名称。|
     |logstoreName|String|是|sls-test-logstore|Logstore名称。|
 
 
@@ -44,7 +48,7 @@ x-log-signaturemethod: hmac-sha1
     |status|String|readwrite|Shard状态。|
     |inclusiveBeginKey|String|00000000000000000000000000000000|Shard起始的Key值，在Shard MD5范围中包含该值。|
     |exclusiveEndKey|String|8000000000000000000000000000000|Shard结束的Key值，在Shard MD5范围中不包含该值。|
-    |createTime|String|1453949705|Shard的创建时间。|
+    |createTime|String|1453949705|Shard的创建时间。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
 
 
 ## 示例
@@ -55,14 +59,14 @@ x-log-signaturemethod: hmac-sha1
     GET /logstores/sls-test-logstore/shards
     Header :
     {
-        "Content-Length": 0, 
-        "x-log-signaturemethod": "hmac-sha1", 
-        "x-log-bodyrawsize": 0, 
-        "User-Agent": "log-python-sdk-v-0.6.0", 
-        "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com", 
-        "Date": "Thu, 12 Nov 2015 03:40:31 GMT", 
-        "x-log-apiversion": "0.6.0", 
-        "Authorization": "LOG <yourAccessKeyId>:<yourSignature>"
+    'Content-Length': '0'
+    'x-log-bodyrawsize': '0'
+    'x-log-apiversion': '0.6.0'
+    'x-log-signaturemethod': 'hmac-sha1'
+    'Host': ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com
+    'Date': Mon, 30 Nov 2020 06:22:17 GMT
+    'Authorization': 'LOG yourAccessKeyId:yourSignature'
+    'x-log-date': 'Mon, 30 Nov 2020 06:22:17 GMT'
     }
     ```
 
@@ -71,12 +75,13 @@ x-log-signaturemethod: hmac-sha1
     ```
     Header:
     {
-        "content-length": "57", 
-        "server": "nginx/1.6.1", 
-        "connection": "close", 
-        "date": "Thu, 12 Nov 2015 03:40:31 GMT", 
-        "content-type": "application/json", 
-        "x-log-requestid": "56440A2F99248C050600C74C"
+    'Server': 'Tengine',
+    'Content-Type': 'application/json',
+    'Content-Length': '335',
+    'Connection': 'close',
+    'Access-Control-Allow-Origin': '*',
+    'Date': 'Mon, 30 Nov 2020 08:32:24 GMT',
+    'x-log-requestid': '5FC4AE1821CA7D41C5F14728'   
     }
     Body :
     [
@@ -109,7 +114,8 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
-|404|LogStoreNotExist|logstore \{logstoreName\} does not exist.|Logstore不存在。|
+|404|ProjectNotExist|The Project does not exist : projectName|Project不存在。|
+|404|LogStoreNotExist|logstore logstoreName does not exist.|Logstore不存在。|
 |500|InternalServerError|Specified Server Error Message.|内部服务调用错误。|
 |400|LogStoreWithoutShard|logstore has no shard.|Logstore中没有Shard。|
 
