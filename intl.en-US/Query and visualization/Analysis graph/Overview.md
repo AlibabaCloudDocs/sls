@@ -18,24 +18,24 @@ When multiple query statements are executed in sequence, the **Value Column**, *
 -   The selected dimensions are not in the query results. Check and modify the attributes.
 -   X-Axis or Y-Axis is unavailable. Check and modify the attributes.
 
--   [Display query results in a table](/intl.en-US/Query and visualization/Analysis graph/Display query results in a table.md)
--   [Display query results on a line chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a line chart.md)
--   [Display query results on a column chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a column chart.md)
--   [Display query results on a bar chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a bar chart.md)
--   [Display query results on a pie chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a pie chart.md)
--   [Display query results on an area chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on an area chart.md)
--   [Display query results on a single value chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a single value chart.md)
--   [Display query results on a progress bar](/intl.en-US/Query and visualization/Analysis graph/Display query results on a progress bar.md)
--   [Display query results on a timeline chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a timeline chart.md)
--   [Display query results on a map](/intl.en-US/Query and visualization/Analysis graph/Display query results on a map.md)
--   [Display query results on a flow chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a flow chart.md)
--   [Display query results in a sankey diagram](/intl.en-US/Query and visualization/Analysis graph/Display query results in a sankey diagram.md)
--   [Display query results on a word cloud](/intl.en-US/Query and visualization/Analysis graph/Display query results on a word cloud.md)
--   [Display query results on a treemap chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a treemap chart.md)
--   [Funnel chart](/intl.en-US/Query and visualization/Analysis graph/Funnel chart.md)
--   [Display query results on a trail map](/intl.en-US/Query and visualization/Analysis graph/Display query results on a trail map.md)
--   [Display query results on a bubble chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a bubble chart.md)
--   [Display query results on a lifecycle chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a lifecycle chart.md)
+-   [Display query results in a table](/intl.en-US/Query and visualization/Analysis graph/Display query results in a table.md).
+-   [Display query results on a line chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a line chart.md).
+-   [Display query results on a column chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a column chart.md).
+-   [Display query results on a bar chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a bar chart.md).
+-   [Display query results on a pie chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a pie chart.md).
+-   [Display query results on an area chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on an area chart.md).
+-   [Display query results on a single value chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a single value chart.md).
+-   [Display query results on a progress bar](/intl.en-US/Query and visualization/Analysis graph/Display query results on a progress bar.md).
+-   [Display query results on a timeline chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a timeline chart.md).
+-   [Display query results on a map](/intl.en-US/Query and visualization/Analysis graph/Display query results on a map.md).
+-   [Display query results on a flow chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a flow chart.md).
+-   [Display query results in a sankey diagram](/intl.en-US/Query and visualization/Analysis graph/Display query results in a sankey diagram.md).
+-   [Display query results on a word cloud](/intl.en-US/Query and visualization/Analysis graph/Display query results on a word cloud.md).
+-   [Display query results on a treemap chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a treemap chart.md).
+-   [Funnel chart](/intl.en-US/Query and visualization/Analysis graph/Funnel chart.md).
+-   [Display query results on a trail map](/intl.en-US/Query and visualization/Analysis graph/Display query results on a trail map.md).
+-   [Display query results on a bubble chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a bubble chart.md).
+-   [Display query results on a lifecycle chart](/intl.en-US/Query and visualization/Analysis graph/Display query results on a lifecycle chart.md).
 
 ## Chart configurations
 
