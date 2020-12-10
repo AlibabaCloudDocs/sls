@@ -11,12 +11,12 @@ This topic describes how to enable the flow log feature in the VPC console. Afte
 
 3.  In the left-side navigation pane, click **Flow Log**.
 
-4.  Authorize VPC to assume the AliyunVPCLogArchiveRole role to access Log Service.
+4.  Authorized VPC as prompted.
 
     **Note:**
 
-    -   If you have authorized VPC to assume the AliyunActionTrailDefaultRole role, skip this step.
-    -   If you use a RAM user to log on to VPC, you must authorize the RAM user by using an Alibaba Cloud account.
+    -   This operation is required only when you perform the authorization for the first time. You must complete the authorization by using your Alibaba Cloud account.
+    -   If you use a RAM user to log on to VPC, the RAM user must be granted relevant permissions. For more information, see [RAM user authorization](/intl.en-US/Data Collection/Cloud product collection/Common operations on logs of Alibaba Cloud services.md).
     -   You must not delete the RAM role or revoke the permissions from the RAM role. Otherwise, logs cannot be shipped to Log Service.
 5.  On the Flow Log page, click **Create FlowLog**.
 
@@ -34,7 +34,7 @@ ecs.c1, ecs.c2, ecs.c4, ecs.ce4, ecs.cm4, ecs.d1, ecs.e3, ecs.e4, ecs.ga1, ecs.g
 
 In this case, you must upgrade or release the ECS instances.
 
-    -   For more information about how to upgrade an ECS instance, see [Upgrade configurations of subscription instances](/intl.en-US/Instance/Change configurations/Upgrade configurations/Upgrade configurations of subscription instances.md) or [Change the instance type of a pay-as-you-go instance](/intl.en-US/Instance/Change configurations/Change configurations of Pay-As-You-Go instances/Change the instance type of a pay-as-you-go instance.md).
+    -   For more information about how to upgrade an ECS instance, see [Upgrade the instance types of subscription instances](/intl.en-US/Instance/Change configurations/Change instance types/Upgrade the instance types of subscription instances.md) or [Change the instance type of a pay-as-you-go instance](/intl.en-US/Instance/Change configurations/Change instance types/Change the instance type of a pay-as-you-go instance.md).
     -   For more information about how to release an ECS instance, see [Release an instance](/intl.en-US/Instance/Manage instances/Release an instance.md).
 **Note:** If the VPC to which a specified VSwitch or ENI belongs contains ECS instances of the specified instance families, and flow log instances are created, you must upgrade or release the ECS instances. Otherwise, the flow log feature may not function as expected. |
     |**Traffic Type**|Select the type of data traffic to be captured. Valid values:     -   **All**: captures all data traffic of the specified resource.
