@@ -9,7 +9,7 @@ The following table lists the Grok patterns.
 |Type|Pattern|Description|
 |----|-------|-----------|
 |Common patterns|EXTRACTJSON|Matches JSON data.|
-|CHINAID|Matches the numbers of Chinese resident identity cards.|
+|CHINAID|Matches the numbers of identity cards of Chinese residents.|
 |USERNAME|Matches content that contains letters, digits, and `. _-`.|
 |USER|Matches content that contains letters, digits, and `. _-`.|
 |EMAILLOCALPART|Matches the characters before the at sign \(@\) in an email address. For example, in the email address 123456@alibaba.com, the matched content is 123456.|
@@ -22,11 +22,11 @@ The following table lists the Grok patterns.
 |BASE16FLOAT|Matches hexadecimal floating-point numbers.|
 |POSINT|Matches positive integers.|
 |NONNEGINT|Matches non-negative integers.|
-|WORD|Matches words.|
+|WORD|Matches letters, digits, and underscores \(\_\).|
 |NOTSPACE|Matches characters that are not spaces.|
 |SPACE|Matches spaces.|
-|DATA|Matches line breaks.|
-|GREEDYDATA|Matches zero or multiple characters that are not line breaks.|
+|DATA|Matches line feeds.|
+|GREEDYDATA|Matches zero or multiple characters that are not line feeds.|
 |QUOTEDSTRING|Matches quoted content. For example, in the `I am "Iron Man"` string, the matched content is `Iron Man`.|
 |UUID|Matches universally unique identifiers \(UUIDs\).|
 |Networking|MAC|Matches MAC addresses.|
@@ -55,8 +55,8 @@ The following table lists the Grok patterns.
 |MINUTE|Matches minutes.|
 |SECOND|Matches seconds.|
 |TIME|Matches time.|
-|DATE\_US|Matches dates that are in the format of Month-Day-Year or dates where the month, day, and year are separated by forward slashes \(`/`\).|
-|DATE\_EU|Matches dates that are in the format of Day-Month-Year or dates where the day, month, and year are separated by forward slashes \(`/`\) or periods \(`.`\).|
+|DATE\_US|Matches dates in the Month-Day-Year or Month/Day/Year format.|
+|DATE\_EU|Matches dates in the Day-Month-Year, Day/Month/Year or Day.Month.Year format.|
 |ISO8601\_TIMEZONE|Matches hours and minutes that are in the ISO 8601 format.|
 |ISO8601\_SECOND|Matches seconds that are in the ISO 8601 format.|
 |TIMESTAMP\_ISO8601|Matches time that is in the ISO 8601 format.|
@@ -82,7 +82,7 @@ The following table lists the Grok patterns.
 |HTTPD\_ERRORLOG|Matches httpd logs.|
 |LOGLEVELS|LOGLEVELS|Matches log levels, such as warn and debug.|
 
-## General Grok patterns
+## General GROK patterns
 
 ```
 EXTRACTJSON (? <json>(?:\{\s*"(?:\\"|[^"])+"\s*:\s*(?:(? P>json)|"(?:\\"|[^"])+"|[-+]?( 0|[1-9]\d*)(?:\.[-+]?( 0|[1-9]\d*))?(?:[eE][-+]?( 0|[1-9]\d*))? |(?:true|false)|null)(?:\s*,\s*"(?:\\"|[^"])+"\s*:\s*(?:(? P>json)|"(?:\\"|[^"])+"|[-+]?( 0|[1-9]\d*)(?:\.[-+]?( 0|[1-9]\d*))?(?:[eE][-+]?( 0|[1-9]\d*))? |(?:true|false)|null))*\s*\}|\[\s*(?:(? P>json)|"(?:\\"|[^"])+"|[-+]?( 0|[1-9]\d*)(?:\.[-+]?( 0|[1-9]\d*))?(?:[eE][-+]?( 0|[1-9]\d*))? |(?:true|false)|null)(?:\s*,\s*(?:(? P>json)|"(?:\\"|[^"])+"|[-+]?( 0|[1-9]\d*)(?:\.[-+]?( 0|[1-9]\d*))?(?:[eE][-+]?( 0|[1-9]\d*))? |(?:true|false)|null))*\s*\]))
