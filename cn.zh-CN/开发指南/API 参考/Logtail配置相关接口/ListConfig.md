@@ -1,17 +1,19 @@
 # ListConfig
 
-调用ListConfig接口查询指定Project下所有的Logtail采集配置。
+调用ListConfig接口查询指定Project下所有的Logtail配置。
 
 ## 请求语法
 
 ```
 GET /configs?offset=0&size=100 HTTP/1.1
-Authorization: <AuthorizationString> 
-Date: <GMT Date>
-Host: <Project Endpoint>
+Authorization: LOG yourAccessKeyId:yourSignature 
+Date: GMT Date
+Host: ProjectName.Endpoint
 x-log-apiversion: 0.6.0
 x-log-signaturemethod: hmac-sha1
 ```
+
+其中，Host由Project名称和日志服务Endpoint构成，您需要在Host中指定Project。
 
 ## 请求参数
 
@@ -23,8 +25,11 @@ x-log-signaturemethod: hmac-sha1
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
+    |projectName|String|是|ali-test-project|Project名称。|
     |offset|Integer|否|0|查询开始行。默认值为0。|
     |size|Integer|否|10|分页查询时，设置的每页行数。最大值为500。|
+    |logstoreName|String|否|logstore-4|Logstore名称。|
+    |configName|String|否|logtail-config-sample|Logtail配置名称。|
 
 
 ## 返回数据
@@ -39,9 +44,9 @@ x-log-signaturemethod: hmac-sha1
 
     |参数名称|数据类型|示例值|描述|
     |:---|:---|---|:-|
-    |count|Integer|3|当前页返回的Logtail采集配置数。|
-    |total|Integer|3|符合查询条件的Logtail采集配置总数。|
-    |configs|Array|\[ "logtail-config-sample", "logtail-config-sample-2", "logtail-config-sample-3" \]|当前页返回的Logtail采集配置列表。|
+    |count|Integer|3|当前页返回的Logtail配置数量。|
+    |total|Integer|3|符合查询条件的Logtail配置总数。|
+    |configs|Array|\[ "logtail-config-sample", "logtail-config-sample-2", "logtail-config-sample-3" \]|当前页返回的Logtail配置列表。|
 
 
 ## 示例
@@ -78,13 +83,14 @@ x-log-signaturemethod: hmac-sha1
     Body:
     {
         "count": 3, 
+        "total": 3,
         "configs": 
         [
             "logtail-config-sample", 
             "logtail-config-sample-2", 
             "logtail-config-sample-3"
-        ], 
-        "total": 3
+        ]
+    
     }
     ```
 
@@ -93,7 +99,9 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
-|404|ConfigNotExist|config \{Configname\} does not exist.|Logtail采集配置不存在。|
+|404|ProjectNotExist|Project ProjectName does not exist.|Project不存在。|
+|404|LogstoreNotExist|logstore logstoreName does not exist.|Logstore不存在。|
+|404|ConfigNotExist|config configName does not exist.|Logtail配置不存在。|
 |500|InternalServerError|internal server error.|内部服务调用错误。|
 
 更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
