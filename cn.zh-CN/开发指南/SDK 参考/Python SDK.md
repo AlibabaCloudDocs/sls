@@ -29,7 +29,7 @@ Python SDK支持所有运行Python的操作系统，例如Linux、macOS X和Wind
 
     如果提示如下类似信息，表示安装Python SDK成功。
 
-    ![python sdk](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1482564061/p179978.png)
+    ![python sdk](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1482564061/p179978.png)
 
 
 ## 步骤2：创建日志服务Client
@@ -51,8 +51,8 @@ client = LogClient(endpoint, accessKeyId, accessKey)     //创建LogClient。
 日志服务Python SDK提供丰富的示例程序，方便参考或直接使用，更多信息，请参见[aliyun-log-python-sdk](https://github.com/aliyun/aliyun-log-python-sdk)。此处以创建Project和Logstore为例进行说明，示例代码如下所示：
 
 ```
-res = client.create_project("my_project_name", "project_description") //输入Project名称和描述。
-res = client.create_logstore('my_project_name', 'my_logstore_name', ttl=30, shard_count=3)   //输入Project名称、Logstore名称、数据保存时长和Shard数据。如果ttl配置为3650，表示永久保存。
+res = client.create_project("my-project", "description") //输入Project名称和描述。
+res = client.create_logstore('my-project', 'my-logstore', ttl=30, shard_count=3)   //输入Project名称、Logstore名称、数据保存时长和Shard数据。如果ttl配置为3650，表示永久保存。
 res.log_print() 
 ```
 
