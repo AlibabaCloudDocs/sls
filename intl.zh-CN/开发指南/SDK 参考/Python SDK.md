@@ -2,7 +2,7 @@
 
 本文介绍安装日志服务Python SDK及使用Python SDK完成常见操作的相关步骤。
 
--   已开通日志服务。更多信息，请参见[开通日志服务](https://www.aliyun.com/product/sls?spm=5176.7933691.J_8058803260.20.3eeb2a665LA0eU)。
+-   已开通日志服务。更多信息，请参见[开通日志服务](https://www.alibabacloud.com/product/log-service?spm=a2c5t.10695662.1996646101.searchclickresult.536d31bdPTqffd)。
 -   已创建并获取AccessKey。更多信息，请参见[访问密钥](/intl.zh-CN/开发指南/API 参考/访问密钥.md)。
 -   已安装Python开发环境。
 
@@ -51,8 +51,8 @@ client = LogClient(endpoint, accessKeyId, accessKey)     //创建LogClient。
 日志服务Python SDK提供丰富的示例程序，方便参考或直接使用，更多信息，请参见[aliyun-log-python-sdk](https://github.com/aliyun/aliyun-log-python-sdk)。此处以创建Project和Logstore为例进行说明，示例代码如下所示：
 
 ```
-res = client.create_project("my_project_name", "project_description") //输入Project名称和描述。
-res = client.create_logstore('my_project_name', 'my_logstore_name', ttl=30, shard_count=3)   //输入Project名称、Logstore名称、数据保存时长和Shard数据。如果ttl配置为3650，表示永久保存。
+res = client.create_project("my-project", "description") //输入Project名称和描述。
+res = client.create_logstore('my-project', 'my-logstore', ttl=30, shard_count=3)   //输入Project名称、Logstore名称、数据保存时长和Shard数据。如果ttl配置为3650，表示永久保存。
 res.log_print() 
 ```
 
