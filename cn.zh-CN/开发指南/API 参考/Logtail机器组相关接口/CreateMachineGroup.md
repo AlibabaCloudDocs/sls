@@ -6,7 +6,7 @@
 
 ```
 POST /machinegroups HTTP/1.1
-Authorization: AuthorizationString
+Authorization: LOG yourAccessKeyId:yourSignature
 Content-Type: application/json
 Content-Length: Content Length
 Content-MD5: Content MD5
@@ -23,8 +23,8 @@ x-log-signaturemethod: hmac-sha1
     },
     "machineIdentifyType" : "ip",
     "machineList" : [
-        "192.0.2.1",
-        "192.0.2.2"
+        "192.168.2.1",
+        "192.168.2.2"
     ]
 }
 ```
@@ -41,11 +41,12 @@ x-log-signaturemethod: hmac-sha1
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |groupName|String|是|test-machine-group|机器组名称。同一个Project下，机器组名称不可重复。|
-    |machineIdentifyType|String|是|ip|机器标识类型，可选值为ip、userdefined。    -   ip：IP地址机器组。
+    |projectName|String|是|ali-test-project|Project名称。|
+    |groupName|String|是|test-machine-group|机器组名称。|
+    |machineIdentifyType|String|是|ip|机器标识类型。    -   ip：IP地址机器组。
     -   userdefined：用户自定义标识机器组。 |
-    |groupAttribute|Json Object|是|不涉及|机器组的属性。|
-    |machineList|Json Array|是|\[ "192.0.2.1", "192.0.2.2" \]|机器组的标识信息。    -   如果machineIdentifyType配置为ip，则此处填写服务器的IP地址。
+    |groupAttribute|Json|是|不涉及|机器组的属性。详细请参考下表groupAttribute参数说明。|
+    |machineList|Array|是|\[ "192.168.2.1", "192.168.2.2" \]|机器组的标识信息。    -   如果machineIdentifyType配置为ip，则此处填写服务器的IP地址。
     -   如果machineIdentifyType配置为userdefined，则此处填写自定义的标识。 |
     |groupType|String|否|Armory|机器组类型，可选值为空或者Armory。|
 
@@ -53,7 +54,7 @@ x-log-signaturemethod: hmac-sha1
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |groupTopic|String|否|testtopic|日志主题。|
+    |groupTopic|String|否|testtopic|机器组的日志主题。|
     |externalName|String|否|testgroup|机器组所依赖的外部管理系统（Armory）标识。|
 
 
@@ -65,7 +66,7 @@ x-log-signaturemethod: hmac-sha1
 
 -   响应元素
 
-    返回HTTP状态码200，表示请求成功。
+    返回HTTP状态码200，则表示请求成功。该接口调用成功后无任何响应元素。
 
 
 ## 示例
@@ -97,8 +98,8 @@ x-log-signaturemethod: hmac-sha1
             "externalName": "testgroup"
         },
         "machineList":     [
-            "192.0.2.1",
-            "192.0.2.2"
+            "192.168.2.1",
+            "192.168.2.2"
         ]
     }
     ```
@@ -122,8 +123,9 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
-|400|MachineGroupAlreadyExist|group \{GroupName\} already exists|机器组已存在。|
-|400|InvalidParameter|invalid group resource json|无效参数。|
+|404|ProjectNotExist|Project projectName does not exist.|Project不存在。|
+|400|MachineGroupAlreadyExist|group groupName already exists.|机器组已存在。|
+|400|InvalidParameter|invalid group resource json|无效机器组参数。|
 |500|InternalServerError|Internal server error|内部服务调用错误。|
 
 更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
