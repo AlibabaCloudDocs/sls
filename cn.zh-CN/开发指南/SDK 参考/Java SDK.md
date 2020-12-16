@@ -51,8 +51,8 @@ Client client = new Client(host, accessId, accessKey);   //创建日志服务Cli
 
 ```
 //创建Project和Logstore。
-String project = "your_project_name";  //待创建的Project的名称。
-String logstore = "your_logstore";     //待创建的Logstore的名称。
+String project = "my-project";  //待创建的Project的名称。
+String logstore = "my-logstore";     //待创建的Logstore的名称。
 int ttl_in_day = 3;     //数据保存时间。如果配置为3650，表示永久保存。
 int shard_count = 10;   //Shard数量。
 LogStore store = new LogStore(logstore, ttl_in_day, shard_count);
