@@ -51,8 +51,8 @@ Log Service SDK for Java provides a variety of sample programs. For more informa
 
 ```
 // Create a project and a Logstore.
-String project = "your_project_name"; // The name of the project.
-String logstore = "your_logstore"; // The name of the Logstore.
+String project = "your-project"; // The name of the project.
+String logstore = "your-logstore"; // The name of the Logstore.
 int ttl_in_day = 3; // The data retention period. If you set the data retention period to 3650, the data is permanently stored.
 int shard_count = 10; // The number of shards.
 LogStore store = new LogStore(logstore, ttl_in_day, shard_count);
