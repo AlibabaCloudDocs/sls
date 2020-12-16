@@ -1,14 +1,14 @@
 # GetAppliedMachineGroups
 
-调用GetAppliedMachineGroups接口获取应用到指定Logtail采集配置的机器组列表。
+调用GetAppliedMachineGroups接口获取已绑定指定Logtail配置的机器组列表。
 
 ## 请求语法
 
 ```
-GET /configs/{configName}/machinegroups HTTP/1.1
-Authorization: <AuthorizationString> 
-Date: <GMT Date>
-Host: <ProjectName.Endpoint>               
+GET /configs/configName/machinegroups HTTP/1.1
+Authorization: LOG yourAccessKeyId:yourSignature 
+Date: GMT Date
+Host: Projectname.Endpoint              
 x-log-apiversion: 0.6.0
 x-log-signaturemethod: hmac-sha1
 ```
@@ -25,7 +25,8 @@ x-log-signaturemethod: hmac-sha1
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |ConfigName|String|是|logtail-config-sample|Logtail采集配置名称。|
+    |projectName|String|是|ali-test-project|Project名称。|
+    |configName|String|是|logtail-config-sample|Logtail配置名称。|
 
 
 ## 返回数据
@@ -38,10 +39,10 @@ x-log-signaturemethod: hmac-sha1
 
     返回HTTP状态码200，表示请求成功。请求成功后，其响应Body中包含机器组信息，如下所示：
 
-    |名称|类型|示例值|描述|
-    |:-|:-|---|:-|
-    |count|Integer|1|返回的机器组数。|
-    |machinegroups|Array|\[ "sample-group" \]|返回的机器组名称列表。|
+    |参数名称|数据类型|示例值|描述|
+    |:---|:---|---|:-|
+    |count|Integer|1|返回的机器组数量。|
+    |machinegroups|Array|\[ "sample-group1","sample-group2" \]|返回的机器组名称列表。|
 
 
 ## 示例
@@ -59,13 +60,14 @@ x-log-signaturemethod: hmac-sha1
         "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com",   
         "Date": "Mon, 09 Nov 2015 09:51:38 GMT", 
         "x-log-apiversion": "0.6.0", 
-        "Authorization": "LOG <yourAccessKeyId>:<yourSignature>"
+        "Authorization": "LOG yourAccessKeyId:yourSignature"
     }
     ```
 
 -   返回示例
 
     ```
+    HTTP/1.1 200 OK
     Header : 
     {
         "content-length": "44", 
@@ -80,7 +82,8 @@ x-log-signaturemethod: hmac-sha1
         "count": 1, 
         "machinegroups": 
         [
-            "sample-group"
+            "sample-group1",
+            "sample-group2"
         ]
     }
     ```
@@ -90,7 +93,8 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
-|404|GroupNotExist|group \{GroupName\} does not exist.|机器组不存在。|
+|404|ProjectNotExist|The Project does not exist : projectName|Project不存在。|
+|404|ConfigNotExist|Config confiName does not exist.|Logtail配置不存在。|
 |500|InternalServerError|internal server error.|内部服务调用错误。|
 
 更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
