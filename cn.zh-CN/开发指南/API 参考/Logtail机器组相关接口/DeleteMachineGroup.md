@@ -1,17 +1,19 @@
 # DeleteMachineGroup
 
-调用DeleteMachineGroup接口删除机器组，如果机器组已应用Logtail采集配置，则删除机器组后，会解绑对应的Logtail配置。
+调用DeleteMachineGroup接口删除机器组。如果机器组已应用Logtail采集配置，则删除机器组后，会解绑对应的Logtail配置。
 
 ## 请求语法
 
 ```
-DELETE /machinegroups/{groupName} HTTP/1.1
-Authorization: <AuthorizationString> 
-Date: <GMT Date>
-Host: <Project Endpoint>
+DELETE /machinegroups/groupName HTTP/1.1
+Authorization: LOG yourAccessKeyId:yourSignature
+Date: GMT Date
+Host: ProjectName.Endpoint
 x-log-apiversion: 0.6.0
 x-log-signaturemethod: hmac-sha1
 ```
+
+其中，Host由Project名称和日志服务Endpoint构成，您需要在Host中指定Project。
 
 ## 请求参数
 
@@ -21,9 +23,10 @@ x-log-signaturemethod: hmac-sha1
 
 -   参数列表
 
-    |参数名称|类型|是否必须|示例值|描述|
-    |:---|:-|:---|---|:-|
-    |groupName|string|是|test-machine-group-4|机器组名称。|
+    |参数名称|数据类型|是否必填|示例值|描述|
+    |:---|:---|:---|---|:-|
+    |projectName|String|是|ali-test-project|Project名称。|
+    |groupName|String|是|test-machine-group-4|机器组名称。|
 
 
 ## 返回数据
@@ -32,9 +35,9 @@ x-log-signaturemethod: hmac-sha1
 
     DeleteMachineGroup接口无特有响应头。关于Log Service API的公共响应头，请参见[公共响应头](/cn.zh-CN/开发指南/API 参考/公共响应头.md)。
 
--   相应元素
+-   响应元素
 
-    HTTP状态码返回200。
+    返回HTTP状态码200，则表示请求成功。该接口调用成功后无任何响应元素。
 
 
 ## 示例
@@ -46,7 +49,7 @@ x-log-signaturemethod: hmac-sha1
     Header :
     {
         "x-log-apiversion": "0.6.0",
-        "Authorization": "LOG <yourAccessKeyId>:<yourSignature>",
+        "Authorization": "LOG yourAccessKeyId:yourSignature",
         "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com",
         "Date": "Tue, 10 Nov 2015 19:13:28 GMT",
         "Content-Length": "0",
@@ -76,8 +79,9 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP状态码|错误码|错误信息|描述|
 |-------|---|----|--|
-|404|GroupNotExist|group \{GroupName\} does not exist.|机器组不存在。|
-|500|InternalServerError|internal server error.|内部服务调用错误。|
+|404|ProjectNotExist|The Project does not exist : projectName|Project不存在。|
+|404|MachineGroupNotExist|MachineGroup groupName does not exist.|机器组不存在。|
+|500|InternalServerError|Internal server error.|内部服务调用错误。|
 
 更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
 
