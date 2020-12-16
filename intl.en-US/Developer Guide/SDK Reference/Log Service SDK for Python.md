@@ -51,8 +51,8 @@ client = LogClient(endpoint, accessKeyId, accessKey) // Create LogClient.
 Log Service SDK for Python provides multiple sample programs. For more information, see [aliyun-log-python-sdk](https://github.com/aliyun/aliyun-log-python-sdk). The following sample code shows how to create a project and a Logstore:
 
 ```
-res = client.create_project("my_project_name", "project_description") // Enter the project name and the description.
-res = client.create_logstore('my_project_name', 'my_logstore_name', ttl=30, shard_count=3) // Enter the project name, Logstore name, data retention period, and the number of shards. If you set ttl to 3650, the data is permanently stored.
+res = client.create_project("my-project", "description") // Enter the project name and the description.
+res = client.create_logstore('my-project', 'my-logstore', ttl=30, shard_count=3) // Enter the project name, Logstore name, data retention period, and the number of shards. If you set ttl to 3650, the data is permanently stored.
 res.log_print() 
 ```
 
