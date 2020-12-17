@@ -64,13 +64,14 @@ x-log-signaturemethod: hmac-sha1
         "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com", 
         "Date": "Mon, 09 Nov 2015 09:19:13 GMT", 
         "x-log-apiversion": "0.6.0", 
-        "Authorization": "LOG <yourAccessKeyId>:<yourSignature>"
+        "Authorization": "LOG yourAccessKeyId:yourSignature"
     }
     ```
 
 -   正常返回示例
 
     ```
+    HTTP/1.1 200 OK
     Header :
     {
         "content-length": "103", 
