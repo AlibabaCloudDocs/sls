@@ -43,14 +43,17 @@ x-log-date: Wed, 11 Nov 2015 08:28:19 GMT
     |:---|:---|:---|---|:-|
     |logstoreName|String|是|test-logstore|日志库名称。|
     |ttl|Integer|是|1|数据的保存时间，单位为天。取值范围为1~3650。如果配置为3650，表示永久保存。|
-    |enable\_tracking|Boolean|否|false|是否开启WebTracking，默认为false。|
+    |enable\_tracking|Boolean|否|false|是否开启WebTracking。    -   true：开启WebTracking。
+    -   false：不开启WebTracking。 |
     |shardCount|Integer|是|2|Shard分区个数。**说明：**
 
     -   该接口不支持更新分区个数。
     -   只能通过[SplitShard](/intl.zh-CN/开发指南/API 参考/日志库相关接口/SplitShard.md)或[MergeShards](/intl.zh-CN/开发指南/API 参考/日志库相关接口/MergeShards.md)接口修改分区个数。 |
-    |autoSplit|Boolean|否|true|是否自动分裂Shard，默认为false。|
+    |autoSplit|Boolean|否|true|是否自动分裂Shard。    -   true：自动分裂Shard。
+    -   false：不自动分裂Shard。 |
     |maxSplitShard|Integer|否|64|自动分裂时最大的Shard个数 ，最小值是1，最大值是64。**说明：** 当autoSplit为true时必须指定。 |
-    |appendMeta|Boolean|否|false|是否开启记录外网IP地址，默认为false。|
+    |appendMeta|Boolean|否|false|是否开启记录外网IP地址。    -   true：开启记录外网IP地址。
+    -   false：不开启记录外围IP地址。 |
 
 
 ## 返回数据
