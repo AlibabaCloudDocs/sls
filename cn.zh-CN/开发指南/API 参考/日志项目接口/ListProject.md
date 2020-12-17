@@ -55,7 +55,8 @@ x-log-date: GMT Date
     |lastModifyTime|String|1524539357|最后一次更新Project时间。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
     |owner|String|12\*\*\*\*34|创建人的阿里云账户ID。|
     |projectName|String|project1|Project名称。|
-    |status|String|Normal|Project状态。|
+    |status|String|Normal|Project状态。    -   Normal：正常
+    -   Disable：禁用 |
     |region|String|cn-shanghai|Project所属地域。|
 
 
@@ -67,14 +68,14 @@ x-log-date: GMT Date
     GET /?offset=0&size=2 HTTP/1.1
     Header :
     {
-        'Content-Length': '0',
-        'x-log-bodyrawsize': '0',
-        'x-log-apiversion': '0.6.0',
-        'x-log-signaturemethod': 'hmac-sha1'',
-        'Host': 'cn-shanghai.log.aliyuncs.com',
-        'Date': 'Sun, 27 May 2018 09:03:33 GMT',
-        'Authorization': 'LOG yourAccessKeyId:yourSignature',
-        'x-log-date': 'Sun, 27 May 2018 09:03:33 GMT
+    Content-Length: 0
+    x-log-bodyrawsize: 0
+    x-log-apiversion: 0.6.0
+    x-log-signaturemethod: hmac-sha1
+    Host: cn-shanghai.log.aliyuncs.com
+    Date: Sun, 27 May 2018 09:03:33 GMT
+    Authorization: LOG yourAccessKeyId:yourSignature
+    x-log-date: Sun, 27 May 2018 09:03:33 GMT
     }
     ```
 
@@ -94,26 +95,26 @@ x-log-date: GMT Date
     }
     Body :
     {
-      count: 2,
-      total: 11,
-      projects: [
+      "count": 2,
+      "total": 11,
+      "projects": [
         {
-          'projectName': 'project1',
-          'status': 'Normal',
-          'owner': '12****34',
-          'description': 'test',
-          'region': 'cn-shanghai',
-          'createTime': '1524222931',
-          'lastModifyTime': '1524539357'
+          "projectName": "project1",
+          "status": "Normal",
+          "owner": "12****34",
+          "description": "test",
+          "region": "cn-shanghai",
+          "createTime": "1524222931",
+          "lastModifyTime": "1524539357"
         },
         {
-          'projectName': 'project123456',
-          'status': 'Normal',
-          'owner': '12****34',
-          'description': 'test',
-          'region': 'cn-shanghai',
-          'createTime': '1471963876',
-          'lastModifyTime': '1524539357'
+          "projectName": "project123456",
+          "status": "Normal",
+          "owner": "12****34",
+          "description": "test",
+          "region": "cn-shanghai",
+          "createTime": "1471963876",
+          "lastModifyTime": "1524539357"
         }
       ]
     }
