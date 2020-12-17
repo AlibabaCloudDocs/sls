@@ -42,10 +42,13 @@ x-log-date: Fri, 27 Nov 2020 08:25:10 GMT
     |logstoreName|String|是|test-logstore|Logstore名称。同一个Project下，Logstore名称不可重复。|
     |ttl|Integer|是|30|数据的保存时间，单位为天。取值范围为1~3650。如果配置为3650，表示永久保存。|
     |shardCount|Integer|是|2|Shard个数。取值范围为1~10。|
-    |enable\_tracking|Boolean|否|false|是否开启WebTracking功能。默认值为false，表示不开启。|
-    |autoSplit|Boolean|否|true|是否自动分裂Shard功能。默认值为false，表示不开启。|
+    |enable\_tracking|Boolean|否|false|是否开启WebTracking功能。默认值为false。    -   true：开启WebTracking。
+    -   false：不开启WebTracking。 |
+    |autoSplit|Boolean|否|true|是否自动分裂Shard功能。默认值为false，表示不开启。    -   true：自动分裂Shard。
+    -   false：不自动分裂Shard。 |
     |maxSplitShard|Integer|否|6|自动分裂Shard时的最大分裂数。取值范围为1~64。当autoSplit参数为true时必须设置。|
-    |appendMeta|Boolean|否|false|是否开启记录外网IP地址功能。默认值为false，表示不开启。|
+    |appendMeta|Boolean|否|false|是否开启记录外网IP地址功能。默认值为false。    -   true：开启记录外网IP地址。
+    -   false：不开启记录外围IP地址。 |
 
 
 ## 返回数据
