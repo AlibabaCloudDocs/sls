@@ -62,6 +62,7 @@ x-log-signaturemethod: hmac-sha1
 -   正常返回示例
 
     ```
+    HTTP/1.1 200 OK
     Header :
     {   
         "content-length": "730",
