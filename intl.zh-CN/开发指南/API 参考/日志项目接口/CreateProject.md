@@ -35,7 +35,10 @@ Connection: Keep-Alive
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |projectName|String|是|ali-project-test|Project名称。|
+    |projectName|String|是|ali-project-test|Project名称。其命名规则如下：    -   Project名称必须全局唯一。
+    -   只能包括小写字母、数字和短划线（-）。
+    -   必须以小写字母或者数字开头和结尾。
+    -   长度为3-63字节。 |
     |description|String|是|Description of my-project-test|Project描述。|
 
 
