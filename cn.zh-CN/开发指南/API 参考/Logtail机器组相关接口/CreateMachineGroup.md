@@ -42,7 +42,10 @@ x-log-signaturemethod: hmac-sha1
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
     |projectName|String|是|ali-test-project|Project名称。|
-    |groupName|String|是|test-machine-group|机器组名称。|
+    |groupName|String|是|test-machine-group|机器组名称。其命名规则如下：    -   同一个Project下，机器组名称不可重复。
+    -   只能包括小写字母、数字、短划线（-）和下划线（\_）。
+    -   必须以小写字母或者数字开头和结尾。
+    -   长度为3-128字符。 |
     |machineIdentifyType|String|是|ip|机器标识类型。    -   ip：IP地址机器组。
     -   userdefined：用户自定义标识机器组。 |
     |groupAttribute|Json|是|不涉及|机器组的属性。详细请参考下表groupAttribute参数说明。|
