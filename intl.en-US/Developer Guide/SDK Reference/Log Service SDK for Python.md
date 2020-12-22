@@ -40,10 +40,10 @@ LogClient is the Python client of Log Service. You can use LogClient to manage L
 
 ```
 from aliyun.log import LogClient
-endpoint = 'cn-hangzhou.log.aliyuncs.com' // The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The China (Hangzhou) region is used as an example. Enter the endpoint of the region where your Log Service project resides.
-accessKeyId = 'your_access_id' // The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of an Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
-$accessKey = 'your_access_key' // The AccessKey secret of your Alibaba Cloud account.
-client = LogClient(endpoint, accessKeyId, accessKey) // Create LogClient.
+endpoint = 'cn-hangzhou.log.aliyuncs.com' # The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The China (Hangzhou) region is used as an example. Enter the endpoint of the region where your Log Service project resides.
+accessKeyId = 'your_access_id' # The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of an Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
+$accessKey = 'your_access_key' # The AccessKey secret of your Alibaba Cloud account.
+client = LogClient(endpoint, accessKeyId, accessKey) # Create LogClient.
 ```
 
 ## Sample code
@@ -51,8 +51,8 @@ client = LogClient(endpoint, accessKeyId, accessKey) // Create LogClient.
 Log Service SDK for Python provides multiple sample programs. For more information, see [aliyun-log-python-sdk](https://github.com/aliyun/aliyun-log-python-sdk). The following sample code shows how to create a project and a Logstore:
 
 ```
-res = client.create_project("my-project", "description") // Enter the project name and the description.
-res = client.create_logstore('my-project', 'my-logstore', ttl=30, shard_count=3) // Enter the project name, Logstore name, data retention period, and the number of shards. If you set ttl to 3650, the data is permanently stored.
+res = client.create_project("my-project", "description") # Enter the project name and the description.
+res = client.create_logstore('my-project', 'my-logstore', ttl=30, shard_count=3) # Enter the project name, Logstore name, data retention period, and the number of shards. If you set ttl to 3650, the data is permanently stored.
 res.log_print() 
 ```
 
