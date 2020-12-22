@@ -40,10 +40,10 @@ LogClient是日志服务的Python客户端，用于管理Project、Logstore等�
 
 ```
 from aliyun.log import LogClient
-endpoint = 'cn-hangzhou.log.aliyuncs.com'   //日志服务的域名。更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。
-accessKeyId = 'your_access_id'    //阿里云访问密钥AccessKey ID。更多信息，请参见[访问密钥](/intl.zh-CN/开发指南/API 参考/访问密钥.md)。阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维。
-accessKey = 'your_access_key'     //阿里云访问密钥AccessKey Secret。
-client = LogClient(endpoint, accessKeyId, accessKey)     //创建LogClient。
+endpoint = 'cn-hangzhou.log.aliyuncs.com'   #日志服务的域名。更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。
+accessKeyId = 'your_access_id'    #阿里云访问密钥AccessKey ID。更多信息，请参见[访问密钥](/intl.zh-CN/开发指南/API 参考/访问密钥.md)。阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维。
+accessKey = 'your_access_key'     #阿里云访问密钥AccessKey Secret。
+client = LogClient(endpoint, accessKeyId, accessKey)     #创建LogClient。
 ```
 
 ## Python SDK示例
@@ -51,8 +51,8 @@ client = LogClient(endpoint, accessKeyId, accessKey)     //创建LogClient。
 日志服务Python SDK提供丰富的示例程序，方便参考或直接使用，更多信息，请参见[aliyun-log-python-sdk](https://github.com/aliyun/aliyun-log-python-sdk)。此处以创建Project和Logstore为例进行说明，示例代码如下所示：
 
 ```
-res = client.create_project("my-project", "description") //输入Project名称和描述。
-res = client.create_logstore('my-project', 'my-logstore', ttl=30, shard_count=3)   //输入Project名称、Logstore名称、数据保存时长和Shard数据。如果ttl配置为3650，表示永久保存。
+res = client.create_project("my-project", "description") #输入Project名称和描述。
+res = client.create_logstore('my-project', 'my-logstore', ttl=30, shard_count=3)   #输入Project名称、Logstore名称、数据保存时长和Shard数据。如果ttl配置为3650，表示永久保存。
 res.log_print() 
 ```
 
