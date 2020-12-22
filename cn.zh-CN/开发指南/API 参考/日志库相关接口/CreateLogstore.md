@@ -39,7 +39,10 @@ x-log-date: Fri, 27 Nov 2020 08:25:10 GMT
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |logstoreName|String|是|test-logstore|Logstore名称。同一个Project下，Logstore名称不可重复。|
+    |logstoreName|String|是|test-logstore|Logstore名称。其命名规则如下：    -   同一个Project下，Logstore名称不可重复。
+    -   只能包括小写字母、数字、短划线（-）和下划线（\_）。
+    -   必须以小写字母或者数字开头和结尾。
+    -   长度为3-63字符。 |
     |ttl|Integer|是|30|数据的保存时间，单位为天。取值范围为1~3650。如果配置为3650，表示永久保存。|
     |shardCount|Integer|是|2|Shard个数。取值范围为1~10。|
     |enable\_tracking|Boolean|否|false|是否开启WebTracking功能。默认值为false。    -   true：开启WebTracking。
