@@ -24,8 +24,8 @@ Logtail supports the following Windows operating systems:
 
 1.  Download the Logtail installation package.
 
-    -   For the regions inside China: [Logtail installation package](http://logtail-release.oss-cn-hangzhou.aliyuncs.com/win/logtail_installer.zip)
-    -   For the regions outside China: [Logtail installation package](http://logtail-release-global.log-global.aliyuncs.com/win/logtail_installer.zip)
+    -   For the regions inside China: [Logtail installation package](https://logtail-release.oss-cn-hangzhou.aliyuncs.com/win/logtail_installer.zip)
+    -   For the regions outside China: [Logtail installation package](https://logtail-release-global.log-global.aliyuncs.com/win/logtail_installer.zip)
 2.  Decompress the `logtail_installer.zip` package to the directory where the Logtail installation package is stored.
 
 3.  Run the installation command based on the network type of the server and the region where the Log Service project resides.
