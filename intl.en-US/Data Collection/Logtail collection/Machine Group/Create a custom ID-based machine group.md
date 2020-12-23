@@ -28,7 +28,7 @@ Custom ID-based machine groups offer distinct advantages in the following scenar
         For example, if you want to set the custom ID to `userdefined`, run the following command to edit the file. In the file, enter `userdefined`.
 
         ```
-        # vim /etc/ilogtail/user_defined_id
+        vim /etc/ilogtail/user_defined_id
         ```
 
     -   Windows:
@@ -59,10 +59,10 @@ Custom ID-based machine groups offer distinct advantages in the following scenar
 
     |Parameter|Description|
     |---------|-----------|
-    |Name|The name of the machine group. The name must be 3 to 128 characters in length, and can contain only lowercase letters, digits, hyphens \(-\), and underscores \(\_\). The name must start and end with a lowercase letter or digit. **Note:** After the machine group is created, you cannot change its name. Proceed with caution. |
+    |Name|The name of the machine group. The name must be 2 to 128 characters in length, and can contain only lowercase letters, digits, hyphens \(-\), and underscores \(\_\). The name must start and end with a lowercase letter or digit. **Note:** After the machine group is created, you cannot change its name. Proceed with caution. |
     |Identifier|The identifier of the server. Select **Custom ID**.|
     |Topic|The topic of the machine group. This topic is used to differentiate log data that is generated in different servers. For more information, see [Configure a log topic](/intl.en-US/Data Collection/Logtail collection/Text logs/Configure a log topic.md).|
-    |Custom Identifier|Enter the custom ID that is set in [Step 1](#section_6pa_7l6_vpc).|
+    |Custom Identifier|Enter the custom ID that is set in [2](#step_y5a_p7f_25u).|
 
 8.  View the status of the machine group.
 
