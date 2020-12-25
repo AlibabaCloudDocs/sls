@@ -73,16 +73,16 @@ x-log-signaturemethod: hmac-sha1
     POST /configs HTTP/1.1
     Header :
     {
-        'Content-Length': 737, 
-        'Host': 'ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com', 
-        'x-log-bodyrawsize': 737, 
-        'Content-MD5': 'FBA01ECF7255BE143379BC70C56BBF68', 
-        'x-log-signaturemethod': 'hmac-sha1', 
-        'Date': 'Mon, 09 Nov 2015 07:45:30 GMT', 
-        'x-log-apiversion': '0.6.0', 
-        'User-Agent': 'log-python-sdk-v-0.6.0', 
-        'Content-Type': 'application/json', 
-        'Authorization': 'LOG yourAccessKeyId:yourSignature'
+    Content-Length: 737
+    Host: ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com 
+    x-log-bodyrawsize: 737 
+    Content-MD5: FBA01ECF7255BE143379BC70C56BBF68
+    x-log-signaturemethod: hmac-sha1
+    Date: Mon, 09 Nov 2015 07:45:30 GMT
+    x-log-apiversion: 0.6.0
+    User-Agent: log-python-sdk-v-0.6.0
+    Content-Type: application/json
+    Authorization: LOG yourAccessKeyId:yourSignature
     }
     Body:
     {
@@ -116,11 +116,11 @@ x-log-signaturemethod: hmac-sha1
     HTTP/1.1 200 OK
     Header
     {
-        'date': 'Mon, 09 Nov 2015 07:45:30 GMT',
-        'connection': 'close',
-        'x-log-requestid': '56404F1A99248CA26C002180',
-        'content-length': '0',
-        'server': 'nginx/1.6.1'
+    date: Mon, 09 Nov 2015 07:45:30 GMT
+    connection: close
+    x-log-requestid: 56404F1A99248CA26C002180
+    content-length: 0
+    server: nginx/1.6.1
     }
     ```
 
@@ -131,8 +131,8 @@ x-log-signaturemethod: hmac-sha1
 |:------|:--|:---|--|
 |404|ProjectNotExist|The Project does not exist : projectName.|Project不存在。|
 |400|ConfigAlreadyExist|config configname already exists.|Logtail配置已存在。|
-|400|InvalidParameter|invalid config resource json.|无效的Logtail配置参数。|
-|500|InternalServerError|internal server error.|内部服务调用错误。|
+|400|InvalidParameter|Invalid config resource json.|无效的Logtail配置参数。|
+|500|InternalServerError|Internal server error.|内部服务调用错误。|
 
 更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
 
