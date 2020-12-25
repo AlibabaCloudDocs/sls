@@ -67,7 +67,7 @@ x-log-signaturemethod: hmac-sha1
     |:---|:---|---|:-|
     |from|Integer|1409529600|子时间区间的开始时间点。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
     |to|Integer|1409569200|子时间区间的结束时间点。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
-    |count|Integer|2|当前查询结果在该时间区间内的日志条数。|
+    |count|Integer|2|该子时间区间内查询到的日志条数。|
     |progress|Sting|Complete|当前查询结果在该子时间区间内的结果是否完整。    -   Complete：查询已经完成，返回结果为完整结果。
     -   Incomplete：查询已经完成，返回结果为不完整结果，需要重复请求以获得完整结果。 |
 
