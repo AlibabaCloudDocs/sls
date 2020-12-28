@@ -33,6 +33,7 @@ x-log-signaturemethod: hmac-sha1
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |----|----|----|---|--|
+    |projectName|String|是|big-game|Project名称。|
     |query|String|是|\* \| SELECT \* FROM logStoreName where \_\_line\_\_ = 'error' and \_\_date\_\_ \>'2014-09-01 00:00:00' and \_\_date\_\_ < '2014-09-01 22:00:00|SQL语句，表示查询时间区间为2014-09-01 00:00:00到2014-09-01 22:00:00，关键字为error的日志数据。|
 
 
@@ -117,7 +118,7 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP状态码|错误码|错误消息|描述|
 |-------|---|----|--|
-|400|ParameterInvalid|parameter is invalid.|请求的参数错误。|
+|400|ParameterInvalid|Parameter is invalid.|请求的参数错误。|
 
 更多错误码，请参见[通用错误码](/intl.zh-CN/开发指南/API 参考/通用错误码.md)。
 
