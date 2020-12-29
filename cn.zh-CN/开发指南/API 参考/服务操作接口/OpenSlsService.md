@@ -2,6 +2,21 @@
 
 调用OpenSlsService接口开通日志服务。只有开通服务后，才能进行日志服务的操作。
 
+## 请求语法
+
+```
+POST https://sls.aliyuncs.com/
+?AccessKeyId=yourAccessKeyId
+&Action=OpenSlsService
+&Format=Format
+&SignatureMethod=HMAC-SHA1
+&SignatureNonce=SignatureNonce
+&SignatureVersion=SignatureVersion
+&Timestamp=Timestamp
+&Version=Version
+&Signature=Signature
+```
+
 ## 请求参数
 
 -   请求头
@@ -10,10 +25,10 @@
 
 -   参数列表
 
-    |请求参数|类型|是否必须|示例值|描述|
-    |:---|:-|:---|---|:-|
-    |Action|String|是|OpenSlsService|API名称，此处配置为OpenSlsService。|
-    |AccessKeyId|String|是|test-key|阿里云主账号的AccessKey ID。|
+    |参数名称|数据类型|是否必填|示例值|描述|
+    |:---|:---|:---|---|:-|
+    |Action|String|是|OpenSlsService|API名称，该接口中固定配置为OpenSlsService。|
+    |AccessKeyId|String|是|test-key|阿里云账号的AccessKey ID。|
     |Signature|String|是|xxxxxx|您的签名，详情请参见[签名机制](#section_8f8_hbd_y87)。|
     |SignatureMethod|String|是|HMAC-SHA1|签名方式。|
     |SignatureVersion|String|是|1.0|签名算法版本。|
@@ -34,7 +49,7 @@
         -   A~Z、a~z、0~9、短划线（-）、下划线（\_）、英文句点（.）、和波浪线（~）不编码。
         -   其它字符编码为`%XY`格式，其中`XY`是字符对应ASCII码的十六进制数。例如半角双引号（"）对应的编码为`%22`。
         -   使用等号（=）连接编码后的请求参数和参数取值。
-        -   使用and（&）连接编码后的请求参数，该参数排序需与[步骤1.a](#step_bw2_s55_mxb)中的参数排序保持一致。
+        -   使用and（&）连接编码后的请求参数，该参数排序按照字母序进行排序，不包含Signature参数。
     3.  获取规范化的请求字符串（CanonicalizedQueryString）。
 
 2.  构造签名字符串。
@@ -107,14 +122,15 @@ print(create_url())
 
 -   响应元素
 
-    HTTP状态码返回200。
+    返回HTTP状态码200，则表示请求成功。
 
-    |返回参数|类型|描述|
-    |----|--|--|
-    |RequestId|String|请求ID|
-    |Success|Boolean|是否请求成功|
-    |Code|String|错误码|
-    |Message|String|错误描述|
+    |参数名称|数据类型|示例值|描述|
+    |----|----|---|--|
+    |RequestId|String|1CCC2B8E-4FF3-4755-A96C-8CE2E4BF27DF|当次请求的Request ID。|
+    |Success|Boolean|true|是否请求成功。    -   true：请求成功。
+    -   false：请求失败。 |
+    |Code|String|200|返回状态码。|
+    |Message|String|您已开通，请前往控制台使用。|返回响应描述。|
 
 
 ## 示例
