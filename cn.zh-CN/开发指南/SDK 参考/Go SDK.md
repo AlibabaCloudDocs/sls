@@ -32,12 +32,12 @@ Client = sls.CreateNormalInterface(Endpoint,AccessKeyID,AccessKeySecret,"")   //
 日志服务Go SDK提供丰富的示例程序，方便参考或直接使用，更多信息，请参见[aliyun-log-go-sdk](https://github.com/aliyun/aliyun-log-go-sdk)。此处以创建Project和Logstore为例进行说明，示例代码如下所示：
 
 ```
-project, err := client.CreateProject("project_name","description")   //输入Project名称和描述。
+project, err := client.CreateProject("project-name","description")   //输入Project名称和描述。
     if err != nil {
         fmt.Println(err)
     }
     fmt.Println(project)
-    err = client.CreateLogStore("project_name","logstore_name",2,2,true,16)    //输入Project名称、Logstore名称、数据保存时长、Shard数量、开启自动分裂Shard功能和最大分裂数。如果数据保存时长配置为3650，表示永久保存。
+    err = client.CreateLogStore("project-name","logstore-name",2,2,true,16)    //输入Project名称、Logstore名称、数据保存时长、Shard数量、开启自动分裂Shard功能和最大分裂数。如果数据保存时长配置为3650，表示永久保存。
     if err != nil {
         fmt.Println(err)
     }
