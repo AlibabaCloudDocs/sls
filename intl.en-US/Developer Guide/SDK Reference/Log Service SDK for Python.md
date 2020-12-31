@@ -2,11 +2,11 @@
 
 This topic describes how to install and use Log Service SDK for Python.
 
--   Log Service is activated. For more information, see [Activate Log Service](https://www.aliyun.com/product/sls?spm=5176.7933691.J_8058803260.20.3eeb2a665LA0eU).
+-   Log Service is activated. For more information, see [Activate Log Service](https://www.alibabacloud.com/product/log-service?spm=a2c5t.10695662.1996646101.searchclickresult.536d31bdPTqffd).
 -   An AccessKey pair is created and obtained. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md).
 -   A Python development environment is installed.
 
-    Log Service SDK for Python supports PyPy 2, PyPy 3, Python 2.6, Python 2.7, Python 3.3, Python 3.4, Python 3.5, and Python 3.6. You can run the python-V command to check the version of Python that you have installed. You can download the installation package from the [Python official website](https://www.python.org/downloads/) and install the Python development environment.
+    Log Service SDK for Python supports PyPy 2, PyPy 3, Python 2.6, Python 2.7, Python 3.3, Python 3.4, Python 3.5, Python 3.6, and Python 3.7. You can run the python-V command to check the version of Python that you have installed. You can download the installation package from the [Python official website](https://www.python.org/downloads/) and install the Python development environment.
 
 -   The pip tool is installed to manage Python packages.
 
@@ -19,7 +19,7 @@ This topic describes how to install and use Log Service SDK for Python.
 
 Log Service SDK for Python supports all operating systems that run Python, such as Linux, Mac OS X, and Windows.
 
-1.  Run the following command as an administrator in the command-line interface \(CLI\) to install Log Service SDK for Python.
+1.  Run the following command as an administrator in the command-line interface \(CLI\) to install Log Service SDK for Python:
 
     ```
     pip install -U aliyun-log-python-sdk
@@ -40,9 +40,9 @@ LogClient is the Python client of Log Service. You can use LogClient to manage L
 
 ```
 from aliyun.log import LogClient
-endpoint = 'cn-hangzhou.log.aliyuncs.com' # The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The China (Hangzhou) region is used as an example. Enter the endpoint of the region where your Log Service project resides.
-accessKeyId = 'your_access_id' # The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of an Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
-$accessKey = 'your_access_key' # The AccessKey secret of your Alibaba Cloud account.
+endpoint = 'cn-hangzhou.log.aliyuncs.com' # The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The endpoint of the China (Hangzhou) region is used as an example. Replace it with the actual endpoint.
+accessKeyId = 'your_access_id' # The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of your Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
+accessKey = 'your_access_key' # The AccessKey secret of your Alibaba Cloud account.
 client = LogClient(endpoint, accessKeyId, accessKey) # Create LogClient.
 ```
 
