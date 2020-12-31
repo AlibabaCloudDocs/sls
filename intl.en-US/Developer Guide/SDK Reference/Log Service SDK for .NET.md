@@ -2,14 +2,14 @@
 
 This topic describes how to install and use Log Service SDK for .NET.
 
--   Log Service is activated. For more information, see [Activate Log Service](https://www.aliyun.com/product/sls?spm=5176.7933691.J_8058803260.20.3eeb2a665LA0eU).
+-   Log Service is activated. For more information, see [Activate Log Service](https://www.alibabacloud.com/product/log-service?spm=a2c5t.10695662.1996646101.searchclickresult.536d31bdPTqffd).
 -   An AccessKey pair is created and obtained. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md).
 -   A .NET development environment is installed.
 
     Log Service SDK for .NET supports .NET Framework 3.5, .NET Framework 4.0, and .NET Framework 4.5. We recommend that you install the following versions:
 
     -   Microsoft .NET Framework 3.5, Microsoft .NET Framework 4.0, or Microsoft .NET Framework 4.5.
-    -   Visual Studio 2010 and later.
+    -   Visual Studio 2010 or later.
 
 ## Step 1: Install Log Service SDK for .NET
 
@@ -27,7 +27,7 @@ You can create a project to install Log Service SDK for .NET. The following exam
 LogClient is the C\# client that you can use to manage Log Service resources, such as projects and Logstores. To use Log Service SDK for .NET to initiate a service request, you must create a client instance.
 
 ```
-String endpoint = "cn-hangzhou.log.aliyuncs.com",   // The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The endpoint of the China (Hangzhou) region is used as an example. Replace it with the actual endpoint.
+String endpoint = "cn-hangzhou.log.aliyuncs.com", // The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The endpoint of the China (Hangzhou) region is used as an example. Replace it with the actual endpoint.
 accesskeyId = "your accesskey id", // The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of your Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
 accessKey = "your access key", // The AccessKey secret of your Alibaba Cloud account.
 LogClient client = new LogClient(endpoint, accesskeyId, accessKey);
@@ -35,7 +35,7 @@ LogClient client = new LogClient(endpoint, accesskeyId, accessKey);
 
 ## Sample code
 
-Log Service SDK for .NET provides a variety of sample programs. For more information, see [aliyun-log-csharp-sdk](https://github.com/aliyun/aliyun-log-csharp-sdk). The following sample code shows how to write logs to Log Service:
+Log Service SDK for .NET provides multiple sample programs. For more information, see [aliyun-log-csharp-sdk](https://github.com/aliyun/aliyun-log-csharp-sdk). The following sample code shows how to write logs to Log Service:
 
 ```
 PutLogsRequest putLogsReqError = new PutLogsRequest();
