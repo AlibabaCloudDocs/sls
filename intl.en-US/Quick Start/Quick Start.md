@@ -72,7 +72,7 @@ This topic describes how to collect logs of Alibaba Cloud Elastic Compute Servic
     |Config Name|The name of the Logtail configuration file. The name must be unique in a project and cannot be modified after the file is created.|
     |Log Path|The directory and name of the log file. The file names can be complete names or names that contain wildcards. For more information, visit [Wildcard matching](http://man7.org/linux/man-pages/man7/glob.7.html). The log files in all levels of subdirectories under a specified directory are monitored if the log files match the specified pattern. Examples:
 
-    -   /apsara/nuwa/… /\*.log indicates that the files whose extension is .log in the /apsara/nuwa directory and its subdirectories are monitored.
+    -   /apsara/nuwa/…/\*.log indicates that the files whose extension is .log in the /apsara/nuwa directory and its subdirectories are monitored.
     -   /var/logs/app\_\*/\*.log indicates that each file that meets the following conditions is monitored: The file name contains .log. The file is stored in a subdirectory \(at all levels\) of the /var/logs directory. The name of the subdirectory matches the app\_\* pattern.
 **Note:**
 
