@@ -151,7 +151,7 @@ $hostname| select approx_distinct(remote_addr) as uv ,count(1) as pv , __time__ 
         7.  单击右上角**![保存按钮](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8664559951/p113049.png)**图标，根据页面提示完成保存。
     -   用于展示流入流出流量的图表（Graph）
 
-        添加步骤请参见[添加PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下表所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |参数|说明|
         |:-|:-|
@@ -167,7 +167,7 @@ $hostname | select sum(body_byte_sent) as net_out, sum(request_length) as net_in
 
     -   用于展示HTTP请求方法占比的图表（Pie Chart）
 
-        添加步骤请参见[添加PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下表所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |参数|说明|
         |:-|:-|
@@ -181,7 +181,7 @@ $hostname | select count(1) as pv ,method group by method
 
     -   用于展示HTTP请求状态码占比的图表（Pie Chart）
 
-        添加步骤请参见[添加PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下表所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |参数|说明|
         |:-|:-|
@@ -195,7 +195,7 @@ $hostname | select count(1) as pv ,status group by status
 
     -   用于展示热门访问来源的图表（Pie Chart）
 
-        添加步骤请参见[添加PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下表所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |参数|说明|
         |:-|:-|
@@ -209,7 +209,7 @@ $hostname | select count(1) as pv , referer group by referer order by pv desc
 
     -   用于展示延时最高页面的图表（Table）
 
-        添加步骤请参见[添加PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下表所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |参数|说明|
         |:-|:-|
@@ -223,7 +223,7 @@ $hostname | select URL as top_latency_URL ,request_time order by request_time de
 
     -   用于展示热门页面的图表（Table）
 
-        添加步骤请参见[添加PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下表所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |配置项|说明|
         |:--|:-|
@@ -237,7 +237,7 @@ $hostname | select count(1) as pv, split_part(URL,'?',1) as path group by split_
 
     -   用于展示非200请求的Top页面图表（Table）
 
-        添加步骤请参见[添加PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下表所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |配置项|说明|
         |:--|:-|
@@ -251,7 +251,7 @@ $hostname not status:200| select count(1) as pv , url group by url order by pv d
 
     -   用于展示平均延时的图表（Singlestat）
 
-        添加步骤请参见[配置PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下：
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下：
 
         |配置项|说明|
         |:--|:-|
@@ -267,13 +267,13 @@ $hostname | select avg(request_time) as response_time, avg(upstream_response_tim
 
     -   用于展示详细日志的图表（Logs）
 
-        添加步骤请参见[配置PV&UV信息图表](#table_rh6_y1y_9va)。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)。
 
         **说明：** 每页最多展示100条，即**Logs Per Page**最大值为100。
 
     -   用于展示客户端统计的图表（Pie Chart）
 
-        添加步骤请参见[配置PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下：
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下：
 
         |配置项|说明|
         |:--|:-|
@@ -287,7 +287,7 @@ $hostname  | select count(1) as pv, case when  regexp_like(http_user_agent , 'ok
 
     -   用于展示1分钟内各个HTTP请求状态数量的图表（Graph）
 
-        添加步骤请参见[配置PV&UV信息图表](#table_rh6_y1y_9va)，相关参数说明如下所示。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下所示。
 
         |配置项|说明|
         |:--|:-|
@@ -301,7 +301,7 @@ $hostname  | select to_unixtime(time) as time,status,count from (select time_ser
 
     -   用于展示来源IP分布的图表（Worldmap Panel）
 
-        添加步骤请参见[配置PV&UV展示图表](#table_rh6_y1y_9va)，相关参数说明如下。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下。
 
         |参数|说明|
         |:-|:-|
