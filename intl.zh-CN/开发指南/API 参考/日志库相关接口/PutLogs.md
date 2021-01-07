@@ -115,7 +115,7 @@ PB格式日志压缩数据字段描述如下。详情请参见[数据模型](/in
 -   请求示例
 
     ```
-    POST /logstores/sls-test-logstore
+    POST /logstores/sls-test-logstore/shards/lb
     {
         "Content-Length": 118,
         "Content-Type":"application/x-protobuf",
@@ -136,11 +136,12 @@ PB格式日志压缩数据字段描述如下。详情请参见[数据模型](/in
     ```
     Header
     {   
+        "Access-control-allow-origin" : "*", 
         "Date" : "Wed, 11 Nov 2015 08:28:20 GMT", 
+        "Server" : "Tengine",
         "Content-Length" : 0, 
         "x-log-requestid" : "5642FC2399248C8F7B0145FD", 
-        ""Connection" : "close", 
-        "Server" : "nginx/1.6.1"
+        "Connection" : "close"
     }
     ```
 
