@@ -61,7 +61,7 @@ x-log-signaturemethod: hmac-sha1
     |参数名称|数据类型|示例值|描述|
     |:---|:---|---|:-|
     |x-log-progress|String|Complete|查询结果的状态，包括：    -   Complete：查询已经完成，返回结果为完整结果。
-    -   Incomplete：查询已经完成，返回结果为不完整结果，需要重复请求以获得完整结果。 |
+    -   Incomplete：查询已经完成，但由于返回结果数据量大且结果时间区间跨度大，导致返回结果为不完整结果。需要重复请求以获得完整结果。 |
     |x-log-count|Integer|10000|当前查询扫描的日志总数。|
 
 -   响应元素
@@ -130,7 +130,7 @@ x-log-signaturemethod: hmac-sha1
     ```
 
 
-在这个响应示例中，x-log-progress成员的状态为Complete，表明整个日志查询已经完成，返回结果为完整结果。在这次请求中共查询到2条符合条件的日志，且日志数据在logs成员中。如果响应结果中的x-log-progress成员的状态为Incomplete，则需要重复相同请求以获得完整结果。
+在这个响应示例中，x-log-progress成员的状态为Complete，表明整个日志查询已经完成，返回结果为完整结果。在这次请求中共查询到2条符合条件的日志，且日志数据在logs成员中。如果响应结果中的x-log-progress成员的状态为Incomplete，则表示查询结果不完整，需要重复相同请求以获得完整结果。
 
 ## 错误码
 
@@ -138,12 +138,12 @@ x-log-signaturemethod: hmac-sha1
 |:------|:--|:---|:-|
 |404|ProjectNotExist|Project ProjectName does not exist.|Project不存在。|
 |404|LogStoreNotExist|logstore logstoreName does not exist.|Logstore不存在。|
-|400|InvalidTimeRange|request time range is invalid.|请求的时间区间无效。|
-|400|InvalidQueryString|query string is invalid.|请求的查询字符串无效。|
-|400|InvalidOffset|offset is invalid.|请求的offset参数无效。|
-|400|InvalidLine|line is invalid.|请求的line参数无效。|
+|400|InvalidTimeRange|Request time range is invalid.|请求的时间区间无效。|
+|400|InvalidQueryString|Query string is invalid.|请求的查询字符串无效。|
+|400|InvalidOffset|Offset is invalid.|请求的offset参数无效。|
+|400|InvalidLine|Line is invalid.|请求的line参数无效。|
 |400|InvalidReverse|Reverse value is invalid.|Reverse参数的值无效。|
-|400|IndexConfigNotExist|logstore without index config.|Logstore未开启索引。|
+|400|IndexConfigNotExist|Logstore without index config.|Logstore未开启索引。|
 
 更多错误码，请参见[通用错误码](/intl.zh-CN/开发指南/API 参考/通用错误码.md)。
 
