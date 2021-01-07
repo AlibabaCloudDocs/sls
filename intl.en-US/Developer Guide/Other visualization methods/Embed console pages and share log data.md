@@ -37,19 +37,19 @@ The following figure shows the access process.
         -   Obtain a complete query and analysis page:
 
             ```
-            https://sls4service.console.aliyun.com/next/project/<Project name>/logsearch/<Logstore name>?hideTopbar=true&hideSidebar=true
+            https://sls4service.console.aliyun.com/lognext/project/<Project name>/logsearch/<Logstore name>?hideTopbar=true&hideSidebar=true
             ```
 
         -   Obtain query and analysis page:
 
             ```
-            https://sls4service.console.aliyun.com/next/project/<Project name>/logsearch/<Logstore name>?isShare=true&hideTopbar=true&hideSidebar=true
+            https://sls4service.console.aliyun.com/lognext/project/<Project name>/logsearch/<Logstore name>?isShare=true&hideTopbar=true&hideSidebar=true
             ```
 
         -   Obtain a dashboard page:
 
             ```
-            https://sls4service.console.aliyun.com/next/project/<Project name>/dashboard/<Dashboard ID>?isShare=true&hideTopbar=true&hideSidebar=true
+            https://sls4service.console.aliyun.com/lognext/project/<Project name>/dashboard/<Dashboard ID>?isShare=true&hideTopbar=true&hideSidebar=true
             ```
 
             **Note:** The preceding Dashboard ID appears only in the URL of a dashboard page. This ID does not match the name that appears on the dashboard.
