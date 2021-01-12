@@ -6,7 +6,7 @@ Consumer groups allow you to focus on the business logic during log data consump
 
 |Term|Description|
 |:---|:----------|
-|consumer group|A consumer group consists of multiple consumers. Each consumer in a consumer group consumes different data in a Logstore. You can create a maximum of 10 consumer groups for a Logstore.|
+|consumer group|A consumer group consists of multiple consumers. Each consumer in a consumer group consumes different data in a Logstore. You can create a maximum of 30 consumer groups for a Logstore.|
 |consumer|The consumers in a consumer group consume data from specified data sources. The name of each consumer in a consumer group must be unique.|
 
 A Logstore has multiple shards. A consumer library allocates shards to consumers in a consumer group based on the following principles:
@@ -161,7 +161,7 @@ You can use Java, Python, or Go to create consumers and consume data. The follow
 
 2.  In the Projects section, click the project.
 
-3.  On the page that appears, choose **Log Management** \> **Logstores**. Find the Logstore, and then choose **![Expand the data consumption node](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2033359951/p53702.png)** \> **Data Consumption**.
+3.  On the page that appears, choose **Log Management** \> **Logstores**. Find the Logstore, and then choose **![Expand the data consumption node](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2033359951/p53702.png)** \> **Data Consumption**.
 
 4.  Click the consumer group whose data consumption progress you want to view. The data consumption progress of each shard in the Logstore is displayed.
 
