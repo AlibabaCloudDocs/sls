@@ -2,7 +2,7 @@
 
 This topic describes how to create a data transformation rule in the Log Service console.
 
--   A project and a Logstore are created. For more information, see [Create a project and a Logstore](/intl.en-US/Quick Start/Quick start.md).
+-   A project and a Logstore are created. For more information, see [Create a project and a Logstore](/intl.en-US/Quick Start/Quick Start.md).
 -   Log data is collected. For more information, see [Log collection methods](/intl.en-US/Data Collection/Log collection methods.md).
 
 The data transformation feature of Log Service allows you to read, process, and filter the log data from a source Logstore. You can create a transformation rule to transform raw logs that are continuously updated or generated within a specified period of time. Then, you can write the transformed log data to multiple Logstores. You can also query and analyze the transformed log data to extract more value.
@@ -15,8 +15,8 @@ The data transformation feature of Log Service allows you to read, process, and 
 
     You can enable the data transformation mode by using one of the following two methods:
 
-    -   Choose **Log Management** \> **Logstores**, and then click the source Logstore. On the search and analysis page that appears, turn on the **Data Transformation** switch.
-    -   Choose **Log Management** \> **Logstores**. On the Logstores tab, click the **\>** icon of the source Logstore, choose **Data Transformation** \> **Data Transformation**, and then click the plus sign \(+\) next to **Data Transformation**. The data transformation mode is enabled.
+    -   Choose **Log Storage** \> **Logstores**, and then click the source Logstore. On the search and analysis page that appears, turn on the **Data Transformation** switch.
+    -   Choose **Log Storage** \> **Logstores**. On the Logstores tab, click the **\>** icon of the source Logstore, choose **Data Transformation** \> **Data Transformation**, and then click the plus sign \(+\) next to **Data Transformation**. The data transformation mode is enabled.
 4.  On the data transformation page, select a time range for the raw logs.
 
     Make sure that log data exists on the Raw Logs tab.
