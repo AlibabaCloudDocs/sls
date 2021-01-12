@@ -39,12 +39,12 @@ Log consumption preview is a type of log data consumption. You can preview some 
 
 2.  In the Projects section, click the project from which you want to consume data.
 
-3.  On the page that appears, choose **Log Management** \> **Logstores**. On the Logstores tab, find the Logstore from which you want to consume data, and then choose **![Log preview](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1033359951/p53655.png)** \> **Consumption Preview**.
+3.  On the page that appears, choose **Log Storage** \> **Logstores**. On the Logstores tab, find the Logstore from which you want to consume data, and then choose **![Log preview](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1033359951/p53655.png)** \> **Consumption Preview**.
 
 4.  In the Consumption Preview dialog box, select a shard and a time range, and then click **Preview**.
 
     The Consumption Preview page displays the log data of the first 10 packets in the specified time range.
 
-    ![](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/7481220061/p5786.png)
+    ![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7481220061/p5786.png)
 
 
