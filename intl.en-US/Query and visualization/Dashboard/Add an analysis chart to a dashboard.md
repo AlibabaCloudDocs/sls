@@ -3,7 +3,7 @@
 Log Service allows you save query results as charts to a dashboard. This topic describes how to add an analysis chart to a dashboard.
 
 -   Log data is collected. For more information, see [Data collection](/intl.en-US/Data Collection/Log collection methods.md).
--   The indexing feature of the Logstore is enabled and indexes are configured. For more information, see [Enable and configure the index feature for a Logstore](/intl.en-US/Index and query/Enable and configure the index feature for a Logstore.md).
+-   The indexing feature of the Logstore is enabled and indexes are configured. For more information, see [Enable and configure the indexing feature for a Logstore](/intl.en-US/Index and query/Enable and configure the index feature for a Logstore.md).
 
 ## Limits
 
@@ -13,11 +13,11 @@ Each dashboard can contain a maximum of 50 analysis charts.
 
 1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
-2.  In the Projects section, click a project.
+2.  In the Projects section, click the destination project.
 
 3.  Query logs.
 
-    1.  Choose **Log Management** \> **Logstores**. Find the target Logstore, and then choose **![Management icon](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/9484688951/p52166.png)** \> **Search & Analysis**.
+    1.  Choose **Log Storage** \> **Logstores**. Find the target Logstore, and then choose **![Management icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9484688951/p52166.png)** \> **Search & Analysis**.
 
     2.  On the page that appears, enter a query statement in the search box, and click **Search & Analyze**.
 
@@ -37,7 +37,7 @@ Each dashboard can contain a maximum of 50 analysis charts.
 
     2.  Set the parameters. The following table describes the parameters.
 
-        ![Generate variables](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1923359951/p10583.png)
+        ![Generate variables](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1923359951/p10583.png)
 
         |Parameter|Description|
         |:--------|:----------|
@@ -53,7 +53,7 @@ Each dashboard can contain a maximum of 50 analysis charts.
 
     On the **Interactive Behavior** tab, specify the fields for which you need to enable drill-down analysis. For more information, see [Configure a drill-down event for a chart](/intl.en-US/Query and visualization/Dashboard/Configure a drill-down event for a chart.md).
 
-    ![Event Action](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/1923359951/p10243.png)
+    ![Event Action](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1923359951/p10243.png)
 
 8.  Click **Add to New Dashboard**.
 
