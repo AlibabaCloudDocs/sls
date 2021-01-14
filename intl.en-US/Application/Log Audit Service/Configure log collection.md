@@ -16,7 +16,7 @@ This topic describes how to configure log collection for Alibaba Cloud services 
 
 1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
-2.  In the Log Application section, click **Start** in the **Log Audit Service** card.
+2.  In the Log Application section, click **Log Audit Service**.
 
 3.  Choose **Access to Cloud Products** \> **Global Configurations**. Then, perform the following steps:
 
@@ -50,16 +50,16 @@ The Log Audit Service application allows you to collect logs across Alibaba Clou
 
 1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
-2.  In the Log Application section, click **Start** in the **Log Audit Service** card.
+2.  In the Log Application section, click **Log Audit Service**.
 
 3.  Choose **Multi-Account Configurations** \> **Global Configurations**. Then, perform the following steps:
 
     You can select manual authorization or AccessKey pair-based authorization.
 
     -   Manual authorization: Enter one or more Alibaba Cloud account IDs. For more information about how to grant related permissions to the accounts, see [Authorize Log Service to collect logs from cloud services across multiple Alibaba Cloud accounts](/intl.en-US/Application/Log Audit Service/Authorize Log Service to collect and synchronize logs.md).
-    -   AccessKey pair-based authorization: In **AccessKey Pair for Other Accounts to Authorize Log Service**, enter the AccessKey IDs and AccessKey secrets of other Alibaba Cloud accounts and the ID of the primary Alibaba Cloud account. The AccessKey pairs are for temporary use and are not saved.
+    -   AccessKey pair-based authorization: In **AccessKey Pair for Other Accounts to Authorize Log Service**, enter the AccessKey IDs and AccessKey secrets of other accounts and the ID of the primary Alibaba Cloud account. The AccessKey pairs are for temporary use and are not saved.
 
-        If you enter the AccessKey pair of a RAM user, the RAM user must have the read and write permissions on RAM. You can attach the AliyunRAMFullAccess policy to the RAM user.
+        If you enter the AccessKey pair of a RAM user, the RAM user must have the RAM read and write permissions. You can attach the AliyunRAMFullAccess policy to the RAM user.
 
 4.  In the left-side navigation pane, choose **Access to Cloud Products** \> **Status Dashboard** to view the access status of logs.
 
@@ -68,11 +68,11 @@ The Log Audit Service application allows you to collect logs across Alibaba Clou
 
 ## Stop log collection
 
-If you no longer need to collect logs of Alibaba Cloud services but you want to retain the collected logs, perform the following steps:
+If you no longer need to collect logs of Alibaba Cloud services but you want to retain the collected logs, you can perform the following steps:
 
 1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
-2.  In the Log Application section, click **Start** in the **Log Audit Service** card.
+2.  In the Log Application section, click **Log Audit Service**.
 
 3.  Choose **Access to Cloud Products** \> **Global Configurations**. In the upper-right corner of the page that appears, click **Modify**.
 
@@ -85,7 +85,7 @@ To delete the resources of the Log Audit Service application, such as Logstores,
 
 1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
-2.  In the Log Application section, click **Start** in the **Log Audit Service** card.
+2.  In the Log Application section, click **Log Audit Service**.
 
 3.  Choose **Access to Cloud Products** \> **Global Configurations**. In the upper-right corner of the page that appears, click **Delete Audit Resources**.
 
