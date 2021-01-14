@@ -92,7 +92,7 @@ Log Service allows you to access ApsaraDB RDS for MySQL databases over the inter
 
 -   AnalyticDB for MySQL databases
 
-    Before you access an AnalyticDB for MySQL database over the internal network, you must specify a whitelist of Classless Inter-Domain Routing \(CIDR\) blocks for the database. In this example, the CIDR block is 100.104.0.0/16. For more information, see [Configure a whitelist](). For information about the related configurations, see [Access the configurations of ApsaraDB RDS for MySQL](#section_ke7_52c_4wm). When you set the parameters in **Advanced Parameter Settings**, the value of the config.vpc.instance\_id.name parameter must be in the \(the name of the PolarDB for MySQL instance + -controller\) format. The following figure shows sample settings.
+    Before you access an AnalyticDB for MySQL database over the internal network, you must specify a whitelist of Classless Inter-Domain Routing \(CIDR\) blocks for the database. In this example, the CIDR block is 100.104.0.0/16. For more information, see [Configure a whitelist](). For information about the related configurations, see [Access the configurations of ApsaraDB RDS for MySQL](#section_ke7_52c_4wm). When you set the parameters in **Advanced Parameter Settings**, the value of the config.vpc.instance\_id.name parameter must be in the \(the name of the AnalyticDB for MySQL instance + -controller\) format. The following figure shows sample settings.
 
     ![ADB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3621950161/p187384.png)
 
