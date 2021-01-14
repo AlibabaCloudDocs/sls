@@ -10,10 +10,10 @@
 
 -   RDS MySQL实例与日志服务Project需处于同一地域，否则无法获取数据。
 -   日志服务支持跨账号访问RDS MySQL数据库。
--   使用RDS内网地址访问RDS MySQL数据库时，需设置IP地址段白名单（固定设置为100.104.0.0/16）。更多信息，请参见[设置白名单](/cn.zh-CN/RDS MySQL 数据库/快速入门/设置白名单.md)。
--   日志服务除了支持通过阿里云内网地址访问RDS MySQL数据库外，还支持通过内网地址访问AnalyticDB MySQL和PolarDB MySQL数据库。具体操作，请参见[参考信息：使用内网地址访问AnalyticDB MySQL或PolarDB MySQL数据库](#section_gyj_cgp_l9r)。
+-   使用RDS内网地址访问RDS MySQL数据库时，需设置IP地址段白名单（固定设置为100.104.0.0/16）。更多信息，请参见[设置白名单](/cn.zh-CN/RDS MySQL 数据库/快速入门/设置白名单/设置IP白名单.md)。
+-   日志服务除了支持通过阿里云内网地址访问RDS MySQL数据库外，还支持通过内网地址访问AnalyticDB MySQL和PolarDB MySQL数据库。具体操作，请参见[附录：使用内网地址访问AnalyticDB MySQL或PolarDB MySQL数据库](#section_m4o_edb_6kt)。
 
-## 配置方案
+## 加工数据
 
 您可以参见如下方案配置数据加工规则和高级参数，实现通过RDS内网地址访问RDS MySQL数据库获取数据。
 
@@ -65,6 +65,14 @@
     |config.vpc.instance\_port.name|config.vpc.instance\_port.test1|3306|instance\_port为RDS MySQL实例内网地址端口。|
 
 
+## 查询分析数据
+
+获取RDS MySQL数据，完成数据富化后，您可以在日志服务控制台上进行数据分析。例如：分析自行车品牌对共享单车租赁影响、统计每小时用车人数、分析自行车投放市场批次对共享单车租赁影响等。更多信息，请参见[基于日志服务数据加工与RDS MySQL做数据富化以及数据分析](https://yq.aliyun.com/articles/755595?spm=a2c4e.11155435.0.0.33d53312jdskCD)。
+
+## 操作视频
+
+本视频介绍如何在日志服务控制台上配置数据加工语法和预览配置，实现数据加工通过内网地址访问RDS MySQL数据库。
+
 ## 错误排查
 
 -   RDS白名单未配置
@@ -85,7 +93,7 @@
     如果提示`reason: {"errorCode": "InvalidConfig", "errorMessage": "error when calling : res_rds_mysql\nDetail: {\"errorCode\": \"InvalidConfig\", \"errorMessage\": \"Database connection failed, cause: (2003, \\\"Can't connect to MySQL server on 'rm-bp***r5.mysql.rds.aliyuncs.com' (timed out)\\\")\\nDetail: None\", \"requestId\": \"\"}", "requestId": ""}`错误，表示使用了错误的加工语法。
 
 
-## 参考信息：使用内网地址访问AnalyticDB MySQL或PolarDB MySQL数据库
+## 附录：使用内网地址访问AnalyticDB MySQL或PolarDB MySQL数据库
 
 日志服务除了支持通过阿里云内网地址访问RDS MySQL数据库外，还支持通过内网地址访问AnalyticDB MySQL和PolarDB MySQL数据库。相关配置如下所示：
 
@@ -95,12 +103,8 @@
 
 -   AnalyticDB MySQL数据库
 
-    通过内网地址访问AnalyticDB MySQL数据库时，需设置IP地址段白名单（固定设置为100.104.0.0/16）。具体操作，请参见[设置白名单]()。其他操作请参见[访问RDS MySQL数据库的配置](#section_ke7_52c_4wm)，其中设置**高级参数配置**时，config.vpc.instance\_id.name的值需配置为PolarDB MySQL实例名加-controller，如下图所示：
+    通过内网地址访问AnalyticDB MySQL数据库时，需设置IP地址段白名单（固定设置为100.104.0.0/16）。具体操作，请参见[设置白名单]()。其他操作请参见[访问RDS MySQL数据库的配置](#section_ke7_52c_4wm)，其中设置**高级参数配置**时，config.vpc.instance\_id.name的值需配置为AnalyticDB MySQL实例名加-controller，如下图所示：
 
     ![ADB](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8310096061/p187384.png)
 
-
-## 相关操作
-
-获取RDS MySQL数据，完成数据富化后，您可以在日志服务控制台上进行数据分析。例如：分析自行车品牌对共享单车租赁影响、统计每小时用车人数、分析自行车投放市场批次对共享单车租赁影响等。更多信息，请参见[基于日志服务数据加工与RDS MySQL做数据富化以及数据分析](https://yq.aliyun.com/articles/755595?spm=a2c4e.11155435.0.0.33d53312jdskCD)。
 
