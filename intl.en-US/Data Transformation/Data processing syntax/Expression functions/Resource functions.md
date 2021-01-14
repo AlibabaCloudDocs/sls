@@ -23,7 +23,7 @@ Use the res\_local function to obtain the values of the advanced parameters of a
 
 -   Parameters
 
-    |Parameter|Date type|Required|Description|
+    |Parameter|Data type|Required|Description|
     |---------|---------|--------|-----------|
     |param|String|Yes|The keys of the advanced parameters that are specified in **Advanced Parameter Settings** for a data transformation task.|
     |default|Arbitrary|No|The value of the default parameter is returned if the specified param value does not exist. Default value: None.|
@@ -53,7 +53,7 @@ Use the res\_local function to obtain the values of the advanced parameters of a
 
     -   Examples of failed conversions
 
-        The following table shows the examples of failed conversions. The raw strings are returned if they fail to be converted into JSON strings.
+        The following table shows examples of failed conversions. The raw strings are returned if they fail to be converted into JSON strings.
 
         |Raw string|Return value|Description|
         |----------|------------|-----------|
@@ -66,7 +66,7 @@ Use the res\_local function to obtain the values of the advanced parameters of a
 
         The key in the **Advanced Parameter Settings** field is endpoint. The value is hangzhou.
 
-        ![Advanced parameter](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3211237061/p56312.png)
+        ![Advanced parameters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3211237061/p56312.png)
 
     -   Raw log entry:
 
@@ -98,7 +98,7 @@ Use the res\_rds\_mysql function to pull data from a specified table in an Apsar
 
 -   Pull all data at regular intervals
 
-    When you run a transformation task, Log Service pulls all data from a specified database table at regular intervals. This way, Log Service synchronizes all data in the specified database. However, this may consume a large amount of time if the data volume is large. We recommend that you use this method if the data volume of your database is less than or equal to 2 GB and the value of the refresh\_interval parameter is greater than or equal to 300s.
+    When you run a transformation task, Log Service pulls all data from a specified database table at regular intervals. This way, Log Service synchronizes all data in the specified database. However, this may consume a large amount of time if the data volume is large. If the data volume of your database is less than or equal to 2 GB and the value of the refresh\_interval parameter is greater than or equal to 300s, we recommend that you use this method.
 
     ![Pull all data at regular intervals](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3211237061/p181953.png)
 
@@ -119,9 +119,10 @@ Use the res\_rds\_mysql function to pull data from a specified table in an Apsar
 
     -   The whitelist in an ApsaraDB RDS for MySQL database: When you configure the whitelist in an ApsaraDB RDS for MySQL database, set the IP Addresses parameter to `0.0.0.0` so that all IP addresses can access the database. However, this may expose the database to higher potential risks. If you want to configure a specified Log Service IP address, you can [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm). Log Service will provide a more secure method to support the whitelist feature in the future.
     -   Network access: Log Service allows you to pull data from an ApsaraDB RDS for MySQL database over the Internet or the internal network. For more information, see [Obtain data from an ApsaraDB RDS for MySQL database over the internal network](/intl.en-US/Data Transformation/Best practices/Data enrichment/Obtain data from an ApsaraDB RDS for MySQL database over the internal network.md).
+    -   Log Service also allows you to use the res\_rds\_mysql function to pull data from AnalyticDB for MySQL and PolarDB for MySQL databases. You only need to replace the database address, database username, database password, and database name in the transformation rule with actual values.
 -   Parameters
 
-    |Parameter|Date type|Required|Description|
+    |Parameter|Data type|Required|Description|
     |---------|---------|--------|-----------|
     |address|String|Yes|The domain name or IP address. If the port number is not 3306, set this parameter in the format of IP address: port. For more information, see [View the internal and public endpoints and port numbers of an RDS instance](/intl.en-US/RDS SQL Server Database/Database connection/View and change the internal and public endpoints and port numbers of an ApsaraDB RDS for SQL Server instance.md).|
     |username|String|Yes|The username that is used to access the database.|
@@ -129,19 +130,19 @@ Use the res\_rds\_mysql function to pull data from a specified table in an Apsar
     |database|String|Yes|The name of the database to be connected.|
     |table|String|Yes|The name of the database table to be accessed. This parameter is not required if the sql parameter is specified.|
     |sql|String|Yes|The SQL SELECT statement that is used to query data. This parameter is not required if the table parameter is specified.|
-    |fields|The string list or string alias list|No|The string list or string alias list. If you do not set this parameter, all columns returned by the sql or table parameter are used. For example, if you want to change the name of the name column in the \["user\_id", "province", "city", "name", "age"\] list to user\_name, you can set the fields parameter to \["user\_id", "province", "city", \("name", "user\_name"\), \("nickname", "nick\_name"\), "age"\]. **Note:** If you set the sql, table, and fields parameters at the same time, the SQL statement in the sql parameter is executed. The table and fields parameters become invalid. |
+    |fields|The string list or string alias list|No|The string list or string mapping list. If you do not set this parameter, all columns returned by the sql or table parameter are used. For example, if you want to change the name of the name column in the \["user\_id", "province", "city", "name", "age"\] list to user\_name, you can set the fields parameter to \["user\_id", "province", "city", \("name", "user\_name"\), \("nickname", "nick\_name"\), "age"\]. **Note:** If you set the sql, table, and fields parameters at the same time, the SQL statement in the sql parameter is executed. The table and fields parameters become invalid. |
     |fetch\_include\_data|Search string|No|The string whitelist. Strings that match the fetch\_include\_data parameter are retained. Strings that do not match this parameter are dropped.|
     |fetch\_exclude\_data|Search string|No|The string blacklist. Strings that match the fetch\_exclude\_data parameter are dropped. Strings that do not match this parameter are retained.**Note:** If you set both the fetch\_include\_data and fetch\_exclude\_data parameters, the string blacklist is executed first. |
-    |refresh\_interval|Numeric string or number|No|The interval at which data is pulled from ApsaraDB RDS for MySQL. Unit: seconds. The default value is 0. This indicates that all data that matches the search conditions is pulled only once.|
+    |refresh\_interval|Numeric string or number|No|The interval at which data is pulled from ApsaraDB RDS for MySQL. Unit: seconds. The default value is 0. It indicates that all data that matches the search conditions is pulled only once.|
     |base\_retry\_back\_off|Number|No|The interval at which data is re-pulled after a pull failure. Default value: 1. Unit: seconds.|
     |max\_retry\_back\_off|int|No|The maximum interval between retries after a transformation task fails. We recommend that you use the default value. Default value: 60. Unit: seconds.|
-    |primary\_keys|String/List|No|The primary key. If you set this parameter, data in the database table is saved to the memory as a dictionary in the Key : Value format. The key of the dictionary is the value of the primary\_keys parameter. The value of the dictionary is an entire row of data in the database table.**Note:**
+    |primary\_keys|String/List|No|The primary key. If you set this parameter, data in the database table is saved to the memory as a dictionary in the Key:Value format. The key of the dictionary is the value of the primary\_keys parameter. The value of the dictionary is an entire row of data in the database table.**Note:**
 
     -   We recommend that you set this parameter if the database table contains a large amount of data.
     -   The value of the primary\_keys parameter must exist in the fields that are pulled from the database table. |
-    |use\_ssl|Bool|No|Indicates whether to use the SSL protocol to connect to ApsaraDB RDS for MySQL. Default value: false. **Note:** If SSL is enabled for ApsaraDB RDS for MySQL and this parameter is specified, the SSL channel is used to connect to ApsaraDB RDS for MySQL, but the CA certificate of the server is not verified. You cannot use the CA certificate provided by the server to establish the connection. |
-    |update\_time\_key|String|No|Pulls incremental data. If you do not set this parameter, all data is pulled. For example, the value update\_time in the update\_time\_key="update\_time" parameter indicates the time field of the data update time in the ApsaraDB RDS for MySQL database. The time field supports the following data types: Datetime, Timestamp, Integer, Float, and Decimal. Make sure that the value of the time field increases in chronological order.**Note:** Log Service pulls incremental data based on the value of the time field. Make sure that you have indexed this field in the database table. Otherwise, a full table scan will occur. If you do not configure indexes for this field, an error occurs and you cannot update incremental data. |
-    |deleted\_flag\_key|String|No|Indicates the data that is dropped when you pull incremental data. For example, if the value of the key field in update\_time\_key="key" meets the following condition, the data is parsed as deleted data:    -   Boolean: true
+    |use\_ssl|Bool|No|Specifies whether to use the SSL protocol to connect to ApsaraDB RDS for MySQL. Default value: false. **Note:** If SSL is enabled for ApsaraDB RDS for MySQL and this parameter is specified, the SSL channel is used to connect to ApsaraDB RDS for MySQL. However, the CA certificate of the server is not verified. You cannot use the CA certificate provided by the server to establish the connection. |
+    |update\_time\_key|String|No|Pulls incremental data. If you do not set this parameter, all data is pulled. For example, the value update\_time in the update\_time\_key="update\_time" parameter indicates the time field of the data update time in the ApsaraDB RDS for MySQL database. The time field supports the following data types: Datetime, Timestamp, Integer, Float, and Decimal. Make sure that the value of the time field increases in chronological order.**Note:** Log Service pulls incremental data based on the value of the time field. Make sure that you have indexed this field in the database table. Otherwise, a full table scan is performed. If you do not configure indexes for this field, an error occurs and you cannot update incremental data. |
+    |deleted\_flag\_key|String|No|The data that is dropped when you pull incremental data. For example, if the value of the key field in update\_time\_key="key" meets the following condition, the data is parsed as deleted data:    -   Boolean: true
     -   Datetime and Timestamp: not empty
     -   Char and Varchar: 1, true, t, yes, and y
     -   Int: not zero
@@ -317,7 +318,7 @@ Use the res\_rds\_mysql function to pull data from a specified table in an Apsar
 
             -   Result:
 
-                Three data records are pulled from the database table and send to Log Service by using the res\_rds\_mysq function. These data records are compared with the existing data records in the source Logstore to check whether they are matched. If you want to drop the record whose item\_id is 1001, you can find the data record whose item\_id is 1001 in the database table. Then, you can set the value of the Is\_deleted field to true. This way, the 1001 data record is dropped next time when the dimension table is updated.
+                Three data records are pulled from the database table and sent to Log Service by using the res\_rds\_mysq function. These data records are compared with the existing data records in the source Logstore to check whether they are matched. If you want to drop the record whose item\_id is 1001, you can find the data record whose item\_id is 1001 in the database table. Then, you can set the value of the Is\_deleted field to true. This way, the 1001 data record is dropped next time when the dimension table is updated.
 
                 ```
                 # Data record 2
@@ -346,7 +347,7 @@ Use the res\_log\_logstore\_pull function to pull data from another Logstore.
 
 -   Parameters
 
-    |Parameter|Date type|Required|Description|
+    |Parameter|Data type|Required|Description|
     |---------|---------|--------|-----------|
     |endpoint|String|Yes|The endpoint. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The default value is an HTTPS address. This parameter can also be set to an HTTP address. You can use a custom port that is not port 80 or 443.|
     |ak\_id|String|Yes|The AccessKey ID of your Alibaba Cloud account. To ensure data security, we recommend that you set this parameter in **Advanced Parameter Settings**. For more information about how to set the advanced parameters, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).|
@@ -357,14 +358,14 @@ Use the res\_log\_logstore\_pull function to pull data from another Logstore.
     |from\_time|String|No|The server time at which the data pull from the Logstore starts. The default value is begin. This value indicates that the data pull starts from the first log entry. The following time formats are supported:     -   UNIX timestamp.
     -   Time string.
     -   Custom string, for example, begin or end.
-    -   Expression: The time returned by the dt\_ function. For example, the expression dt\_totimestamp\(dt\_truncate\(dt\_today\(tz="Asia/Shanghai"\), day=op\_neg\(-1\)\)\) indicates the start time of the data pull is one day before the current day. If the current time is 2019-5-5 10:10:10 \(UTC+8\), this expression indicates the time 2019-5-4 0:0:0 \(UTC+8\). |
+    -   Expression: The time returned by the dt\_ function. For example, the expression dt\_totimestamp\(dt\_truncate\(dt\_today\(tz="Asia/Shanghai"\), day=op\_neg\(-1\)\)\) indicates that the start time of the data pull is one day before the current day. If the current time is 2019-5-5 10:10:10 \(UTC+8\), this expression indicates the time 2019-5-4 0:0:0 \(UTC+8\). |
     |to\_time|String|No|The server time at which the data pull from the Logstore ends. The default value is end, which indicates to end the data pull at the last log entry. The following time formats are supported:     -   UNIX timestamp.
     -   Time string.
     -   Custom string, for example, begin or end.
     -   Expression: The time returned by the dt\_ function.
 If this parameter is not specified or is set to None, data is pulled from the latest log entry in a continuous manner.
 
-**Note:** If this parameter is set to a future time, only the existing data in the Logstore is pulled. Data that is written after the pull begins is not pulled. |
+**Note:** If this parameter is set to a time in the future, only the existing data in the Logstore is pulled. Data that is written after the pull begins is not pulled. |
     |fetch\_include\_data|Search string|No|The string whitelist. Strings that match the fetch\_include\_data parameter are retained. Strings that do not match this parameter are dropped.|
     |fetch\_exclude\_data|Search string|No|The string blacklist. Strings that match the fetch\_exclude\_data parameter are dropped. Strings that do not match this parameter are retained.**Note:** If you set both the fetch\_include\_data and fetch\_exclude\_data parameters, the string blacklist is executed first. |
     |primary\_keys|String list|No|The list of primary key fields used to maintain the table. If you modify the name of a primary key field in the fields parameter, the primary\_key parameter must be set to the modified field as the primary key. **Note:**
@@ -414,7 +415,7 @@ If this parameter is not specified or is set to None, data is pulled from the la
 
 Use the res\_oss\_file function to obtain the object content of a specified bucket from OSS. The object can be refreshed at regular intervals.
 
-**Note:** We recommend that you create the OSS bucket and the data transformation project in the same region. Then, the OSS bucket and the Logstore can communicate with each other over an internal network, which is stable and fast.
+**Note:** We recommend that you create the OSS bucket and the data transformation project in the same region. This way, the OSS bucket and the Logstore can communicate with each other over an internal network, which is stable and fast.
 
 -   Syntax
 
@@ -425,7 +426,7 @@ Use the res\_oss\_file function to obtain the object content of a specified buck
 
 -   Parameters
 
-    |Parameter|Date type|Required|Description|
+    |Parameter|Data type|Required|Description|
     |---------|---------|--------|-----------|
     |endpoint|String|Yes|The endpoint of OSS. For more information, see [Regions and endpoints](/intl.en-US/Developer Guide/Endpoint/Regions and endpoints.md). The default value is an HTTPS address. This parameter can also be set to an HTTP address. You can use a custom port that is not port 80 or 443.|
     |ak\_id|String|Yes|The AccessKey ID of your Alibaba Cloud account. To ensure data security, we recommend that you set this parameter in **Advanced Parameter Settings**. For more information about how to set the advanced parameters, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).|
@@ -438,11 +439,11 @@ Use the res\_oss\_file function to obtain the object content of a specified buck
     |base\_retry\_back\_off|Number|No|The interval at which data is re-pulled after a pull failure. Default value: 1. Unit: seconds.|
     |max\_retry\_back\_off|int|No|The maximum interval between retries after a data pull failure. Default value: 60. Unit: seconds. We recommend that you use the default value.|
     |encoding|String|No|The encoding format. If the format parameter is set to text, this parameter is set to utf8 by default.|
-    |error|String|No|The handling method of errors. This parameter is valid only when the UnicodeError message is reported. For example:    -   The value ignore indicates that incorrectly encoded data is ignored and the encoding continues.
+    |error|String|No|The method of error handling.. This parameter is valid only when the UnicodeError message is reported. For example:    -   The value ignore indicates that incorrectly encoded data is ignored and the encoding continues.
     -   The value xmlcharrefreplace indicates that the characters that cannot be encoded are replaced by XML characters.
 For more information, see [Error handlers](https://docs.python.org/3/library/codecs.html#error-handlers).|
     |decompress|String|No|Indicates whether to decompress the obtained OSS file. Valid values: None and gizp. Default value: None.    -   decompress=None indicates that the file is not decompressed.
-    -   decompress=gizpindicates that Gizp is used to decompress the file. |
+    -   decompress=gizp indicates that Gizp is used to decompress the file. |
 
 -   Response
 
