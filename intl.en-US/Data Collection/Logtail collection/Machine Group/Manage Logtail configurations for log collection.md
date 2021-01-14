@@ -12,7 +12,7 @@ For more information about how to create Logtail configurations in the Log Servi
 
 2.  In the Projects section, click the target project.
 
-3.  Choose **Log Management** \> **Logstores**. Click the **\>** icon of the target Logtail configurations. Choose **Data Import** \> **Logtail Configurations**.
+3.  Choose **Log Storage** \> **Logstores**. Click the **\>** icon of the target Logtail configurations. Choose **Data Import** \> **Logtail Configurations**.
 
 4.  Click the target Logtail configurations to view the details of the configurations.
 
@@ -23,7 +23,7 @@ For more information about how to create Logtail configurations in the Log Servi
 
 2.  In the Projects section, click the target project.
 
-3.  Choose **Log Management** \> **Logstores**. Click the **\>** icon of the target Logtail configurations. Choose **Data Import** \> **Logtail Configurations**.
+3.  Choose **Log Storage** \> **Logstores**. Click the **\>** icon of the target Logtail configurations. Choose **Data Import** \> **Logtail Configurations**.
 
 4.  In the **Logtail Configurations** list, click the target Logtail configurations.
 
@@ -36,7 +36,7 @@ For more information about how to create Logtail configurations in the Log Servi
 
 ## Delete Logtail configurations
 
-1.  In the **Logtail Configurations** list, find the target Logtail configurations. Click the ![Logtail configuration management](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5123359951/p52766.png) icon on the right of the target Logtail configurations, and then select **Delete**.
+1.  In the **Logtail Configurations** list, find the target Logtail configurations. Click the ![Logtail configuration management](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5123359951/p52766.png) icon on the right of the target Logtail configurations, and then select **Delete**.
 
 2.  In the dialog box that appears, click **OK**.
 
