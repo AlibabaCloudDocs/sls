@@ -32,7 +32,7 @@ x-log-signaturemethod: hmac-sha1
 
     |Parameter|Type|Required|Example|Description|
     |---------|----|--------|-------|-----------|
-    |query|string|Yse|\* \| SELECT \* FROM <logStoreName\> where \_\_line\_\_ = 'abc' and \_\_date\_\_ \>'2017-09-01 00:00:00' and \_\_date\_\_ < '2017-09-02 00:00:00'&line=20&offset=0 HTTP/1.1|The SQL statement|
+    |query|string|Yes|\* \| SELECT \* FROM <logStoreName\> where \_\_line\_\_ = 'abc' and \_\_date\_\_ \>'2017-09-01 00:00:00' and \_\_date\_\_ < '2017-09-02 00:00:00'&line=20&offset=0 HTTP/1.1|The SQL statement|
 
 
 ## Response parameters
