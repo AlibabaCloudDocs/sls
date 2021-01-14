@@ -25,14 +25,14 @@ Log Service provides efficient and reliable log collection and consumption chann
          public static void main( String[] args )
         {     
             String mode = "Local"; // Use the local test mode.
-               String consumer_group_name = ""; // The unique consumer group name of a topology.
+            String consumer_group_name = ""; // The unique consumer group name of a topology.
             String project = ""; // The project in Log Service. 
             String logstore = ""; // The Logstore in Log Service.
             String endpoint = ""; // The endpoint of Log Service.
             String access_id = ""; // The AccessKey ID.
             String access_key = "";
             // Configure a LogHub Storm spout.
-            LogHubSpoutConfig config = new LogHubSpoutConfig(conumser_group_name,
+            LogHubSpoutConfig config = new LogHubSpoutConfig(consumer_group_name,
                     endpoint, project, logstore, access_id,
                     access_key, LogHubCursorPosition.END_CURSOR);
             TopologyBuilder builder = new TopologyBuilder();
