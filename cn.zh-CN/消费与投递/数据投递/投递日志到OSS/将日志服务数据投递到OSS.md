@@ -4,7 +4,7 @@
 
 -   已创建Project和Logstore。更多信息，请参见[创建Project和Logstore](/cn.zh-CN/快速入门/快速入门.md)。
 -   已采集到日志。更多信息，请参见[数据采集](/cn.zh-CN/数据采集/采集方式.md)。
--   已开通OSS服务，且在日志服务Project所在的地域创建Bucket。更多信息，请参见[开通OSS服务](/cn.zh-CN/快速入门/开通OSS服务.md)。
+-   已开通OSS服务，且在日志服务Project所在的地域创建Bucket。更多信息，请参见[开通OSS服务](/cn.zh-CN/控制台用户指南/开通OSS服务.md)。
 -   已完成[云资源访问授权](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22%3A%20%7B%22request1%22%3A%20%7B%22RoleName%22%3A%20%22AliyunLogDefaultRole%22%2C%20%22TemplateId%22%3A%20%22DefaultRole%22%7D%7D%2C%20%22ReturnUrl%22%3A%20%22https%3A//sls.console.aliyun.com/%22%2C%20%22Service%22%3A%20%22Log%22%7D)。
 
     如果您要跨阿里云账号或使用RAM用户配置投递规则，请参见[RAM授权](/cn.zh-CN/消费与投递/数据投递/投递日志到OSS/RAM授权.md)。
@@ -25,7 +25,7 @@
 
 3.  在**日志存储** \> **日志库**页签中，单击目标Logstore左侧的**\>**，选择**数据处理** \> **导出** \> **OSS（对象存储）**。
 
-4.  单击**开始投递**。
+4.  单击**开启投递**。
 
 5.  在投递提示对话框中，单击**直接投递**。
 
