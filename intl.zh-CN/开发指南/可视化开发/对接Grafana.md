@@ -1,303 +1,340 @@
 # 对接Grafana
 
-本文主要通过Grafana示例演示如何将日志服务采集的Nginx日志进行实时可视化分析。
+本文介绍如何通过Grafana可视化分析日志服务所采集到的Nginx日志。
 
--   已采集Nginx日志数据。详情请参见[Nginx模式](/intl.zh-CN/数据采集/Logtail采集/采集文本日志/Nginx模式.md)。
--   已开启并配置索引，详情请参见[采集并分析Nginx访问日志](/intl.zh-CN/案例与实践/最佳实践/采集/采集并分析Nginx访问日志.md)。
+-   已采集Nginx日志数据。更多信息，请参见[使用Nginx模式采集日志](/intl.zh-CN/数据采集/Logtail采集/采集文本日志/Nginx模式.md)。
+-   已开启并配置索引。更多信息，请参见[分析Nginx访问日志](/intl.zh-CN/查询与分析/最佳实践/分析Nginx访问日志.md)。
 
-## 流程架构
+## 步骤1：安装Grafana和插件
 
-日志从收集到分析的流程架构如下。
+1.  安装Grafana。具体操作，请参见[Grafana官方文档](http://docs.grafana.org/installation/)。
 
-![LogService_user_guide_0206.png ](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7664559951/p5856.png)
+    **说明：**
 
-## 操作步骤
+    -   如果您是在本机上安装Grafana，请提前在浏览器中打开3000端口。
+    -   如果您需要使用饼图，需执行如下命令安装Pie Chart插件。
 
-1.  安装Grafana。详情请参见[Grafana官方文档](http://docs.grafana.org/installation/)。
-
-    以安装Ubuntu为例，需执行以下安装命令。
-
-    ```
-    wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.5.2_amd64.deb
-    sudo apt-get install -y adduser libfontconfig
-    sudo dpkg -i grafana_4.5.2_amd64.deb
-    ```
-
-    若您需要使用饼状图，则需执行以下命令安装Pie chart插件。
-
-    ```
-    grafana-cli plugins install grafana-piechart-panel
-    ```
+        ```
+        grafana-cli plugins install grafana-piechart-panel
+        ```
 
 2.  安装日志服务插件。
 
-    请确认Grafana的插件目录位置。在Ubuntu的插件目录/var/lib/grafana/plugins/安装插件，重启grafana-server。
+    1.  执行如下命令进入Grafana插件安装目录。
 
-    以Ubuntu系统为例，执行以下命令安装插件，并重启grafana-server。
+        例如在Ubuntu系统，您需要在/var/lib/grafana/plugins/中安装插件。
 
-    ```
-    cd /var/lib/grafana/plugins/
-    git clone https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
-    service grafana-server restart
-    ```
+        ```
+        cd /var/lib/grafana/plugins/
+        ```
 
-3.  配置日志服务数据源。
+    2.  执行如下命令安装插件。
 
-    **说明：** 若您是在本机部署，默认是安装在3000端口。请提前在浏览器打开3000端口。
+        ```
+        git clone https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
+        ```
 
-    1.  登录Grafana。
+    3.  执行如下命令重启服务。
 
-    2.  在左侧菜单栏，单击**![G1](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7664559951/p112522.png)图标** \> **Data Sources**。
+        ```
+        service grafana-server restart
+        ```
 
-    3.  在Data Sources页签，单击**Add data source**，选中**LogService**，单击**Select**，请参考如下说明配置数据源。
+3.  如果您安装的是Grafana 7.0及以上版本，需修改Grafana配置文件。
+
+    1.  打开配置文件。
+
+        -   macOS系统中的文件路径：/usr/local/etc/grafana/grafana.ini
+        -   Linux系统中的文件路径：/etc/grafana/grafana.ini
+    2.  在plugins中设置allow\_loading\_unsigned\_plugins参数。
+
+        ```
+        allow_loading_unsigned_plugins = aliyun-log-service-datasource,grafana-log-service-datasource
+        ```
+
+
+## 步骤2：配置数据源
+
+1.  登录Grafana。
+
+2.  在左侧菜单栏，选择**![G1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7664559951/p112522.png)** \> **Data Sources**。
+
+3.  在Data Sources页签，单击**Add data source**。
+
+4.  在Add data source页面，单击**LogService**对应的**Select**。
+
+5.  配置数据源。
+
+    重要参数说明如下表所示。
+
+    |参数|说明|
+    |:-|:-|
+    |Name|数据源的名称。|
+    |HTTP|配置URL、Access和Whitelisted Cookies，具体说明如下：    -   URL：格式为`http://Endpoint`，请根据实际情况替换Endpoint，更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。例如`http://cn-qingdao.log.aliyuncs.com`。
+    -   Access：取值为Server\(default\)或Browser。
+    -   Whitelisted Cookies：添加访问白名单。 |
+    |Auth|保持默认配置。|
+    |log service details|配置日志服务详细信息，包括Project名称、Logstore名称和具备读取权限的AccessKey。为了您的阿里云账号安全，建议您使用RAM用户的AccessKey。|
+
+6.  单击**Save & Test**。
+
+
+## 步骤3：添加仪表盘
+
+1.  在左侧导航栏，选择**![图标1](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7664559951/p112912.png)** \> **Dashboards**。
+
+2.  在New Panel面板中，单击**Choose Visualization**。
+
+3.  配置模板变量。
+
+    您可以在Grafana中配置模板变量，实现在同一个图表中通过选择不同的变量值，展示不同的结果。
+
+    1.  配置时间区间大小的模板变量。
+
+        1.  在New dashboard页面右上角，配置时间区间，然后单击![图标2](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7664559951/p112911.png)图标。
+        2.  单击**Variables**。
+        3.  单击**Add variable**。
+        4.  按照如下参数配置模板变量，然后单击**Add**。
+
+            重要参数说明如下表所示。
+
+            |参数|说明|
+            |--|--|
+            |Name|变量名称，例如myinterval。该名称是您配置中使用的变量，此处为myinterval，则查询条件中需写成`$myinterval`。|
+            |Type|选择**Interval**。|
+            |Lable|配置为**time interval**。|
+            |Values|配置为**1m,10m,30m,1h,6h,12h,1d,7d,14d,30d**。|
+            |Auto Option|打开**Auto Option**开关，其他参数保持默认配置。|
+
+    2.  配置域名的模板变量。
+
+        1.  在Variables页面，单击**New**。
+        2.  按照如下参数配置模板变量，然后单击**Add**。
+
+            |参数|说明|
+            |:-|:-|
+            |Name|变量名称，例如hostname。该名称是您配置中使用的变量，此处为hostname，则查询条件中需写成`$hostname`。|
+            |Type|选择**Custom**。|
+            |Lable|输入域名。|
+            |Custom Options|配置为`*,www.host.com,www.host0.com,www.host1.com`，表示可以查看所有域名的访问情况，也可以分别查看`www.host.com`、`www.host0.com`或`www.host1.com`的访问情况。|
+            |Selection Options|保持默认配置。|
+
+    3.  在左侧菜单栏，单击**Save**。
+
+4.  添加可视化图表。
+
+    -   用于展示PV&UV的图表（Graph）
+        1.  单击右上角**![图标3 ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7664559951/p112908.png)**图标。
+        2.  在New Panel页面，单击**Add Query**。
+        3.  单击**![G小图标4](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表中选择**Graph**。
+        4.  单击**![G小图标5](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8664559951/p112926.png)**图标，在**Title**文本框输入**UV&PV**。
+        5.  单击**![G小图标6](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8664559951/p112923.png)**图标，在**Query**下拉列表中选择**Logservice**，并完成如下配置。
+
+            ![grafana-pv&uv01](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3684178061/p112935.png)
+
+            |参数|说明|
+            |:-|:-|
+            |Query|查询和分析语句示例如下：            ```
+$hostname| select approx_distinct(remote_addr) as uv ,count(1) as pv , __time__ - __time__ % $$myinterval as time group by time order by time limit 1000
+            ```
+
+在展示结果中，`$hostname`会被替换成您选择的域名。`$$myinterval`会被替换成您选择的时间区间。
+
+**说明：** myinterval前有2个美元符号（$$），hostname前只有1个美元符号（$）。 |
+            |X-Column|配置为**time**。|
+            |Y-Column|配置为**uv,pv**。|
+
+        6.  如果UV和PV的值相差较大，可配置双Y轴图表。
+
+            ![grafana-pv&uv02](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3684178061/p112952.png)
+
+        7.  单击右上角**![保存按钮](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8664559951/p113049.png)**图标，根据页面提示完成保存。
+    -   用于展示流入流出流量的图表（Graph）
+
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
+
+        |参数|说明|
+        |:-|:-|
+        |Query|查询和分析语句示例如下：        ```
+$hostname | select sum(body_byte_sent) as net_out, sum(request_length) as net_in,__time__ - __time__ % $$myinterval as time group by __time__ - __time__ % $$myinterval limit 10000
+        ```
+
+在展示结果中，`$hostname`会被替换成您选择的域名。`$$myinterval`会被替换成您选择的时间区间。
+
+**说明：** myinterval前有2个美元符号（$$），hostname前只有1个美元符号（$）。 |
+        |X-Column|配置为**time**。|
+        |Y-Column|配置为**net\_in,net\_out**。|
+
+    -   用于展示HTTP请求方法占比的图表（Pie Chart）
+
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
+
+        |参数|说明|
+        |:-|:-|
+        |Query|查询和分析语句示例如下：        ```
+$hostname | select count(1) as pv ,method group by method
+        ```
+
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|配置为**pie**。|
+        |Y-Column|配置为**method,pv**。|
+
+    -   用于展示HTTP请求状态码占比的图表（Pie Chart）
+
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
+
+        |参数|说明|
+        |:-|:-|
+        |Query|查询和分析语句示例如下：        ```
+$hostname | select count(1) as pv ,status group by status
+        ```
+
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|配置为**pie**。|
+        |Y-Column|配置为**status,pv**。|
+
+    -   用于展示热门访问来源的图表（Pie Chart）
+
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
+
+        |参数|说明|
+        |:-|:-|
+        |Query|查询和分析语句示例如下：        ```
+$hostname | select count(1) as pv , referer group by referer order by pv desc
+        ```
+
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|配置为**pie**。|
+        |Y-Column|配置为**referer,pv**。|
+
+    -   用于展示延时最高页面的图表（Table）
+
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
+
+        |参数|说明|
+        |:-|:-|
+        |Query|查询和分析语句示例如下：        ```
+$hostname | select URL as top_latency_URL ,request_time order by request_time desc limit 10
+        ```
+
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|无需配置。|
+        |Y-Column|配置为**top\_latency\_url,request\_time**。|
+
+    -   用于展示热门页面的图表（Table）
+
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
         |配置项|说明|
         |:--|:-|
-        |Name|Name表示名称，请自定义一个数据源的名称。|
-        |HTTP|        -   URL示例：`http://dashboard-demo.cn-hangzhou.log.aliyuncs.com`。`dashboard-demo`是project名称，`cn-hangzhou.log.aliyuncs.com`是project所在地域的Endpoint，在配置自己的数据源时，需要替换成自己的project和region地址，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。
-        -   Access可以选择Server，也可以选择Browser。
-        -   Whitelisted：添加访问白名单。 |
-        |Auth|采用默认配置。|
-        |log service details|日志服务详细配置，分别填写Project和Logstore，以及具备读取权限的AccessKey。AccessKey可以是主账号的AccessKey，也可以是子帐号的AccessKey。|
-
-    4.  单击**Save & Test**。
-
-4.  添加Dashboard。
-
-    1.  在左侧导航栏，选中**![图标1](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7664559951/p112912.png) 图标** \> **Dashboards**，添加一个Dashboard。
-
-    2.  配置模板变量。
-
-        在Grafana中可以配置模板变量，在同一个视图中，通过选择不同的变量值，展示不同的视图。本文档主要配置每个时间区间的大小，以及不同域名的访问情况。
-
-        1.  在New dashboard页面右上角，通过下拉框选择配置一个时间区间，单击页面右上角的**![图标2](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7664559951/p112911.png) 图标** \> **Variables** \> **Add variable**，进入配置页面。
-        2.  变量的名称是您在配置中使用的变量，在这里起名为myinterval，在查询条件中，要写成`$myinterval`，参考以下样例进行配置，并单击**Add**。
-
-            |配置项|说明|
-            |---|--|
-            |Name|变量名称，您可以命名为myinterval。|
-            |Type|选择**Interval**。|
-            |Lable|输入time interval。|
-            |Internal Options|            -   **value**输入`1m,10m,30m,1h,6h,12h,1d,7d,14d,30d`。
-            -   选中**Auto Option**。 |
-
-        3.  配置一个域名模板。
-
-            通常一个VPS上可以挂载多个域名，则需要查看不同域名的访问情况。
-
-            在Variable页面，单击**New**，参考以下说明配置域名模板。
-
-            |配置项|说明|
-            |:--|:-|
-            |Name|变量名称，您可以命名为hostname。|
-            |Type|选中**Custom**。|
-            |Lable|输入域名。|
-            |Custom Options|**Values separated by**输入`*,www.host.com,www.host0.com,www.host1.com`。表示可以查看所有域名的访问情况，也可以分别查看`www.host.com`、`www.host0.com`或`www.host1.com`的访问情况。|
-            |Selection Options|配置为默认值。|
-
-        4.  在左侧菜单栏，单击**Save**保存配置完成的模板。
-    3.  视图配置示例。
-
-        -   配置PV & UV
-            1.  单击右上角**![图标3 ](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7664559951/p112908.png)**图标。
-            2.  在New Panel页面，单击**Add Query**。
-            3.  单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Graph**，创建一个Graph视图。
-            4.  单击**![G小图标5](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112926.png)**图标，在**Title**文本框输入**UV & PV**。
-            5.  单击**![G小图标6](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112923.png)**图标，在**Query**下拉列表选中**Logservice**，配置项请参见如下说明。
-
-                ![grafana-pv&uv01](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112935.png)
-
-                |配置项|说明|
-                |:--|:-|
-                |Query|                ```
-$hostname| select approx_distinct(remote_addr) as uv ,count(1) as pv , __time__ - __time__ % $$myinterval as time group by time order by time limit 1000
-                ```
-
-上述Query中的$hostname，在实际展示时，会替换成用户选择的域名。$$myinterval，则会替换成时间区间，注意myinterval前有两个$符号，而hostname有一个。|
-                |X-Column|time|
-                |Y-Column|uv,pv|
-
-                若UV和PV的值相差较大，可通过调整为双Y轴图表展示。单击图表下方的图示线条（如下图①），单击**Y-Axis**（如下图②），打开**Use right y-axis**开关（如下图③）。
-
-                ![grafana-pv&uv02](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112952.png)
-
-        -   配置出入网带宽
-
-            添加出入网带宽的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
-
-            主要配置项如下：
-
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
-$hostname | select sum(body_byte_sent) as net_out, sum(request_length) as net_in,__time__ - __time__ % $$myinterval as time group by __time__ - __time__ % $$myinterval limit 10000
-            ``` |
-            |X-Column|Time|
-            |Y-Column|net\_in,net\_out|
-
-        -   不同HTTP方法的占比
-
-            添加不同HTTP方法的占比的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
-
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Pie Chart**，创建一个饼图。主要配置项如下：
-
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
-$hostname | select count(1) as pv ,method group by method
-            ``` |
-            |X-Column|pie|
-            |Y-Column|method,pv|
-
-        -   不同HTTP状态码占比
-
-            添加不同HTTP状态码占比的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
-
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，**Visualization**选中**Pie Chart**，创建一个饼图。主要配置项如下：
-
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
-$hostname | select count(1) as pv ,status group by status
-            ``` |
-            |X-Column|pie|
-            |Y-Column|status,pv|
-
-        -   热门来源页面
-
-            添加热门来源页面的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
-
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Pie Chart**，创建一个饼图。主要配置项如下：
-
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
-$hostname | select count(1) as pv , referer group by referer order by pv desc
-            ``` |
-            |X-Column|pie|
-            |Y-Column|referer,pv|
-
-        -   延时最高页面
-
-            添加延时最高页面的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
-
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Table**，创建一个表格，展示URL和对应的延时。主要配置项如下：
-
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
-$hostname | select URL as top_latency_URL ,request_time order by request_time desc limit 10
-            ``` |
-            |X-Column|X-Column不填写内容|
-            |Y-Column|top\_latency\_url,request\_time|
-
-        -   热门页面
-
-            添加热门页面的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
-
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Table**，创建一个表格。主要配置项如下：
-
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
+        |Query|查询和分析语句示例如下：        ```
 $hostname | select count(1) as pv, split_part(URL,'?',1) as path group by split_part(URL,'?',1) order by pv desc limit 20
-            ``` |
-            |X-Column|X-Column不填写内容|
-            |Y-Column|path,pv|
+        ```
 
-        -   非200请求top页面
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|无需配置。|
+        |Y-Column|配置为**path,pv**。|
 
-            添加非200请求top页面的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
+    -   用于展示非200请求的Top页面图表（Table）
 
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Table**，创建一个表格。主要配置项如下：
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下表所示。
 
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
+        |配置项|说明|
+        |:--|:-|
+        |Query|查询和分析语句示例如下：        ```
 $hostname not status:200| select count(1) as pv , url group by url order by pv desc
-            ``` |
-            |X-Column|X-Column不填写内容|
-            |Y-Column|url,pv|
+        ```
 
-        -   前后端平均延时
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|无需配置。|
+        |Y-Column|配置为**url,pv**。|
 
-            添加前后端平均延时的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
+    -   用于展示平均延时的图表（Singlestat）
 
-            主要配置如下：
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下：
 
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
+        |配置项|说明|
+        |:--|:-|
+        |Query|查询和分析语句示例如下：        ```
 $hostname | select avg(request_time) as response_time, avg(upstream_response_time) as upstream_response_time ,__time__ - __time__ % $$myinterval as time group by __time__ -  __time__ % $$myinterval limit 10000
-            ``` |
-            |X-Column|time|
-            |Y-Column|upstream\_response\_time,response\_time|
+        ```
 
-        -   设置Logs
+在展示结果中，`$hostname`会被替换成您选择的域名。`$$myinterval`会被替换成您选择的时间区间。
 
-            添加Logs视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
+**说明：** myinterval前有2个美元符号（$$），hostname前只有1个美元符号（$）。 |
+        |X-Column|配置为**time**。|
+        |Y-Column|配置为**upstream\_response\_time,response\_time**。|
 
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Logs**，创建一个Logs。配置页面输入**Logs Per Page**即完成。
+    -   用于展示详细日志的图表（Logs）
 
-            **说明：** 每页最多展示100条，即**Logs Per Page**最大值为100。
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)。
 
-        -   客户端统计
+        **说明：** 每页最多展示100条，即**Logs Per Page**最大值为100。
 
-            添加客户端统计的视图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
+    -   用于展示客户端统计的图表（Pie Chart）
 
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Pie Chart**，创建一个饼图。主要配置项如下：
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下：
 
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
+        |配置项|说明|
+        |:--|:-|
+        |Query|查询和分析语句示例如下：        ```
 $hostname  | select count(1) as pv, case when  regexp_like(http_user_agent , 'okhttp') then 'okhttp' when  regexp_like(http_user_agent ,  'iPhone') then 'iPhone' when regexp_like(http_user_agent ,  'Android')  then 'Android' else 'unKnown' end as http_user_agent group by  http_user_agent order by pv desc limit 10
-            ``` |
-            |X-Column|pie|
-            |Y-Column|http\_user\_agent,pv|
+        ```
 
-        -   设置流图
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|配置为**pie**。|
+        |Y-Column|配置为**http\_user\_agent,pv**。|
 
-            添加流图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
+    -   用于展示1分钟内各个HTTP请求状态数量的图表（Graph）
 
-            主要配置项如下：
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下所示。
 
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
+        |配置项|说明|
+        |:--|:-|
+        |Query|查询和分析语句示例如下：        ```
 $hostname  | select to_unixtime(time) as time,status,count from (select time_series(__time__, '1m', '%Y-%m-%d %H:%i', '0')  as time,status,count(*) as count from log group by status,time order by time limit 10000)
-            ``` |
-            |X-Column|配置为时间列。|
-            |Y-Column|col1\#:\#col2，其中col1为聚合列，col2为其他列。|
+        ```
 
-        -   设置地图
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|配置为时间列。|
+        |Y-Column|配置为col1\#:\#col2。其中col1为聚合列，col2为其他列。|
 
-            添加地图，创建步骤请参见[配置PV & UV](#table_rh6_y1y_9va)。
+    -   用于展示来源IP分布的图表（Worldmap Panel）
 
-            单击**![G小图标4](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p112921.png)**图标，在**Visualization**下拉列表选中**Worldmap Panel**，创建一个地图。Queries主要配置项如下：
+        添加步骤请参见[添加PV&UV信息图表](#step_718_ird_p4y)，相关参数说明如下。
 
-            |配置项|说明|
-            |:--|:-|
-            |Query|            ```
+        |参数|说明|
+        |:-|:-|
+        |Query|查询和分析语句示例如下：        ```
 $hostname  | select   count(1) as pv ,geohash(ip_to_geo(arbitrary(remote_addr))) as geo,ip_to_country(remote_addr) as country  from log group by country having geo <>'' limit 1000
-            ``` |
-            |X-Column|map|
-            |Y-Column|country,geo,pv|
+        ```
 
-            Visualization主要配置项如下，其他配置为默认值。
+在展示结果中，`$hostname`会被替换成您选择的域名。 |
+        |X-Column|配置为**map**。|
+        |Y-Column|配置为**country,geo,pv**。|
 
-            |配置项|说明|
-            |:--|:-|
-            |Location Data|geohash|
-            |Location Name Field|country|
-            |geo\_point/geohash Field|geo|
-            |Metric Field|pv|
-
-    4.  单击右上角**![保存按钮](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8664559951/p113049.png)**图标，保存Dashboard。
+        |参数|说明|
+        |:-|:-|
+        |Location Data|配置为**geohash**。|
+        |Location Name Field|配置为**country**。|
+        |geo\_point/geohash Field|配置为**geo**。|
+        |Metric Field|配置为**pv**。|
 
 5.  查看结果。
 
-    打开Dashboard首页查看效果。示例请参见[Demo](http://47.96.36.117:3000/dashboard/db/nginxfang-wen-tong-ji?orgId=1)。
+    您可以在Dashboard页面上方选择统计的时间范围，还可以筛选time interval和hostname。
 
-    您可以在Dashboard页面上方选择统计的时间范围，也可以选择统计的时间粒度或不同的域名。整个Nginx访问统计的Dashboard完成，您可以从视图中挖掘有价值的信息。
+
+## 常见问题
+
+-   Grafana日志保存在哪里？
+
+    Grafana日志保存在如下文件中：
+
+    -   macOS系统：/usr/local/var/log/grafana
+    -   Linux系统：/var/log/grafana
+-   如果日志中提示**aliyun-log-plugin\_linux\_amd64: permission denied**，怎么处理？
+
+    请授予插件目录下的dist/aliyun-log-plugin\_linux\_amd64目录执行权限。
 
 
