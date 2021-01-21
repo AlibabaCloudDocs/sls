@@ -1,25 +1,22 @@
 # DeleteConsumerGroup
 
-Deletes a specified consumer group.
-
-## Description
-
-If you call the DeleteConsumerGroup operation to delete a consumer group that does not exist, a success response is returned.
+Deletes a consumer group.
 
 ## Request syntax
 
 ```
-DELETE /logstores/<logstoreName>/consumergroups/<consumerGroupName> HTTP/1.1
-Authorization: <AuthorizationString>
+DELETE /logstores/logstoreName/consumergroups/consumerGroupName HTTP/1.1
+Authorization: LOG yourAccessKeyId:yourSignature
 x-log-bodyrawsize: 0
-User-Agent: <UserAgent>
 x-log-apiversion: 0.6.0
-Host: <Project Endpoint>
+Host: ProjectName.Endpoint
 x-log-signaturemethod: hmac-sha1
-Date: <GMT Date>
+Date: GMT Date
 Content-Type:  application/x-protobuf
 Content-MD5: F58544E4D022CC28A93D0B7CC208A5AA
 ```
+
+The value of the Host parameter consists of a project name and Log Service endpoint. You must specify the project in the Host parameter.
 
 ## Request parameters
 
@@ -31,8 +28,9 @@ Content-MD5: F58544E4D022CC28A93D0B7CC208A5AA
 
     |Parameter|Type|Required|Example|Description|
     |:--------|:---|:-------|-------|:----------|
-    |logstoreName|string|Yes|logstore-test|The name of the Logstore the consumer group belongs to.|
-    |consumerGroup|string|Yes|consumer-group-1|The name of the consumer group to be deleted.|
+    |projectName|String|Yes|ali-test-project|The name of the project.|
+    |logstoreName|String|Yes|logstore-test|The name of the Logstore.|
+    |consumerGroup|String|Yes|consumer-group-1|The name of the consumer group.|
 
 
 ## Response parameters
@@ -43,7 +41,7 @@ Content-MD5: F58544E4D022CC28A93D0B7CC208A5AA
 
 -   Response elements
 
-    The HTTP status code `200` is returned.
+    If the request succeeds, the HTTP status code 200 is returned. If the request is successful, no other elements are returned.
 
 
 ## Examples
@@ -53,29 +51,34 @@ Content-MD5: F58544E4D022CC28A93D0B7CC208A5AA
     ```
     DELETE /logstores/logstore-test/consumergroups/consumer-group-1 HTTP/1.1
     Header:
-    Authorization: LOG <yourAccessKeyId>:<yourSignature>
+    {
+    Authorization: LOG yourAccessKeyId:yourSignature
     x-log-bodyrawsize: 0
     User-Agent: sls-java-sdk-v-0.6.1
     x-log-apiversion: 0.6.0
-    Host: my-project.cn-shanghai.log.aliyuncs.com
+    Host: ali-test-project.cn-shanghai.log.aliyuncs.com
     x-log-signaturemethod: hmac-sha1
     Date: Fri, 04 May 2018 08:02:22 GMT
     Content-Type: application/json
     Content-MD5: F58544E4D022CC28A93D0B7CC208A5AA
     Content-Length: 65
     Connection: Keep-Alive
+    }
     ```
 
 -   Sample success responses
 
     ```
-    HTTP/1.1 200
+    HTTP/1.1 200 OK
+    Header :
+    {
     Server: nginx/1.12.1
     Content-Length: 0
     Connection: close
     Access-Control-Allow-Origin: *
     Date: Fri, 04 May 2018 08:15:11 GMT
     x-log-requestid: 5AEC168FA796F4195BF404CB
+    }
     ```
 
 
@@ -83,8 +86,8 @@ Content-MD5: F58544E4D022CC28A93D0B7CC208A5AA
 
 |HTTP status code|Error code|Error message|Description|
 |:---------------|:---------|:------------|-----------|
-|404|ProjectNotExist|The Project does not exist : \{Project\}.|The error message returned because the specified project does not exist.|
-|404|LogStoreNotExist|The logstore \{logstoreName\} does not exist.|The error message returned because the specified Logstore does not exist.|
+|404|ProjectNotExist|The Project does not exist : projectName.|The error message returned because the specified project does not exist.|
+|404|LogStoreNotExist|The logstore logstoreName dose not exist.|The error message returned because the specified Logstore does not exist.|
 |500|InternalServerError|Specified Server Error Message.|The error message returned because an internal server error has occurred.|
 
 For more information about the error codes, see [Common error codes](/intl.en-US/Developer Guide/API Reference/Common error codes.md).
