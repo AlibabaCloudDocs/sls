@@ -9,7 +9,6 @@ This topic describes the syntax and parameters of functions that parse JSON-form
 |JSON|[json\_select](#section_xrt_z1k_awb)|Extracts or calculates specific values from a JSON expression based on the JMESPath syntax.|
 |[json\_parse](#section_n3w_bun_us1)|Parses a JSON text to a JSON object.|
 |XML|[xml\_to\_json](#section_inr_nya_rp6)|Converts XML-formatted data to JSON-formatted data.|
-|Protobuf|[pb\_to\_json](#section_0rt_ljv_e56)|Converts Protobuf-formatted data to JSON-formatted data.|
 |Gzip|[gzip\_compress](#section_52q_xji_m92)|Compresses data and then encodes the data by using the Base64 algorithm. The returned data includes the raw data and the encoded data.|
 |[gzip\_decompress](#section_thp_iir_o9q)|Decodes data by using the Base64 algorithm and then decompresses the data. The returned data includes the raw data and the decoded data.|
 |IP|[geo\_parse](#section_a6e_5e9_q0c)|Identifies the city, province, and country to which data belongs based on an IP address.|
@@ -182,79 +181,6 @@ This topic describes the syntax and parameters of functions that parse JSON-form
         ```
         str : <? xmlversion="1.0"? ><data><countryname="Liechtenstein"><rank>1</rank><year>2008</year><gdppc>141100</gdppc><neighborname="Austria"direction="E"/><neighborname="Switzerland"direction="W"/></country><countryname="Singapore"><rank>4</rank><year>2011</year><gdppc>59900</gdppc><neighborname="Malaysia"direction="N"/></country><countryname="Panama"><rank>68</rank><year>2011</year><gdppc>13600</gdppc><neighborname="Costa Rica"direction="W"/><neighborname="Colombia"direction="E"/></country></data>
         str_json : {"data": {"country": [{"@name": "Liechtenstein", "rank": "1", "year": "2008", "gdppc": "141100", "neighbor": [{"@name": "Austria", "@direction": "E"}, {"@name": "Switzerland", "@direction": "W"}]}, {"@name": "Singapore", "rank": "4", "year": "2011", "gdppc": "59900", "neighbor": {"@name": "Malaysia", "@direction": "N"}}, {"@name": "Panama", "rank": "68", "year": "2011", "gdppc": "13600", "neighbor": [{"@name": "Costa Rica", "@direction": "W"}, {"@name": "Colombia", "@direction": "E"}]}]}}
-        ```
-
-
-## pb\_to\_json
-
--   Syntax
-
-    ```
-    pb_to_json(pb_data,pb_py_path_str,pb_fun_name)
-    ```
-
--   Parameters
-
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
-    |pb\_data|String|Yes|The Protobuf-formatted data or fields that need to be converted into JSON-formatted data.|
-    |pb\_py\_path\_str|String|Yes|The name of the Protobuf file. For example, the name of the `addressbook.proto` file is `addressbook`.|
-    |pb\_fun\_name|String|Yes|The name of the message in the Protobuf file.|
-
--   Response
-
-    JSON-formatted data is returned.
-
--   Examples
-
-    addressbook.proto file:
-
-    ```
-    '''addressbook.proto file'''
-    syntax = "proto3";
-    message Person {
-      string name = 1;
-      int32 id = 2;
-      string email = 3;
-      string university = 5;
-      int32 age = 6;
-    
-      enum PhoneType {
-        MOBILE = 0;
-        HOME = 1;
-        WORK = 2;
-      }
-    
-      message PhoneNumber {
-        string number = 1;
-        PhoneType type = 2;
-      }
-    
-      repeated PhoneNumber phones = 4;
-    }
-    
-    message AddressBook {
-      repeated Person people = 1;
-    }
-    ```
-
-    -   Raw log entry:
-
-        ```
-        content: \n3\n\x05twiss\x10\x01\x1a\x0ftwiss@gkate.com"\x0f\n\x0b13099922287\x10\x01*\x04Henu0\x18\nC\n\x04Iran\x10\x02\x1a\x10Iran@alibaba.com"\x0f\n\x0b13022244455\x10\x01*\x14West Leak University0\x02
-        ```
-
-    -   Transformation rule:
-
-        ```
-        e_set("data_json",pb_to_json(v("content"),"addressbook","AddressBook"))
-        ```
-
-    -   Result:
-
-        ```
-        content: \n3\n\x05twiss\x10\x01\x1a\x0ftwiss@gkate.com"\x0f\n\x0b13099922287\x10\x01*\x04Henu0\x18\nC\n\x04Iran\x10\x02\x1a\x10Iran@alibaba.com"\x0f\n\x0b13022244455\x10\x01*\x14West Leak University0\x02
-        data_json : {'people': [{'name': 'twiss', 'id': 1, 'email': 'twiss@gkate.com', 'phones': [{'number': '13099922287', 'type': 1}], 'university': 'Henu', 'age': 24}, {'name': 'Iran', 'id': 2, 'email': 'Iran@alibaba.com', 'phones': [{'number': '13022244455', 'type': 1}], 'university': 'West Leak University', 'age': 2}]}
         ```
 
 
