@@ -79,8 +79,8 @@ logExtFileFlags="Date, Time, ClientIP, UserName, SiteName, ComputerName, ServerI
         -   IIS6配置文件默认路径：C:\\WINDOWS\\system32\\inetsrv\\MetaBase.xml
         -   IIS7配置文件默认路径：C:\\Windows\\System32\\inetsrv\\config\\applicationHost.config |
     |IIS键名称|日志服务根据**IIS配置字段**中的配置，自动提取IIS键。|
-    |丢弃解析失败日志|    -   选择**按目录路径**，路径为/tmp/mydir，则在采集时过滤掉该目录下的所有文件。
-    -   选择**按文件路径**，路径为/tmp/mydir/file，则在采集时过滤掉该文件。 |
+    |丢弃解析失败日志|    -   打开**丢弃解析失败日志**开关，解析失败的日志不上传到日志服务。
+    -   关闭**丢弃解析失败日志**开关，日志解析失败时上传原始日志到日志服务。 |
     |最大监控目录深度|设置日志目录被监控的最大深度。最大深度范围：0~1000，0代表只监控本层目录。|
 
     请根据您的需求选择高级配置。如果没有特殊需求，建议保持默认配置。
@@ -113,7 +113,7 @@ logExtFileFlags="Date, Time, ClientIP, UserName, SiteName, ComputerName, ServerI
     -   如果遇到Logtail采集报错，请参见[诊断采集错误]()。
 7.  预览数据及设置索引，单击**下一步**。
 
-    日志服务默认开启全文索引。您也可以根据采集到的日志，手动或者自动设置字段索引。更多信息，请参见[开启并配置索引](/cn.zh-CN/查询与分析/开启并配置索引.md)。
+    日志服务默认开启全文索引。您也可以根据采集到的日志，手动或者自动设置字段索引。更多信息，请参见[配置索引](/cn.zh-CN/查询与分析/配置索引.md)。
 
     **说明：**
 
