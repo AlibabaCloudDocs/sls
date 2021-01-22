@@ -1,6 +1,6 @@
 # ListLogstore
 
-调用ListLogstore接口查询指定Project下所有的Logstore。
+调用ListLogstore接口查询指定Project下的Logstore。支持查询指定Project下所有Logstore列表，也支持查询指定Project下具体Logstore。
 
 ## 请求语法
 
@@ -29,6 +29,7 @@ x-log-date: Mon, 30 Nov 2020 06:22:17 GMT
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
     |ProjectName|String|是|test-project|Project名称。|
+    |logstoreName|String|否|test-logstore|Logstore名称。支持模糊匹配，例如输入test，则返回名称包含test的Logsotre列表。|
     |offset|Integer|否|1|查询开始行。默认值为0。|
     |size|Integer|否|10|分页查询时，设置的每页行数。最大值为500。|
 
