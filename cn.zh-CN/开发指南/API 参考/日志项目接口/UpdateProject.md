@@ -31,7 +31,7 @@ Connection: Keep-Alive
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |projectName|String|是|my-project-test|Project的名称，作为Header中Host的一部分。|
+    |projectName|String|是|ali-project-test|Project的名称，作为Header中Host的一部分。|
     |description|String|否|Description of my-project-test|Project的描述。默认为空字符串。|
 
 
@@ -43,7 +43,7 @@ Connection: Keep-Alive
 
 -   响应元素
 
-    返回HTTP状态码200，表示请求成功。
+    返回HTTP状态码200，表示请求成功。该接口调用成功后无任何响应元素。
 
 
 ## 示例
@@ -54,17 +54,16 @@ Connection: Keep-Alive
     PUT / HTTP/1.1 
     Header :
     {
-        Authorization: LOG yourAccessKeyId:yourSignature
-        x-log-bodyrawsize: 0 
-        User-Agent: sls-java-sdk-v-0.6.1 
-        x-log-apiversion: 0.6.0 
-        Host: my-project-test.cn-shanghai.log.aliyuncs.com 
-        x-log-signaturemethod: hmac-sha1 
-        Date: Sun, 27 May 2018 07:43:26 GMT 
-        Content-Type: application/json 
-        Content-MD5: A7967D81EFF5E3CD447FB6D8DF294E20 
-        Content-Length: 40 
-        Connection: Keep-Alive 
+    Authorization: LOG yourAccessKeyId:yourSignature
+    x-log-bodyrawsize: 0 
+    x-log-apiversion: 0.6.0 
+    Host: ali-project-test.cn-shanghai.log.aliyuncs.com 
+    x-log-signaturemethod: hmac-sha1 
+    Date: Sun, 27 May 2018 07:43:26 GMT 
+    Content-Type: application/json 
+    Content-MD5: A7967D81EFF5E3CD447FB6D8DF294E20 
+    Content-Length: 40 
+    Connection: Keep-Alive 
     }
     Body :    
     { 
