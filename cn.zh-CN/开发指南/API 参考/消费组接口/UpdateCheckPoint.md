@@ -108,7 +108,7 @@ Connection: Keep-Alive
 |:------|:--|:---|--|
 |400|InvalidShardCheckPoint|shard checkpoint not encoded by base64.|checkpoint不是Base64编码，格式错误。|
 |404|ProjectNotExist|The Project does not exist : ProjectName.|Project不存在。|
-|404|LogStoreNotExist|logstore \{logstoreName\} dose not exist.|Logstore不存在。|
+|404|LogStoreNotExist|logstore logstoreName dose not exist.|Logstore不存在。|
 |404|ConsumerGroupNotExist|consumer group not exist.|消费组不存在。|
 |404|ConsumerNotExist|consumer not exist in the consumer group|消费组中不存在该消费者。|
 |404|ShardNotExist|shard not exist.|Shard不存在。|
