@@ -188,7 +188,6 @@ This topic describes all functions that you can use to transform data in Log Ser
 |[Structured data functions](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Structured data functions.md)|json\_select|Extracts or calculates specified values from a JSON expression based on the JMESPath syntax.|
 |json\_parse|Converts a JSON text to a JSON object.|
 |xml\_to\_json|Converts XML-formatted data to JSON-formatted data.|
-|pb\_to\_json|Converts Protobuf-formatted data to JSON-formatted data.|
 |geo\_parse|Parses an IP address and returns the information about the city, province, and country of the IP address.|
 |gzip\_compress|Compresses specified data, encodes the compressed data by using the Base64 algorithm, and then returns the transformed data.|
 |gzip\_decompress|Decodes data by using the Base64 algorithm, decompresses the decoded data, and then returns the transformed data.|
