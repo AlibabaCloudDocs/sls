@@ -1,18 +1,18 @@
 # Field processing functions
 
-This topic describes the syntax of field processing functions and provides parameter descriptions and function examples.
+This topic describes the syntax and parameters of field processing functions. This topic also provides several examples of field processing functions.
 
 ## Functions
 
 |Function|Description|
 |--------|-----------|
-|[e\_drop\_fields](#section_q8m_zn8_uvj)|Deletes the log fields that meet the specified conditions.|
-|[e\_keep\_fields](#section_e3g_856_vs6)|Retains the log fields that meet the specified conditions.|
-|[e\_rename](#section_dg9_67q_cjh)|Renames the log fields that meet the specified conditions.|
+|[e\_drop\_fields](#section_q8m_zn8_uvj)|Deletes the log fields that meet a specified condition.|
+|[e\_keep\_fields](#section_e3g_856_vs6)|Retains the log fields that meet a specified condition.|
+|[e\_rename](#section_dg9_67q_cjh)|Renames the log fields that meet a specified condition.|
 
 ## e\_drop\_fields
 
-You can use the e\_drop\_fields function to delete a log field that meets the specified conditions.
+You can use the e\_drop\_fields function to delete the log fields that meet a specified condition.
 
 -   Syntax
 
@@ -24,8 +24,8 @@ You can use the e\_drop\_fields function to delete a log field that meets the sp
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |Log field|String|Yes|The name of a log field. The name can be a regular expression. If the field name fully matches the specified conditions, the field is deleted. Otherwise, the field is retained. For more information about regular expressions, see [Regular expressions](/intl.en-US/Data Transformation/Data processing syntax/General reference/Regular expressions.md).You must configure at least one log field. |
-    |regex|Boolean|No|Default value: False. This value indicates that regular expressions are not used to match log fields.|
+    |Field|String|Yes|The name of a log field. The name can be a regular expression. If the field name meets the specified condition, the field is deleted. Otherwise, the field is retained. For more information about regular expressions, see [Regular expressions](/intl.en-US/Data Transformation/Data processing syntax/General reference/Regular expressions.md).You must specify at least one log field. |
+    |regex|Boolean|No|If you set the value to False, regular expressions are not used to match log fields. Default value: True.|
 
 -   Example: If the value of the content field is 123, the content and age fields are deleted.
     -   Raw log entry:
@@ -51,9 +51,9 @@ You can use the e\_drop\_fields function to delete a log field that meets the sp
 
 ## e\_keep\_fields
 
-You can use the e\_keep\_fields function to retain a log field that meets the specified conditions.
+You can use the e\_keep\_fields function to retain the log fields that meet a specified condition.
 
-**Note:** Log Service provides built-in meta fields, such as the \_\_time\_\_ and \_\_topic\_\_ fields. If you do not retain the \_\_time\_\_ field when you call the e\_keep\_fields function, the time of the event is reset to the current time. If you do not want to reset the value of a meta field, add the meta field to the list of fields to retain in the format of F\_TIME, F\_META, F\_TAGS, "f1", "f2". For more information, see [Identifiers](/intl.en-US/Data Transformation/Data processing syntax/Data structures.md).
+**Note:** Log Service provides built-in meta-fields, such as the \_\_time\_\_ and \_\_topic\_\_ fields. If you do not retain the \_\_time\_\_ field when you call the e\_keep\_fields function, the time of the event is reset to the current time. If you do not want to reset the value of a meta-field, add the meta-field to a list in the format of F\_TIME, F\_META, F\_TAGS, "f1", "f2". For more information, see [Identifiers](/intl.en-US/Data Transformation/Data processing syntax/Data structures.md).
 
 -   Syntax
 
@@ -65,8 +65,8 @@ You can use the e\_keep\_fields function to retain a log field that meets the sp
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |String|String|Yes|The name of a log field. The name can be a regular expression. If the field name fully matches the specified conditions, the field is retained. Otherwise, the field is deleted.You must configure at least one log field. |
-    |regex|Boolean|No|Default value: False. This value indicates that regular expressions are not used to match log fields.|
+    |Field|String|Yes|The name of a log field. The name can be a regular expression. If the field name meets the specified condition, the field is retained. Otherwise, the field is deleted.You must specify at least one log field. |
+    |regex|Boolean|No|If you set the value to False, regular expressions are not used to match log fields. Default value: True.|
 
 -   Example: If the value of the content field is 123, the content and age fields are retained.
     -   Raw log entry:
@@ -93,7 +93,7 @@ You can use the e\_keep\_fields function to retain a log field that meets the sp
 
 ## e\_rename
 
-You can use the e\_rename function to rename a log field that matches the specified conditions.
+You can use the e\_rename function to rename the log fields that meet a specified condition.
 
 -   Syntax
 
@@ -107,11 +107,11 @@ You can use the e\_rename function to rename a log field that matches the specif
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |String|String|Yes|The name of a log field. The name can be a regular expression. If the field name fully matches the specified conditions, the field is renamed. For more information about regular expressions, see [Regular expressions](/intl.en-US/Data Transformation/Data processing syntax/General reference/Regular expressions.md).You must configure at least one log field. |
+    |Field|String|Yes|The name of a log field. The name can be a regular expression. If the field name meets the specified condition, the field is renamed. For more information about regular expressions, see [Regular expressions](/intl.en-US/Data Transformation/Data processing syntax/General reference/Regular expressions.md).You must specify at least one log field. |
     |Renamed field|String|Yes|The renamed field.|
-    |regex|Boolean|No|Default value: False. This value indicates that regular expressions are not used to match log fields.|
+    |regex|Boolean|No|If you set the value to False, regular expressions are not used to match log fields. Default value: True.|
 
--   Result:
+-   Result
 
     The renamed string is returned.
 
