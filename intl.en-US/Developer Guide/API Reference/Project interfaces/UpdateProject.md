@@ -19,19 +19,19 @@ Content-Length:  54
 Connection: Keep-Alive
 ```
 
-The Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
+The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
 
 ## Request parameters
 
 -   Request headers
 
-    The UpdateProject operation does not have operation-specific request headers. For information about the common request headers of Log Service API operations, see [Common request headers](/intl.en-US/Developer Guide/API Reference/Common request headers.md).
+    The UpdateProject API operation does not have special request headers. For information about common request headers of Log Service API operations, see [Common request headers](/intl.en-US/Developer Guide/API Reference/Common request headers.md).
 
 -   Parameters
 
     |Parameter|Type|Required|Example|Description|
     |:--------|:---|:-------|-------|:----------|
-    |projectName|String|Yes|my-project-test|The name of the project. The name is a part of the Host parameter.|
+    |projectName|String|Yes|ali-project-test|The name of the project. The name is a part of the Host parameter in the header.|
     |description|String|No|Description of my-project-test|The description of the project. By default, this parameter is an empty string.|
 
 
@@ -39,11 +39,11 @@ The Host parameter consists of a project name and an endpoint. You must specify 
 
 -   Response headers
 
-    The UpdateProject operation does not have operation-specific response headers. For information about the common response headers of Log Service API operations, see [Common response headers](/intl.en-US/Developer Guide/API Reference/Common response headers.md).
+    The UpdateProject operation does not have operation-specific response headers. For information about the common response headers of Log Service API operations, see, see [Common response headers](/intl.en-US/Developer Guide/API Reference/Common response headers.md).
 
 -   Response elements
 
-    If the HTTP status code 200 is returned, the request is successful.
+    If the HTTP status code 200 is returned, the request is successful. If the request is successful, no other elements are returned.
 
 
 ## Examples
@@ -54,17 +54,16 @@ The Host parameter consists of a project name and an endpoint. You must specify 
     PUT / HTTP/1.1 
     Header :
     {
-        Authorization: LOG yourAccessKeyId:yourSignature
-        x-log-bodyrawsize: 0 
-        User-Agent: sls-java-sdk-v-0.6.1 
-        x-log-apiversion: 0.6.0 
-        Host: my-project-test.cn-shanghai.log.aliyuncs.com 
-        x-log-signaturemethod: hmac-sha1 
-        Date: Sun, 27 May 2018 07:43:26 GMT 
-        Content-Type: application/json 
-        Content-MD5: A7967D81EFF5E3CD447FB6D8DF294E20 
-        Content-Length: 40 
-        Connection: Keep-Alive 
+    Authorization: LOG yourAccessKeyId:yourSignature
+    x-log-bodyrawsize: 0 
+    x-log-apiversion: 0.6.0 
+    Host: ali-project-test.cn-shanghai.log.aliyuncs.com 
+    x-log-signaturemethod: hmac-sha1 
+    Date: Sun, 27 May 2018 07:43:26 GMT 
+    Content-Type: application/json 
+    Content-MD5: A7967D81EFF5E3CD447FB6D8DF294E20 
+    Content-Length: 40 
+    Connection: Keep-Alive 
     }
     Body :    
     { 
