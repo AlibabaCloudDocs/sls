@@ -16,9 +16,9 @@ Authorization: LOG yourAccessKeyId:yourSignature
 x-log-date: GMT Date
 ```
 
-The Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
+The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
 
-## Request parameter
+## Request parameters
 
 -   Request headers
 
@@ -28,7 +28,7 @@ The Host parameter consists of a project name and an endpoint. You must specify 
 
     |Parameter|Type|Required|Example|Description|
     |:--------|:---|:-------|-------|:----------|
-    |projectName|String|Yes|my-project-test|The name of the project. The name is a part of the Host parameter.|
+    |projectName|String|Yes|ali-project-test|The name of the project. The name is a part of the Host parameter in the header.|
 
 
 ## Response parameters
@@ -39,7 +39,7 @@ The Host parameter consists of a project name and an endpoint. You must specify 
 
 -   Response elements
 
-    If the HTTP status code 200 is returned, the request is successful.
+    If the HTTP status code 200 is returned, the request is successful. If the request is successful, no other elements are returned.
 
 
 ## Examples
@@ -50,14 +50,14 @@ The Host parameter consists of a project name and an endpoint. You must specify 
     DELETE / HTTP/1.1
     Header :
     {
-        'Content-Length': '0',
-        'x-log-bodyrawsize': '0',
-        'x-log-apiversion': '0.6.0',
-        'x-log-signaturemethod': 'hmac-sha1',
-        'Host': 'my-project-test.cn-shanghai.log.aliyuncs.com',
-        'Date': 'Sun, 27 May 2018 08:25:04 GMT',
-        'Authorization': LOG yourAccessKeyId:/yourSignature,
-        'x-log-date': 'Sun, 27 May 2018 08:25:04 GMT'
+    Content-Length: 0
+    x-log-bodyrawsize: 0
+    x-log-apiversion: 0.6.0
+    x-log-signaturemethod: hmac-sha1
+    Host: ali-project-test.cn-shanghai.log.aliyuncs.com
+    Date: Sun, 27 May 2018 08:25:04 GMT
+    Authorization: LOG yourAccessKeyId:/yourSignature
+    x-log-date: Sun, 27 May 2018 08:25:04 GMT
     }
     ```
 
@@ -67,13 +67,13 @@ The Host parameter consists of a project name and an endpoint. You must specify 
     HTTP/1.1 200 OK
     Header :
     {
-        'Server': 'nginx',
-        'Content-Type': 'application/json',
-        'Content-Length': '0'
-        'Connection': 'close',
-        'Access-Control-Allow-Origin': '*',
-        'Date': 'Sun, 27 May 2018 08:25:04 GMT',
-        'x-log-requestid': '5B0A6B60BB6EE39764D458B5'
+    Server: nginx
+    Content-Type: application/json
+    Content-Length: 0
+    Connection: close
+    Access-Control-Allow-Origin: *
+    Date: Sun, 27 May 2018 08:25:04 GMT
+    x-log-requestid: 5B0A6B60BB6EE39764D458B5
     }                    
     ```
 
