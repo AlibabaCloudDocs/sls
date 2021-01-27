@@ -51,7 +51,7 @@ x-log-date: Fri, 27 Nov 2020 08:25:10 GMT
     -   false：不自动分裂Shard。 |
     |maxSplitShard|Integer|否|6|自动分裂Shard时的最大分裂数。取值范围为1~64。当autoSplit参数为true时必须设置。|
     |appendMeta|Boolean|否|false|是否开启记录外网IP地址功能。默认值为false。    -   true：开启记录外网IP地址。
-    -   false：不开启记录外围IP地址。 |
+    -   false：不开启记录外网IP地址。 |
 
 
 ## 返回数据
