@@ -1,26 +1,27 @@
 # GetProjectLogs
 
-Queries logs in a project by using an SQL statement.
+Queries logs in a project by executing an SQL statement.
 
 ## Description
 
 -   The query statement that is used in this operation is a standard SQL statement.
 -   You must specify a project in the domain name of the request.
 -   You must specify a Logstore in the FROM clause of the query statement. A Logstore can be regarded as an SQL table.
--   You must specify a time range in the SQL statement by using the \_\_date\_\_ parameter \(timestamp\) or \_\_time\_\_ parameter \(UNIX timestamp\).
--   If the number of logs in the Logstore greatly changes, Log Service cannot predict how many times this operation needs to be called to obtain the complete results. In this case, you must check the value of the x-log-progress parameter in the returned results of each request. Based on the value, you can decide whether to call this operation again to obtain the complete results. Each time you call this operation, the same number of charge units \(CUs\) are consumed.
+-   You must specify a time range in the SQL statement by using the \_\_date\_\_ parameter \(timestamp\) or \_\_time\_\_ parameter \(integer\). The \_\_time\_\_ parameter is measured in seconds.
 
 ## Request syntax
 
 ```
 GET /logs query=SELECT avg(latency) as avg_latency FROM  where __date__ >'2017-09-01 00:00:00' and __date__ < '2017-09-02 00:00:00'
-Authorization: <AuthorizationString>
+Authorization: LOG yourAccessKeyId:yourSignature
 Date: Wed, 3 Sept. 2014 08:33:46 GMT
-Host: big-game.cn-hangzhou.log.aliyuncs.com
+Host: Projectname.endpoint
 x-log-bodyrawsize: 0
 x-log-apiversion: 0.6.0
 x-log-signaturemethod: hmac-sha1
 ```
+
+The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
 
 ## Request parameters
 
@@ -32,44 +33,46 @@ x-log-signaturemethod: hmac-sha1
 
     |Parameter|Type|Required|Example|Description|
     |---------|----|--------|-------|-----------|
-    |query|string|Yes|\* \| SELECT \* FROM <logStoreName\> where \_\_line\_\_ = 'abc' and \_\_date\_\_ \>'2017-09-01 00:00:00' and \_\_date\_\_ < '2017-09-02 00:00:00'&line=20&offset=0 HTTP/1.1|The SQL statement|
+    |projectName|String|Yes|big-game|The name of the project.|
+    |query|String|Yes|\* \| SELECT \* FROM logStoreName where \_\_line\_\_ = 'error' and \_\_date\_\_ \>'2014-09-01 00:00:00' and \_\_date\_\_ < '2014-09-01 22:00:00|The SQL statement. The time range is from September 1, 2014, 00:00:00 to September 1, 2014, 22:00:00 and the keyword is "error".|
 
 
 ## Response parameters
 
 -   Response headers
 
-    For information about the common response headers of Log Service API operations, see [Common response headers](/intl.en-US/Developer Guide/API Reference/Common response headers.md). The following table describes the response headers specific to this operation.
+    For information about the common response headers of Log Service API operations, see [Common response headers](/intl.en-US/Developer Guide/API Reference/Common response headers.md). The following table describes the response headers that are specific to this operation.
 
-    |Parameter|Type|Description|
-    |---------|----|-----------|
-    |x-log-progress|String|The status of the query results. Valid values: Incomplete and Complete.|
-    |x-log-count|Integer|The total number of logs in the query results.|
-    |x-log-processed-rows|Integer|The number of rows that are processed in the query.|
-    |x-log-elapsed-millisecond|Integer|The number of milliseconds that are consumed by the query.|
+    |Parameter|Type|Example|Description|
+    |---------|----|-------|-----------|
+    |x-log-progress|String|Complete|The status of the query results. Valid values: Complete and Incomplete.    -   Complete: The query succeeded and the query results are complete.
+    -   Incomplete: The query succeeded but the query results are incomplete. You must repeat the request to obtain complete query results. |
+    |x-log-count|Integer|10000|The number of log entries in the query results.|
+    |x-log-processed-rows|Integer|10000|The number of rows that are processed in the query.|
+    |x-log-elapsed-millisecond|Integer|5|The number of milliseconds that are consumed by the query.|
 
 -   Response elements
 
-    The response body of the GetProjectLogs operation is an array that contains the information of each log. The following table describes the parameters of the response body.
+    The response body of the GetProjectLogs operation is an array that contains the information of each log entry. The following table describes the parameters of the response body.
 
-    |Parameter|Type|Description|
-    |---------|----|-----------|
-    |\_\_time\_\_|Integer|The log timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
-    |\_\_source\_\_|String|The log source, which is specified when logs are written.|
-    |\[content\]|Key-value pair|The original content of logs.|
+    |Parameter|Type|Example|Description|
+    |---------|----|-------|-----------|
+    |\_\_time\_\_|Integer|1409529660|The log timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
+    |\_\_source\_\_|String|192.168.1.100|The log source, which is specified when logs are written.|
+    |content|Array|"Key3": "error", "Key4": "Value4"|The original content of logs.|
 
 
-## Examples
+## Sample code
 
-In this example, the logs whose topic is groupA are queried in a Logstore named app\_log. The Logstore belongs to a project named big-game in the China \(Hangzhou\) region. The time range is from September 1, 2014, 00:00:00 to September 1, 2014, 22:00:00 and the keyword is "error". The query starts from the beginning of the time range. A maximum of 20 logs can be returned.
+In this example, the logs whose topic is groupA are queried in a Logstore named app\_log. The Logstore belongs to a project named big-game in the China \(Hangzhou\) region. The time range is from September 1, 2014, 00:00:00 to September 1, 2014, 22:00:00 and the keyword is "error".
 
 -   Sample requests
 
     ```
-    GET /logs/? query=SELECT * FROM <logStoreName> where __line__ = 'abc' and __date__ >'2017-09-01 00:00:00' and __date__ < '2017-09-02 00:00:00'&line=20&offset=0 HTTP/1.1
-    Authorization: <AuthorizationString>
+    GET /logs/? query=SELECT * FROM logStoreName where __line__ = 'error' and __date__ >'2014-09-01 00:00:00' and __date__ < '2014-09-01 22:00:00'&line=20&offset=0 HTTP/1.1
+    Authorization: LOG yourAccessKeyId:yourSignature
     Date: Wed, 3 Sept. 2014 08:33:46 GMT
-    Host: big-game.cn-hangzhou.log.aliyuncs.com // big-game is the project name. Replace it with the actual project name.
+    Host: big-game.cn-hangzhou.log.aliyuncs.com
     x-log-bodyrawsize: 0
     x-log-apiversion: 0.4.0
     x-log-signaturemethod: hmac-sha1
@@ -94,13 +97,13 @@ In this example, the logs whose topic is groupA are queried in a Logstore named 
         "logs": [
             {
                 "__time__": 1409529660,
-                "__source__": "10.237.0.17",
+                "__source__": "192.168.1.100",
                 "Key1": "error",
                 "Key2": "Value2"
             },
             {
                 "__time__": 1409529680,
-                "__source__": "10.237.0.18",
+                "__source__": "192.168.1.100",
                 "Key3": "error",
                 "Key4": "Value4"
             }
@@ -108,14 +111,14 @@ In this example, the logs whose topic is groupA are queried in a Logstore named 
     }
     ```
 
-    In the sample response, the value of the x-log-progress parameter is Complete. This value indicates that all logs are queried and the returned results are complete. In this query, two logs that meet the query conditions are found. If the value of the x-log-progress parameter is Incomplete, you must resend the request to obtain the complete results.
+    In the sample response, the value of the x-log-progress parameter is Complete. This value indicates that the query succeeded and the returned results are complete. In this query, two log entries that meet the query conditions are found. If the value of the x-log-progress parameter is Incomplete, you must repeat the request to obtain complete query results.
 
 
 ## Error codes
 
-|HTTP status code|Error codes|Error message|Description|
-|----------------|-----------|-------------|-----------|
-|400|ParameterInvalid|parameter is invalid.|The error message returned because the specified parameter is invalid.|
+|HTTP status code|Error code|Error message|Description|
+|----------------|----------|-------------|-----------|
+|400|ParameterInvalid|Parameter is invalid.|The error message returned because the specified parameter is invalid.|
 
-For more information about the error codes, see [Common error codes](/intl.en-US/Developer Guide/API Reference/Common error codes.md).
+For a list of error codes, see [Common error codes](/intl.en-US/Developer Guide/API Reference/Common error codes.md).
 
