@@ -1,6 +1,6 @@
 # ListLogstore
 
-Lists all Logstores in a specified project.
+Lists the Logstores in a specified project. You can call this operation to query all Logstores or a specified Logstore in the project.
 
 ## Request syntax
 
@@ -16,7 +16,7 @@ Authorization: LOG yourAccessKeyId:yourSignature
 x-log-date: Mon, 30 Nov 2020 06:22:17 GMT         
 ```
 
-The Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
+The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
 
 ## Request parameters
 
@@ -29,6 +29,7 @@ The Host parameter consists of a project name and an endpoint. You must specify 
     |Parameter|Type|Required|Example|Description|
     |:--------|:---|:-------|-------|:----------|
     |ProjectName|String|Yes|test-project|The name of the project.|
+    |logstoreName|String|No|test-logstore|The name of the Logstore. Fuzzy match is supported. For example, if you enter test, all Logstores whose names contain test are returned.|
     |offset|Integer|No|1|The line from which the query starts. Default value: 0.|
     |size|Integer|No|10|The number of lines to return on each page in a paged query. Maximum value: 500.|
 
@@ -45,8 +46,8 @@ The Host parameter consists of a project name and an endpoint. You must specify 
 
     |Parameter|Type|Example|Description|
     |:--------|:---|-------|:----------|
-    |count|Integer|1|The number of returned Logstores on the current page.|
-    |total|Integer|1|The number of Logstores that meets the query conditions.|
+    |count|Integer|1|The number of returned Logstores.|
+    |total|Integer|1|The number of Logstores that meet the query conditions.|
     |logstores|Array|\["test-logstore"\]|The name list of the returned Logstores.|
 
 
