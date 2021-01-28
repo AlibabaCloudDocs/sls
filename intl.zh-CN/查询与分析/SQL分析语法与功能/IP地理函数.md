@@ -1,63 +1,124 @@
 # IP地理函数
 
-IP地理函数可以识别一个IP地址是内网IP地址还是外网IP地址，也可以判断IP地址所属的国家、省份、城市。本文档介绍IP地理函数的基本语法及示例。
+IP地理函数可用于判断IP地址属于内网还是外网，也可用于分析IP地址所属的国家、州、城市。本文介绍IP地理函数的基本语法及示例。
 
-## 基本语法
+## 函数语法
 
-|函数名|说明|样例|
-|:--|:-|:-|
-|ip\_to\_domain\(ip\)|判断某IP地址是内网地址还是外网地址。返回值为intranet或internet。|SELECT ip\_to\_domain\(ip\)|
-|ip\_to\_country\(ip\)|判断某IP地址所属国家。|SELECT ip\_to\_country\(ip\)|
-|ip\_to\_province\(ip\)|判断某IP地址所属省份。|SELECT ip\_to\_province\(ip\)|
-|ip\_to\_city\(ip\)|判断某IP地址所属城市。|SELECT ip\_to\_city\(ip\)|
-|ip\_to\_geo\(ip\)|判断某IP地址所在位置的经纬度。返回结果格式为`纬度,经度`。关于geohash函数的详细信息，请参见[地理函数](/intl.zh-CN/查询与分析/SQL分析语法与功能/地理函数.md)。
+**说明：** 如下函数中的KEY参数表示日志字段（例如client\_ip），其值必须为IP地址。
 
-|SELECT ip\_to\_geo\(ip\)|
-|ip\_to\_city\_geo\(ip\)|判断某IP地址所属城市的经纬度，返回结果格式为`纬度,经度`。此函数返回的是城市经纬度，每个城市只有一个经纬度。|SELECT ip\_to\_city\_geo\(ip\)|
-|ip\_to\_provider\(ip\)|获取某IP地址对应的网络运营商。|SELECT ip\_to\_provider\(ip\)|
-|ip\_to\_country\(ip,'en'\)|判断某IP地址所属国家，返回国家码。|SELECT ip\_to\_country\(ip,'en'\)|
-|ip\_to\_country\_code\(ip\)|判断某IP地址所属国家，返回国家码。|SELECT ip\_to\_country\_code\(ip\)|
-|ip\_to\_province\(ip,'en'\)|判断某IP地址所属省份，返回英文省名或者中文拼音。|SELECT ip\_to\_province\(ip,'en'\)|
-|ip\_to\_city\(ip,'en'\)|判断某IP地址所属城市，返回英文城市名或者中文拼音。|SELECT ip\_to\_city\(ip,'en'\)|
+|函数名称|说明|示例|
+|:---|:-|:-|
+|ip\_to\_domain\(KEY\)|判断目标IP地址是内网地址还是外网地址。返回结果为**intranet**或**internet**。
+
+-   **intranet**表示内网。
+-   **internet**表示外网。
+
+|```
+* | SELECT ip_to_domain(client_ip)
+``` |
+|ip\_to\_country\(KEY\)|分析目标IP地址所属国家或地区。返回结果为国家或地区的中文名称。
+
+|```
+* | SELECT ip_to_country(client_ip)
+``` |
+|ip\_to\_country\(KEY,'en'\)|分析目标IP地址所属国家或地区。返回结果为国家或地区的代码。
+
+|```
+* | SELECT ip_to_country(client_ip,'en')
+``` |
+|ip\_to\_country\_code\(KEY\)|分析目标IP地址所属国家或地区。返回结果为国家或地区的代码。
+
+|```
+* | SELECT ip_to_country_code(client_ip)
+``` |
+|ip\_to\_province\(KEY\)|分析目标IP地址所属州。返回结果为州的中文名称。
+
+|```
+* | SELECT ip_to_province(client_ip)
+``` |
+|ip\_to\_province\(KEY,'en'\)|分析目标IP地址所属州。返回结果为州的行政区划代码。
+
+|```
+* | SELECT ip_to_province(client_ip,'en')
+``` |
+|ip\_to\_city\(KEY\)|分析目标IP地址所属城市。返回结果为城市的中文名称。
+
+|```
+* | SELECT ip_to_city(client_ip)
+``` |
+|ip\_to\_city\(KEY,'en'\)|分析目标IP地址所属城市。返回结果为城市的行政区划代码。
+
+|```
+* | SELECT ip_to_city(client_ip,'en')
+``` |
+|ip\_to\_geo\(KEY\)|分析目标IP地址所在位置的经纬度。返回结果格式为`纬度,经度`。
+
+关于geohash函数的详细信息，请参见[地理函数](/intl.zh-CN/查询与分析/SQL分析语法与功能/地理函数.md)。
+
+|```
+* | SELECT ip_to_geo(client_ip)
+``` |
+|ip\_to\_city\_geo\(KEY\)|分析目标IP地址所属城市的经纬度。此函数返回的是城市经纬度，每个城市只有一个经纬度。返回结果格式为`纬度,经度`。
+
+|```
+* | SELECT ip_to_city_geo(client_ip)
+``` |
+|ip\_to\_provider\(KEY\)|分析目标IP地址对应的网络运营商。返回结果为网络运营商名称。
+
+|```
+* | SELECT ip_to_provider(client_ip)
+``` |
 
 ## 示例
 
-此处列举了IP地理函数在不同场景下的查询分析示例。您在执行查询分析语句后，还可以选择合适的统计图表展示查询分析结果。
+此处列举了IP地理函数在不同场景下的查询和分析示例。您在执行查询和分析操作后，还可以选择合适的统计图表展示查询和分析结果。
 
--   统计不包含内网请求的请求总数，相关查询分析语句如下所示：
+**说明：** 如下示例中的client\_ip、latency和requestId为日志字段。
 
-    ```
-    * | SELECT count(1) where ip_to_domain(ip)!='intranet'
-    ```
-
--   统计Top10的访问省份，相关查询分析语句如下所示：
+-   统计不是来自内网的请求总数。
 
     ```
-    * | SELECT count(1) as pv, ip_to_province(ip) as province GROUP BY province order by pv desc limit 10
+    * | SELECT count(*) AS PV where ip_to_domain(client_ip)!='intranet'
     ```
 
-    如果上述结果中包含了内网请求，且您希望过滤这部分请求，可以使用如下查询分析语句：
+    ![不来自内网的请求](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8908921161/p230090.png)
+
+-   统计请求总数Top10的州。
 
     ```
-    * | SELECT count(1) as pv, ip_to_province(ip) as province WHERE ip_to_domain(ip) != 'intranet'  GROUP BY province ORDER BY pv desc limit 10
+    * | SELECT count(*) as PV, ip_to_province(client_ip) AS province GROUP BY province ORDER BY PV desc LIMIT 10
     ```
 
--   统计不同国家的平均响应延时、最大响应延时以及最大延时对应的请求，相关查询分析语句如下所示：
+    ![top10省份](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2938921161/p230092.png)
+
+    如果上述结果中包含了内网请求，且您希望过滤这部分请求，可参考如下查询和分析语句。
 
     ```
-    * | SELECT AVG(latency),MAX(latency),MAX_BY(requestId, latency) ,ip_to_country(ip) as country group by country limit 100
+    * | SELECT count(*) AS PV, ip_to_province(client_ip) AS province WHERE ip_to_domain(client_ip) != 'intranet'  GROUP BY province ORDER BY PV DESC LIMIT 10
     ```
 
--   统计不同网络运营商的平均延时，相关查询分析语句如下所示：
+-   统计不同国家（地区）的平均响应延时、最大响应延时以及最大延时对应的请求。
 
     ```
-    * | SELECT AVG(latency) , ip_to_provider(ip) as provider group by provider limit 100
+    * | SELECT AVG(latency) AS avg_latency, MAX(latency) AS max_latency, MAX_BY(requestId, latency) AS requestId, ip_to_country(client_ip) AS country GROUP BY country
     ```
 
--   统计IP地址的经纬度，确认请求客户端的分布情况，相关查询分析语句如下所示：
+    ![延时情况](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8908921161/p230160.png)
+
+-   统计不同网络运营商的平均延时。
 
     ```
-    * | SELECT count(1) as pv , ip_to_geo(ip) as geo group by geo order by pv desc
+    * | SELECT AVG(latency) AS avg_latency, ip_to_provider(client_ip) AS provider GROUP BY provider ORDER BY avg_latency
     ```
+
+    ![运营商延时](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8908921161/p230066.png)
+
+-   统计IP地址的经纬度，确认客户端分布情况。
+
+    ```
+    * | SELECT count(*) AS PV , ip_to_geo(client_ip) AS geo GROUP BY geo ORDER BY PV DESC
+    ```
+
+    ![客户端分布](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8908921161/p230060.png)
 
 
