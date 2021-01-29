@@ -1,27 +1,34 @@
-# Basic resources {#concept_abm_gdd_p2b .concept}
+# Basic resources
+
+This topic describes the limits on basic resources of Log Service.
+
+The following table describes the limits on basic resources.
 
 |Resource|Limit|Remarks|
 |:-------|:----|:------|
-|Project|You can create a maximum of 50 projects for an Alibaba Cloud account.|If you request more quotas, open a ticket.|
-|Logstore|You can create a maximum of 200 Logstores for a project.|If you request more quotas, open a ticket.|
-|Shard| -   You can create a maximum of 200 shards for a project.
--   When creating a Logstore in the console, you can create a maximum of 10 shards in the Logstore. When creating a Logstore by using the API, you can create a maximum of 100 shards in the Logstore. However, you can split shards to increase the number of shards no matter how you create a Logstore.
+|Project|You can create a maximum of 50 projects for an Alibaba Cloud account.|To increase the quota, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).|
+|Logstore|You can create a maximum of 200 Logstores for a project.|To increase the quota, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).|
+|Shard|-   You can create a maximum of 200 shards for a project.
+-   When creating a Logstore in the console, you can create a maximum of 10 shards in the Logstore. When creating a Logstore by using the API, you can create a maximum of 100 shards in the Logstore. You can split shards to increase the number of shards no matter how you create a Logstore.
 
- |If you request more quotas, open a ticket.|
-|Logtail configuration|You can create a maximum of 100 Logtail configurations for a project.|If you request more quotas, open a ticket.|
-|Log storage time|You can store logs permanently. You can also customize the log storage time in the range of 1-3,000 days.
+|To increase the quota, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).|
+|Logtail configuration|You can create a maximum of 100 Logtail configurations for a project.|To increase the quota, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).|
+|Log retention time|You can permanently retain logs. You can also customize the log retention time from 1 to 3,000 days.
 
- |N/A|
-|Machine group|You can create a maximum of 100 machine groups for a project.|If you request more quotas, open a ticket.|
-|Consumer group|You can create a maximum of 10 consumer groups for a Logstore.|You can delete consumer groups that are no longer used.|
-|Saved search|You can create a maximum of 100 saved search items for a project.|N/A|
-|Dashboard| -   You can create a maximum of 50 dashboards for a project.
--   Each dashboard can contain a maximum of 50 charts.
+|N/A|
+|Server group|You can create a maximum of 100 server groups for a project.|To increase the quota, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).|
+|Consumer group|You can create a maximum of 20 consumer groups for a Logstore.|You can delete consumer groups that are no longer used.|
+|Saved search|You can create a maximum of 100 saved searches for a project.|N/A|
+|Dashboard|-   You can create a maximum of 100 dashboards for a project.
+-   You can add a maximum of 50 charts to a dashboard.
 
- |N/A|
-|Log item|The maximum length is 1 MB.|This limit applies if you call API operations to collect logs. If you configure Logtail to collect logs, the maximum length for a single log item is 512 KB.|
-|Log item \(Key\)|The maximum length is 128 bytes.|N/A|
-|Log item \(Value\)|The maximum length is 1 MB.|N/A|
-|Log group|The maximum length of a log group is 5 MB.|N/A|
-|Alert|You can create a maximum of 100 alerts for a project.|If you request more quotas, open a ticket.|
+|N/A|
+|Log entry|-   The maximum size of a log entry collected through the API is 1 MB.
+-   The maximum size of a log entry collected through a Logtail is 512KB.
+
+|N/A|
+|Field name|The maximum size of a field name in a log entry is 128 bytes.|N/A|
+|Field value|The maximum size of a field value in a log entry is less than 1 MB.|N/A|
+|Log group|The maximum size of a log group is 5 MB.|N/A|
+|Alert|You can create a maximum of 100 alerts for a project.|To increase the quota, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm).|
 
