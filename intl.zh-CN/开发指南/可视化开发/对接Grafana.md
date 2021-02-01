@@ -2,7 +2,7 @@
 
 本文介绍如何通过Grafana可视化分析日志服务所采集到的Nginx日志。
 
--   已采集Nginx日志数据。更多信息，请参见[使用Nginx模式采集日志](/intl.zh-CN/数据采集/Logtail采集/采集文本日志/Nginx模式.md)。
+-   已采集Nginx日志数据。更多信息，请参见[使用Nginx模式采集日志](/intl.zh-CN/数据采集/Logtail采集/采集文本日志/使用Nginx模式采集日志.md)。
 -   已开启并配置索引。更多信息，请参见[分析Nginx访问日志](/intl.zh-CN/查询与分析/最佳实践/分析Nginx访问日志.md)。
 
 ## 步骤1：安装Grafana和插件
@@ -31,8 +31,10 @@
     2.  执行如下命令安装插件。
 
         ```
-        git clone https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
+        git clone --depth 1 https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
         ```
+
+        您也可以下载[master.zip](https://github.com/aliyun/aliyun-log-grafana-datasource-plugin/archive/master.zip)到/var/lib/grafana/plugins/目录中，进行安装。
 
     3.  执行如下命令重启服务。
 
