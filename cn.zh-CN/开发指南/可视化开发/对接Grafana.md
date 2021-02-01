@@ -31,8 +31,10 @@
     2.  执行如下命令安装插件。
 
         ```
-        git clone https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
+        git clone --depth 1 https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
         ```
+
+        您也可以下载[master.zip](https://github.com/aliyun/aliyun-log-grafana-datasource-plugin/archive/master.zip)到/var/lib/grafana/plugins/目录中，进行安装。
 
     3.  执行如下命令重启服务。
 
