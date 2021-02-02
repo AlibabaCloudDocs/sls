@@ -19,7 +19,7 @@ x-log-signaturemethod: hmac-sha1
 
 -   请求头
 
-    ListMachines接口无特有请求头。关于Log Service API的公共请求头，请参见[公共请求头](/cn.zh-CN/开发指南/API 参考/公共请求头.md)。
+    ListMachines接口无特有请求头。关于Log Service API的公共请求头，请参见[公共请求头](/intl.zh-CN/开发指南/API 参考/公共请求头.md)。
 
 -   参数列表
 
@@ -34,7 +34,7 @@ x-log-signaturemethod: hmac-sha1
 
 -   响应头
 
-    ListMachines接口无特有响应头。关于Log Service API的公共响应头，请参见[公共响应头](/cn.zh-CN/开发指南/API 参考/公共响应头.md)。
+    ListMachines接口无特有响应头。关于Log Service API的公共响应头，请参见[公共响应头](/intl.zh-CN/开发指南/API 参考/公共响应头.md)。
 
 -   响应元素
 
@@ -125,5 +125,5 @@ x-log-signaturemethod: hmac-sha1
 |404|GroupNotExist|group groupName does not exist.|机器组不存在。|
 |500|InternalServerError|internal server error.|内部服务调用错误。|
 
-更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
+更多错误码，请参见[通用错误码](/intl.zh-CN/开发指南/API 参考/通用错误码.md)。
 
