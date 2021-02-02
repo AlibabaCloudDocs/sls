@@ -1,56 +1,129 @@
-# 包年包月（资源包）
+# ListMachines
 
-日志服务支持包年包月的计费形式，提供不同额度和时长的资源包，适用于流量或存储量较为稳定的用户。日志服务资源包包括流量包和存储包。购买资源包之后，优先使用资源包抵扣。当资源包到期或使用完后，超出部分按量计费。
+调用ListMachines接口列出目标机器组中与日志服务连接正常的机器列表。
 
-**说明：**
+## 请求语法
 
--   日志服务推出新版资源包，即预付计划2.0，可用来抵扣日志服务所有计费项。推荐您使用新版资源包，更多信息，请参见[包年包月（资源包）]()。
--   日志服务资源包仅适用于公有云，不适用于金融云。
+```
+GET /machinegroups/groupName/machines HTTP/1.1
+Authorization: LOG yourAccessKeyId:yourSignature
+Date: GMT Date
+Host: ProjectName.Endpoint
+x-log-apiversion: 0.6.0
+x-log-signaturemethod: hmac-sha1
+```
 
-日志服务资源包包括流量包和存储包，您可以在[日志服务资源包](https://common-buy.aliyun.com/?spm=5176.8066851.323083.pricedetail1111.4256252ezQLhvD&commodityCode=slsbagflow#/buy)页面，购买资源包。如果您需了解日志服务费用的组成和计费方式请参见[t125823.dita\#concept\_xzl\_hjg\_vgb](/cn.zh-CN/产品定价/计费概述.md)，日志服务详细价格说明请参见[产品定价](https://www.aliyun.com/price/product?spm=a2c4g.11186623.2.11.66cd2aab6wAn6p#/sls/detail)。
+其中，Host由Project名称和日志服务Endpoint构成，您需要在Host中指定Project。
 
-## 流量包
+## 请求参数
 
-日志服务提供读写流量包和索引流量包，分别对应读写、索引两种计费项。根据不同的额度计费，您可以根据实际业务需求选购。流量包说明如下：
+-   请求头
 
--   每月不清零，累计抵扣，扣完自动转为按量计费。
+    ListMachines接口无特有请求头。关于Log Service API的公共请求头，请参见[公共请求头](/cn.zh-CN/开发指南/API 参考/公共请求头.md)。
 
-    例如您购买了100 GB索引流量包，实际每月索引流量20 GB，则第6个月恢复按量计费模式。
+-   参数列表
 
--   支持叠加购买，购买后流量累计。
-
-    例如您在第3个月剩余50 GB流量，再次购买100 GB的流量包，则剩余流量为50 GB+100 GB=150 GB。
-
--   有效期为购买之日起1年。
-
-    例如您在第3个月再次购买流量包后，第一个流量包的有效期剩余9个月，第二个流量包的有效期剩余12个月。
-
-
-|规格|100 GB（95折）|1 TB（9折）|10 TB（85折）|100 TB（85折）|1000 TB（85折）|
-|:-|:----------|:-------|:---------|:----------|:-----------|
-|读写流量|17元|166元|1567元|15667元|156672元|
-|索引流量|33元|323元|3046元|30464元|304640元|
-
-## 存储包
-
-存储包用于抵扣计费项中的存储量，适合固定存储大小的用户。存储包说明如下：
-
--   根据规格抵扣固定存储量。
-
-    例如您购买了100 GB存储包，实际存储量为110 GB，当月100 GB存储由存储包抵扣，剩余10 GB按量付费。
-
--   有效期为购买之日起加购买时长，有效期以月为单位（31天）。
-
-    例如您在1月15日购买100 GB（1个月），则存储包有效期截止到2月15日。
-
--   支持叠加购买，购买后每月抵扣级联累计。
-
-    例如，您购买100 GB存储包（6个月），当第5个月存储量超出额度后再次购买100 GB（1个月），则第5个月则可累积抵扣200 GB，超过后按量计费计算。
+    |参数名称|数据类型|是否必填|示例值|描述|
+    |:---|:---|:---|---|:-|
+    |groupName|String|是|test-machine-group-5|机器组名称。|
+    |offset|Integer|否|0|查询开始行。默认值为0。|
+    |size|Integer|否|3|分页查询时，设置的每页行数。最大值为500。|
 
 
-|规格|100 GB/月|1 TB/月|10 TB/月|100 TB/月|1000 TB/月|
-|:-|:-------|:-----|:------|:-------|:--------|
-|1个月|34元|323元|3047元|30464元|304640元|
-|6个月（买5送1）|170元|1615元|15235元|152320元|1523200元|
-|12个月（买9送3）|306元|2907元|27423元|274176元|2741760元|
+## 返回数据
+
+-   响应头
+
+    ListMachines接口无特有响应头。关于Log Service API的公共响应头，请参见[公共响应头](/cn.zh-CN/开发指南/API 参考/公共响应头.md)。
+
+-   响应元素
+
+    返回HTTP状态码200，表示请求成功。响应Body中包括列表信息，如下所示：
+
+    |参数名称|数据类型|示例值|描述|
+    |:---|:---|---|:-|
+    |count|Integer|3|当前页返回的机器数目。|
+    |total|Integer|8|机器总数。|
+    |machines|Json array|\[\{"ip": "10.\*\*\*.\*\*\*.\*\*\*", "machine-uniqueid": "", "userdefined-id": "", "lastHeartbeatTime": 1447182247\},\{"ip": "10.\*\*\*.\*\*\*.\*\*\*", "machine-uniqueid": "","userdefined-id": "","lastHeartbeatTime": 1447182246\}\]|返回的机器信息列表。详细解释请参考下表machines说明。|
+
+    machines中每个元素，具体如下：
+
+    |参数名称|数据类型|示例值|描述|
+    |:---|:---|---|:-|
+    |ip|String|10.\*\*\*.\*\*\*.\*\*\*|机器的IP地址。|
+    |machine-uniqueid|String|无|机器的唯一标识。|
+    |userdefined-id|String|无|机器的用户自定义标识。|
+    |lastHeartbeatTime|Integer|1447182247|最后一次心跳时间。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
+
+
+## 示例
+
+-   请求示例
+
+    ```
+    GET /machinegroups/test-machine-group-5/machines?offset=0&size=3 HTTP/1.1
+    Header :
+    {
+        "x-log-apiversion": "0.6.0",
+        "Authorization": "LOG yourAccessKeyId:yourSignature",
+        "Host": "ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com",
+        "Date": "Tue, 10 Nov 2015 19:04:57 GMT",
+        "Content-Length": "0",
+        "x-log-signaturemethod": "hmac-sha1",
+        "User-Agent": "sls-java-sdk-v-0.6.0",
+        "Content-Type": "application/x-protobuf",
+        "x-log-bodyrawsize": "0"
+    }
+    ```
+
+-   正常返回示例
+
+    ```
+    HTTP/1.1 200 OK
+    Header :
+    {
+        "Date": "Tue, 10 Nov 2015 19:04:58 GMT",
+        "Content-Length": "324",
+        "x-log-requestid": "56423FD999248C827B000A57",
+        "Connection": "close",
+        "Content-Type": "application/json",
+        "Server": "nginx/1.6.1"
+    }
+    Body :
+    {
+        "machines":     [
+            {
+                "ip": "10.***.***.***",
+                "machine-uniqueid": "",
+                "userdefined-id": "",
+                "lastHeartbeatTime": 1447182247
+            },
+            {
+                "ip": "10.***.***.***",
+                "machine-uniqueid": "",
+                "userdefined-id": "",
+                "lastHeartbeatTime": 1447182246
+            },
+            {
+                "ip": "10.***.***.***",
+                "machine-uniqueid": "",
+                "userdefined-id": "",
+                "lastHeartbeatTime": 1447182248
+            }
+        ],
+        "count": 3,
+        "total": 8
+    }
+    ```
+
+
+## 错误码
+
+|HTTP状态码|错误码|错误信息|描述|
+|:------|:--|:---|--|
+|404|ProjectNotExist|Project ProjectName does not exist.|Project不存在。|
+|404|GroupNotExist|group groupName does not exist.|机器组不存在。|
+|500|InternalServerError|internal server error.|内部服务调用错误。|
+
+更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
 
