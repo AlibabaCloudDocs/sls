@@ -2,6 +2,21 @@
 
 Activates Log Service. You must activate Log Service before you can use it to collect and manage logs.
 
+## Request syntax
+
+```
+POST https://sls.aliyuncs.com/
+? AccessKeyId=yourAccessKeyId
+&Action=OpenSlsService
+&Format=Format
+&SignatureMethod=HMAC-SHA1
+&SignatureNonce=SignatureNonce
+&SignatureVersion=SignatureVersion
+&Timestamp=Timestamp
+&Version=Version
+&Signature=Signature
+```
+
 ## Request parameters
 
 -   Request headers
@@ -10,14 +25,14 @@ Activates Log Service. You must activate Log Service before you can use it to co
 
 -   Parameters
 
-    |Request parameter|Type|Required|Example|Description|
-    |:----------------|:---|:-------|-------|:----------|
+    |Parameter|Type|Required|Example|Description|
+    |:--------|:---|:-------|-------|:----------|
     |Action|String|Yes|OpenSlsService|The operation that you want to perform. Set the value to OpenSlsService.|
-    |AccessKeyId|String|Yes|test-key|The AccessKey ID provided to you by Alibaba Cloud.|
+    |AccessKeyId|String|Yes|test-key|The AccessKey ID of your Alibaba Cloud account.|
     |Signature|String|Yes|xxxxxx|The signature string of the current request. For more information about how signatures are calculated, see [Signature method](#section_8f8_hbd_y87).|
     |SignatureMethod|String|Yes|HMAC-SHA1|The encryption method of the signature string.|
-    |SignatureVersion|String|Yes|1.0|The version of the signature encryption algorithm.|
-    |SignatureNonce|String|Yes|dt712rl9d|A unique, random number used to prevent replay attacks. You must use different numbers for different requests.|
+    |SignatureVersion|String|Yes|1.0|The version of the signature algorithm.|
+    |SignatureNonce|String|Yes|dt712rl9d|A unique, random number that is used to prevent replay attacks. You must use different numbers for different requests.|
     |Timestamp|String|Yes|2018-01-01T12:00:00Z|The timestamp of the request. Specify the time in the [ISO 8601](http://iso.org/iso-8601-date-and-time-format.html) standard in the yyyy-MM-ddTHH:mm:ssZ format. The time must be in UTC. For example, 2018-01-01T12:00:00Z indicates 20:00:00 on January 1, 2018 \(UTC+8\).|
     |Version|String|Yes|2019-10-23|The version number of the API. The value must be in the YYYY-MM-DD format.|
     |Format|String|No|JSON|The format in which to return the response. Valid values: JSON and XML. Default value: XML.|
@@ -27,14 +42,14 @@ Activates Log Service. You must activate Log Service before you can use it to co
 
 1.  Compose and encode a string-to-sign.
 
-    1.  Create a canonicalized query string by arranging the request parameters \(including all common and operation-specific parameters except Signature\) in alphabetical order.
+    1.  Create a canonicalized query string by arranging the request parameters in alphabetical order. These parameters include all common and operation-specific parameters except Signature.
 
     2.  Encode the parameters in UTF-8. For more information, see [RFC 3986](http://tools.ietf.org/html/rfc3986).
 
         -   Uppercase letters, lowercase letters, digits, and some special characters such as hyphens \(-\), underscores \(\_\), periods \(.\), and tildes \(~\) do not need to be encoded.
         -   Other characters must be percent encoded in `%XY` format. `XY` represents the ASCII code of the characters in hexadecimal notation. For example, double quotation marks \("\) are encoded as `%22`.
         -   Use an equal sign \(=\) to concatenate each encoded request parameter and its value.
-        -   Use an ampersand \(&\) to concatenate each encoded request parameter. The order of the parameter must be consistent with that in [Step 1.a](#step_bw2_s55_mxb).
+        -   Use an ampersand \(&\) to concatenate encoded request parameters in alphabetical order. These parameters include all common and operation-specific parameters except Signature.
     3.  Create a canonicalized query string.
 
 2.  Create a string-to-sign.
@@ -101,25 +116,26 @@ print(create_url())
 
 ## Response elements
 
--   Response header
+-   Response headers
 
     The OpenSlsService operation does not have operation-specific response headers.
 
--   Response element
+-   Response elements
 
-    The HTTP status code 200 is returned.
+    If the HTTP status code 200 is returned, the request is successful.
 
-    |Response parameter|Type|Description|
-    |------------------|----|-----------|
-    |RequestId|String|The ID of the request.|
-    |Success|Boolean|Indicates whether the request is successful.|
-    |Code|String|The error code.|
-    |Message|String|The error description.|
+    |Parameter|Type|Example|Description|
+    |---------|----|-------|-----------|
+    |RequestId|String|1CCC2B8E-4FF3-4755-A96C-8CE2E4BF27DF|The ID of the request.|
+    |Success|Boolean|true|Indicates whether the request is successful. Valid values: true and false.    -   true: The request is successful.
+    -   false: The request failed. |
+    |Code|String|200|The returned status code.|
+    |Message|String|You have activated Log Service. You can go to the Log Service console to manage logs.|The description of the response returned.|
 
 
 ## Examples
 
--   Sample request
+-   Sample requests
 
     ```
     https://sls.aliyuncs.com/
@@ -134,7 +150,7 @@ print(create_url())
     &Signature=xxxxxxx
     ```
 
--   Sample success response
+-   Sample success responses
 
     ```
     {
@@ -146,7 +162,7 @@ print(create_url())
     ```
 
 
-## Error code
+## Error codes
 
 |HTTP status code|Error code|Error message|Description|
 |:---------------|:---------|:------------|-----------|
