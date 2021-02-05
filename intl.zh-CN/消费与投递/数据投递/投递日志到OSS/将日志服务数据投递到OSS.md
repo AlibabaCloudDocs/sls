@@ -2,7 +2,7 @@
 
 日志服务采集到日志后，支持将日志投递至OSS进行存储与分析。本文档介绍将日志投递至OSS的操作步骤。
 
--   已创建Project和Logstore。更多信息，请参见[创建Project和Logstore](/intl.zh-CN/快速入门/快速入门.md)。
+-   已创建Project和Logstore。更多信息，请参见[创建Project和Logstore](/intl.zh-CN/.md)。
 -   已采集到日志。更多信息，请参见[数据采集](/intl.zh-CN/数据采集/采集方式.md)。
 -   已开通OSS服务，且在日志服务Project所在的地域创建Bucket。更多信息，请参见[开通OSS服务](/intl.zh-CN/控制台用户指南/开通OSS服务.md)。
 -   已完成[云资源访问授权](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22%3A%20%7B%22request1%22%3A%20%7B%22RoleName%22%3A%20%22AliyunLogDefaultRole%22%2C%20%22TemplateId%22%3A%20%22DefaultRole%22%7D%7D%2C%20%22ReturnUrl%22%3A%20%22https%3A//sls.console.aliyun.com/%22%2C%20%22Service%22%3A%20%22Log%22%7D)。
@@ -77,7 +77,7 @@ OSS-BUCKET为OSS Bucket名称，OSS-PREFIX为目录前缀，PARTITION-FORMAT为�
 |test-bucket|test-table|%Y/%m/%d/%H/%M|oss://test-bucket/test-table/2017/01/20/19/50\_1484913043351525351\_2850008|
 |test-bucket|log\_ship\_oss\_example|year=%Y/mon=%m/day=%d/log\_%H%M%s|oss://test-bucket/log\_ship\_oss\_example/year=2017/mon=01/day=20/log\_195043\_1484913043351525351\_2850008.parquet|
 |test-bucket|log\_ship\_oss\_example|ds=%Y%m%d/%H|oss://test-bucket/log\_ship\_oss\_example/ds=20170120/19\_1484913043351525351\_2850008.snappy|
-|test-bucket|log\_ship\_oss\_example|%Y%m%d/|oss://test-bucket/log\_ship\_oss\_example/20170120/\_1484913043351525351\_2850008|
+|test-bucket|log\_ship\_oss\_example|%Y%m%d/|oss://test-bucket/log\_ship\_oss\_example/20170120/\_1484913043351525351\_2850008**说明：** 此格式会导致Hive等平台无法解析对应的OSS内容，建议您不要使用该格式。 |
 |test-bucket|log\_ship\_oss\_example|%Y%m%d%H|oss://test-bucket/log\_ship\_oss\_example/2017012019\_1484913043351525351\_2850008|
 
 使用Hive、MaxCompute等大数据平台或阿里云DLA产品分析OSS数据时，如果您希望使用Partition信息，可将PARTITION-FORMAT设置为key=value格式。例如：oss://test-bucket/log\_ship\_oss\_example/year=2017/mon=01/day=20/log\_195043\_1484913043351525351\_2850008.parquet，设置为三层分区列，分别为：year、mon、day。
@@ -123,7 +123,7 @@ OSS-BUCKET为OSS Bucket名称，OSS-PREFIX为目录前缀，PARTITION-FORMAT为�
 
     -   重试任务
 
-        日志服务会按照策略默认为您重试，您也可以手动重试。日志服务默认重试最近两天之内的所有任务，重试等待的最小间隔是15分钟。当任务执行失败时，第一次失败需要等待15分钟再进行重试，第二次失败需要等待30分钟再进行重试，第三次失败需要等待60分钟再进行重试，以此类推。
+        日志服务会按照策略默认为您重试，您也可以手动重试。日志服务默认重试最近两天之内所有失败的任务，重试等待的最小间隔是15分钟。当任务执行失败时，第一次失败需要等待15分钟再进行重试，第二次失败需要等待30分钟再进行重试，第三次失败需要等待60分钟再进行重试，以此类推。
 
         如果您需要立即重试失败任务，请单击**重试全部失败任务**、目标任务右侧的**重试**或通过API、SDK指定任务进行重试。
 
