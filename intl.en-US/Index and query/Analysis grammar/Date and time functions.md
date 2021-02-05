@@ -1,117 +1,174 @@
 # Date and time functions
 
-This topic describes the date and time functions that you can use in Log Service to analyze log data. These functions include the time functions, date functions, interval functions, and a time series padding function.
+This topic describes the date and time functions that you can use in Log Service to analyze log data. The following types of functions are provided: time function, date function, truncation function, interval function, and time series padding function. You can use the functions to convert the date and time formats of log data. You can also use the functions to group and aggregate log data.
 
-## Date and time data types
+**Note:**
 
--   Unix timestamp: an integer that indicates the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970. For example, `1512374067` indicates `Mon Dec 4 15:54:27 CST 2017`. The `__time__` field in each log entry is of this type.
--   TimeStamp: a string that specifies the date and time, for example, `2017-11-01 13:30:00`.
+-   The timestamp of a log entry is accurate to seconds. Therefore, you can specify the time format only to seconds.
+-   You need to specify the time format only for the time in a time string. Other parameters such as the time zone are not required.
+-   Each log entry in Log Service contains the reserved \_\_time\_\_ field. The value of the field is a UNIX timestamp. For example, 1592374067 indicates 2020-06-17 14:07:47.
 
 ## Date functions
 
-The following table lists the date functions that are commonly used in Log Service.
-
 |Function|Description|Example|
 |:-------|:----------|:------|
-|`current_date`|Returns the current date.|`latency>100| select current_date`|
-|`current_time`|Returns the current time.|`latency>100| select current_time`|
-|`current_timestamp`|Returns the current TimeStamp by combining the results of current\_date and current\_time functions.|`latency>100| select current_timestamp`|
-|`current_timezone()`|Returns the current time zone.|`latency>100| select current_timezone()`|
-|`from_iso8601_timestamp(string)`|Converts an ISO 8601-formatted time into a TimeStamp that contains the time zone.|`latency>100| select from_iso8601_timestamp(iso8601)`|
-|`from_iso8601_date(string)`|Converts an ISO 8601-formatted time into a date.|`latency>100| select from_iso8601_date(iso8601)`|
-|`from_unixtime(unixtime)`|Converts a UNIX timestamp into a TimeStamp.|`latency>100| select from_unixtime(1494985275)`|
-|`from_unixtime(unixtime,string)`|Converts a Unix timestamp into a TimeStamp based on the time zone that is specified by the string parameter.|`latency>100| select from_unixtime (1494985275,'Asia/Shanghai')`|
-|`localtime`|Returns the current local time.|`latency>100| select localtime`|
-|`localtimestamp`|Returns the current local TimeStamp.|`latency>100| select localtimestamp`|
-|`now()`|Equivalent to the `current_timestamp` function.|-|
-|`to_unixtime(timestamp)`|Converts a TimeStamp into a Unix timestamp.|`*| select to_unixtime('2017-05-17 09:45:00.848 Asia/Shanghai')`|
+|current\_date|Returns the current date.-   Return value format: `YYYY-MM-DD`, for example, 2021-01-12.
+-   Return value type: date.
+
+|```
+* | select current_date
+``` |
+|current\_time|Returns the current time.-   Return value format: `HH:MM:SS.Ms Time zone`, for example, 01:14:51.967 Asia/Shanghai.
+-   Return value type: time.
+
+|```
+* | select current_time
+``` |
+|current\_timestamp|Returns the current date and time.-   Return value format: `YYYY-MM-DD HH:MM:SS.Ms Time zone`, for example, 2021-01-12 17:16:09.035 Asia/Shanghai.
+-   Return value type: timestamp.
+
+|```
+* | select current_timestamp
+``` |
+|current\_timezone\(\)|Returns the current time zone.Return value type: varchar, for example, Asia/Shanghai.
+
+|```
+* | select current_timezone()
+``` |
+|localtime|Returns the local time.-   Return value format: `HH:MM:SS.Ms`
+-   Return value type: time.
+
+|```
+* | select localtime
+``` |
+|localtimestamp|Returns the local date and time.-   Return value format: `YYYY-MM-DD HH:MM:SS.Ms`
+-   Return value type: timestamp.
+
+|```
+* | select localtimestamp
+``` |
+|now\(\)|Returns the current date and time. This function is equivalent to the current\_timestamp function.-   Return value format: `YYYY-MM-DD HH:MM:SS.Ms Time zone`.
+-   Return value type: timestamp.
+
+|```
+* | select now()
+``` |
+|from\_iso8601\_timestamp\(ISO8601\)|Converts an ISO 8601-formatted datetime expression to a timestamp expression that contains a time zone.-   Return value format: `YYYY-MM-DD HH:MM:SS.Ms Time zone`.
+-   Return value type: timestamp.
+
+|```
+* | select from_iso8601_timestamp('2020-05-03T17:30:08')
+``` |
+|from\_iso8601\_date\(ISO8601\)|Converts an ISO 8601-formatted date expression to a date expression.-   Return value format: `YYYY-MM-DD`
+-   Return value type: date.
+
+|```
+* | select from_iso8601_date('2020-05-03')
+``` |
+|from\_unixtime \(UNIX timestamp\)|Converts a UNIX timestamp to a timestamp expression.-   Return value format: `YYYY-MM-DD HH:MM:SS.Ms`.
+-   Return value type: timestamp.
+
+|```
+* | select from_unixtime(1494985275)
+``` |
+|from\_unixtime \(UNIX timestamp,time zone\)|Converts a UNIX timestamp to a timestamp expression that contains a time zone.-   Return value format: `YYYY-MM-DD HH:MM:SS.Ms Time zone`.
+-   Return value type: timestamp.
+
+|```
+* | select from_unixtime (1494985275,'Asia/Shanghai')
+``` |
+|to\_unixtime\(timestamp\)|Converts a timestamp expression to a UNIX timestamp.Return value type: long, for example, 1494985500.848.
+
+|```
+*| select to_unixtime('2017-05-17 09:45:00.848 Asia/Shanghai')
+``` |
 
 ## Time functions
 
-The following table lists the time functions that you can use in Log Service to convert time in the formats supported in MySQL, such as %a, %b, and %y.
-
 |Function|Description|Example|
 |:-------|:----------|:------|
-|`date_format(timestamp, format)`|Converts a TimeStamp into a string in the specified format.|`latency>100`\| `select date_format (date_parse('2017-05-17 09:45:00','%Y-%m-%d %H:%i:%S'), '%Y-%m-%d')`|
-|`date_parse(string, format)`|Converts a string into a TimeStamp in the specified format.|`latency>100`\|`select date_format (date_parse(time,'%Y-%m-%d %H:%i:%S'), '%Y-%m-%d')`|
+|date\_format\(timestamp,format\)|Converts a timestamp expression to a datetime format string.|```
+* | select date_format (date_parse('2017-05-17 09:45:00','%Y-%m-%d %H:%i:%S'), '%Y-%m-%d')
+``` |
+|date\_parse\(string,format\)|Represents a datetime format string, and then converts the datetime format string to a timestamp expression. The following table describes the formats.|```
+* | select date_format (date_parse(time,'%Y-%m-%d %H:%i:%S'), '%Y-%m-%d')
+``` |
 
-|Format|Description|
+|format|Description|
 |:-----|:----------|
-|%a|Abbreviated day name, such as Sun or Sat.|
-|%b|Abbreviated month name, such as Jan or Dec.|
-|%c|Month number. Valid values: 1 to 12.|
-|%D|Day of month with a suffix, such as 0th, 1st, 2nd, and 3rd.|
-|%d|Day of month. Valid values: 01 to 31.|
-|%e|Day of month. Valid values: 1 to 31.|
+|%a|The abbreviated day name, for example, Sun or Sat.|
+|%b|The abbreviated month name, for example, Jan or Dec.|
+|%c|The month. Valid values: 1 to 12.|
+|%D|The day of the month, for example, 0th, 1st, 2nd, or 3rd.|
+|%d|The day of the month, Valid values: 01 to 31.|
+|%e|The day of the month, Valid values: 1 to 31.|
 |%H|The hour in the 24-hour clock.|
 |%h|The hour in the 12-hour clock.|
 |%I|The hour in the 12-hour clock.|
-|%i|Minutes. Valid values: 00 to 59.|
-|%j|Day of year. Valid values: 001 to 366.|
-|%k|Hours. Valid values: 0 to 23.|
-|%l|Hours. Valid values: 1 to 12.|
-|%M|Month name. Valid values: January, February, March, April, May, June, July, August, September, October, November, and December.|
-|%m|Month number. Valid values: 01 to 12.|
-|%p|Meridian indicators. Valid values: AM and PM.|
+|%i|The minutes. Valid values: 00 to 59.|
+|%j|The day of the year. Valid values: 001 to 366.|
+|%k|The hours. Valid values: 0 to 23.|
+|%l|The hours. Valid values: 1 to 12.|
+|%M|The full month name, for example, January or December.|
+|%m|The month. Valid values: 01 to 12.|
+|%p|The abbreviation that indicates the morning or afternoon. Valid values: AM and PM.|
 |%r|The time in the 12-hour clock. The time is in the `hh:mm:ss AM/PM` format.|
-|%S|Seconds. Valid values: 00 to 59.|
-|%s|Seconds. Valid values: 00 to 59.|
+|%S|The seconds. Valid values: 00 to 59.|
+|%s|The seconds. Valid values: 00 to 59.|
 |%T|The time in the 24-hour clock. The time is in the `hh:mm:ss` format.|
-|%V|Week number of year. Sunday is the first day of the week. This format is used together with %X. Valid values: 01 to 53.|
-|%v|Week number of year. Monday is the first day of the week. This format is used together with %x. Valid values: 01 to 53.|
-|%W|Day name. Valid values: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, and Saturday.|
-|%w|Day of week. Valid values: 0 to 6. The value 0 indicates Sunday.|
-|%Y|4-digit year number.|
-|%y|2-digit year number.|
+|%V|The week number of the year. Sunday is the first day of each week. Valid values: 01 to 53.|
+|%v|The week number of a year. Monday is the first day of each week. Valid values: 01 to 53.|
+|%W|The full day name, for example, Sunday or Saturday.|
+|%w|The day of the week as a number. The value 0 indicates Sunday.|
+|%Y|The four-digit year number, for example, 2020.|
+|%y|The two-digit year number, for example, 20.|
 |%%|Escapes the second percent sign \(%\).|
 
 ## Truncation function
 
-You can use a truncation function in Log Service to truncate a time by the second, minute, hour, day, month, or year. The truncation function is applicable to time-based statistics.
+The date\_trunc\(\) function truncates a datetime expression based on the specified part of a time. You can use a truncation function to truncate a time by second, minute, hour, day, month, or year. This function is suitable for time-based statistics.
 
 -   Function syntax:
 
     ```
-    date_trunc(unit, x)
+    date_trunc('unit',x)
     ```
 
 -   Parameters:
 
-    The value of the x parameter can be a TimeStamp or Unix timestamp.
+    The value of the x parameter can be a datetime expression, for example, 2021-01-12 03:04:05.000 or 1610350836. The value of the x parameter can be a time field, for example, \_\_time\_\_. The valid values of the unit parameter are second, minute, hour, day, week, month, quarter, and year. The following table describes examples of this parameter.
 
-    Assume that you set the x parameter to `2001-08-22 03:04:05.000`. The following table lists the valid values of the unit parameter and the execution result.
+    |Example|Result|Description|
+    |:------|:-----|-----------|
+    |\* \| select date\_trunc\('second', 2021-01-12 03:04:05.000\)|2021-01-12 03:04:05.000|None|
+    |\* \| select date\_trunc\('minute', 2021-01-12 03:04:05.000\)|2021-01-12 03:04:00.000|None|
+    |\* \| select date\_trunc\('hour', 2021-01-12 03:04:05.000\)|2021-01-12 03:00:00.000|None|
+    |\* \| select date\_trunc\('day', 2021-01-12 03:04:05.000\)|2021-01-12 00:00:00.000|Returns 00:00:00.000 of the specified date.|
+    |\* \| select date\_trunc\('week', 2021-01-12 03:04:05.000\)|2021-01-11 00:00:00.000|Returns 00:00:00.000 of the Monday of the specified week.|
+    |\* \| select date\_trunc\('month', 2021-01-12 03:04:05.000\)|2021-01-01 00:00:00.000|Returns 00:00:00.000 of the first day of the specified month.|
+    |\* \| select date\_trunc\('quarter', 2021-01-11 03:04:05.000\)|2021-01-01 00:00:00.000|Returns 00:00:00.000 of the first day of the specified quarter.|
+    |\* \| select date\_trunc\('year', 2021-01-11 03:04:05.000\)|2021-01-01 00:00:00.000|Returns 00:00:00.000 of the first day of the specified year.|
 
-    |Unit|Result|
-    |:---|:-----|
-    |second|2001-08-22 03:04:05.000|
-    |minute|2001-08-22 03:04:00.000|
-    |hour|2001-08-22 03:00:00.000|
-    |day|2001-08-22 00:00:00.000|
-    |week|2001-08-20 00:00:00.000|
-    |month|2001-08-01 00:00:00.000|
-    |quarter|2001-07-01 00:00:00.000|
-    |year|2001-01-01 00:00:00.000|
+-   Query and analysis examples:
 
--   Example:
-
-    You can use the date\_trunc function to truncate a time only by the second, minute, hour, day, month, or year. To truncate a time by specified intervals such as five minutes, you must use a group by clause based on the modulus method.
+    To truncate the average request durations by minute, and group and sort the average request durations by time, execute the following query statement:
 
     ```
-    * | SELECT count(1) as pv,  __time__ - __time__% 300 as minute5 group by minute5 limit 100
+    * | select  date_trunc('minute' ,  __time__)  as time,
+           truncate (avg(request_time) ) as avg_time ,
+           current_date as date
+           group by  time
+           order by time  desc 
+           limit 100
+    ```
+
+    You can use the date\_trunc\('unit', x\) function to truncate a time only by second, minute, hour, day, month, or year. To truncate a time based on specified intervals such as 5 minutes, you must use a GROUP BY clause based on the modulus method.
+
+    ```
+    * | select count(1) as pv,  __time__ - __time__ %300 as time group by time limit 100
     ```
 
     In the preceding statement, `%300` indicates that modulo and truncation are performed every 5 minutes.
-
-    The following example shows how to use the date\_trunc function:
-
-    ```
-    *|select  date_trunc('minute' ,  __time__)  as t,
-           truncate (avg(latency) ) ,
-           current_date  
-           group by   t
-           order by t  desc 
-           limit 60
-    ```
 
 
 ## Interval functions
@@ -120,13 +177,21 @@ You can use interval functions to perform the interval-related calculations. For
 
 |Function|Description|Example|
 |:-------|:----------|:------|
-|``date_add`(unit, value, timestamp)`|Adds an interval `value` of the `unit` type to a `timestamp`. To subtract an interval, use a negative `value`.|`date_add('day', -7, '2018-08-09 00:00:00')`: indicates seven days before August 9.|
-|`date_diff(unit, timestamp1, timestamp2)`|Calculates the time difference between `timestamp1` and `timestamp2` by `unit`.|`date_diff('day', '2018-08-02 00:00:00', '2018-08-09 00:00:00') = 7`|
+|date\_add\(unit, N,timstamp\)|Adds N units to a `timestamp`.To subtract an interval, set the value of N to a negative value.
 
-The following table lists the valid values of the unit parameter.
+|```
+*| select date_add('day', -7, '2018-08-09 00:00:00')
+```
 
-|Value|Description|
-|:----|:----------|
+Indicates seven days before August 9, 2018 \(2018-08-02 00:00:00.000\).|
+|date\_diff\(unit, timestamp1, timestamp2\)|Returns the time difference between two time expressions. For example, you can calculate the difference between `timestamp1` and `timestamp2` by unit.|```
+*| select date_diff('day', '2018-08-02 00:00:00', '2018-08-09 00:00:00')
+``` |
+
+The following table describes the valid values of the unit parameter.
+
+|unit|Description|
+|:---|:----------|
 |millisecond|Unit: milliseconds.|
 |second|Unit: seconds.|
 |minute|Unit: minutes.|
@@ -134,14 +199,14 @@ The following table lists the valid values of the unit parameter.
 |day|Unit: days.|
 |week|Unit: weeks.|
 |month|Unit: months.|
-|quarter|Unit: quarters, namely, three months.|
+|quarter|Unit: quarters.|
 |year|Unit: years.|
 
 ## Time series padding function
 
-You can use the time series padding function to pad time series and corresponding data.
+You can use the time\_series\(\) function to add the missing data when you query in the time window.
 
-**Note:** This function must be used together with the `group by time order by time` clause. In this case, the `order by` clause does not support the `desc` sorting method.
+**Note:** The time\_series\(\) function must be used together with the GROUP BY and ORDER BY clauses. The ORDER BY clause does not support the desc sorting method.
 
 -   Function syntax:
 
@@ -153,26 +218,23 @@ You can use the time series padding function to pad time series and correspondin
 
     |Parameter|Description|
     |:--------|:----------|
-    |time\_column|The sequence of time, for example, the default time field `__time__` that is provided by Log Service. The value is of the long or timestamp type.|
-    |window|The size of the time window. The size is composed of a number and a unit. Valid units: s \(seconds\), m \(minutes\), h \(hours\), and d \(days\). For example, you can set the window to 2h, 5m, or 3d.|
-    |format|The MySQL time format. It is the format of the output.|
+    |time\_column|The sequence of time \(KEY\), for example, \_\_time\_\_.The value of this parameter can be a long datetime or timestamp expression. |
+    |window|The size of the window. Valid units: s \(seconds\), m \(minutes\), h \(hours\), and d \(days\). For example, you can set the window to 2h, 5m, or 3d.|
+    |format|The returned result is a format string.|
     |padding\_data|The content to be added. Valid values:     -   0: adds 0.
     -   null: adds null.
-    -   last: adds the last value.
-    -   next: adds the next value.
+    -   last: adds the value of the last time point.
+    -   next: adds the value of the next time point.
     -   avg: adds the average value of the last and next values. |
 
 -   Example:
 
-    The following statement is used to format data every 2 hours:
+    To add missing data by 2 hours, execute the following query statement:
 
     ```
-    * | select time_series(__time__, '2h', '%Y-%m-%d %H:%i:%s', '0')  as stamp, count(*) as num from log group by stamp order by stamp
-                            
+    * | select time_series(__time__, '2h', '%Y-%m-%d %H:%i:%s', '0')  as time, count(*) as num from log group by time order by time                        
     ```
 
-    The following figure shows the output.
-
-    ![Time series padding function](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/3854994061/p37530.png)
+    ![Time series padding function](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3854994061/p37530.png)
 
 
