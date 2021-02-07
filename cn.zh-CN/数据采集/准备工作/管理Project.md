@@ -32,10 +32,7 @@
 
 ## 删除Project
 
-**警告：**
-
--   日志服务内置Project（例如通过日志审计服务默认创建的Project）及相关云产品Project，无法自行删除。您可以提交[工单](https://selfservice.console.aliyun.com/ticket/category/sls/today)进行删除。
--   删除Project后，其管理的所有日志数据及配置信息都会被永久释放，不可恢复。在删除Project前请慎重确认，避免数据丢失。
+**警告：** 删除Project后，其管理的所有日志数据及配置信息都会被永久释放，不可恢复。在删除Project前请慎重确认，避免数据丢失。
 
 1.  在**Project列表**中，找到目标Project，单击**删除**。
 
