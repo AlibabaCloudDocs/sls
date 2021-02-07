@@ -27,10 +27,7 @@ When you log on to the [Log Service console](https://sls.console.aliyun.com) for
 
 ## Delete a project
 
-**Warning:**
-
--   If a project is created by using the Log Audit Service application or another cloud service, you cannot delete the project in the Log Service console. However, you can [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm?spm=a2796.7919406.0.dcontactus3.676a2d23RjosdV#/ticket/add/?productId=1210) to delete the project.
--   After you delete a project, all log data stored in the project and configurations of the project are deleted and cannot be restored. Proceed with caution.
+**Warning:** After you delete a project, all log data stored in the project and configurations of the project are deleted and cannot be restored. Proceed with caution.
 
 1.  In the **Projects** section, find the project that you want to delete, and then click **Delete** in the Actions column.
 
