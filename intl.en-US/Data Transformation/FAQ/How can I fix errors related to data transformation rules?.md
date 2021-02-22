@@ -83,7 +83,7 @@ Add logic to transform these error log events based on the error causes. You can
         Add logic to check whether the value of the `a` field is a valid timestamp. If not, export the log event to `target2`.
 
         ```
-        e_if_else(str_isdigit(v("a")))，e_set("b", dt_fromtimestamp(v("a")))， e_output("target2"))
+        e_if_else(str_isdigit(v("a"))), e_set("b", dt_fromtimestamp(v("a"))), e_output("target2"))
         ```
 
 -   The data type is not converted before a numeric operation.
