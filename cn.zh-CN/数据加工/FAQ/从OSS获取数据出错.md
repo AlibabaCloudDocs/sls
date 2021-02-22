@@ -1,18 +1,18 @@
-# 从OSS获取数据出错 {#concept_2070584 .concept}
+# 从OSS获取数据出错
 
 如果加工规则中涉及OSS资源的加载，则有可能会产生资源的加载或刷新错误。本文档主要介绍从OSS获取数据出错的原因以及排查处理方法。
 
 在成功读取源Logstore数据后，加工引擎开始对源Logstore的日志事件进行加工。如果加工规则中涉及OSS、RDS、Logstore等外联资源的加载，则也有可能会产生资源的加载或刷新错误。
 
-## 错误影响 {#section_ews_us8_v77 .section}
+## 错误影响
 
-请参见[错误影响](cn.zh-CN/数据加工/FAQ/加工规则错误.md#section_sfw_25f_ey4)。
+请参见[错误影响](/cn.zh-CN/数据加工/FAQ/加工规则错误.md)。
 
-## 错误排查方法 {#section_aq6_6q0_388 .section}
+## 错误排查方法
 
-请参见[错误排查方法](cn.zh-CN/数据加工/FAQ/加工规则错误.md#section_y8b_0ev_nkn)。
+请参见[错误排查方法](/cn.zh-CN/数据加工/FAQ/加工规则错误.md)。
 
-## OSS获取数据常见出错样例 {#section_pwb_iqj_zjj .section}
+## OSS获取数据常见出错样例
 
 **说明：** 下文中AK\_ID和AK\_KEY为AccessKeyId和AccessKeySecret的简称。
 
@@ -22,7 +22,7 @@
 
     -   加工规则样例
 
-        ``` {#codeblock_syh_ebw_eeb}
+        ```
         # 假设正确目录是test
         e_set("oss_file",res_oss_file(endpoint, ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), bucket, 'data/test.txt', format='text', change_detect_interval=20))
         # 此格式在test中不存在
@@ -31,7 +31,7 @@
 
     -   错误日志
 
-        ``` {#codeblock_cch_ohy_g9a}
+        ```
         message:  Exception: {'status': 404, 'x-oss-request-id': '5D49****878', 'details': {'Code': 'NoSuchKey', 'Message': 'The specified key does not exist.', 'RequestId': '5D4***8878', 'HostId': 'lo***g.oss-cn-hangzhou.aliyuncs.com', 'Key': 'oss/test.txt'}}
         ```
 
@@ -43,7 +43,7 @@
 
         将`res_oss_file`函数加工编排中的`file`参数改成正确的文件目录即可。
 
-        ``` {#codeblock_0jq_g7j_low}
+        ```
         # 假如正确的目录是test
         e_set("oss_file",res_oss_file(endpoint, ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), bucket, 'test/test.txt', format='text', change_detect_interval=20))
         ```
@@ -54,13 +54,13 @@
 
     -   加工规则样例
 
-        ``` {#codeblock_27x_nvt_8ca}
-        e_set("oss_file",res_oss_file(endpoint, ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), bucket, 'test/test.txt', format='text', change_detect_interval=20，encoding='unicode'))
+        ```
+        e_set("oss_file",res_oss_file(endpoint, ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), bucket, 'test/test.txt', format='text', change_detect_interval=20, encoding='unicode'))
         ```
 
     -   错误日志
 
-        ``` {#codeblock_mxq_gab_m9i}
+        ```
         {
           "reason": "LookupError: unknown encoding: unicode"
         }
@@ -74,7 +74,7 @@
 
         将`res_oss_file`函数加工编排中的`encoding`参数改成正确的解码格式即可。
 
-        ``` {#codeblock_4yz_3mr_j3n}
+        ```
         # 假如正确的解码格式是utf8
         e_set("oss_file",res_oss_file(endpoint, ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), bucket, 'test/test.txt', format='text', change_detect_interval=20,encoding='utf8'))
         ```
@@ -86,13 +86,13 @@
     -   Endpoint不存在。
         -   加工规则样例
 
-            ``` {#codeblock_xvv_jnl_exl}
+            ```
             e_set("oss_file",res_oss_file("https://oss-cn-asd.aliyuncs.com", ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), 'your bucket', 'test/test.txt', format='text', change_detect_interval=20))
             ```
 
         -   错误日志
 
-            ``` {#codeblock_vi2_60u_6xk}
+            ```
             message:  get_oss_bytes get errors:{'status': -2, 'x-oss-request-id': '', 'details': "RequestError: HTTPSConnectionPool(host='log-etl-staging.oss-cn-asd.aliyuncs.com', port=443)
             ```
 
@@ -110,13 +110,13 @@
 
         -   加工规则样例
 
-            ``` {#codeblock_y59_qhv_yxs}
+            ```
             e_set("oss_file",res_oss_file("https://oss-cn-shanghai.aliyuncs.com", ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), 'your bucket', 'test/test.txt', format='text', change_detect_interval=20))
             ```
 
         -   错误日志
 
-            ``` {#codeblock_chz_euq_gna}
+            ```
             message:  get_oss_bytes get errors:{'status': 403, 'x-oss-request-id': '5D7219353A90A2852B234D14', 'details': {'Code': 'AccessDenied', 'Message': 'The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.', 'RequestId': '5D7**14', 'HostId': 'log-**.oss-cn-shanghai.aliyuncs.com', 'Bucket': 'log-**', 'Endpoint': 'oss-cn-hangzhou.aliyuncs.com'}}
             ```
 
@@ -135,13 +135,13 @@
 
         -   加工规则样例
 
-            ``` {#codeblock_96o_33f_r2k}
+            ```
             e_set("oss_file",res_oss_file(endpoint, ak_id=res_local("AK_ID"),ak_key=res_local("AK_KEY"), 'your bucket', 'test/test.txt', format='text', change_detect_interval=20))
             ```
 
         -   错误日志
 
-            ``` {#codeblock_9rq_r9i_f1g}
+            ```
             message: Exception: {'status': 403, 'x-oss-request-id': '5D***BEB6', 'details': {'Code': 'InvalidAccessKeyId', 'Message': 'The OSS Access Key Id you provided does not exist in our records.', 'RequestId': '5D4***BEB6', 'HostId': 'lo***g.oss-cn-hangzhou.aliyuncs.com', 'OSSAccessKeyId': 'LT***Ai'}}
             ```
 
@@ -159,7 +159,7 @@
 
         -   加工规则样例
 
-            ``` {#codeblock_kw7_ghp_int}
+            ```
             e_set("oss_file",res_oss_file(endpoint='http://oss-cn-hangzhou.aliyuncs.com',ak_id=os.getenv("SLS_ACCESS_KEY_ID"),
                                  ak_key=os.getenv("SLS_ACCESS_KEY_SECRET"),
                                  bucket='log', file='test.txt',
@@ -168,7 +168,7 @@
 
         -   错误日志
 
-            ``` {#codeblock_tx8_k3j_zzq}
+            ```
             message: Exception: {'status': 403, 'x-oss-request-id': '5D674CE8BE0EBC45166026C5', 'details': {'Code': 'AccessDenied', 'Message': 'You have no right to access this object because of bucket acl.', 'RequestId': '5D4***BEB6', 'HostId': 'log.oss-cn-hangzhou.aliyuncs.com'}}
             ```
 
@@ -186,7 +186,7 @@
 
         -   加工规则样例
 
-            ``` {#codeblock_1z9_n6s_sar}
+            ```
             e_set("oss_file",res_oss_file(endpoint='http://oss-cn-hangzhou.aliyuncs.com',ak_id=os.getenv("SLS_ACCESS_KEY_ID"),
                                  ak_key=os.getenv("SLS_ACCESS_KEY_SECRET"),
                                  bucket='twiss', file='test.txt',
@@ -195,7 +195,7 @@
 
         -   错误日志
 
-            ``` {#codeblock_ig7_c52_yas}
+            ```
             message: Exception: {'status': 404, 'x-oss-request-id': '5D75F6E9BB4097C678A381EF', 'details': {'Code': 'NoSuchBucket', 'Message': 'The specified bucket does not exist.', 'RequestId': '5D75F6E9BB4097C678A381EF', 'HostId': 'twiss.oss-cn-hangzhou.aliyuncs.com', 'BucketName': 'twiss'}}
             ```
 
@@ -213,7 +213,7 @@
 
     -   如下日志表示第一次可能因为网络问题获取资源失败，准备重试。
 
-        ``` {#codeblock_ptq_zb4_dgs}
+        ```
         {
           "reason":"Failed to pull data from oss for the first time and it is preparing to re-pull ..."
         }
@@ -221,7 +221,7 @@
 
     -   如下日志表示后台每隔一段时间进行更新，新资源函数获取数据失败，准备重试。
 
-        ``` {#codeblock_25t_mpb_2rl}
+        ```
         {
           "reason":"get_oss_byte get errors,begin retry ..."
         }
@@ -229,7 +229,7 @@
 
     -   如下日志表示重试失败，准备再次重试，最多重试三次。
 
-        ``` {#codeblock_op4_n2p_p5t}
+        ```
         {
           "reason":"get_oss_byte get errors,refresh_interval ..."
         }
