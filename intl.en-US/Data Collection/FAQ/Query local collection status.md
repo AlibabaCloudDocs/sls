@@ -1,27 +1,27 @@
-# Query local collection status {#concept_rf1_43q_zdb .concept}
+# Query local collection status
 
 Logtail is used to query its own health status and log collection progress, helping you troubleshoot log collection issues and customize status monitoring for log collection.
 
-1.  [User guide](#section_ebd_jjs_zdb) 
+1.  [User guide](#section_ebd_jjs_zdb)
     1.  [all command](#section_wmp_rjs_zdb)
     2.  [active command](#section_yml_cks_zdb)
     3.  [logstore command](#section_uxb_kks_zdb)
     4.  [logfile command](#section_png_vks_zdb)
     5.  [history command](#section_rzj_cls_zdb)
 2.  [Return values](#section_ff4_hls_zdb)
-3.  [Use cases](#section_ysz_pls_zdb) 
+3.  [Use cases](#section_ysz_pls_zdb)
     1.  [Monitor the running status of Logtail](#section_jcw_rls_zdb)
     2.  [Monitor log collection progress](#section_tsq_sls_zdb)
     3.  [Determine whether or not Logtail has finished collecting log files](#section_uxz_tls_zdb)
     4.  [Troubleshoot log collection issues](#section_gg1_vls_zdb)
 
-## User guide {#section_ebd_jjs_zdb .section}
+## User guide
 
-If a Logtail client supporting status query function is installed, you can query local log collection status by entering commands on the client. To install Logtail, see [Install Logtail in Linux](../../../../reseller.en-US/Data Collection/Logtail collection/Install/Install Logtail in Linux.md#).
+If a Logtail client supporting status query function is installed, you can query local log collection status by entering commands on the client. To install Logtail, see [Install Logtail in Linux](/intl.en-US/Data Collection/Logtail collection/Install/Install Logtail in Linux.md).
 
 Enter the `/etc/init.d/ilogtaild -h` command on the client to check if the client supports querying local log collection status. If the `logtail insight, version` keyword is returned, it indicates that this function is supported on the Logtail client.
 
-``` {#codeblock_83m_x40_5ik}
+```
 /etc/init.d/ilogtaild -h
 Usage: ./ilogtaild { start | stop (graceful, flush data and save checkpoints) | force-stop | status | -h for help}$
 logtail insight, version : 0.1.0
@@ -49,16 +49,16 @@ Currently, Logtail supports the following query commands, command functions, tim
 |logfile|Query the collection status of a log file.|Last 600 min|10 minutes.|
 |history|Query the collection status of a Logstore or log file over a period of time.|Last 600 min|10 minutes.|
 
-**Note:** 
+**Note:**
 
 -   The `index` parameter in the command represents the index value of the time window, which is counted from the current time. Its valid range is 1–60. If the time window for statistics is one minute, windows in the last `(index, index-1]` minutes are queried. If the time window for statistics is 10 minutes, windows in the last `(10*index, 10*(index-1)]` minutes are queried.
 -   All query commands belong to status subcommands, so the main command is status.
 
-## all command {#section_wmp_rjs_zdb .section}
+## all command
 
 Command format
 
-``` {#codeblock_sxj_ajj_gb4}
+```
 /etc/init.d/ilogtaild status all [ index ] 
 ```
 
@@ -66,7 +66,7 @@ Command format
 
 Example
 
-``` {#codeblock_nif_5k3_o95}
+```
 /etc/init.d/ilogtaild status all 1
 ok
 /etc/init.d/ilogtaild status all 10
@@ -80,21 +80,21 @@ Output description
 |ok|The current status is normal.|None.|No action is needed.|
 |busy|The current collection speed is high and the Logtail status is normal.|None.|No action is needed.|
 |many\_log\_files|The number of logs being collected is large.|Low|Check if the configuration contains files that do not need to be collected.|
-|process\_block|Current log parsing is blocked.|Low|Check if logs are generated too quickly. If you still get this output, [Set startup parameters](../../../../reseller.en-US/Data Collection/Logtail collection/Install/Set startup parameters.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
-|send\_block|Current sending is blocked.|Relatively high|blocked. Check if logs are generated too quickly and if the network status is normal. If you still get this output, [Set startup parameters](../../../../reseller.en-US/Data Collection/Logtail collection/Install/Set startup parameters.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
-|send\_error|Failed to upload log data.|High|To troubleshoot the issue, see [Diagnose collection errors](reseller.en-US/FAQ/Log collection/Diagnose collection errors.md).|
+|process\_block|Current log parsing is blocked.|Low|Check if logs are generated too quickly. If you still get this output, [Configure the startup parameters of Logtail](/intl.en-US/Data Collection/Logtail collection/Install/Configure the startup parameters of Logtail.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
+|send\_block|Current sending is blocked.|Relatively high|blocked. Check if logs are generated too quickly and if the network status is normal. If you still get this output, [Configure the startup parameters of Logtail](/intl.en-US/Data Collection/Logtail collection/Install/Configure the startup parameters of Logtail.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
+|send\_error|Failed to upload log data.|High|To troubleshoot the issue, see [Diagnose collection errors]().|
 
-## active command {#section_yml_cks_zdb .section}
+## active command
 
 Command format
 
-``` {#codeblock_z5h_vp6_srq}
+```
 /etc/init.d/ilogtaild status active [--logstore] index
  /etc/init.d/ilogtaild status active --logfile index project-name logstore-name
-				
+                
 ```
 
-**Note:** 
+**Note:**
 
 -   The `active [--logstore] index` command is used to query Logstores that are currently active. The `--logstore` parameter can be omitted without changing the meaning of the command.
 -   The `active --logfile index project-name logstore-name` command is used to query all active log files in a Logstore for a project.
@@ -102,7 +102,7 @@ Command format
 
 Example
 
-``` {#codeblock_n78_vr1_q4y}
+```
 /etc/init.d/ilogtaild status active 1
 sls-zc-test : release-test
 sls-zc-test : release-test-ant-rpc-3
@@ -117,16 +117,16 @@ Output description
 -   To run the `active --logstore index` command, all currently active Logstores are output in the format of `project-name : logstore-name` . To run the `active --logfile index project-name logstore-name` command, the complete paths of active log files are output.
 -   A Logstore or log file with no log collection activity in the current query window does not appear in the output.
 
-## logstore command {#section_uxb_kks_zdb .section}
+## logstore command
 
 Command format
 
-``` {#codeblock_ese_j0a_hdk}
+```
 /etc/init.d/ilogtaild status logstore [--format={line|json}] index project-name logstore-name
-				
+                
 ```
 
-**Note:** 
+**Note:**
 
 -   The logstore command is used to output the collection statuses of the specified project and Logstore in LINE or JSON format.
 -   If the`--format=` parameter is not configured, `--format=line` is selected by default. The echo information is output in LINE format. Note that `--format` parameter must be placed behind `logstore` .
@@ -134,7 +134,7 @@ Command format
 
 Example
 
-``` {#codeblock_8mg_o6s_5mz}
+```
 /etc/init.d/ilogtaild status logstore 1 sls-zc-test release-test-same
 time_begin_readable : 17-08-29 10:56:11
 time_end_readable : 17-08-29 11:06:11
@@ -223,21 +223,21 @@ Logstore status
 |Status|Meaning|Handling method|
 |:-----|:------|:--------------|
 |ok|The status is normal.|No action is needed.|
-|process\_block|Log parsing is blocked.|Check if logs are generated too quickly. If you still get this output, Configure [Set startup parameters](../../../../reseller.en-US/Data Collection/Logtail collection/Install/Set startup parameters.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
+|process\_block|Log parsing is blocked.|Check if logs are generated too quickly. If you still get this output, Configure [Configure the startup parameters of Logtail](/intl.en-US/Data Collection/Logtail collection/Install/Configure the startup parameters of Logtail.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
 |parse\_fail|Log parsing failed.|Check whether or not the log format is consistent with the log collection configuration.|
-|send\_block|Current sending is blocked.|blocked. Check if logs are generated too quickly and if the network status is normal. If you still get this output, [Set startup parameters](../../../../reseller.en-US/Data Collection/Logtail collection/Install/Set startup parameters.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
-|sender\_invalid|An exception occurred when sending log data.|Check the network status. If the network is normal, see [Diagnose collection errors](reseller.en-US/FAQ/Log collection/Diagnose collection errors.md) in Query diagnosis errors to troubleshoot the issue.|
+|send\_block|Current sending is blocked.|blocked. Check if logs are generated too quickly and if the network status is normal. If you still get this output, [Configure the startup parameters of Logtail](/intl.en-US/Data Collection/Logtail collection/Install/Configure the startup parameters of Logtail.md#) as per your needs to modify the upper limit of CPU usage or the limit on concurrent sending by using network.|
+|sender\_invalid|An exception occurred when sending log data.|Check the network status. If the network is normal, see [Diagnose collection errors]() in Query diagnosis errors to troubleshoot the issue.|
 
-## logfile command {#section_png_vks_zdb .section}
+## logfile command
 
 Command format
 
-``` {#codeblock_0ta_1pu_coa}
+```
 /etc/init.d/ilogtaild status logfile [--format={line|json}] index project-name logstore-name fileFullPath
-				
+                
 ```
 
-**Note:** 
+**Note:**
 
 -   The logfile command is used to output the collection status of a specific log file in LINE or JSON format.
 -   If the `--format=` parameter is not configured,`--format=line` is selected by default. The echo information is output in LINE format.
@@ -247,7 +247,7 @@ Command format
 
 Example
 
-``` {#codeblock_yb5_3gf_d46}
+```
 /etc/init.d/ilogtaild status logfile 1 sls-zc-test release-test-same /disk2/test/normal/access.log
 time_begin_readable : 17-08-29 11:16:11
 time_end_readable : 17-08-29 11:26:11
@@ -316,16 +316,16 @@ Output description
 |read\_count|The number of times that logs are read in the window.|Number of times|
 |avg\_delay\_bytes|The average of the differences between the current offset and the file size each time logs are read in the window.|Byte|
 
-## history command {#section_rzj_cls_zdb .section}
+## history command
 
 Command format
 
-``` {#codeblock_e3o_ij1_ghw}
+```
 /etc/init.d/ilogtaild status history beginIndex endIndex project-name logstore-name [fileFullPath]
-				
+                
 ```
 
-**Note:** 
+**Note:**
 
 -   The history command is used to query the collection status of a Logstore or log file over a period of time.
 -   `beginIndex` and `endIndex` represent the start and end values for the code query window index respectively. `beginIndex <= endIndex`.
@@ -333,7 +333,7 @@ Command format
 
 Example
 
-``` {#codeblock_62i_0ec_6nu}
+```
 /etc/init.d/ilogtaild status history 1 3 sls-zc-test release-test-same /disk2/test/normal/access.log
         begin_time status read parse_success parse_fail      last_read_time read_count avg_delay device inode file_size read_offset
  17-08-29 11:26:11 ok 62.12MB 231000 0 17-08-29 11:36:11 671 0B 64800 22544459 18.22MB 18.22MB
@@ -352,13 +352,13 @@ Output description
 -   This command outputs historical collection information of a Logstore or log file in the form of list, one line for each window.
 -   For the description of each output field, see the `logstore` and `logfile` commands.
 
-## Return values {#section_ff4_hls_zdb .section}
+## Return values
 
 Normal return value
 
 0 is returned if a command input is valid \(including failure to query a Logstore or log file\), for example:
 
-``` {#codeblock_cpa_u9o_4jo}
+```
 /etc/init.d/ilogtaild status logfile --format=json 1 error-project error-logstore /no/this/file
 null
 echo $?
@@ -383,7 +383,7 @@ A non-zero return value indicates an exception. See the following table.
 
 Example
 
-``` {#codeblock_ji1_er7_zhw}
+```
 /etc/init.d/ilogtaild status nothiscmd
 invalid param, use -h for help.
 echo $?
@@ -394,11 +394,11 @@ echo $?
 1
 ```
 
-## Use cases {#section_ysz_pls_zdb .section}
+## Use cases
 
 You can obtain the overall status of Logtail by querying its health status, and obtain the related metrics during collection by querying the collection progress. With the obtained information, you can monitor log collection in a customized manner.
 
-## Monitor the running status of Logtail {#section_jcw_rls_zdb .section}
+## Monitor the running status of Logtail
 
 Monitor the running status of Logtail by using the `all` command.
 
@@ -406,7 +406,7 @@ How it works: The current status of Logtail is queried every minute. If Logtail 
 
 The alarm duration and the status range being monitored can be adjusted according to the importance of log collection in specific scenarios.
 
-## Monitor log collection progress {#section_tsq_sls_zdb .section}
+## Monitor log collection progress
 
 Monitor the collection progress of a Logstore by using the `logstore` command.
 
@@ -414,23 +414,23 @@ How it works: The `logstore` command is called every ten minutes to obtain the s
 
 The `avg_delay_bytes` alarm threshold can be adjusted according to the log collection traffic.
 
-## Determine whether or not Logtail has finished collecting log files {#section_uxz_tls_zdb .section}
+## Determine whether or not Logtail has finished collecting log files
 
-Determine whether or not Logtail has finished collecting log files by using the `logfile`command.
+Determine whether or not Logtail has finished collecting log files by using the `logfile` command.
 
 How it works: After writing to the log file stops, the `logfile` command is called every ten minutes to obtain the status information of this file. If this file shows the same value for `read_offset_bytes` and `file_size_bytes` , it means that Logtail has finished collecting this log file.
 
-## Troubleshoot log collection issues {#section_gg1_vls_zdb .section}
+## Troubleshoot log collection issues
 
 If the log collection is delayed on a server, use the `history` command to query related collection information on this server.
 
 1.  If the `send_block_flag` is true, it indicates that the log collection delays because of the network.
-    -   If the `send_network_quota_count`is greater than 0, you must split the [Shard](reseller.en-US/Preparation/Manage shards.md) of the Logstore.
-    -   If the `send_network_error_count`is greater than 0, you must check the network connectivity.
-    -   ◦If no related network error occurs, you must adjust the limit on concurrent sending and [traffic limit](reseller.en-US/Data Collection/Logtail collection/Install/Set startup parameters.md) of Logtail.
+    -   If the `send_network_quota_count` is greater than 0, you must split the [Shard](/intl.en-US/Data Collection/Preparation/Manage shards.md) of the Logstore.
+    -   If the `send_network_error_count` is greater than 0, you must check the network connectivity.
+    -   ◦If no related network error occurs, you must adjust the limit on concurrent sending and [traffic limit](/intl.en-US/Data Collection/Logtail collection/Install/Configure the startup parameters of Logtail.md) of Logtail.
 2.  Sending-related parameters are normal, but the `avg_delay_bytes` is relatively high.
     -   The average log parsing speed can be calculated by using `read_bytes` to determine if traffic generated by logs is normal.
-    -   [Resource usage limits](reseller.en-US/Data Collection/Logtail collection/Install/Set startup parameters.md) of Logtail can be adjusted as appropriate.
+    -   [Resource usage limits](/intl.en-US/Data Collection/Logtail collection/Install/Configure the startup parameters of Logtail.md) of Logtail can be adjusted as appropriate.
 3.  The `parse_fail_lines` is greater than 0.
 
     Check if the parsing configurations for log collection match with all the logs.
