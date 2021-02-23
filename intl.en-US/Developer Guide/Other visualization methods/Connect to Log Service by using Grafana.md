@@ -2,7 +2,7 @@
 
 This topic describes how to use Grafana to analyze and visualize NGINX logs that are collected by Log Service.
 
--   NGINX logs are collected. For more information, see [Collect logs in NGINX mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect NGINX logs.md).
+-   NGINX logs are collected. For more information, see [Collect logs in NGINX mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in NGINX mode.md).
 -   The indexing feature is enabled and configured. For more information, see [Collect and analyze NGINX access logs](/intl.en-US/Index and query/Best practices/Collect and analyze NGINX access logs.md).
 
 ## Step 1: Install Grafana and plug-ins
@@ -267,7 +267,7 @@ In the query result, `$hostname` is replaced by a specified domain name, and `$$
 
     -   Add a logs panel to show detailed logs.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#table_rh6_y1y_9va). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
 
         **Note:** Each page can show a maximum of 100 log entries. The maximum value of the **Logs Per Page** parameter is 100.
 
