@@ -62,6 +62,6 @@ After a RAM user is granted the AssumeRole permission, the RAM user calls the [A
 
 **Note:**
 
--   For more information about how to call the AssumeRole operation, see [Samples]().
+-   For more information about how to call the AssumeRole operation, see [SDK for Java](/intl.en-US/SDK Reference/STS SDK Reference/SDK for Java.md).
 -   After a RAM user obtains the AccessKey ID, AccessKey secret, and STS token, the RAM user can access Log Service by using the SDKs. For more information, see [Overview](/intl.en-US/Developer Guide/SDK Reference/Overview.md).
 
