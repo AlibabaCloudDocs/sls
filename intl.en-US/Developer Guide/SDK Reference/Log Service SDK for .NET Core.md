@@ -24,7 +24,7 @@ You can create a project to install Log Service SDK for .NET Core. The following
 
 1.  [Download Log Service SDK for .NET Core](https://github.com/aliyun/aliyun-log-dotnetcore-sdk).
 
-2.  Decompress the installation package aliyun-log-dotnetcore-sdk-master.zipto a specified directory.
+2.  Decompress the installation package aliyun-log-dotnetcore-sdk-master.zip to a specified directory.
 
 3.  Use Visual Studio 2019 to open the aliyun-log-dotnetcore-sdk-master\\Aliyun.Api.LogService.Examples\\Aliyun.Api.LogService.Examples.csproj file, and then debug and install the SDK.
 
