@@ -4,14 +4,14 @@ This topic describes how to use resource functions to pull data from Object Stor
 
 -   AccessKey pairs are created to access an OSS bucket. For more information, see [Create an AccessKey pair for a RAM user](/intl.en-US/Security Settings/AccessKey pairs/Create an AccessKey pair for a RAM user.md).
 
-    We recommend that you create an AccessKey pair that has read-only permissions on the OSS bucket and an AccessKey pair that has write-only permissions on OSS. This way, you can use the first AccessKey pair to read data from the OSS bucket and use the second AccessKey pair to write data to the OSS bucket. For more information, see [Implement access control based on RAM policies](/intl.en-US/Developer Guide/Data security/Access and control/RAM Policy/Implement access control based on RAM policies.md).
+    We recommend that you create an AccessKey pair that has read-only permissions on the OSS bucket and an AccessKey pair that has write-only permissions on OSS. This way, you can use the first AccessKey pair to read data from the OSS bucket and use the second AccessKey pair to write data to the OSS bucket. For more information, see [Overview](/intl.en-US/Developer Guide/Data security/Access and control/RAM Policy/Overview.md).
 
--   A comma-separated values \(CSV\) file is uploaded to the OSS bucket. For more information, see [Upload objects](/intl.en-US/Quick Start/Upload objects.md).
+-   A comma-separated values \(CSV\) file is uploaded to the OSS bucket. For more information, see [Upload objects](/intl.en-US/Quick Start/OSS console/Upload objects.md).
 
     We recommend that you use the AccessKey pair that has write-only permissions on the OSS bucket to upload the file.
 
 
-OSS provides secure, cost-effective, and highly reliable services for storing large amounts of data in the cloud. We recommend that you store infrequently updated data in OSS buckets. You are charged only for data storage. If your log data is distributed and incomplete, you can enrich your data by using OSS. The data transformation feature of Log Service provides multiple functions to transform data. You can use the [res\_oss\_file](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Resource functions.md) function to pull data from OSS and use the [tab\_parse\_csv](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Table functions.md)function to create a table. Then, you can use the [e\_table\_map](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Data mapping and enrichment functions.md) function to match the specified fields, return the specified fields and field values, and generate new log entries.
+OSS provides secure, cost-effective, and highly reliable services for storing large amounts of data in the cloud. We recommend that you store infrequently updated data in OSS buckets. You are charged only for data storage. If your log data is distributed and incomplete, you can enrich your data by using OSS. The data transformation feature of Log Service provides multiple functions to transform data. You can use the [res\_oss\_file](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Resource functions.md) function to pull data from OSS and use the [tab\_parse\_csv](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Table functions.md) function to create a table. Then, you can use the [e\_table\_map](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Data mapping and enrichment functions.md) function to match the specified fields, return the specified fields and field values, and generate new log entries.
 
 ## Examples
 
@@ -49,7 +49,7 @@ OSS provides secure, cost-effective, and highly reliable services for storing la
     |endpoint|The endpoint of OSS. For more information, see [Regions and endpoints](/intl.en-US/Developer Guide/Endpoint/Regions and endpoints.md).|
     |ak\_id|The AccessKey ID that has read permissions on OSS.For security concerns, we recommend that you set the value to res\_local\("AK\_ID"\). This value indicates that the AcessKey ID is obtained from the Advanced Parameter Settings field that you set in Log Service. For information about how to set the Advanced Parameter Settings field, see [Create a data transformation rule](/intl.en-US/Data Transformation/Create a data transformation rule.md).
 
-![AccessKey](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/0552813061/p136966.png) |
+![AccessKey](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0552813061/p136966.png) |
     |ak\_key|The AccessKey secret that has read permissions on OSS.For security concerns, we recommend that you set the value to res\_local\("AK\_KEY"\). This value indicates that the AcessKey secret is obtained from the Advanced Parameter Settings field that you set in Log Service. |
     |bucket|The OSS bucket that is used to store the CSV file.|
     |file|The name of the uploaded CSV file.|
