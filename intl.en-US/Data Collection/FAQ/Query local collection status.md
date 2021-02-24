@@ -243,7 +243,7 @@ Command format
 -   If the `--format=` parameter is not configured,`--format=line` is selected by default. The echo information is output in LINE format.
 -   If this log file does not exist or has no log collection activity in the current query window, you get an empty output in LINE format or a `null` value in JSON format.
 -   The `--format` parameter must be placed behind `logfile` .
--   The `filefullpath`must be a full path name.
+-   The `filefullpath` must be a full path name.
 
 Example
 
