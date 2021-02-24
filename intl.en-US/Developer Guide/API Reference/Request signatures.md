@@ -87,7 +87,7 @@ The value of the Authorization request header field contains an AccessKey ID and
                  + CanonicalizedResource
     ```
 
-    The `x-log-date`field is a custom HTTP request header field. For more information, see[Common request headers](/intl.en-US/Developer Guide/API Reference/Common request headers.md). If you specify this field in an API request, the value of this field will replace the value of the DATE header field in signature calculation.
+    The `x-log-date` field is a custom HTTP request header field. For more information, see [Common request headers](/intl.en-US/Developer Guide/API Reference/Common request headers.md). If you specify this field in an API request, the value of this field will replace the value of the DATE header field in signature calculation.
 
     -   The following procedure describes how to construct the CanonicalizedLOGHeaders string:
         1.  Convert the names of all HTTP request fields that are prefixed with `x-log` and `x-acs` into lowercase letters.
