@@ -65,7 +65,7 @@ Domain-specific language \(DSL\) supports three data types: datetime string, dat
 
 The following figure shows how to use functions to convert the three data types: datetime string, datetime object, and UNIX timestamp.
 
-![Convert data types](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2453749951/p58764.png)
+![Convert data types](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2453749951/p58764.png)
 
 The following table describes the conversion scenarios and conversion functions.
 
@@ -298,7 +298,7 @@ Three conversion scenarios and six conversion functions are described in the pre
 
         The parameters that end with \(s\), such as `year (s)`, `month (s)`, and `day (s)`, have two patterns. For example, year \(s\) can be `year` and `years`, and month \(s\) can be `month` and `months`. Take `year` and `years` as examples. If `year` is used in the syntax, the value of `year` replaces the value of year in raw log entries. If `years` is used in the syntax, the value of `years` is added to the value of year in raw log entries. You must use the `dt_add` function at the same time. This function allows you to add a value, subtract a value, or overwrite the value of a datetime.
 
-    -   The `weekday` parameter in the `dt_add`function is used together with the `dt_MO` and `dt_TU` parameters to offset a specified weekday. For more information, see [dt\_MO](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Date and time functions.md).
+    -   The `weekday` parameter in the `dt_add` function is used together with the `dt_MO` and `dt_TU` parameters to offset a specified weekday. For more information, see [dt\_MO](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Date and time functions.md).
 -   Scenario 1: Offset a datetime by year and month.
 
     The following example shows how to offset a datetime by year and month.
