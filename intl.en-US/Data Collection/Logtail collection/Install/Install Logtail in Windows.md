@@ -100,7 +100,7 @@ In the following example, the version of Logtail is 1.0.0.0.
 
 ## Start and stop Logtail
 
-1.  Choose**Start** \> **Control Panel** \> **Administrative Tools** \> **Services**.
+1.  Choose **Start** \> **Control Panel** \> **Administrative Tools** \> **Services**.
 
 2.  In the Services window, select the required service.
 
