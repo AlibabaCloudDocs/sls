@@ -2,7 +2,7 @@
 
 Alibaba Cloud Log Service SDKs are implemented based on [Overview](/intl.en-US/Developer Guide/API Reference/Overview.md) and currently provide the log writing function.
 
-GitHub：[https://github.com/aliyun/aliyun-log-ios-sdk](https://github.com/aliyun/aliyun-log-ios-sdk?spm=5176.doc43145.2.3.AKDn3Z)
+GitHub: [https://github.com/aliyun/aliyun-log-ios-sdk](https://github.com/aliyun/aliyun-log-ios-sdk?spm=5176.doc43145.2.3.AKDn3Z)
 
 ## Swift
 
