@@ -16,7 +16,7 @@ The log query feature of Function Compute collects the execution logs of functio
 ## Billing
 
 -   You are not charged for using the log query feature of Function Compute.
--   After function execution logs are collected by Log Service, you are charged for the storage space that the logs occupy, data reads, read/write requests, data transformation, and data shipping. For more information, see[Log Service pricing](https://www.alibabacloud.com/product/log-service/pricing?spm=a3c0i.139163.9288850920.1.7690637avzyiqo).
+-   After function execution logs are collected by Log Service, you are charged for the storage space that the logs occupy, data reads, read/write requests, data transformation, and data shipping. For more information, see [Log Service pricing](https://www.alibabacloud.com/product/log-service/pricing?spm=a3c0i.139163.9288850920.1.7690637avzyiqo).
 
 ## Limits
 
