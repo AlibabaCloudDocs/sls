@@ -15,11 +15,11 @@ The implementation of Log Service SDKs varies depending on programming languages
 
 |SDK language|Source code|
 |:-----------|:----------|
-|Java|[Log Service Java SDK](https://github.com/aliyun/aliyun-log-java-sdk)、[Log Service SDK for Java 0.6.0 API](http://log-java-docs.oss-cn-hangzhou.aliyuncs.com/)|
+|Java|[Log Service Java SDK](https://github.com/aliyun/aliyun-log-java-sdk) and [Log Service SDK for Java 0.6.0 API](http://log-java-docs.oss-cn-hangzhou.aliyuncs.com/)|
 |.NET Core|[aliyun-log-dotnetcore-sdk](https://github.com/aliyun/aliyun-log-dotnetcore-sdk)|
 |.NET|[Log Service csharp SDK](https://github.com/aliyun/aliyun-log-chsarp-sdk)|
 |PHP|[Log Service PHP SDK](https://github.com/aliyun/aliyun-log-php-sdk)|
-|Python|[Log Service Python SDK](https://github.com/aliyun/aliyun-log-python-sdk)、[User Guide](http://aliyun-log-python-sdk.readthedocs.io/README_CN.html)|
+|Python|[Log Service Python SDK](https://github.com/aliyun/aliyun-log-python-sdk) and [User Guide](http://aliyun-log-python-sdk.readthedocs.io/README_CN.html)|
 |Node.js|[Log Service Node.js SDK](https://github.com/aliyun-UED/aliyun-sdk-js/tree/master/samples/sls)|
 |C|[Log Service C SDK](https://github.com/aliyun/aliyun-log-c-sdk)|
 |GO|[Log Service Go SDK](https://github.com/aliyun/aliyun-log-go-sdk)|
