@@ -3,7 +3,7 @@
 This topic describes how to enable the log audit feature in the ApsaraDB for MongoDB console to send audit logs to Log Service.
 
 -   Log Service is activated.
--   An ApsaraDB for MongoDB replica set instance or sharded cluster instance is created. For more information, see [Create a replica set instance](/intl.en-US/Quick Start for Replica Set/Create a replica set instance.md)、[Create a sharded cluster instance](/intl.en-US/Quick Start for Cluster/Create a sharded cluster instance.md).
+-   An ApsaraDB for MongoDB replica set instance or sharded cluster instance is created. For more information, see [Create a replica set instance](/intl.en-US/Quick Start/Create an instance/Create a replica set instance.md) and [Create a sharded cluster instance](/intl.en-US/Quick Start/Create an instance/Create a sharded cluster instance.md).
 
 1.  Log on to the [ApsaraDB for MongoDB console](https://mongodb.console.aliyun.com/).
 
