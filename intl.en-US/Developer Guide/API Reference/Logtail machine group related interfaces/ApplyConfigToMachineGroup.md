@@ -81,7 +81,7 @@ The value of the Host parameter consists of a project name and Log Service endpo
 |:---------------|:---------|:------------|-----------|
 |404|ProjectNotExist|The Project does not exist : projectName|The error message returned because the specified project does not exist.|
 |404|GroupNotExist|group groupName does not exist.|The error message returned because the specified machine group does not exist.|
-|404|ConfigNotExist|Config configNamdoes not exist.|The error message returned because the specified Logtail configuration file does not exist.|
+|404|ConfigNotExist|Config configName does not exist.|The error message returned because the specified Logtail configuration file does not exist.|
 |500|InternalServerError|Internal server error.|The error message returned because an internal server error has occurred.|
 
 For more information about the error codes, see [Common error codes](/intl.en-US/Developer Guide/API Reference/Common error codes.md).
