@@ -119,8 +119,8 @@ This topic describes the smooth functions that you can use to smooth and filter 
     |:--------|:----------|:----|
     |x|The time sequence. Points in time are sorted in ascending order along the horizontal axis.|Each point in time is a Unix timestamp. Unit: seconds.|
     |y|The sequence of numeric data corresponding to each specified point in time.|N/A.|
-    |array\[\]|Used to calculate the filter coefficients related to x i.for the IIR filter.|The value is an array where the sum of elements is 1. Valid lengths of elements: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, and 15. Example: array\[0.2, 0.4, 0.3, 0.1\].|
-    |array\[\]|The type of the filter that specifies the algorithm to compute the filter coefficients related to y i-1for the IIR filter.|The value is an array where the sum of elements is 1. Valid lengths of elements: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, and 15. Example: array\[0.2, 0.4, 0.3, 0.1\].|
+    |array\[\]|Used to calculate the filter coefficients related to x i for the IIR filter.|The value is an array where the sum of elements is 1. Valid lengths of elements: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, and 15. Example: array\[0.2, 0.4, 0.3, 0.1\].|
+    |array\[\]|The type of the filter that specifies the algorithm to compute the filter coefficients related to y i-1 for the IIR filter.|The value is an array where the sum of elements is 1. Valid lengths of elements: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, and 15. Example: array\[0.2, 0.4, 0.3, 0.1\].|
 
 -   Examples
     -   The query statement is as follows:
