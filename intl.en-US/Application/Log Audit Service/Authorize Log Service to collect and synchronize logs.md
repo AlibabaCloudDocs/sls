@@ -187,7 +187,7 @@ The Log Audit Service application of Log Service involves multiple authorization
 
 1.  Obtain the IDs of the Alibaba Cloud accounts.
 
-    1.  Log on to the [Account Management console](https://account-intl.console.aliyun.com/).
+    1.  Log on to the[Account Management console](https://account-intl.console.aliyun.com/).
 
         Log on to the console by using each Alibaba Cloud account.
 
@@ -282,7 +282,7 @@ The Log Audit Service application of Log Service involves multiple authorization
         }
         ```
 
-    4.  Create a role named sls-audit-service-monitorand attach the AliyunLogAuditServiceMonitorAccess policy to the role.
+    4.  Create a role named sls-audit-service-monitor and attach the AliyunLogAuditServiceMonitorAccess policy to the role.
 
         1.  In the left-side navigation pane, click **RAM Roles**. On the page that appears, click **Create RAM Role**. The Create RAM Role wizard appears.
         2.  In the Select Role Type step, select **Alibaba Cloud Service**, and then click **Next**.
