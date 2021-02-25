@@ -113,7 +113,7 @@ After reading data from a Logstore, the data transformation engine starts to tra
 -   Error message 2
 
     ```
-    message:  Database connection failed, cause: (1049, "Unknown database 'test999'"）
+    message:  Database connection failed, cause: (1049, "Unknown database 'test999'")
     ```
 
 -   Cause
