@@ -187,7 +187,7 @@ The Log Audit Service application of Log Service involves multiple authorization
 
 1.  Obtain the IDs of the Alibaba Cloud accounts.
 
-    1.  Log on to the[Account Management console](https://account-intl.console.aliyun.com/).
+    1.  Log on to the [Account Management console](https://account-intl.console.aliyun.com/).
 
         Log on to the console by using each Alibaba Cloud account.
 
