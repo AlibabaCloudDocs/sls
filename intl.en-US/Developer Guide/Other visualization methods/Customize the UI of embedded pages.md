@@ -87,7 +87,7 @@ The following examples show the URL parameters and results:
     https://sls4service.console.aliyun.com/lognext/project/$\{ProjectName\}/logsearch/$\{LogstoreName\}?hiddenBack=true&hiddenChangeProject=true&hiddenOverview=true&hideTopbar=true
     ```
 
-    ![Hide settings](../images/p143369.png)
+    ![Hide settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2389374161/p143369.png)
 
 -   To hide the left-side navigation pane, use the following URL:
 
