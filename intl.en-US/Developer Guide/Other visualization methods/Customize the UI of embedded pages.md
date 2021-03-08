@@ -33,13 +33,13 @@ The following table describes the common parameters that you can use to customiz
 -   savedsearch: saved searches
 -   dashboard: dashboards
 
- **Note:**
+**Note:**
 
 -   A hyphen \(-\) indicates a fuzzy match.
 -   The value of the parameter must be in the JSON format and encoded by using the encodeURI function.
 
 |\{"logstore":\["logstore-xx"\],"savedsearch":\["savedsearch-xx"\],"dashboard":\["dashboard-xx"\]\}|
-|queryTimeType|long|No|Specifies the time range of a query. For more information, see [Table 1](#table_67f_tyr_y57). Valid values: -   1 to 26: Each integer in the interval indicates a time range.
+|queryTimeType|long|No|Specifies the time range of a query. For more information, see [Table 1](#table_67f_tyr_y57). Valid values:-   1 to 26: Each integer in the interval indicates a time range.
 -   -2: a custom time range \(relative\). You must specify a start time and end time. Example: start:-10m,end:now.
 -   -3: a custom time frame. You must specify a start time and end time. Example: start:-2h,end:absolute.
 -   99: a custom time range. If you set queryTimeType to 99, you must set the startTime and endTime parameters to timestamps.
@@ -327,7 +327,7 @@ The following example shows the related parameters in the treeConfig parameter:
 |Parameter|Type|Required|Description|
 |---------|----|--------|-----------|
 |logstore|Object|No|Manages Logstores.|
-|template|string\[\]|No|Manages the Logstore list. For more information, see[Table 4](#table_4ta_5g9_u9i).|
+|template|string\[\]|No|Manages the Logstore list. For more information, see [Table 4](#table_4ta_5g9_u9i).|
 |machineGroup|Object|No|Manages machine groups.|
 |savedSearch|Object|No|Manages saved searches.|
 |alert|Object|No|Manages alerts.|
