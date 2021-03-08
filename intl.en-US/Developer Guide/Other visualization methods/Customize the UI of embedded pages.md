@@ -358,8 +358,6 @@ To customize the left-side navigation pane, use the following URL:
 https://sls4service.console.aliyun.com/lognext/project/$\{ProjectName\}/logsearch/$\{LogstoreName\}?treeconfig=eyJsb2dzdG9yZSI6eyJleHBhbmQiOnRydWUsInJlc291cmNlTGlzdCI6WyJkZWxldGUtbG9nIl0sInRlbXBsYXRlIjpbInNhdmVkc2VhcmNoIiwiYWxlcnQiXX19&hiddenBack=true&hiddenChangeProject=true&hiddenOverview=true&hideTopbar=true&treeEncode=base64&ignoreTabLocalStorage=true
 ```
 
-![Tree structure](../images/p143404.png)
-
 ## Advanced dashboard parameters
 
 If you embed an inline frame into a dashboard, the height of the inline frame cannot be calculated. The scroll bar of the dashboard and the scroll bar of the inline frame may appear at the same time. In this case, you can set advanced dashboard parameters to adjust the dashboard height.
