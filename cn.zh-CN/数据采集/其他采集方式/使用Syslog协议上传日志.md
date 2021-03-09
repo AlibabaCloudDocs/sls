@@ -106,7 +106,7 @@ syslog-ng是基于syslog协议的Unix和类Unix系统的开源软件。您可以
          template(LogServiceFormat)); 
     }; 
     log { 
-         source(s_src); # default use s_src 
+         source(s_sys); # default use s_sys 
          destination(d_logservice); 
     }; 
     ### END Syslog-ng Logging Config for LogService ###
@@ -127,7 +127,7 @@ syslog-ng是基于syslog协议的Unix和类Unix系统的开源软件。您可以
 
 **说明：** 为避免泄露AccessKey信息，日志服务默认将上报的Logservice字段删除。
 
-![日志样例](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/4140559951/p42014.png)
+![日志样例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/4140559951/p42014.png)
 
 |字段名|说明|
 |---|--|
