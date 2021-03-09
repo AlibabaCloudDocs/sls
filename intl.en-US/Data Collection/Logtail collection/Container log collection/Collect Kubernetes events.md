@@ -6,7 +6,7 @@ Log Service allows you to collect events from Kubernetes by using the kube-event
 
 -   Kube-eventer
 
-    For more information about the source code for Kubernetes event collection, see[GitHub](https://github.com/AliyunContainerService/heapster/tree/master/events).
+    For more information about the source code for Kubernetes event collection, see [GitHub](https://github.com/AliyunContainerService/heapster/tree/master/events).
 
 -   K8s Event Center \(recommended\)
 
