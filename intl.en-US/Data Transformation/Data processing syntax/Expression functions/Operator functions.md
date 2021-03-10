@@ -2,44 +2,46 @@
 
 This topic describes the syntax of operator functions and provides parameter descriptions and function examples.
 
+**Note:** If the value is negative, use the op\_neg \(positive\) function. For example, if you want to represent `-1`, use the op\_neg\(1\) function.
+
 ## Functions
 
 |Type|Function|Description|
 |----|--------|-----------|
 |Conditional functions and logical functions|[op\_if](#section_mig_jki_hlv)|Returns the expression based on a condition that you specify.|
 |[op\_ifnull](#section_ckd_wda_tbl) and [op\_coalesce](#section_meh_y8z_mvp)|Returns the value of the first expression whose value is not None.|
-|[op\_nullif](#section_4x5_inl_e6f)|Returns the value None if Expression 1 is equal to Expression 2, or returns Expression 1 if Expression 1 is not equal to Expression 2.|
-|[op\_and](#section_6dn_e26_731)|Invokes the AND operation.|
-|[op\_not](#section_3s2_73o_7q8)|Invokes the NOT operation.|
-|[op\_or](#section_43p_je3_xy4)|Invokes the OR operation.|
-|Comparison functions|[op\_eq](#section_25s_uy4_zym)|Returns the result calculated based on the `a==b` condition. The data type of a and b must the same. For example, a and b are both strings, numbers, or lists.|
-|[op\_ge](#section_2yu_xtl_if2)|Returns the result calculated based on the `a>=b` condition. The data type of a and b must the same. For example, a and b are both strings, numbers, or lists.|
-|[op\_gt](#section_8ze_80f_4zk)|Returns the result calculated based on the `a>b` condition. The values of the a and b parameters must be of the same data type. For example, their values are both strings, numbers, or lists.|
-|[op\_le](#section_z60_nkx_zqz)|Returns the result calculated based on the `a<=b` condition. The values of the a and b parameters must be of the same data type. For example, their values are both strings, numbers, or lists.|
-|[op\_lt](#section_nz6_t7d_c11)|Returns the result calculated based on the `a<b` condition. The data type of a and b must the same. For example, a and b are both strings, numbers, or lists.|
-|[op\_ne](#section_azh_rkp_sgy)|Returns the result calculated based on the `a! =b` condition. The data type of a and b must the same. For example, a and b are both strings, numbers, or lists.|
+|[op\_nullif](#section_4x5_inl_e6f)|Returns the value None if the value of Expression 1 is equal to the value of Expression 2. Otherwise, Expression 1 is returned.|
+|[op\_and](#section_6dn_e26_731)|Invokes the AND operation to evaluate all types of fields as true or false.|
+|[op\_not](#section_3s2_73o_7q8)|Invokes the NOT operation to evaluate all types of fields as true or false.|
+|[op\_or](#section_43p_je3_xy4)|Invokes the OR operation to evaluate all types of fields as true or false.|
+|Comparison functions|[op\_eq](#section_25s_uy4_zym)|Returns the result calculated based on the `a==b` condition.The data type of a and b must be the same. For example, a and b are both strings, numbers, or lists. |
+|[op\_ge](#section_2yu_xtl_if2)|Returns the result calculated based on the `a>=b` condition.The data type of a and b must be the same. For example, a and b are both strings, numbers, or lists. |
+|[op\_gt](#section_8ze_80f_4zk)|Returns the result calculated based on the `a>b` condition.The data type of a and b must be the same. For example, a and b are both strings, numbers, or lists. |
+|[op\_le](#section_z60_nkx_zqz)|Returns the result calculated based on the `a<=b` condition.The data type of a and b must be the same. For example, a and b are both strings, numbers, or lists. |
+|[op\_lt](#section_nz6_t7d_c11)|Returns the result calculated based on the `a>b` condition.The data type of a and b must be the same. For example, a and b are both strings, numbers, or lists. |
+|[op\_ne](#section_azh_rkp_sgy)|Returns the result calculated based on the `a! =b` condition.The data type of a and b must be the same. For example, a and b are both strings, numbers, or lists. |
 |Container functions|[op\_len](#section_51y_aby_i6k)|Calculates the number of characters in a text string. You can use this function in expressions that return strings, tuples, lists, or dictionaries.|
 |[op\_in](#section_upx_pp8_s8r)|Determines whether a string, tuple, list, or dictionary contains a specified element.|
-|[op\_not\_in](#section_i5c_dlk_9d9)|Determines whether a string, tuple, list, or dictionary does not contain a specified element.|
+|[op\_not\_in](#section_i5c_dlk_9d9)|Determines whether a string, tuple, list, or dictionary contains a specified element.|
 |[op\_slice](#section_19o_mxu_cpq)|Truncates a specified string, array, or tuple.|
 |[op\_index](#section_rxw_999_uop)|Returns the element that corresponds to the index of the string, array, or tuple.|
-|General-purpose multivalued functions|[op\_add](#section_9wc_fea_59b)|Calculates the sum of multiple values, which can be strings or numbers.|
-|[op\_max](#section_muw_ccu_4mt)|Determines the largest of the values of multiple fields or expressions.|
-|[op\_min](#section_6ft_fco_n1w)|Determines the smallest of the values of multiple fields or expressions.|
+|General-purpose multivalued functions|[op\_add](#section_9wc_fea_59b)|Calculates the sum of multiple values. The values can be strings or numbers.|
+|[op\_max](#section_muw_ccu_4mt)|Returns the maximum value among the values of multiple fields or expressions.|
+|[op\_min](#section_6ft_fco_n1w)|Returns the minimum value among the values of multiple fields or expressions.|
 
 ## op\_if
 
 -   Syntax
 
     ```
-    op_if(Condition, Value 1, Value 2)
+    op_if(Condition,Value 1,Value 2)
     ```
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
-    |Condition|Arbitrary|Yes|A condition. If the condition is not a Boolean value, the system evaluates whether the condition is true or false.|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
+    |Condition|Arbitrary|Yes|A condition. If the condition is not a Boolean value, the system evaluates whether the condition is true or false. For more information, see [True or false evaluation](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).|
     |Value 1|Arbitrary|Yes|Expression 1 that is returned when the specified condition evaluates to True.|
     |Value 2|Arbitrary|Yes|Expression 2 that is returned when the specified condition evaluates to False.|
 
@@ -66,7 +68,7 @@ This topic describes the syntax of operator functions and provides parameter des
 
         ```
         content: hello
-        test_if: still origion content
+        test_if:  still origion content
         ```
 
     -   Example 2: If the value of the `content` field is False, the value of Expression 2 is assigned to the `test_if` field.
@@ -87,7 +89,7 @@ This topic describes the syntax of operator functions and provides parameter des
 
         ```
         content: 0
-        test_if: replace this
+        test_if:  replace this
         ```
 
 
@@ -96,22 +98,22 @@ This topic describes the syntax of operator functions and provides parameter des
 -   Syntax
 
     ```
-    op_ifnull(Value 1, Value 2)
+    op_ifnull(Value 1,Value 2)
     ```
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
-    |Value 1|Arbitrary|Yes|The value of an expression.|
-    |Value 2|Arbitrary|Yes|The value of an expression.|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
+    |Value 1|Arbitrary|Yes|The value of the expression to return.|
+    |Value 2|Arbitrary|Yes|The value of the expression to return.|
 
 -   Response
 
     The value of the first expression whose value is not None is returned.
 
 -   Examples
-    -   Example 1
+    -   Example 1:
 
         Raw log entry:
 
@@ -131,10 +133,10 @@ This topic describes the syntax of operator functions and provides parameter des
         ```
         test_if: hello
         escape_name: Etl
-        test_ifnull: Etl
+        test_ifnull:  Etl
         ```
 
-    -   Example 2
+    -   Example 2:
 
         Raw log entry:
 
@@ -154,7 +156,7 @@ This topic describes the syntax of operator functions and provides parameter des
         ```
         test_if: hello
         escape_name: Etl
-        test_ifnull: hello
+        test_ifnull:  hello
         ```
 
 
@@ -167,13 +169,13 @@ This function is similar to the `op_ifnull` function. For more information, see 
 -   Syntax
 
     ```
-    op_nullif(Value 1, Value 2)
+    op_nullif(Value 1,Value 2)
     ```
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Arbitrary|Yes|The value of a field.|
 
@@ -182,7 +184,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
     If Value 1 is equal to Value 2, the value None is returned. Otherwise, Value 1 is returned.
 
 -   Examples
-    -   Example 1
+    -   Example 1:
 
         Raw log entry:
 
@@ -202,10 +204,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         content: hello
         escape_name: Etl
-        test_nullif: hello
+        test_nullif:  hello
         ```
 
-    -   Example 2
+    -   Example 2:
 
         Raw log entry:
 
@@ -225,7 +227,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         content: hello
         escape_name: hello
-        # In this example, the value of the content field is the same as that of the escape_name field. Therefore, the value None is returned, which means that no content is returned to the test_isnull field.
+        # In this example, the value of the content field is the same as the value of the escape_name field. Therefore, the value None is returned. This indicates that no content is returned to the test_isnull field.
         ```
 
 
@@ -234,21 +236,21 @@ This function is similar to the `op_ifnull` function. For more information, see 
 -   Syntax
 
     ```
-    op_and(Value 1, Value 2, ...)
+    op_and(Value 1,Value 2, ...)
     ```
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|A field value for which the AND operation is invoked.|
-    |Value 2|Any type|Yes|A field value for which the AND operation is invoked.|
+    |Value 2|Arbitrary|Yes|A field value for which the AND operation is invoked.|
 
 -   Response
-    -   If all specified fields evaluate to true, the value True is returned.
-    -   The system evaluates all types of fields to true or false. For more information, see [True or false evaluation](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
+    -   If all specified fields are evaluated as true, the value True is returned.
+    -   The system evaluates all types of fields as true or false. For more information, see [True or false evaluation](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
 -   Examples
-    -   Example 1
+    -   Example 1:
 
         Raw log entry:
 
@@ -268,10 +270,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         number1: 123
         number2: 234
-        op_and: True
+        op_and:  True
         ```
 
-    -   Example 2
+    -   Example 2:
 
         Raw log entry:
 
@@ -294,7 +296,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         op_and: True
         ```
 
-    -   Example 3
+    -   Example 3:
 
         Raw log entry:
 
@@ -317,7 +319,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         op_and: False
         ```
 
-    -   Example 4
+    -   Example 4:
 
         Raw log entry:
 
@@ -352,15 +354,15 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
-    |Value|Arbitrary|Yes|The field value for which the NOT operation is invoked.|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
+    |Value|Arbitrary|Yes|A field value for which the NOT operation is invoked.|
 
 -   Response
     -   The value True or False is returned.
-    -   The system evaluates all types of fields to true or false. For more information, see [True or false evaluation](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
+    -   The system evaluates all types of fields as true or false. For more information, see [True or false evaluation](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
 -   Examples
-    -   Example 1
+    -   Example 1:
 
         Raw log entry:
 
@@ -378,10 +380,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
         ```
         ctx1: True
-        op_not: False
+        op_not:  False
         ```
 
-    -   Example 2
+    -   Example 2:
 
         Raw log entry:
 
@@ -399,10 +401,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
         ```
         ctx1: 345
-        op_not: False
+        op_not:  False
         ```
 
-    -   Example 3
+    -   Example 3:
 
         Raw log entry:
 
@@ -420,10 +422,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
         ```
         ctx1: 0
-        op_not: True
+        op_not:  True
         ```
 
-    -   Example 4
+    -   Example 4:
 
         Raw log entry:
 
@@ -441,10 +443,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
         ```
         ctx1: ETL
-        op_not: False
+        op_not:  False
         ```
 
-    -   Example 5
+    -   Example 5:
 
         Raw log entry:
 
@@ -462,7 +464,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
         ```
         ctx1: None
-        op_not: True
+        op_not:  True
         ```
 
 
@@ -476,16 +478,16 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|A field value for which the OR operation is invoked.|
     |Value 2|Arbitrary|Yes|A field value for which the OR operation is invoked.|
 
 -   Response
-    -   If any of the specified fields evaluates to true, the value True is returned. Otherwise, the value False is returned.
-    -   The system evaluates all types of fields to true or false. For more information, see [True or false evaluation](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
+    -   If one or more of the specified fields is evaluated as true, the value True is returned. Otherwise, the value False is returned.
+    -   The system evaluates all types of fields as true or false. For more information, see [True or false evaluation](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
 -   Examples
-    -   Example 1
+    -   Example 1:
 
         Raw log entry:
 
@@ -505,10 +507,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         ctx1: 123
         ctx2: 234
-        op_or: True
+        op_or:  True
         ```
 
-    -   Example 2
+    -   Example 2:
 
         Raw log entry:
 
@@ -528,10 +530,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         ctx1: 0
         ctx2: 234
-        op_or: True
+        op_or:  True
         ```
 
-    -   Example 3
+    -   Example 3:
 
         Raw log entry:
 
@@ -551,10 +553,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         ctx1: ETL
         ctx2: ALIYUN
-        op_or: True
+        op_or:  True
         ```
 
-    -   Example 4
+    -   Example 4:
 
         Raw log entry:
 
@@ -574,10 +576,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         ctx1: True
         ctx2: False
-        op_or: True
+        op_or:  True
         ```
 
-    -   Example 5
+    -   Example 5:
 
         Raw log entry:
 
@@ -597,10 +599,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         ctx1: 0
         ctx2: False
-        op_or: False
+        op_or:  False
         ```
 
-    -   Example 6
+    -   Example 6:
 
         Raw log entry:
 
@@ -620,7 +622,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         ctx1: 124
         ctx2: True
-        op_or: True
+        op_or:  True
         ```
 
 
@@ -629,13 +631,13 @@ This function is similar to the `op_ifnull` function. For more information, see 
 -   Syntax
 
     ```
-    op_eq(Value 1, Value 2)
+    op_eq(Value 1,Value 2)
     ```
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
@@ -644,7 +646,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
     If Value 1 is equal to Value 2, the value True is returned. Otherwise, the value False is returned.
 
 -   Examples
-    -   Example 1
+    -   Example 1:
 
         Raw log entry:
 
@@ -667,7 +669,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         test_eq: True
         ```
 
-    -   Example 2
+    -   Example 2:
 
         Raw log entry:
 
@@ -701,8 +703,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
@@ -768,8 +770,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
@@ -835,8 +837,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
@@ -902,14 +904,14 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
 -   Response
 
-    If Value 1 is less than Value 2, the value True is returned. Otherwise, the value False is returned.
+    If Value 1 is less than or equal to Value 2, the value True is returned. Otherwise, the value False is returned.
 
 -   Examples
     -   Example 1: If the value of the priority field is less than or equal to the value of the price field, the value True is returned. Otherwise, the value False is returned.
@@ -969,9 +971,9 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
-    |Value|Arbitrary|Yes|The value of a field.|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
+    |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
 -   Response
@@ -979,7 +981,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
     If Value 1 is not equal to Value 2, the value True is returned. Otherwise, the value False is returned.
 
 -   Examples
-    -   Example 1
+    -   Example 1:
 
         Raw log entry:
 
@@ -1002,7 +1004,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         op_ne: True
         ```
 
-    -   Example 2
+    -   Example 2:
 
         Raw log entry:
 
@@ -1036,8 +1038,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value|String, tuple, list, or dictionary|Yes|The field value whose length is to be calculated.|
 
 -   Response
@@ -1076,24 +1078,24 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |a|String, tuple, list, or dictionary|Yes|The name of a container.|
     |b|Arbitrary|Yes|The name of an element.|
 
-    **Note:** The a parameter precedes the b parameter in this function.
+    **Note:** The "a" parameter precedes the "b" parameter in this function.
 
 -   Response
 
-    If Container A contains Element B, the value True is returned. Otherwise, the value False is returned.
+    If the "a" parameter contains the "b" parameter, the value True is returned. Otherwise, the value False is returned.
 
 -   Examples
 
     Raw log entry:
 
     ```
-    list: [1, 3, 2, 7, 4, 6]
-    num2: 2
+    list:  [1, 3, 2, 7, 4, 6]
+    num2:  2
     ```
 
     Transformation rule:
@@ -1105,8 +1107,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
     Result:
 
     ```
-    list: [1, 3, 2, 7, 4, 6]
-    num2: 2
+    list:  [1, 3, 2, 7, 4, 6]
+    num2:  2
     op_in: True
     ```
 
@@ -1121,8 +1123,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Container|String, tuple, list, or dictionary|Yes|The name of a container. The value of this parameter can be a string, tuple, list, or dictionary.|
     |Element|Arbitrary|Yes|The name of an element.|
 
@@ -1137,8 +1139,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
     Raw log entry:
 
     ```
-    list: [1, 3, 2, 7, 4, 6]
-    num2: 12
+    list:  [1, 3, 2, 7, 4, 6]
+    num2:  12
     ```
 
     Transformation rule:
@@ -1150,8 +1152,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
     Result:
 
     ```
-    list: [1, 3, 2, 7, 4, 6]
-    num2: 12
+    list:  [1, 3, 2, 7, 4, 6]
+    num2:  12
     op_in: True
     ```
 
@@ -1166,12 +1168,12 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value|String|Yes|The name of the field whose value is to be truncated.|
-    |start|Number|No|The position from which the value of the specified field is truncated. Default value: 0.|
-    |end|Number|No|The position to which the value of the specified field is truncated. The character in this position is not truncated. The position ends at the end of the specified string by default.|
-    |step|Number|No|The length of each truncation.|
+    |start|Num|No|The position from which the value of the specified field is truncated. Default value: 0.|
+    |end|Num|No|The position to which the value of the specified field is truncated. The character in this position is not truncated. The position ends at the end of the specified string by default.|
+    |step|Num|No|The length of each truncation.|
 
 -   Response
 
@@ -1183,7 +1185,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Raw log entry:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         ```
 
         Transformation rule:
@@ -1195,7 +1197,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Result:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         op_slice: I,
         ```
 
@@ -1204,7 +1206,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Raw log entry:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         ```
 
         Transformation rule:
@@ -1216,7 +1218,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Result:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         op_slice: love,th
         ```
 
@@ -1231,10 +1233,10 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value|String|Yes|The name of the field whose value is to be truncated.|
-    |index|Number|No|The index of the specified string, array, or tuple.|
+    |index|Num|No|The index of the specified string, array, or tuple.|
 
 -   Response
 
@@ -1246,7 +1248,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Raw log entry:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         ```
 
         Transformation rule:
@@ -1258,7 +1260,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Result:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         op_slice: I,
         ```
 
@@ -1267,7 +1269,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Raw log entry:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         ```
 
         Transformation rule:
@@ -1279,7 +1281,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         Result:
 
         ```
-        word: I,love,this,world
+        word:  I,love,this,world
         op_index: o
         ```
 
@@ -1294,8 +1296,8 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|String, tuple, list, or dictionary|Yes|A field value for which the ADD operation is invoked.|
     |Value 2|Same as the data type of Value 1|Yes|A field value for which the ADD operation is invoked.|
 
@@ -1324,7 +1326,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         price_orange: 2
         price_apple: 13
-        account: 15
+        account:  15
         ```
 
     -   Example 2: The values of the bytes\_in and bytes\_out fields are added to obtain the total number of bytes.
@@ -1347,7 +1349,7 @@ This function is similar to the `op_ifnull` function. For more information, see 
         ```
         bytes_in: 214
         bytes_out: 123
-        total_bytes: 337
+        total_bytes:  337
         ```
 
     -   Example 3: The string https:// is added to a URL.
@@ -1382,22 +1384,22 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
 -   Response
 
-    The largest of the specified field values is returned.
+    The largest value of the specified fields is returned.
 
 -   Examples
 
     Raw log entry:
 
     ```
-    price_orange: 2
-    priority_apple: 13
+    price_orange:  2
+    priority_apple:  13
     ```
 
     Transformation rule:
@@ -1409,9 +1411,9 @@ This function is similar to the `op_ifnull` function. For more information, see 
     Result:
 
     ```
-    price_orange: 2
-    priority_apple: 13
-    max_price: 13
+    price_orange:  2
+    priority_apple:  13
+    max_price:  13
     ```
 
 
@@ -1425,22 +1427,22 @@ This function is similar to the `op_ifnull` function. For more information, see 
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Value 1|Arbitrary|Yes|The value of a field.|
     |Value 2|Same as the data type of Value 1|Yes|The value of a field.|
 
 -   Response
 
-    The smallest of the specified field values is returned.
+    The smallest value of the specified fields is returned.
 
 -   Examples
 
     Raw log entry:
 
     ```
-    price_orange: 2
-    price_apple: 13
+    price_orange:  2
+    price_apple:  13
     ```
 
     Transformation rule:
@@ -1452,9 +1454,9 @@ This function is similar to the `op_ifnull` function. For more information, see 
     Result:
 
     ```
-    price_orange: 2
-    price_apple: 13
-    op_min: 2
+    price_orange:  2
+    price_apple:  13
+    op_min:  2
     ```
 
 
