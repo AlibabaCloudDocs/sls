@@ -9,9 +9,10 @@ This topic describes the syntax and parameters of functions that parse JSON-form
 |JSON|[json\_select](#section_xrt_z1k_awb)|Extracts or calculates specific values from a JSON expression based on the JMESPath syntax.|
 |[json\_parse](#section_n3w_bun_us1)|Parses a JSON text to a JSON object.|
 |XML|[xml\_to\_json](#section_inr_nya_rp6)|Converts XML-formatted data to JSON-formatted data.|
+|protobuf|[pb\_to\_json](#section_0rt_ljv_e56)|Converts Protobuf-formatted data to JSON-formatted data.|
 |Gzip|[gzip\_compress](#section_52q_xji_m92)|Compresses data and then encodes the data by using the Base64 algorithm. The returned data includes the raw data and the encoded data.|
 |[gzip\_decompress](#section_thp_iir_o9q)|Decodes data by using the Base64 algorithm and then decompresses the data. The returned data includes the raw data and the decoded data.|
-|IP|[geo\_parse](#section_a6e_5e9_q0c)|Identifies the city, province, and country to which data belongs based on an IP address.|
+|IP|[geo\_parse](#section_a6e_5e9_q0c)|Identifies the city, province, and country based on an IP address.|
 |[ip\_cidrmatch](#section_2bd_uyj_rho)|Checks whether an IP address belongs to a Classless Inter-Domain Routing \(CIDR\) block.|
 |[ip\_version](#section_xbo_zvp_eg8)|Checks whether the version of an IP address is IPv4 or IPv6.|
 |[ip\_type](#section_bhb_m61_hwh)|Determines the type of an IP address.|
@@ -29,12 +30,12 @@ This topic describes the syntax and parameters of functions that parse JSON-form
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |JSON text|Arbitrary|Yes|The JSON expression or fields from which a field is extracted.|
     |JMESPath expression|String|Yes|The JMESPath expression, which represents the field to be extracted.|
-    |default|Arbitrary|No|If the field to be extracted does not exist, the value of the default parameter is returned. The default value of the default parameter is None.|
-    |restrict|Boolean|No|Default value: False. Indicates whether the restricted mode is enabled. Default value: False. If the value of the `restrict` parameter is set to True, the restricted mode is enabled. In restricted mode, an error is returned if non-standard JSON text is specified.|
+    |default|Arbitrary|No|If the field to be parsed does not exist, the value of the default parameter is returned. Default value: None.|
+    |restrict|Bool|No|Indicates whether the restricted mode is enabled. Default value: False. If the value of the `restrict` parameter is set to True, the restricted mode is enabled. In restricted mode, an error is returned if non-standard JSON text is specified.|
 
 -   Response
 
@@ -54,7 +55,7 @@ This topic describes the syntax and parameters of functions that parse JSON-form
             e_set("json_filter",json_select(v("content"), "name"))
             ```
 
-        -   Transformation rule:
+        -   Result:
 
             ```
             content:  {"name": "xiaoming", "age": 10}
@@ -68,7 +69,7 @@ This topic describes the syntax and parameters of functions that parse JSON-form
             content:  {"name": ["xiaoming", "xiaowang", "xiaoli"], "age": 10}
             ```
 
-        -   Result:
+        -   Transformation rule:
 
             ```
             e_set("json_filter",json_select(v("content"), "name[*]"))
@@ -114,17 +115,17 @@ This topic describes the syntax and parameters of functions that parse JSON-form
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |JSON text|String|Yes|The field that needs to be parsed.|
-    |default|Arbitrary|No|If the field to be parsed does not exist, the value of the default parameter is returned. The default value of the default parameter is None.|
-    |restrict|Boolean|No|Default value: False. Indicates whether the restricted mode is enabled. Default value: False. If the value of the `restrict` parameter is set to True, the restricted mode is enabled. In restricted mode, an error is returned if non-standard JSON text is specified.|
+    |default|Arbitrary|No|If the field to be parsed does not exist, the value of the default parameter is returned.|
+    |restrict|Bool|No|Indicates whether the restricted mode is enabled. Default value: False. If the value of the `restrict` parameter is set to True, the restricted mode is enabled. In restricted mode, an error is returned if non-standard JSON text is specified.|
 
 -   Response
 
     A JSON object is returned.
 
--   Examples
+-   Example
     -   Raw log entry:
 
         ```
@@ -155,15 +156,15 @@ This topic describes the syntax and parameters of functions that parse JSON-form
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |XML text|String|Yes|The XML field that needs to be converted.|
 
 -   Response
 
     JSON-formatted data is returned.
 
--   Examples
+-   Example
     -   Raw log entry:
 
         ```
@@ -184,6 +185,79 @@ This topic describes the syntax and parameters of functions that parse JSON-form
         ```
 
 
+## pb\_to\_json
+
+-   Syntax
+
+    ```
+    pb_to_json(pb_data,pb_py_path_str,pb_fun_name)
+    ```
+
+-   Parameters
+
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
+    |pb\_data|String|Yes|The Protobuf-formatted data or fields that need to be converted into JSON-formatted data.|
+    |pb\_py\_path\_str|String|Yes|The name of the Protobuf file. For example, the name of the `addressbook.proto` file is `addressbook`.|
+    |pb\_fun\_name|String|Yes|The name of the message in the Protobuf file.|
+
+-   Response
+
+    JSON-formatted data is returned.
+
+-   Example
+
+    addressbook.proto file:
+
+    ```
+    '''addressbook.proto file'''
+    syntax = "proto3";
+    message Person {
+      string name = 1;
+      int32 id = 2;
+      string email = 3;
+      string university = 5;
+      int32 age = 6;
+    
+      enum PhoneType {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+      }
+    
+      message PhoneNumber {
+        string number = 1;
+        PhoneType type = 2;
+      }
+    
+      repeated PhoneNumber phones = 4;
+    }
+    
+    message AddressBook {
+      repeated Person people = 1;
+    }
+    ```
+
+    -   Raw log entry:
+
+        ```
+        content: \n3\n\x05twiss\x10\x01\x1a\x0ftwiss@gkate.com"\x0f\n\x0b13099922287\x10\x01*\x04Henu0\x18\nC\n\x04Iran\x10\x02\x1a\x10Iran@alibaba.com"\x0f\n\x0b13022244455\x10\x01*\x14West Leak University0\x02
+        ```
+
+    -   Transformation rule:
+
+        ```
+        e_set("data_json",pb_to_json(v("content"),"addressbook","AddressBook"))
+        ```
+
+    -   Result:
+
+        ```
+        content: \n3\n\x05twiss\x10\x01\x1a\x0ftwiss@gkate.com"\x0f\n\x0b13099922287\x10\x01*\x04Henu0\x18\nC\n\x04Iran\x10\x02\x1a\x10Iran@alibaba.com"\x0f\n\x0b13022244455\x10\x01*\x14West Leak University0\x02
+        data_json : {'people': [{'name': 'twiss', 'id': 1, 'email': 'twiss@gkate.com', 'phones': [{'number': '13099922287', 'type': 1}], 'university': 'Henu', 'age': 24}, {'name': 'Iran', 'id': 2, 'email': 'Iran@alibaba.com', 'phones': [{'number': '13022244455', 'type': 1}], 'university': 'West Leak University', 'age': 2}]}
+        ```
+
+
 ## geo\_parse
 
 -   Syntax
@@ -194,9 +268,9 @@ This topic describes the syntax and parameters of functions that parse JSON-form
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
-    |IP|IP address string|Yes|The IP address.|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
+    |ip|IP address string|Yes|The IP address.|
     |ip\_db|IP address database|Yes|The IP address database. The `res_oss_file(endpoint, ak_id, ak_key, bucket, file, format='text', change_detect_interval=0,fetch_interval=2,refresh_retry_max=60,encoding='utf8',error='ignore')` method is used to access the IP address database. The `format` parameter is set to binary. For more information about the parameters in the res\_oss\_file method, see [res\_oss\_file](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Resource functions.md).|
     |keep\_fields|Tuple|No|The keys that are contained in the returned dictionary. By default, the following keys are contained in the returned dictionary:     -   city: the name of the city
     -   region: the name of the province
@@ -204,7 +278,7 @@ This topic describes the syntax and parameters of functions that parse JSON-form
 For example, `keep_fields=("city","country")` indicates that the `city` and `country` keys are returned.
 
 The `keep_fields` parameter can also be used to rename the keys in the dictionary. For example, `(("city","cty"),("country","state"))` indicates that the city and country keys are respectively renamed `cty` and `state` in the returned data. |
-    |provider|String|No|Valid values:     -   ipip: uses the IPDB-formatted binary IP address library provided by IPIP to parse IP addresses. To download the library, visit [ipip](https://en.ipip.net/?origin=CN). This value is the default value.
+    |provider|String|No|Valid values:     -   ipip: \(default value\) uses the IPDB-formatted binary IP address library provided by IPIP to parse IP addresses. To download the library, visit [ipip](https://en.ipip.net/?origin=CN).
     -   ip2location: uses the global binary IP address library provided by IP2Location to parse IP addresses. To download the library, visit [ip2location](https://lite.ip2location.com/database/ip-country-region-city). Only a binary IP address library is supported. |
 
 -   Response
@@ -220,7 +294,7 @@ The `keep_fields` parameter can also be used to rename the keys in the dictionar
     ```
 
 -   Examples
-    -   Example 1: Identify the country, province, and city of origin of an IP address.
+    -   Example 1
         -   Raw log entry:
 
             ```
@@ -317,8 +391,8 @@ The `keep_fields` parameter can also be used to rename the keys in the dictionar
 
         ```
         country_short
-        country_long /  The country field is specified for data transformation.
-        region  / The province field is specified for data transformation.
+        country_long / The country field is specified for data transformation.
+        region / The province field is specified for data transformation.
         city
         isp
         latitude
@@ -351,10 +425,10 @@ This function compresses data and then encodes the data by using the Base64 algo
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |data|Arbitrary|Yes|The data to be compressed.|
-    |compresslevel|Integer|No|The compression level. Valid values: 0 to 9. Default value: 6.     -   1: Data is compressed at the highest speed but with the lowest compression ratio.
+    |compresslevel|Int|No|The compression level. Valid values: 0 to 9. Default value: 6.     -   1: Data is compressed at the highest speed but with the lowest compression ratio.
     -   9: Data is compressed at the lowest speed but with the highest compression ratio.
     -   0: Data is not compressed. |
     |to\_format|String|No|Encode the compressed data by using the Base64 algorithm. Only the Base64 algorithm is supported.|
@@ -364,7 +438,7 @@ This function compresses data and then encodes the data by using the Base64 algo
 
     Compressed and Base64-encoded data is returned.
 
--   Examples
+-   Example
     -   Raw log entry:
 
         ```
@@ -397,11 +471,11 @@ This function decodes data by using the Base64 algorithm and then decompresses t
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |data|Arbitrary|Yes|The data to be decompressed.|
     |from\_format|String|No|Decode the compressed data by using the Base64 algorithm. Only the Base64 algorithm is supported.|
-    |encoding|String|No|The encoding format. Default value: utf-8. For more information about other encoding formats, see [Standard encoding formats](/intl.en-US/Data Transformation/Data processing syntax/General reference/Standard encoding formats.md).|
+    |encoding|String|No|The encoding format. Default value: utf-8. For information about other encoding formats, see [Standard encoding formats](/intl.en-US/Data Transformation/Data processing syntax/General reference/Standard encoding formats.md).|
 
 -   Response
 
@@ -417,7 +491,7 @@ This function decodes data by using the Base64 algorithm and then decompresses t
     -   Transformation rule:
 
         ```
-        e_set("gzip_decompress",gzip_decompress(v("content"),from_format="base64"))
+        e_set("gzip_decompress",gzip_decompress(v("content"),from_fmat="base64"))
         ```
 
     -   Result:
@@ -440,8 +514,8 @@ This function checks whether an IPv4 address or IPv6 address belongs to a CIDR b
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |CIDR block|String|Yes|The CIDR block, for example, 123.132.32.0/25.|
     |IP address|String|Yes|The IP address.|
     |default|Arbitrary|No|If the specified IP address does not belong to the specified CIDR block, the value of this parameter is returned. You can set the value of this parameter to an empty string.|
@@ -530,8 +604,8 @@ This function checks whether the version of an IP address is IPv4 or IPv6.
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |IP address|String|Yes|The IP address.|
     |default|Arbitrary|No|If the version of the specified IP address cannot be determined, the value of this parameter is returned. You can set the value of this parameter to an empty string.|
 
@@ -593,8 +667,8 @@ This function determines the type of an IP address.
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |IP address|String|Yes|The IP address.|
     |default|Arbitrary|No|If the type of the specified IP address cannot be determined, the value of this parameter is returned. You can set the value of this parameter to an empty string.|
 
@@ -607,7 +681,7 @@ This function determines the type of an IP address.
         -   Raw log entry:
 
             ```
-            ip: 127.0.0.1
+            Ip: 127.0.0.1
             ```
 
         -   Transformation rule:
@@ -627,7 +701,7 @@ This function determines the type of an IP address.
         -   Raw log entry:
 
             ```
-            ip:  192.168.1.1
+            Ip: 192.168.1.1
             ```
 
         -   Transformation rule:
@@ -639,7 +713,7 @@ This function determines the type of an IP address.
         -   Result:
 
             ```
-            ip:  192.168.1.1
+            ip: 192.168.1.1
             type: private
             ```
 
@@ -716,10 +790,10 @@ This function transforms an IP address to a CIDR block.
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |IP address|String|Yes|The IP address.|
-    |Netmask|String|Yes|The netmask, for example, 255.255.255.0. **Note:** If you specify an IP address range for the IP address parameter, you can set the Subnet parameter to an empty string. |
+    |Netmask|String|Yes|The netmask, for example, 255.255.255.0. **Note:** If you enter a CIDR block in the IP address parameter, you can set the Netmask parameter to an empty string. |
     |default|Arbitrary|No|If the specified IP address cannot be transformed to a CIDR block, the value of this parameter is returned. You can set the value of this parameter to an empty string.|
 
 -   Response
@@ -800,10 +874,10 @@ This function converts the format of a CIDR block to a format that specifies the
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |CIDR block|String|Yes|The CIDR block, for example, 192.168.1.0/24.|
-    |Format code|Integer|No|The format of the returned CIDR block. Valid values:     -   0: returns the original CIDR block.
+    |Format code|Int|No|The format of the returned CIDR block. Valid values:     -   0: returns the original CIDR block.
     -   1: returns a CIDR block that specifies the prefix length of the CIDR block.
     -   2: returns a CIDR block that specifies the netmask of the CIDR block.
     -   3: returns an IP address range. |
@@ -907,8 +981,8 @@ This function determines whether two CIDR blocks overlap.
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |CIDR block 1|String|Yes|The first CIDR block.|
     |CIDR block 2|String|Yes|The second CIDR block.|
     |default|Arbitrary|No|If the function cannot determine whether the specified CIDR blocks overlap, the value of this parameter is returned. You can set the value of this parameter to an empty string.|
