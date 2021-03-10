@@ -48,9 +48,9 @@ Beats系列软件（MetricBeat、PacketBeat、Winlogbeat、Auditbeat、Filebeat�
 
 -   日志样例
 
-    Beats系列软件默认输出的日志为JSON类型，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/索引数据类型.md)。
+    Beats系列软件默认输出的日志为JSON类型，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/数据类型.md)。
 
-    ![Beats系列软件](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p41999.png)
+    ![Beats系列软件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p41999.png)
 
 
 ## 示例2：通过Collectd采集日志到日志服务
@@ -81,9 +81,9 @@ Beats系列软件（MetricBeat、PacketBeat、Winlogbeat、Auditbeat、Filebeat�
 
 -   日志样例
 
-    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/索引数据类型.md)。
+    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/数据类型.md)。
 
-    ![Collectd](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42000.png)
+    ![Collectd](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42000.png)
 
 
 ## 使用Telegraf采集日志到日志服务
@@ -126,9 +126,9 @@ Beats系列软件（MetricBeat、PacketBeat、Winlogbeat、Auditbeat、Filebeat�
 
 -   日志样例
 
-    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/索引数据类型.md)。
+    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/数据类型.md)。
 
-    ![Telegraf](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42180.png)
+    ![Telegraf](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42180.png)
 
 
 ## 使用Fluentd采集日志到日志服务
@@ -164,9 +164,9 @@ Fluentd支持众多输入、处理、输出插件，支持通过Kafka插件将�
 
 -   日志样例
 
-    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/索引数据类型.md)。
+    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/数据类型.md)。
 
-    ![Fluentd](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42204.png)
+    ![Fluentd](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42204.png)
 
 
 ## 示例5：使用Logstash采集日志到日志服务
@@ -222,9 +222,9 @@ Logstash内置Kafka输出插件，您可以配置Logstash实现日志通过kafka
 
 -   日志样例
 
-    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/索引数据类型.md)。
+    使用JSON模式输出日志后，您可以给content字段创建JSON类型的索引。更多信息，请参见[JSON类型](/cn.zh-CN/查询与分析/数据类型.md)。
 
-    ![Logstash](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/3140559951/p42205.png)
+    ![Logstash](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3140559951/p42205.png)
 
 
 ## 错误信息
