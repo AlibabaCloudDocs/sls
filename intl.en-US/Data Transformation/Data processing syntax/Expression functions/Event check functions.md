@@ -1,12 +1,12 @@
 # Event check functions
 
-This topic describes the syntax, parameters, and examples of event check functions.
+This topic describes the syntax of event check functions and provides parameter descriptions and function examples.
 
 ## Functions
 
 |Type|Function|Description|
 |----|--------|-----------|
-|Basic functions|[v](#section_u2u_et7_tvj)|Extracts the value of a field in an event. If multiple field names are passed to the function, the value of the first field that exists is returned.|
+|Basic functions|[v](#section_u2u_et7_tvj)|Extracts the value of a field from an event. If multiple field names are passed to the function, the value of the first field that exists is returned.|
 |[e\_has](#section_a1l_c7d_olu)|Checks whether a field exists.|
 |[e\_not\_has](#section_4wc_uyi_81q)|Checks whether a field does not exist.|
 |Expression functions|[e\_search](#section_syl_ku4_k84)|Searches for an event by using Lucene-like query syntax.|
@@ -33,8 +33,8 @@ The following table lists the expression functions that can be used together wit
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Field name|String|Yes|The name of the field in an event from which you want to extract a value.|
     |default|Arbitrary|No|The value of this parameter is returned if none of the specified fields exist. Default value: None.|
 
@@ -76,8 +76,8 @@ The following table lists the expression functions that can be used together wit
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Field name|String|Yes|The name of a field in an event.|
 
 -   Response
@@ -117,8 +117,8 @@ The following table lists the expression functions that can be used together wit
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Field name|String|Yes|The name of a field in an event.|
 
 -   Response
@@ -158,8 +158,8 @@ The following table lists the expression functions that can be used together wit
 
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Query string|String|Yes|The string that is used to filter log data and simplify data transformation. For more information, see [Query string syntax](/intl.en-US/Data Transformation/Data processing syntax/General reference/Query string syntax.md).|
 
 -   Response
@@ -170,33 +170,33 @@ The following table lists the expression functions that can be used together wit
 
     ```
     # Full-text search
-    e_search("active error")     # Searches for multiple substrings in full text. The substrings are associated with each other by using the logical operator OR.
+    e_search("active error")   # Searches for multiple substrings in full text. The substrings are associated with each other by using the logical operator OR.
     e_search('"active error"')   # Searches for a substring in full text.
     
     # Field search
-    e_search("status: active")         # Searches for a substring in a specified field.
+    e_search("status: active")   # Searches for a substring in a specified field.
     e_search('author: "john smith"')   # Searches for a substring that contains a space character in a specified field.
     e_search('field: active error')   # Searches the specified field for the substring "active" or searches all logs for the substring "error". The query string in this example is equivalent to field:active OR "error".
     
     # Exact match
     e_search('author== "john smith"')  
     
-    # Search for field values by using wildcard characters. Each asterisk (*) is used to match zero or more characters. Each question mark (?) is used to match one character
-    e_search("status: active*test")    # `active*test` contains one asterisk (*). The value does not need to be enclosed in double quotation marks ("").
-    e_search("status: active?good")    # `active?good` contains only one question mark (?). The value does not need to be enclosed in double quotation marks ("").
-    e_search("status== ac*tive?good")  # The query string is used for exact match.
+    # Search for field values by using wildcard characters. Each asterisk (*) is used to match zero or more characters. Each question mark (?) is used to match one character.
+    e_search("status: active * test")   # `active*test` contains one asterisk (*). The value does not need to be enclosed in double quotation marks ("").
+    e_search("status: active? good")    # `active? good` contains one question mark (?). The value does not need to be enclosed in double quotation marks ("").
+    e_search("status== ac*tive? good")   # The query string is used for exact match.
     
     # Escape special characters in a field value. If no asterisks (*) or question marks (?) are used as wildcards, they must be escaped in a field value.
-    e_search('status: "\*\?()[]:="')  # `\*\?()[]:=` contains multiple special characters. The value must be enclosed in double quotation marks (""). The asterisks(*), question marks (?), and backslashes (\) in the value are escaped.
-    e_search("status: active\*test") # `active\*test` contains one asterisk (*). The value does not need to be enclosed in double quotation marks ("").
-    e_search("status: active\?test")  # `active\?test` contains one question mark (?). The value does not need to be enclosed in double quotation marks ("").
+    e_search('status: "\*\?()[]:="')   # `\*\?()[]:=` contains multiple special characters. The value must be enclosed in double quotation marks (""). The asterisks(*), question marks (?), and backslashes (\) in the value are escaped.
+    e_search("status: active\* test")   # `active\*test` contains one asterisk (*). The value does not need to be enclosed in double quotation marks ("").
+    e_search("status: active\? test")  # `active\? test`contains one question mark (?). The value does not need to be enclosed in double quotation marks ("").
     
     # Escape special characters in a field name
-    e_search("\*\(1+1\)\?: abc")                 # The field name cannot be enclosed in double quotation marks (""). Special characters must be escaped by using backslashes (\).
-    e_search("__tag__\:__container_name__: abc")  # Special characters must be escaped by using backslashes (\).
+    e_search("\*\(1+1\)\?: abc")   # The field name cannot be enclosed in double quotation marks (""). Special characters must be escaped by using backslashes (\).
+    e_search("__tag__\:__container_name__: abc")   # Special characters must be escaped by using backslashes (\).
      
     
-    # Search for strings by using regular expressions
+    # Search for strings by using regular expressions.
     e_search('content~="regular expression"')   # Searches for substrings that match the regular expression.
     
     # Numeric value comparison
@@ -207,7 +207,7 @@ The following table lists the expression functions that can be used together wit
     e_search('age > 18')            # > 18
     
     # Relational operators
-    e_search("abc OR xyz")    # The relational operator is case-insensitive.
+    e_search("abc OR xyz")   # The relational operator is case-insensitive.
     e_search("abc and (xyz or zzz)")
     e_search("abc and not (xyz and not zzz)")
     e_search("abc && xyz")    # and
@@ -232,8 +232,8 @@ The following table lists the expression functions that can be used together wit
     -   The e\_match function is often used together with the `op_not`, `op_and`, or `op_or` function.
 -   Parameters
 
-    |Parameter|Data type|Required|Description|
-    |---------|---------|--------|-----------|
+    |Parameter|Type|Required|Description|
+    |---------|----|--------|-----------|
     |Field name|String|Yes|The name of a field. If the specified field does not exist, the condition that is specified for the field is not met. For example, if the `f1` field does not exist, the value returned by the `e_match("f1", ...)` function is False. |
     |Regular expression|String|Yes|The regular expression used to match strings. To match strings by using exact strings, you can use the `str_regex_escape` function to convert regular expressions.|
     |full|Bool|No|Specifies whether to implement an exact match. By default, the parameter is set to True, which specifies an exact match. For more information, see [Regular expressions](/intl.en-US/Data Transformation/Data processing syntax/General reference/Regular expressions.md).|
@@ -270,7 +270,7 @@ The following table lists the expression functions that can be used together wit
             match: True
             ```
 
-    -   Example 2
+    -   Example 2:
 
         Implements an exact match by using the e\_match\_all function.
 
