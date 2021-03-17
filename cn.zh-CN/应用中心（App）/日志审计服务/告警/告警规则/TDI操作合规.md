@@ -4,7 +4,7 @@
 
 ## 云安全中心网页防篡改功能关闭告警
 
-|**告警ID**|sls\_app\_audit\_cis\_at\_unauth\_apicall|
+|**告警ID**|sls\_app\_audit\_cis\_at\_sas\_webshell\_detection|
 |**告警名称**|云安全中心网页防篡改功能关闭告警|
 |**版本号**|1|
 |**类别**|云平台、阿里云、CIS、TDI操作合规|
