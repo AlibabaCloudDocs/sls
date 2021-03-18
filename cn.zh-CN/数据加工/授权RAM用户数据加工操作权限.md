@@ -7,7 +7,7 @@
 -   创建、删除、修改数据加工任务。
 -   读取源Logstore数据进行加工任务预览。
 
-**说明：** 本文对RAM用户授权仅用于实现通过RAM用户登录日志服务控制台进行数据加工操作。该授权与创建加工任务时所需的RAM用户访问密钥（AccessKey）不同，获取数据加工任务的访问密钥请参见[配置访问密钥](/cn.zh-CN/数据加工/配置访问授权/配置访问密钥.md)。
+**说明：** 本文对RAM用户授权仅用于实现通过RAM用户登录日志服务控制台进行数据加工操作。该授权与加工任务运行时访问Logstore数据的授权不同。如果当前RAM用户的访问密钥既要用于操作数据加工任务，又要用于数据加工任务运行时访问Logstore数据，则需要将本文中的权限策略内容与[配置访问密钥](/cn.zh-CN/数据加工/配置访问授权/配置访问密钥.md)中的权限策略内容相结合。
 
 您可以通过如下两种方式给RAM用户授予日志服务数据加工功能权限。
 
@@ -16,11 +16,11 @@
 
 ## 极简授权
 
-使用阿里云主账号登录[RAM控制台](https://ram.console.aliyun.com/)[RAM控制台](https://partners-intl.console.aliyun.com/#/ram)，为RAM用户授予RAM读权限（AliyunRAMReadOnlyAccess）和全部管理权限（AliyunLogFullAccess）。更多信息，请参见[创建RAM用户及授权](/cn.zh-CN/开发指南/访问控制RAM/创建RAM用户及授权.md)。
+使用阿里云主账号登录[RAM控制台](https://ram.console.aliyun.com/)，为RAM用户授予RAM读权限（AliyunRAMReadOnlyAccess）和全部管理权限（AliyunLogFullAccess）。更多信息，请参见[创建RAM用户及授权](/cn.zh-CN/开发指南/访问控制RAM/创建RAM用户及授权.md)。
 
 ## 自定义权限策略
 
-1.  登录[RAM 控制台](https://ram.console.aliyun.com/)[RAM控制台](https://partners-intl.console.aliyun.com/#/ram)。
+1.  登录[RAM 控制台](https://ram.console.aliyun.com/)。
 
 2.  创建权限策略。
 
@@ -35,6 +35,8 @@
         |**策略名称**|配置策略名称。|
         |**配置模式**|选择**脚本配置**。|
         |**策略内容**|将配置框中的原有脚本替换为如下内容。 请将<Project名称\>和<Logstore名称\>替换为进行数据加工的日志服务Project名称和源Logstore名称。
+
+**说明：** 如果您希望在加工过程中使用当前RAM用户的访问密钥来读写Logstore数据，则在添加如下策略内容时，还需添加Logstore数据读写权限的策略内容。具体的策略内容，请参见[配置访问密钥](/cn.zh-CN/数据加工/配置访问授权/配置访问密钥.md)。
 
         ```
 {
