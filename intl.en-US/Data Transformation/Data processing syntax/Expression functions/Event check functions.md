@@ -189,7 +189,7 @@ The following table lists the expression functions that can be used together wit
     # Escape special characters in a field value. If no asterisks (*) or question marks (?) are used as wildcards, they must be escaped in a field value.
     e_search('status: "\*\?()[]:="')   # `\*\?()[]:=` contains multiple special characters. The value must be enclosed in double quotation marks (""). The asterisks(*), question marks (?), and backslashes (\) in the value are escaped.
     e_search("status: active\* test")   # `active\*test` contains one asterisk (*). The value does not need to be enclosed in double quotation marks ("").
-    e_search("status: active\? test")  # `active\? test`contains one question mark (?). The value does not need to be enclosed in double quotation marks ("").
+    e_search("status: active\? test")  # `active\? test` contains one question mark (?). The value does not need to be enclosed in double quotation marks ("").
     
     # Escape special characters in a field name
     e_search("\*\(1+1\)\?: abc")   # The field name cannot be enclosed in double quotation marks (""). Special characters must be escaped by using backslashes (\).
