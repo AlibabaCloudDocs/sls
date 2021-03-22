@@ -424,9 +424,9 @@ This topic describes the syntax of value extraction functions and provides param
     |Source field name|Arbitrary|Yes|The name of a source field. The field name can contain any characters. If the field does not exist in the specified event, no actions are performed. For more information about how to set special field names, see [Event structure and fields](/intl.en-US/Data Transformation/Data processing syntax/Data structures.md).|
     |Destination field list|Arbitrary|Yes|Field names that are separated by the specified delimiter. Field names can be an array of strings, such as `["error", "message", "result"]`.
 
- If the field names do not contain commas \(,\), you can use commas \(,\) as delimiters between the field names, for example, `"error, message, result"`.
+If the field names do not contain commas \(,\), you can use commas \(,\) as delimiters between the field names, for example, `"error, message, result"`.
 
- For more information about how to set special field names, see [Event structure and fields](/intl.en-US/Data Transformation/Data processing syntax/Data structures.md). |
+For more information about how to set special field names, see [Event structure and fields](/intl.en-US/Data Transformation/Data processing syntax/Data structures.md). |
     |sep|String|No|The delimiter used to separate each field name. It must be a single character.|
     |quote|String|No|The character used to enclose a value. You must specify this parameter if a field value contains delimiters.|
     |restrict|Bool|No|Specifies whether the restricted mode is enabled. Default value: False. This value indicates that the restricted mode is disabled. If the number of values that are separated differs from the number of destination field names:     -   In restricted mode, no actions are performed.
@@ -784,13 +784,13 @@ Extracts the values between the specified start and end positions.
     |Source field name|Arbitrary|Yes|The field name to be extracted.|
     |anchor\_rules|String|Yes|The rules that are used to extract strings, for example, User = \*; Severity = \*;. The content to be extracted is indicated by an asterisk \(\*\). For logs that are displayed in the Log Service console in the Key : Value format, a space exists before the Value by default. When you specify the anchor\_rules parameter, do not enter the default space.
 
-![e_anchor](../images/p86457.png)
+![e_anchor](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/3952836161/p86457.png)
 
- **Note:** When you specify source fields, you cannot use asterisks \(\*\) as prefixes or suffixes. |
+**Note:** When you specify source fields, you cannot use asterisks \(\*\) as prefixes or suffixes. |
     |fields|Arbitrary|Yes|The corresponding field of each value after the values of source fields are extracted. The fields can be in a string list, for example, \["user", "job", "result"\]. If the field names do not contain commas \(,\), you can use commas \(,\) to separate strings, for example, "user, job, result". For more information about how to set special field names, see [Event structure and fields](/intl.en-US/Data Transformation/Data processing syntax/Data structures.md). Special field names can contain special characters except for asterisks \(\*\). You can use an asterisk \(\*\) to skip a field. Example: Only user and result are extracted from "user,\*,result". For more information, see Example 10. |
     |restrict|Bool|No|Specifies whether to enable the restricted mode. Default value: False. This value indicates that the restricted mode is disabled. For example, assume that the number of values that are extracted differs from the number of the destination field names.     -   In restricted mode, no actions are performed.
     -   In non-restricted mode, values are assigned to the matched fields. |
-    |mode|String|No|Default value: overwrite. For more information, see[Field check and overwrite modes](/intl.en-US/Data Transformation/Data processing syntax/General reference/Field extraction modes.md).|
+    |mode|String|No|Default value: overwrite. For more information, see [Field check and overwrite modes](/intl.en-US/Data Transformation/Data processing syntax/General reference/Field extraction modes.md).|
 
 -   Response
 
