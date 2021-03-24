@@ -9,20 +9,20 @@ Kubernetes事件中心记录了集群的状态变更，包括创建Pod、运行P
 Kubernetes事件中心关联的Logstore在90天内免费（每天允许免费写入256M数据，相当于25万条事件。默认一个Kubernetes线上集群每天产生的事件在1000条左右）。事件存储时间默认为90天，因此如果您不调整事件保存时间，可一直免费使用Kubernetes事件中心。例如：
 
 -   不调整存储时间（默认90天），集群每天产生1000条事件，则事件中心永久免费。
--   调整存储时间为105天，集群每天产生1000条事件，则超过90天后，事件中心每天收取的费用约0.1元，费用详情请参见[按量付费](/intl.zh-CN/产品定价/按量付费.md)。
+-   调整存储时间为105天，集群每天产生1000条事件，则超过90天后，事件中心每天收取的费用约0.1元，费用详情请参见[按量付费](/intl.zh-CN/产品计费/按量付费.md)。
 
 ## 步骤一：创建事件中心
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
-2.  在日志应用区域，单击**K8s事件中心**中的**进入应用**。
+2.  在日志应用区域，单击**K8s事件中心**。
 
 3.  在事件中心管理页面，单击**添加**。
 
 4.  在添加事件中心页面，配置相关参数。
 
     -   选择**已有Project**，可从**Project**下拉框中选择已创建的Project。
-    -   选择**从容器服务选择K8s集群**，可从**ClusterId**下拉框中选择已创建的K8s集群。通过此方式创建事件中心，默认创建一个名为k8s-log-\{cluster-id\}的Project。
+    -   选择**从容器服务选择K8s集群**，可从**K8s集群**下拉框中选择已创建的K8s集群。通过此方式创建事件中心，默认创建一个名为k8s-log-\{cluster-id\}的Project。
 5.  单击**下一步**，完成创建。
 
     **说明：** 创建事件中心后，默认在您选择的日志服务Project中创建一个名为k8s-event的Logstore，并创建相关联的报表和告警等。
@@ -34,7 +34,7 @@ Kubernetes事件中心关联的Logstore在90天内免费（每天允许免费写
 
 -   阿里云Kubernetes配置方式
 
-    阿里云Kubernetes应用市场中的ack-node-problem-detector已集成node-problem-detector和事件采集功能，您只需要部署该组件即可，该组件详细部署请参见[场景3：使用node-problem-detector与eventer实现节点异常告警](/intl.zh-CN/Kubernetes集群用户指南/监控管理/事件监控.md)。
+    阿里云Kubernetes应用市场中的ack-node-problem-detector已集成node-problem-detector和事件采集功能，您只需要部署该组件即可，该组件详细部署请参见[t960968.md\#section\_rya\_7i0\_9e3](/intl.zh-CN/Kubernetes集群用户指南/可观测性/监控管理/事件监控.md)。
 
     1.  登录[容器服务控制台](https://cs.console.aliyun.com/)。
     2.  在左侧导航栏中，选择**市场** \> **应用目录**。
@@ -63,14 +63,14 @@ Kubernetes事件中心关联的Logstore在90天内免费（每天允许免费写
 
     5.  单击**创建**，完成部署。
 -   自建Kubernetes配置方式
-    1.  配置事件采集，详情请参见[采集Kubernetes事件](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/采集Kubernetes事件.md)。
+    1.  配置事件采集。更多信息，请参见[采集Kubernetes事件](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/采集Kubernetes事件.md)。
     2.  配置node-problem-detector，详情请参见[Github](https://github.com/kubernetes/node-problem-detector)。
 
 ## 步骤三：使用事件中心
 
 创建K8s事件中心并部署Eventer和NodeProblemDetector后，即可使用K8s事件中心，包括查看事件总览、查询事件详情、查看Pod生命周期、配置告警和自定义查询等操作。
 
-在K8s事件中心页面，找到目标事件中心实例，单击**![k8s事件中心-002](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7706498951/p77384.png)**图标，可进行如下操作。
+在K8s事件中心页面，找到目标事件中心实例，单击**![k8s事件中心-002](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7706498951/p77384.png)**图标，可进行如下操作。
 
 |操作|说明|
 |--|--|
@@ -84,7 +84,7 @@ Kubernetes事件中心关联的Logstore在90天内免费（每天允许免费写
 
 -   通过自定义查询页面的URL定位到Project。URL规则为`[https://sls.console.aliyun.com/lognext/app/k8s-event/project/k8s-log-xxxx/logsearch/k8s-event](https://sls.console.aliyun.com/lognext/app/k8s-event/project/k8s-log-c0ae5df15fbf34b47ba3a9684e6ee2bee/logsearch/k8s-event)`，Project字段的后一个字段即为日志服务Project名称，例如k8s-log-xxxx。
 -   在集群管理页签的事件中心列表中，查看目标事件中心对应的Project名称。 |
-|配置自定义告警|除了内置的告警外，事件中心还支持配置自定义告警。 在自定义查询页面，输入对应K8s事件的查询语句，单击**另存为告警**完成自定义告警配置，详情请参见[告警简介](/intl.zh-CN/可视化与告警/告警/简介.md)。
+|配置自定义告警|除了内置的告警外，事件中心还支持配置自定义告警。 在自定义查询页面，输入对应K8s事件的查询语句，单击**另存为告警**完成自定义告警配置。更多信息，请参见[告警简介](/intl.zh-CN/可视化与告警/告警/简介.md)。
 
 例如：创建一个FailedPreStopHook的告警，您可以在查询页面中输入`* and FailedPreStopHook | SELECT "object-namespace", "object-name", "reason", "message"`，单击**另存为告警**，配置参数后保存即可。
 
@@ -92,7 +92,7 @@ Kubernetes事件中心关联的Logstore在90天内免费（每天允许免费写
 
 配置告警具体操作如下所示。
 
-1.  在K8s事件中心，找到目标事件中心实例，单击**![k8s事件中心-002](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7706498951/p77384.png)**图标。
+1.  在K8s事件中心，找到目标事件中心实例，单击**![k8s事件中心-002](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7706498951/p77384.png)**图标。
 
 2.  单击**告警配置**，进入告警配置页面。
 
@@ -106,7 +106,7 @@ Kubernetes事件中心关联的Logstore在90天内免费（每天允许免费写
         |--|--|
         |通知方式名称|通知方式的名称。|
         |告警间隔|两次告警通知之间的时间间隔，默认为5分钟。 **说明：** 建议告警间隔最小设置为2分钟，防止收到过多的告警信息。 |
-        |通知类型|包括短信、语音、邮件、钉钉机器人、WebHook自定义和通知中心，可选择一种或多种通知类型，详情请参见[通知方式](/intl.zh-CN/可视化与告警/告警/通知方式.md)。|
+        |通知类型|包括短信、语音、邮件、钉钉机器人、WebHook自定义和通知中心，可选择一种或多种通知类型。更多信息，请参见[通知方式](/intl.zh-CN/可视化与告警/告警/通知方式.md)。|
 
     3.  单击**确定**。
 
@@ -123,7 +123,7 @@ Kubernetes事件中心关联的Logstore在90天内免费（每天允许免费写
 
 ## 删除事件中心
 
-在**K8s事件中心** \> **集群管理**页面中，找到目标事件中心实例，单击**![k8s事件中心](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7706498951/p85814.png)**图标，删除事件中心。
+在**K8s事件中心** \> **集群管理**页面中，找到目标事件中心实例，单击**![k8s事件中心](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7706498951/p85814.png)**图标，删除事件中心。
 
 ## 常见问题
 
