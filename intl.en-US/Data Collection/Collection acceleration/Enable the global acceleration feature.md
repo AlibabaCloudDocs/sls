@@ -2,8 +2,8 @@
 
 This topic describes how to enable the global acceleration feature for Log Service in the Dynamic Route for CDN \(DCDN\) console.
 
--   Log Service is activated. A project and a Logstore are created. For more information, see [Create a project and a Logstore](/intl.en-US/Quick Start/Quick start.md).
--   DCDN is activated. For more information, see [Activate the DCDN service]().
+-   Log Service is activated. A project and a Logstore are created. For more information, see [Create a project and a Logstore](/intl.en-US/.md).
+-   DCDN is activated. For more information, see [Activate DCDN]().
 
     DCDN provides the HTTP acceleration and HTTPS acceleration features. Before you enable the HTTPS acceleration feature, you must first enable the HTTP acceleration feature.
 
@@ -18,7 +18,7 @@ This topic describes how to enable the global acceleration feature for Log Servi
 
 4.  On the Add Domain Name page, set the required parameters. The following table describes the parameters.
 
-    ![Domain Name to Accelerate](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5693525061/p8063.png)
+    ![Domain Name to Accelerate](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6833201161/p8063.png)
 
     |Parameter|Description|
     |---------|:----------|
@@ -26,16 +26,16 @@ This topic describes how to enable the global acceleration feature for Log Servi
     |Resource Group|In the drop-down list, select **default resource group**.|
     |Business Type|Select **DCDN**.|
     |Origin Information|Type|Select **Site Domain**.|
-    |Domain Name|Enter the public domain name of the project. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).|
+    |Domain Name|Enter the public domain name of the project in the format of project\_name.cn-hangzhou.log.aliyuncs.com. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).|
     |Port|Select **Port 80**.|
-    |Acceleration Region|    -   If you select **Mainland China Only** or **Global**, you must apply for an Internet Content Provider \(ICP\) filing from the Ministry of Industry and Information Technology \(MIIT\) of China. For more information, see [Domain filing]().
-    -   If you select **Global \(Excluding Mainland China\)**, an ICP filing is not required. |
+    |Acceleration Region|    -   If you select **Mainland China Only** or **Global**, you must apply for an Internet Content Provider \(ICP\) filing from the Ministry of Industry and Information Technology \(MIIT\) of China. For more information, see [ICP filing for domain names]().
+    -   If you select **Global \(Excluding Mainland China\)**, no ICP filing is required. |
 
 5.  Click **Next**.
 
-    On the Domain Names page, you can view the **CNAME** of the added domain name.
+    After you add a domain name, you can view the **CNAME** of the domain name on the Domain Names page.
 
-    ![CNAME on the Domain Names page](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8596549951/p53798.png)
+    ![Domain Names page](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8596549951/p53798.png)
 
 6.  Enable the global acceleration feature in the Log Service console.
 
@@ -45,7 +45,7 @@ This topic describes how to enable the global acceleration feature for Log Servi
 
     3.  On the Overview page, click **Modify** next to **Global Acceleration**.
 
-    4.  In the Global Acceleration dialog box, enter the **CNAME** of the domain name, and click **Enable Acceleration**.
+    4.  In the Global Acceleration panel, enter the **CNAME** of the domain name, and then click **Enable Acceleration**.
 
         ![Enable the global acceleration feature](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6693525061/p8065.png)
 
@@ -71,9 +71,9 @@ After the HTTP acceleration feature is enabled, you can enable the HTTPS acceler
 
 4.  In the left-side navigation pane, click **HTTPS Settings**.
 
-5.  On the page that appears, click Modify in the **SSL Certificate** section.
+5.  On the page that appears, click **Modify** in the SSL Certificate section.
 
-6.  In the HTTPS Settings dialog box, set the required parameters, and click **OK**. The following table describes the parameters.
+6.  In the HTTPS Settings dialog box, set the required parameters, and then click **OK**. The following table describes the parameters.
 
     |Parameter|Description|
     |---------|-----------|
