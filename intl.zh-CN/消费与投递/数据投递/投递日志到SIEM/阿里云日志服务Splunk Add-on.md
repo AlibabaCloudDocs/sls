@@ -11,13 +11,13 @@ Splunk Add-on架构：
 
 **说明：** 此Add-on仅用于采集数据，只需要在Splunk Heavy Forwarder上安装，不需要在Indexer和Search Head上安装。
 
-![Splunk-001](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7031649951/p95069.png)
+![Splunk-001](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7031649951/p95069.png)
 
 ## 机制
 
-![Splunk-002](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7031649951/p95070.png)
+![Splunk-002](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7031649951/p95070.png)
 
--   一个Data Input创建一个消费者进行日志消费。
+-   一个Data Input相当于一个消费者，对日志进行消费。
 -   一个消费组由多个消费者构成，同一个消费组下面的消费者共同消费一个Logstore中的数据，消费者之间不会重复消费数据。
 -   一个Logstore下面会有多个Shard。
     -   每个Shard只会分配到一个消费者。
@@ -79,12 +79,12 @@ Splunk Add-on架构：
 **说明：** 此Add-on仅用于采集数据，只需要在Splunk Heavy Forwarder上安装，不需要在Indexer和Search Head上安装。
 
 -   方法一
-    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
+    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
     2.  在应用页面，单击**浏览更多应用**。
     3.  搜索**Alibaba Cloud Log Service Add-on for Splunk**，单击**安装**。
     4.  安装完成后，根据页面提示重启 Splunk服务。
 -   方法二
-    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
+    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
     2.  在应用页面，单击**从文件安装应用**。
     3.  选择目标.tgz文件，单击**上载**。
 
@@ -151,7 +151,7 @@ Splunk Add-on架构：
 
     首先确保创建的Data Input是启动状态。然后您可以在Splunk web UI首页单击Search & Reporting，进入App: Search & Reporting页面，查询采集到的审计日志。
 
-    ![Splunk-003](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8031649951/p95102.png)
+    ![Splunk-003](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8031649951/p95102.png)
 
 -   内部日志
     -   使用`index="_internal" | search "SLS info"`查询日志服务相关的信息。
