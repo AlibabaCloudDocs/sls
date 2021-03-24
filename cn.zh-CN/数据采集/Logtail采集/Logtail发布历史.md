@@ -2,6 +2,15 @@
 
 本文档为您介绍日志服务Logtail的发布历史。
 
+## 0.16.62
+
+**说明：** 如果您使用的是Logtail 0.16.58、0.16.60版本，建议您升级到Logtail 0.16.62版本。
+
+-   问题修复
+
+    修复在数据乱序场景下小概率发生的数据发送失败问题。
+
+
 ## 0.16.60
 
 -   新功能
@@ -552,14 +561,14 @@
 ## 0.12.0
 
 -   新功能
-    -   弹内Region支持自动探测可用endpoint。
+    -   弹内地域支持自动探测可用Endpoint。
     -   支持多user\_defined\_id。
     -   新增SEND\_QUOTA\_EXCEED\_ALARM、READ\_LOG\_DELAY\_ALARM。
-    -   delimiter日志单字符分割场景，解析性能优化。
-    -   delimiter日志支持多字符分割。
+    -   分隔符日志单字符分割场景，解析性能优化。
+    -   分隔符日志支持多字符分割。
     -   修复cpp 0.6 sdk gethostbyname\_r缓冲区溢出问题。
     -   配置流请求失败时打印错误码。
-    -   json日志解析GBK编码。
+    -   JSON日志解析GBK编码。
 
 ## 0.11.8
 
@@ -592,7 +601,7 @@
 ## 0.11.2
 
 -   新功能
-    -   新增配置项tail\_limit/tail\_existed。
+    -   新增配置项tail\_limit、tail\_existed。
     -   Logtail数据包按照分钟对齐。
 
 ## 0.11.1
@@ -609,7 +618,7 @@
 
 -   优化
 
-    处理新错误码：ShardWriteQuotaExceed。
+    处理新错误码ShardWriteQuotaExceed。
 
 -   问题修复
     -   修复0.10.9引入问题，更新配置时可能导致内存泄漏。
@@ -618,7 +627,7 @@
 ## 0.10.9
 
 -   优化
-    -   修改RPM默认杭州endpoint。
+    -   修改RPM默认杭州Endpoint。
     -   random sleep优化：key的batchMap满时，不再sleep。
 -   问题修复
 
@@ -736,7 +745,7 @@
     -   兼容：弹外按照pub/corp的region tag设置阈值配置。
 -   问题修复
 
-    引入bug：连接网络失败时，buffer线程进入busy waiting，导致cpu 100%。
+    连接网络失败时，buffer线程进入busy waiting，导致cpu 100%。
 
 
 ## 0.9.4
@@ -807,7 +816,7 @@
 
 -   新功能
     -   日志merge策略：4000条或2 MB内。
-    -   支持软连接目录加入监控。
-    -   configserver/dataserver配置协议补全与提示。
-    -   用户监控目录不存在时错误提示。
+    -   支持监控软连接目录加入。
+    -   补全及提示configserver/dataserver配置协议。
+    -   用户监控目录不存在时提示错误。
 
