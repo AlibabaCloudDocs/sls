@@ -1,24 +1,24 @@
 # Display query and analysis results on multiple pages
 
-If a large amount of data is returned when you query logs, the query results will be displayed at a decreased speed. Log Service allows you to read raw logs by page. This limits the amount of data that is returned each time. This topic describes how to display the query and analysis results on multiple pages.
+If a large amount of data is returned when you query logs, the query results are displayed at a lower speed. Log Service allows you to read raw logs by page. This limits the amount of data that is returned each time. This topic describes how to display the query and analysis results on multiple pages.
 
 ## Paging methods
 
-Log Service allows you to query and analyze logs. You can use SQL statements to query logs by keyword and analyze the query result. You can also query logs by calling the [GetLogs](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/GetLogs.md) API operation. You can query raw logs by keyword, analyze logs by executing SQL statements, and obtain the analysis result. Each query statement contains a search statement and an analytic statement. The search statement and analytic statement use different paging methods.
+Log Service allows you to query and analyze logs. You can execute SQL statements to query logs by keyword and analyze the query results. You can also call the [GetLogs](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/GetLogs.md) API operation to query raw logs by keyword, and then execute SQL statements to obtain the analysis result. Each query statement contains a search statement and an analytic statement. The search statement and analytic statement use different paging methods.
 
 -   [Search statement](/intl.en-US/Index and query/Query/Search syntax.md): queries raw logs by keyword. To display the query result on multiple pages, you can call the GetLogtoreLogs API operation and specify the offset and lines parameters.
--   [Analytic statement](/intl.en-US/Index and query/Real-time log analysis.md): analyzes logs and obtain the analysis result. To display the analysis result on multiple pages, you can use the LIMIT clause. For more information, see [LIMIT syntax](/intl.en-US/Index and query/Analysis grammar/LIMIT syntax.md).
+-   [Analytic statement](/intl.en-US/Index and query/Real-time log analysis.md): analyzes logs and obtains the analysis result. To display the analysis result on multiple pages, you can use the LIMIT clause. For more information, see [LIMIT syntax](/intl.en-US/Index and query/Analysis grammar/LIMIT syntax.md).
 
-## Display the query result on multiple pages
+## Display query results on multiple pages
 
-You can specify the offset and lines parameters of the GetLogStoreLogs API operation to obtain the paged query result.
+You can specify the offset and lines parameters of the GetLogStoreLogs API operation to paginate query results.
 
 -   offset: the line from which logs are read.
 -   lines: the number of lines to read for the current request. A maximum of 100 logs can be read at a time. If you set a value greater than 100, only 100 lines are returned.
 
-When you query logs by page, the value of the offset parameter increases until all logs are read. When the value reaches a specific number, zero is returned and the progress is completed. In this case, all data has been read.
+When you query logs by page, the value of the offset parameter increases until all logs are read. When the value reaches a specific number, 0 is returned and the progress is completed. In this case, all data has been read.
 
--   Sample pseudocode
+-   Sample code
 
     ```
     offset = 0 // Read logs from line 0.
@@ -26,11 +26,11 @@ When you query logs by page, the value of the offset parameter increases until a
     query = "status:200" // Only logs whose value of the status field contains 200 are queried.
     while True:
          response = get_logstore_logs(query, offset, lines) // The response to the read request.
-         process (response)                                 // Use the custom logic to process the query result.
+         process (response) // Use the custom logic to process the query results.
          If response.get_count() == 0 && response.is_complete()   
              Stop reading logs and exit the current loop.
          else
-            offset += 100                        // The value of the offset parameter increases to 100. The next 100 lines will be read.
+            offset += 100 // The value of the offset parameter increases to 100. The next 100 lines will be read.
     ```
 
 -   Python code example
@@ -39,7 +39,7 @@ When you query logs by page, the value of the offset parameter increases until a
 
     ```
         endpoint = ''// The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).
-        accessKeyId = ''// The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of your Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
+        accessKeyId = ''// The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of an Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
         accessKey = ''// The AccessKey secret of your Alibaba Cloud account.
         project = ''// The name of the project.
         logstore = ''// The name of the Logstore.
@@ -94,9 +94,9 @@ When you query logs by page, the value of the offset parameter increases until a
     ```
 
 
-## Display the analysis result on multiple pages
+## Display analysis results on multiple pages
 
-You can use the LIMIT clause to display the analysis result on multiple pages. The following example shows the syntax of a LIMIT clause:
+You can use the LIMIT clause to display analysis results on multiple pages. The following example shows the syntax of a LIMIT clause:
 
 ```
 limit Offset, Line
@@ -105,9 +105,9 @@ limit Offset, Line
 The offset and lines parameters are used:
 
 -   offset: the line from which the result is read.
--   lines: the number of lines to read. The value of the lines parameter does not have an upper limit. However, if you read a large number of lines at a time, the network latency increases, and the processing speed of the client decreases.
+-   lines: the number of lines to read for the current request. A maximum of 1,000,000 lines can be read at a time. Reading too many lines at a time will increase the network latency and the processing speed of the client.
 
-Assume that 2,000 lines are returned by the analytic statement `* | selectcount(1) , url group by url`. You can use the following statements to display the result on 4 pages. Each page displays 500 lines.
+For example, if you execute the`* | selectcount(1) , url group by url` statement, 2,000 lines are returned.. You can execute the following statements to display the results on 4 pages. Each page displays 500 lines.
 
 ```
 * | selectcount(1) , url  group by url  limit 0, 500
@@ -116,7 +116,7 @@ Assume that 2,000 lines are returned by the analytic statement `* | selectcount(
 * | selectcount(1) , url  group by url  limit 1500, 500
 ```
 
--   Sample pseudocode
+-   Sample code
 
     ```
         offset = 0 // Read logs from line 0.
@@ -124,11 +124,11 @@ Assume that 2,000 lines are returned by the analytic statement `* | selectcount(
         query = "* | select count(1) , url  group by url  limit "whileTrue:
         real_query = query + offset + "," +  lines
         response = get_logstore_logs(real_query) // The response to the read request.
-        process (response)                       // Use the custom logic to process the analysis result.
+        process (response) // Use the custom logic to process the analysis result.
         If response.get_count() == 0   
              Stop reading logs and exit the current loop.
         else
-            offset += 500                        // The value of the offset parameter increases to 500. The next 500 lines will be read.
+            offset += 500 // The value of the offset parameter increases to 500. The next 500 lines will be read.
     ```
 
 -   Python code example
@@ -137,7 +137,7 @@ Assume that 2,000 lines are returned by the analytic statement `* | selectcount(
 
     ```
         endpoint = ''// The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). 
-        accessKeyId = ''// The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of your Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
+        accessKeyId = ''// The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of an Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M.
         accessKey = ''// The AccessKey secret of your Alibaba Cloud account.
         project = ''// The name of the project.
         logstore = ''// The name of the Logstore.
