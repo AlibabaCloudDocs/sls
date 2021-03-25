@@ -32,4 +32,5 @@ The following table lists the global processing functions.
 |[Data mapping and enrichment functions](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Data mapping and enrichment functions.md)|`e_dict_map`|Enriches an event based on a dictionary.|
 |`e_table_map`|Enriches an event based on a table.|
 |`e_search_map`|Enriches an event based on a search.|
+|[Value-added content function](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Value-added content function.md)|`e_threat_intelligence`|Obtains threat intelligence.|
 
