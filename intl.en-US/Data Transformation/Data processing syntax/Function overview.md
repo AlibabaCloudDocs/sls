@@ -6,10 +6,10 @@ This topic describes all functions that you can use to transform data in Log Ser
 
 |Type|Function|Description|
 |----|--------|-----------|
-|[Flow control functions](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Flow control functions.md)|e\_if|Performs an operation if a condition is met. Multiple condition-operation pairs can be specified. -   If a condition is met, the operation that corresponds to it is performed. If the condition is not met, the operation is not performed and the next condition is evaluated.
+|[Flow control functions](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Flow control functions.md)|e\_if|Performs an operation if a condition is met. Multiple condition-operation pairs can be specified. -   If a condition is met, the operation that corresponds to the condition is performed. If the condition is not met, the operation is not performed and the next condition is evaluated.
 -   If one operation is performed to delete an event, no more operations can be performed on the event. |
 |e\_if\_else|Performs an operation based on the evaluated result of a condition.|
-|e\_switch|Performs an operation if a condition is met. Multiple condition-operation pairs can be specified. -   If a condition is met, the operation that corresponds to it is performed and a result is returned. If the condition is not met, the operation is not performed and the next condition is evaluated.
+|e\_switch|Performs an operation if a condition is met. Multiple condition-operation pairs can be specified. -   If a condition is met, the operation that corresponds to the condition is performed and a result is returned. If the condition is not met, the operation is not performed and the next condition is evaluated.
 -   If no specified conditions are met and the default parameter is specified, the default operations that are specified in the default parameter are performed and a result is returned.
 -   If one operation is performed to delete an event, no more operations can be performed on the event. |
 |e\_compose|Combines multiple operations. -   This function is used to combine multiple operations in the `e_if`, `e_switch`, or `e_if_else` function.
@@ -20,6 +20,7 @@ This topic describes all functions that you can use to transform data in Log Ser
 |e\_split|Splits an event into multiple events based on the value of a specified field. You can use JMESPath to extract the value of the field, and then split the event.|
 |e\_output|Writes an event to a specified destination Logstore. You can specify parameters such as topic, source, and tags. The event is deleted after it is written to the destination Logstore.|
 |e\_coutput|Writes an event to a specified destination Logstore. You can specify parameters such as topic, source, and tags. The event is retained after it is written to the destination Logstore. The retained event continues to be transformed.|
+|e\_to\_metric|Converts log data to time series data that can be stored in a Metricstore.|
 |[Field processing functions](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Field processing functions.md)|e\_drop\_fields|Deletes the log fields that meet a specified condition.|
 |e\_keep\_fields|Retains the log fields that meet a specified condition.|
 |e\_rename|Renames the log fields that meet a specified condition.|
@@ -35,15 +36,15 @@ This topic describes all functions that you can use to transform data in Log Ser
 |e\_anchor|Extracts the value between the specified start and end positions.|
 |[Data mapping and enrichment functions](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Data mapping and enrichment functions.md)|e\_dict\_map|Maps the value of a specified field to a field in a dictionary and returns the value of the matched field.|
 |e\_table\_map|Maps the value of a specified field to a row in a table and returns the value of the field in this row.|
-|e\_search\_map|Maps a search string to a key in a dictionary and returns the value of the matched key.|
+|e\_search\_dict\_map|Maps a search string to a key in a dictionary and returns the value of the matched key.|
 |e\_search\_table\_map|Maps a search string to a column in a table and returns the value of the field in this column.|
-|[Task configuration function](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Task configuration function.md)|res\_local\_update|Updates the advanced parameters of the current data processing task.|
+|[t2042068.md\#]()|e\_threat\_intelligence|Obtains threat intelligence from log fields and outputs the threat intelligence to specified fields.|
 
 ## Expression functions
 
 |Type|Function|Description|
 |----|--------|-----------|
-|[Event check functions](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Event check functions.md)|v|Extracts the value of a field in an event. If multiple field names are passed to the function, the value of the first field that exists is returned.|
+|[Event check functions](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Event check functions.md)|v|Extracts the value of a field from an event. If multiple field names are passed to the function, the value of the first field that exists is returned.|
 |e\_has|Checks whether a field exists.|
 |e\_not\_has|Checks whether a field does not exist.|
 |e\_search|Searches for specified events in a simplified method.|
@@ -92,7 +93,7 @@ This topic describes all functions that you can use to transform data in Log Ser
 |op\_sum|Returns the sum of passed values.|
 |mat\_ceil|Returns a passed value rounded up to the nearest integer.|
 |mat\_exp|Returns Euler's number raised to the power of a passed value.|
-|mat\_fabs|Returns the absolute value of a passed value.|
+|mat\_fabs|Calculates the absolute value of a passed value.|
 |mat\_floor|Returns a passed value rounded down to the nearest integer.|
 |mat\_log|Returns the logarithm of a passed value with the other passed value as the base.|
 |mat\_log10|Returns the base 10 logarithm of a passed value.|
@@ -105,7 +106,7 @@ This topic describes all functions that you can use to transform data in Log Ser
 |mat\_acos|Returns the arc cosine \(in radians\) of a passed value.|
 |mat\_asin|Returns the arc sine \(in radians\) of a passed value.|
 |mat\_atan|Returns the arc tangent \(in radians\) of a passed value.|
-|mat\_atan2|Returns the arc tangent of X- and Y-coordinates.|
+|mat\_atan2|Calculates the arc tangent of X- and Y-coordinates.|
 |mat\_atanh|Returns the inverse hyperbolic tangent of a passed value.|
 |mat\_hypot|Returns the Euclidean norm of two passed values.|
 |[String functions](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/String functions.md)|str\_format|Formats a string.|
@@ -129,7 +130,7 @@ This topic describes all functions that you can use to transform data in Log Ser
 |str\_swapcase|Interchanges the uppercase letters and lowercase letters in a string.|
 |str\_count|Counts the number of occurrences of a character in a string.|
 |str\_find|Checks whether an original string contains a specified substring.|
-|str\_rfind|Returns the position of the last occurrence of a specified character in a string.|
+|str\_rfind|Locates the position of the last occurrence of a character in a string.|
 |str\_endswith|Checks whether a string ends with a specified suffix.|
 |str\_startswith|Checks whether a string starts with a specified string.|
 |str\_split|Splits a string with a specified delimiter.|
@@ -153,7 +154,7 @@ This topic describes all functions that you can use to transform data in Log Ser
 |str\_isspace|Checks whether a string consists of only whitespace characters.|
 |str\_istitle|Checks whether the first letter of all words in a string are in uppercase and whether other letters in the string are in lowercase.|
 |str\_isupper|Checks whether all letters in a string are uppercase letters.|
-|str\_uuid|Generates a random UUID.|
+|str\_uuid|Generates a random universally unique identifier \(UUID\).|
 |[Date and time functions](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Date and time functions.md)|dt\_parse|Converts the value of a time expression to a datetime object.|
 |dt\_str|Converts the value of a time expression to a string.|
 |dt\_parsetimestamp|Converts the value of a time expression to a UNIX timestamp.|
@@ -209,7 +210,7 @@ This topic describes all functions that you can use to transform data in Log Ser
 |long2ip|Converts a value of the long type to an IP address.|
 |[Parsing functions](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Parsing functions.md)|ua\_parse\_device|Parses the device information in a User-Agent HTTP header.|
 |ua\_parse\_os|Parses the operating system information in a User-Agent HTTP header.|
-|ua\_parse\_agent|Parses the browser information in a User-Agent HTTP header.|
+|ua\_parse\_agent|Parses the browser information in the User-Agent HTTP header.|
 |ua\_parse\_all|Parses all information in a User-Agent HTTP header.|
 |[List functions](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/List functions.md)|lst\_make|Constructs a list.|
 |lst\_insert|Inserts values to a list at a specified position.|
