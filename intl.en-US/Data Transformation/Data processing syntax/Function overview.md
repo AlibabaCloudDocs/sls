@@ -38,6 +38,7 @@ This topic describes all functions that you can use to transform data in Log Ser
 |e\_table\_map|Maps the value of a specified field to a row in a table and returns the value of the field in this row.|
 |e\_search\_dict\_map|Maps a search string to a key in a dictionary and returns the value of the matched key.|
 |e\_search\_table\_map|Maps a search string to a column in a table and returns the value of the field in this column.|
+|[Value-added content function](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Value-added content function.md)|e\_threat\_intelligence|Obtains threat intelligence from log fields and outputs the threat intelligence to specified fields.|
 
 ## Expression functions
 
