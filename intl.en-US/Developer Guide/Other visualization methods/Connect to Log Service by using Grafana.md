@@ -11,8 +11,8 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
 
     **Note:**
 
-    -   If you install Grafana on an on-premises machine, enable port 3000 in a browser before you install Grafana.
-    -   To use a pie chart, run the following command to install the pie chart plug-in.
+    -   Before you install Grafana on an on-premises machine, you must enable port 3000 in the browser.
+    -   Before you use a pie chart, you can run the following command to install the pie chart plug-in:
 
         ```
         grafana-cli plugins install grafana-piechart-panel
@@ -40,12 +40,12 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
         service grafana-server restart
         ```
 
-3.  If you installed Grafana version 7.0 or later, you must modify the Grafana configuration file.
+3.  Optional. To install Grafana version 7.0 or later, modify the Grafana configuration file.
 
     1.  Open the configuration file.
 
         -   The file path in macOS is /usr/local/etc/grafana/grafana.ini.
-        -   The file path in Linux is /etc/grafana/grafana.ini.
+        -   The file path in Linux is/etc/grafana/grafana.ini
     2.  Set the allow\_loading\_unsigned\_plugins parameter in plugins.
 
         ```
@@ -70,8 +70,8 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
     |Parameter|Description|
     |:--------|:----------|
     |Name|The name of the data source.|
-    |HTTP|Set the URL, Access, and Whitelisted Cookies parameters. The following list describes the parameters:    -   URL: The format is `http://Endpoint`. Replace the Endpoint variable based on your business requirements. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). Example: `http://cn-qingdao.log.aliyuncs.com`.
-    -   Access: Select Server \(default\) or Browser.
+    |HTTP|Set the URL, Access, and Whitelisted Cookies parameters.    -   URL: The format is `http://Endpoint`. Replace the Endpoint variable based on the actual scenario. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). Example: `http://cn-qingdao.log.aliyuncs.com`.
+    -   Access: Select Server or Browser. Default value: Server.
     -   Whitelisted Cookies: Add a whitelist. |
     |Auth|Use the default settings.|
     |log service details|Specify a project name, Logstore name, and AccessKey pair that has the read permissions. To ensure the security of your Alibaba Cloud account, we recommend that you use the AccessKey pair of a RAM user.|
@@ -96,7 +96,7 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
         3.  Click **Add variable**.
         4.  Set the required parameters to configure a template variable. Then, click **Add**.
 
-            The following table describes the parameters.
+            The following table describes the required parameters.
 
             |Parameter|Description|
             |---------|-----------|
@@ -115,7 +115,7 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
             |:--------|:----------|
             |Name|The variable name, for example, hostname. When you use a variable in a search condition, the variable name must be in the `$hostname` format.|
             |Type|Select **Custom**.|
-            |Lable|Enter domain name.|
+            |Lable|Enter a domain name.|
             |Custom Options|Enter `*,www.host.com,www.host0.com,www.host1.com` in the "Values separated by comma" field. This value indicates that you can view the access to all domains. You can also view the access to `www.host.com`, `www.host0.com`, or `www.host1.com`.|
             |Selection Options|Use the default settings.|
 
@@ -123,7 +123,7 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
 
 4.  Add visualized panels.
 
-    -   Add a graph panel to show page view \(PV\) and unique visitor \(UV\).
+    -   Add a graph panel to show page view \(PV\) and unique visitor \(UV\) statistics.
         1.  Click the **![Icon 3 ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2914221161/p112908.png)** icon in the upper-right corner.
         2.  In the New Panel panel, click **Add Query**.
         3.  Click the **![Icon 4](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2914221161/p112921.png)** icon and select **Graph** from the **Visualization** drop-down list.
@@ -134,7 +134,7 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
 
             |Parameter|Description|
             |:--------|:----------|
-            |Query|The following example shows the query statement:            ```
+            |Query|The query statement. In this example, the following query statement is executed:            ```
 $hostname| select approx_distinct(remote_addr) as uv ,count(1) as pv , __time__ - __time__ % $$myinterval as time group by time order by time limit 1000
             ```
 
@@ -144,18 +144,18 @@ In the query result, `$hostname` is replaced by a specified domain name, and `$$
             |X-Column|Enter **time**.|
             |Y-Column|Enter **uv,pv**.|
 
-        6.  If a significant difference exists between the value of UV and the value of PV, you can use a dual Y-axis chart to show UV and PV.
+        6.  If a significant difference exists between the UV value and the PV value, you can use a dual Y-axis chart to show UV and PV statistics.
 
             ![grafana-pv&uv02](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5105311161/p112952.png)
 
         7.  Click the **![Save icon](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2914221161/p113049.png)** icon to save your settings.
     -   Add a graph panel to show inbound and outbound traffic.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname | select sum(body_byte_sent) as net_out, sum(request_length) as net_in,__time__ - __time__ % $$myinterval as time group by __time__ - __time__ % $$myinterval limit 10000
         ```
 
@@ -167,11 +167,11 @@ In the query result, `$hostname` is replaced by a specified domain name, and `$$
 
     -   Add a pie chart panel to show the proportions of HTTP request methods.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname | select count(1) as pv ,method group by method
         ```
 
@@ -181,11 +181,11 @@ In the query result, `$hostname` is replaced by a specified domain name. |
 
     -   Add a pie chart panel to show the proportions of HTTP request codes.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname | select count(1) as pv ,status group by status
         ```
 
@@ -195,11 +195,11 @@ In the query result, `$hostname` is replaced by a specified domain name. |
 
     -   Add a pie chart panel to show the request sources of frequently accessed pages.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname | select count(1) as pv , referer group by referer order by pv desc
         ```
 
@@ -207,13 +207,13 @@ In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|Enter **pie**.|
         |Y-Column|Enter **referer,pv**.|
 
-    -   Add a table panel to show pages whose latency ranks the top places.
+    -   Add a table panel to show pages whose latency ranks in the top places.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname | select URL as top_latency_URL ,request_time order by request_time desc limit 10
         ```
 
@@ -223,11 +223,11 @@ In the query result, `$hostname` is replaced by a specified domain name. |
 
     -   Add a table panel to show hot pages.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname | select count(1) as pv, split_part(URL,'?',1) as path group by split_part(URL,'?',1) order by pv desc limit 20
         ```
 
@@ -235,13 +235,13 @@ In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|You do not need to set this parameter.|
         |Y-Column|Enter **path,pv**.|
 
-    -   Add a table panel to show pages with the most access requests to which a non-200 HTTP status code is returned.
+    -   Add a table panel to show pages that have the most access requests to which a non-200 HTTP status code is returned.
 
         For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname not status:200| select count(1) as pv , url group by url order by pv desc
         ```
 
@@ -249,13 +249,13 @@ In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|You do not need to set this parameter.|
         |Y-Column|Enter **uv,pv**.|
 
-    -   Add a singlestat panel to show average latency.
+    -   Add a Singlestat panel to show average latency.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname | select avg(request_time) as response_time, avg(upstream_response_time) as upstream_response_time ,__time__ - __time__ % $$myinterval as time group by __time__ -  __time__ % $$myinterval limit 10000
         ```
 
@@ -267,17 +267,17 @@ In the query result, `$hostname` is replaced by a specified domain name, and `$$
 
     -   Add a logs panel to show detailed logs.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         **Note:** Each page can show a maximum of 100 log entries. The maximum value of the **Logs Per Page** parameter is 100.
 
     -   Add a pie chart panel to show client statistics.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname  | select count(1) as pv, case when  regexp_like(http_user_agent , 'okhttp') then 'okhttp' when  regexp_like(http_user_agent ,  'iPhone') then 'iPhone' when regexp_like(http_user_agent ,  'Android')  then 'Android' else 'unKnown' end as http_user_agent group by  http_user_agent order by pv desc limit 10
         ```
 
@@ -287,25 +287,25 @@ In the query result, `$hostname` is replaced by a specified domain name. |
 
     -   Add a graph panel to show the total number of requests for each HTTP code. The total number is calculated within 1 minute.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname  | select to_unixtime(time) as time,status,count from (select time_series(__time__, '1m', '%Y-%m-%d %H:%i', '0')  as time,status,count(*) as count from log group by status,time order by time limit 10000)
         ```
 
 In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|Enter time.|
-        |Y-Column|Enter col1\#:\# col2. col1 is the aggregated column and col2 is one of the other columns.|
+        |Y-Column|Enter col1\#:\# col2. col1 is the aggregate column and col2 is one of the other columns.|
 
-    -   Add a worldmap panel to show the distribution of source IP addresses.
+    -   Add a Worldmap panel to show the distribution of source IP addresses.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following tables describe the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
-        |Query|The following example shows the query statement:        ```
+        |Query|The query statement. In this example, the following query statement is executed:        ```
 $hostname  | select   count(1) as pv ,geohash(ip_to_geo(arbitrary(remote_addr))) as geo,ip_to_country(remote_addr) as country  from log group by country having geo <>'' limit 1000
         ```
 
@@ -322,19 +322,19 @@ In the query result, `$hostname` is replaced by a specified domain name. |
 
 5.  View the results.
 
-    On the top of Dashboard page, you can select a time range. You can also filter time interval and hostname.
+    On the top of the Dashboard page, you can select a time range. You can also filter the results bytime interval and hostname.
 
 
 ## FAQ
 
 -   Where are Grafana logs stored?
 
-    Grafana logs are stored in the following files:
+    Grafana logs are stored in the following directories:
 
     -   macOS: /usr/local/var/log/grafana
     -   Linux: /var/log/grafana
 -   What can I do if **aliyun-log-plugin\_linux\_amd64: permission denied** appears in logs?
 
-    Grant the execute permission on the dist/aliyun-log-plugin\_linux\_amd64 directory of the plug-in directory.
+    Grant the execute permissions on the dist/aliyun-log-plugin\_linux\_amd64 directory of the plug-in directory.
 
 
