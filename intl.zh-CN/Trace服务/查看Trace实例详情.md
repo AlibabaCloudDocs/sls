@@ -14,7 +14,7 @@
 
 ## 查看Trace数据详情
 
-您可以在Trace详情页面中，查看目标Trace数据的详细信息，包括Trace轨迹图、Span数据详情等。更多信息，请参见[查看Trace数据详情]()。
+您可以在Trace详情页面中，查看目标Trace数据的详细信息，包括Trace轨迹图、Span数据详情等。更多信息，请参见[查看Trace数据详情](/intl.zh-CN/Trace服务/查看Trace数据详情.md)。
 
 ## 查询和分析Trace数据
 
