@@ -10,18 +10,18 @@
     docker pull registry.cn-hangzhou.aliyuncs.com/log-service/logtail
     ```
 
-    其中，registry.cn-hangzhou.aliyuncs.com请根据实际情况替换，地域信息请参见[表 1](/intl.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md)。如果您的服务器处于阿里云VPC网络中，需将registry修改为registry-vpc。
+    其中，registry.cn-hangzhou.aliyuncs.com需根据实际情况替换，地域信息请参见[表 1](/intl.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md)。如果您的服务器处于阿里云VPC网络中，需将registry修改为registry-vpc。
 
 2.  启动Logtail容器。
 
     **说明：** 请在配置参数前执行以下任意一种配置，否则删除其他container时可能出现错误`container text file busy`。
 
-    -   Centos 7.4及以上版本设置fs.may\_detach\_mounts=1，相关说明请参见[Bug 1468249](https://bugzilla.redhat.com/show_bug.cgi?id=1468249)、[Bug 1441737](https://bugzilla.redhat.com/show_bug.cgi?id=1441737)和[issue 34538](https://github.com/moby/moby/issues/34538)。
+    -   Centos 7.4及以上版本（除Centos 8.0以外）设置fs.may\_detach\_mounts=1。更多信息，请参见[Bug 1468249](https://bugzilla.redhat.com/show_bug.cgi?id=1468249)、[Bug 1441737](https://bugzilla.redhat.com/show_bug.cgi?id=1441737)和[issue 34538](https://github.com/moby/moby/issues/34538)。
     -   为Logtail授予`privileged`权限，启动参数中添加`--privileged`。更多信息，请参见[docker run命令](https://docs.docker.com/engine/reference/run/)。
-    根据实际情况替换模板中的3个参数：`${your_region_name}`、`${your_aliyun_user_id}`和`${your_machine_group_user_defined_id}`。
+    根据实际情况替换模板中的3个参数`${your_region_name}`、`${your_aliyun_user_id}`和`${your_machine_group_user_defined_id}`。
 
     ```
-    docker run -d -v /:/logtail_host:ro -v /var/run:/var/run --env ALIYUN_LOGTAIL_CONFIG=/etc/ilogtail/conf/${your_region_name}/ilogtail_config.json --env ALIYUN_LOGTAIL_USER_ID=${your_aliyun_user_id} --env ALIYUN_LOGTAIL_USER_DEFINED_ID=${your_machine_group_user_defined_id} registry.cn-hangzhou.aliyuncs.com/log-service/logtail
+    docker run -d -v /:/logtail_host:ro -v /var/run:/var/run --env ALIYUN_LOGTAIL_CONFIG=/etc/ilogtail/conf/$\{your\_region\_name\}/ilogtail_config.json --env ALIYUN_LOGTAIL_USER_ID=$\{your\_aliyun\_user\_id\} --env ALIYUN_LOGTAIL_USER_DEFINED_ID=$\{your\_machine\_group\_user\_defined\_id\} registry.cn-hangzhou.aliyuncs.com/log-service/logtail
     ```
 
     |参数|参数说明|
@@ -35,7 +35,7 @@
 
     您可以自定义配置Logtail容器的启动参数，只需保证以下前提条件。
 
-    1.  启动时，必须配置3个环境变量：`ALIYUN_LOGTAIL_USER_DEFINED_ID`、`ALIYUN_LOGTAIL_USER_ID`、`ALIYUN_LOGTAIL_CONFIG`。
+    1.  启动时，必须配置3个环境变量`ALIYUN_LOGTAIL_USER_DEFINED_ID`、`ALIYUN_LOGTAIL_USER_ID`、`ALIYUN_LOGTAIL_CONFIG`。
     2.  必须宿主机将/var/run挂载到Logtail容器的/var/run目录。
     3.  将宿主机根目录挂载到Logtail容器的`/logtail_host`目录。
     4.  如果Logtail日志/usr/local/ilogtail/ilogtail.LOG中出现`The parameter is invalid : uuid=none`的错误日志，请在宿主机上创建一个product\_uuid文件，在其中输入任意合法UUID（例如`169E98C9-ABC0-4A92-B1D2-AA6239C0D261`），并把该文件挂载到Logtail容器的/sys/class/dmi/id/product\_uuid目录。
