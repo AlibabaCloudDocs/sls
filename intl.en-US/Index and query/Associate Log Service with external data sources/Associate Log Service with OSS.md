@@ -2,11 +2,11 @@
 
 This topic describes how to create an external store and associate Log Service with Object Storage Service \(OSS\).
 
--   A project and a Logstore are created. For more information, see [Step 1: Create a project and a Logstore](/intl.en-US/Quick Start/Quick start.md).
+-   A project and a Logstore are created. For more information, see [Step 1: Create a project and a Logstore](/intl.en-US/.md).
 -   Log data is collected. For more information, see [Data collection](/intl.en-US/Data Collection/Log collection methods.md).
--   The indexing feature is enabled for the Logstore and indexes are configured. For more information, see [Enable and configure the index feature for a Logstore](/intl.en-US/Index and query/Enable and configure the index feature for a Logstore.md).
--   An OSS bucket is created. For more information, see [Create buckets](/intl.en-US/Quick Start/Create buckets.md).
--   CSV objects are uploaded to the OSS bucket. For more information, see [Upload objects](/intl.en-US/Quick Start/Upload objects.md).
+-   The indexing feature is enabled for the Logstore and indexes are configured. For more information, see [Configure indexes](/intl.en-US/Index and query/Configure indexes.md).
+-   An OSS bucket is created. For more information, see [Create buckets](/intl.en-US/Quick Start/OSS console/Create buckets.md).
+-   CSV objects are uploaded to the OSS bucket. For more information, see [Upload objects](/intl.en-US/Quick Start/OSS console/Upload objects.md).
 
 ## Benefits
 
@@ -25,7 +25,7 @@ This topic describes how to create an external store and associate Log Service w
 
 2.  Click the project in the Projects section.
 
-3.  Choose **Log Management** \> **Logstores**. On the Logstores tab, click the management icon of the Logstore.
+3.  Choose **Log Storage** \> **Logstores**. On the Logstores tab, click the management icon of the Logstore.
 
 4.  Enter the following query statement in the search box and click **Search & Analytics**.
 
@@ -55,7 +55,7 @@ This topic describes how to create an external store and associate Log Service w
     If the returned result is the content that you have defined, the external store is created.
 
     ```
-    select * from user_meta1
+    * | select * from user_meta1
     ```
 
     ![Verify the settings](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6051201061/p8539.png)
