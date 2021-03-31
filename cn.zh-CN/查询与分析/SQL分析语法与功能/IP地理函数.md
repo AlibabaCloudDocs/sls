@@ -2,9 +2,9 @@
 
 IP地理函数可用于判断IP地址属于内网还是外网，也可用于分析IP地址所属的国家、省份、城市。本文介绍IP地理函数的基本语法及示例。
 
-## 函数语法
+## IP地址函数
 
-**说明：** 如下函数中的KEY参数表示日志字段（例如client\_ip），其值必须为IP地址。
+**说明：** 如下函数中的KEY参数表示日志字段（例如client\_ip），其值为IP地址。
 
 |函数名称|说明|示例|
 |:---|:-|:-|
@@ -67,6 +67,43 @@ IP地理函数可用于判断IP地址属于内网还是外网，也可用于分�
 
 |```
 * | SELECT ip_to_provider(client_ip)
+``` |
+
+## IP网段函数
+
+**说明：** 如下函数中的KEY参数表示日志字段（例如client\_ip），其值为IP地址。其中ip\_subnet\_min、ip\_subnet\_max、ip\_subnet\_range、is\_subnet\_of和is\_prefix\_subnet\_of函数中的字段值为子网掩码格式的IP地址（例如192.168.1.1/24），如果字段值为通用的IP地址，则需使用其他函数（例如concat函数，concat\(key,'/24'\)）将其转换为子网掩码格式。
+
+|函数名称|说明|示例|
+|:---|:-|:-|
+|ip\_prefix\(KEY,prefix\_bits\)|获取目标IP地址的前缀。返回结果为子网掩码格式的IP地址，例如192.168.1.0/24。
+
+|```
+* | SELECT ip_prefix(client_ip,24)
+``` |
+|ip\_subnet\_min\(KEY\)|获取IP网段中的最小IP地址。返回结果为IP地址，例如192.168.1.0。
+
+|```
+* | SELECT ip_subnet_min(concat(client_ip,'/24'))
+``` |
+|ip\_subnet\_max\(KEY\)|获取IP网段中最大IP地址。返回结果为IP地址，例如192.168.1.255。
+
+|```
+* | SELECT ip_subnet_max(concat(client_ip,'/24'))
+``` |
+|ip\_subnet\_range\(KEY\)|获取IP网段范围。返回结果为Array类型的IP地址，例如\["192.168.1.0","192.168.1.255"\]。
+
+|```
+* | SELECT ip_subnet_range(concat(client_ip,'/24'))
+``` |
+|is\_subnet\_of\('IP网段',KEY\)|判断目标IP地址是否在某网段内。返回结果为布尔值。
+
+|```
+* | SELECT is_subnet_of('192.168.0.1/24',client_ip)
+``` |
+|is\_prefix\_subnet\_of\('IP网段',KEY\)|判断目标网段是否为某网段的子网。返回结果为布尔值。
+
+|```
+* | SELECT is_prefix_subnet_of('192.168.0.1/24',concat(client_ip,'/24'))
 ``` |
 
 ## 示例
