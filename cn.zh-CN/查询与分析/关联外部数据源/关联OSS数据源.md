@@ -3,9 +3,9 @@
 本文介绍如何创建外部存储，建立日志服务与OSS的关联。
 
 -   已采集日志。更多信息，请参见[数据采集](/cn.zh-CN/数据采集/采集方式.md)。
--   已开启并配置索引。更多信息，请参见[开启并配置索引](/cn.zh-CN/查询与分析/开启并配置索引.md)。
--   已创建OSS Bucket。更多信息，请参见[创建存储空间](/cn.zh-CN/快速入门/创建存储空间.md)。
--   已上传CSV格式文件到OSS Bucket。更多信息，请参见[上传文件](/cn.zh-CN/快速入门/上传文件.md)。
+-   已开启并配置索引。更多信息，请参见[配置索引](/cn.zh-CN/查询与分析/配置索引.md)。
+-   已创建OSS Bucket。更多信息，请参见[创建存储空间](/cn.zh-CN/快速入门/控制台快速入门/创建存储空间.md)。
+-   已上传CSV格式文件到OSS Bucket。更多信息，请参见[上传文件](/cn.zh-CN/快速入门/控制台快速入门/上传文件.md)。
 
 ## 功能优势
 
@@ -51,7 +51,7 @@
     执行如下语句，返回结果为您之前定义的表内容，则表示已定义外部存储成功。
 
     ```
-    select * from user_meta1
+    * | select * from user_meta1
     ```
 
     ![验证结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0540559951/p8539.png)
