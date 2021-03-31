@@ -136,7 +136,7 @@ The NULLIF syntax is used to check whether the values of two columns are the sam
 
     -   Query and analysis results
 
-        If the values of the client\_iphost fields are different, the value of the client\_ip field is returned.
+        If the values of the client\_ip, host fields are different, the value of the client\_ip field is returned.
 
         ![NULLIF syntax](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4341466161/p242741.png)
 
