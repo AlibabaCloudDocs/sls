@@ -322,7 +322,7 @@ In the query result, `$hostname` is replaced by a specified domain name. |
 
 5.  View the results.
 
-    On the top of the Dashboard page, you can select a time range. You can also filter the results bytime interval and hostname.
+    On the top of the Dashboard page, you can select a time range. You can also filter the results by time interval and hostname.
 
 
 ## FAQ
