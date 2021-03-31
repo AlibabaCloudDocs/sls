@@ -1,8 +1,8 @@
 # Assign a RAM role to an Alibaba Cloud account
 
-This topic describes how to assign a Resource Access Management \(RAM\) role to a trusted entity. You can grant a RAM role the permissions to access Log Service and assign the role to a trusted entity. This allows the trusted entity to manage Log Service resources. To do so, you must use your Alibaba Cloud account to create a RAM role, grant permissions to the RAM role, and then grant the AssumeRole permission to a RAM user of an Alibaba Cloud account. Then, you can assign the role to the RAM user and receive a Security Token Service \(STS\) token for the role.
+This topic describes how to assign a Resource Access Management \(RAM\) role to a trusted entity. You can grant a RAM role the permissions to access Log Service and assign the role to a trusted entity. This allows the trusted entity to manage Log Service resources. To do so, you must use your Alibaba Cloud account to create a RAM role. You must grant permissions to the RAM role, and grant the AssumeRole permission to a RAM user of an Alibaba Cloud account. Then, you can assign the role to the RAM user and receive a Security Token Service \(STS\) token for the role.
 
-[RAM roles]() and [RAM users]() are identities that are managed in RAM. A RAM role is a virtual identity that does not have any credentials, such as a password or an AccessKey pair. You can assign the RAM role to a trusted entity, such as an Alibaba Cloud account, RAM user, or Alibaba Cloud service. After the trusted entity receives an STS token for the RAM role, the trusted entity can use the STS token to access the resources that the RAM role is authorized to use.
+Roles and users are identities used in RAM. A RAM role is a virtual identity that does not have a credential, such as a password or an AccessKey pair. You can assign the RAM role to a trusted entity, such as an Alibaba Cloud account, RAM user, or Alibaba Cloud service. After the trusted entity receives an STS token for the RAM role, the trusted entity can use the STS token to access the resources that the RAM role is authorized to use.
 
 ## Step 1: Create a RAM role and specify an Alibaba Cloud account for the RAM role
 
@@ -36,7 +36,7 @@ You can attach one or more policies to a RAM role. The policies include system p
 
 2.  On the RAM Roles page, find the RAM role, and click **Add Permissions** in the Actions column.
 
-3.  In the Add Permissions pane, click **System Policy**, select the **AliyunLogFullAccess** policy, and then click **OK**.
+3.  In the Add Permissions panel, click **System Policy**, select the **AliyunLogFullAccess** policy, and then click **OK**.
 
 4.  Confirm the authorization result, and then click **Complete**.
 
@@ -51,7 +51,7 @@ The specified Alibaba Cloud account must attach the **AssumeRole** policy to a R
 
 2.  On the Users page, find the RAM user, and then click **Add Permissions** in the Actions column.
 
-3.  In the Add Permissions pane, click **System Policy**, select the **AliyunSTSAssumeRoleAccess** policy, and then click **OK**.
+3.  In the Add Permissions panel, click **System Policy**, select the **AliyunSTSAssumeRoleAccess** policy, and then click **OK**.
 
 4.  Confirm the authorization result, and then click **Complete**.
 
