@@ -1,20 +1,20 @@
 # Flow control functions
 
-This topic describes the syntax of the flow control functions and provides parameter descriptions and function examples.
+This topic describes the syntax and parameters of flow control functions. This topic also provides several examples of flow control functions.
 
 ## Functions
 
 |Function|Description|
 |--------|-----------|
-|[e\_compose](#section_zr0_ghx_vie)|Combines operations. -   This function is used to combine operations in the `e_if`, `e_switch`, or `e_if_else` function.
--   The system invokes the operations specified in this function in sequence, and then dispatches, converts, and returns the resulting event.
--   If the system has invoked an operation to delete an event, no subsequent operations will be performed on the event. |
-|[e\_if](#section_dhk_ius_2q8)|Combines conditions and operations. -   If a condition evaluates to true, the system invokes the operation associated with the condition. If a condition evaluates to false, the system skips the operation associated with the condition and continues onto the next condition.
--   If the system has invoked an operation to delete an event, no subsequent operations will be performed on the event. |
-|[e\_if\_else](#section_6dy_m0v_hig)|Specifies a condition to invoke an associated operation.|
-|[e\_switch](#section_f1t_ukb_ilk)|Combines conditions and operations. -   If a condition evaluates to true, the system invokes the operation associated with the condition and returns the corresponding result. If a condition evaluates to false, the system skips the associated operation and continues onto the next condition.
--   If none of the specified conditions evaluates to true but the default parameter is set, the system invokes the operations specified in the default parameter and returns the corresponding results.
--   If the system has invoked an operation to delete an event, no subsequent operations will be performed on the event. |
+|[e\_compose](#section_zr0_ghx_vie)|Combines multiple operations. -   This function is used to combine multiple operations in the e\_if, e\_switch, or e\_if\_else function.
+-   The specified operations are performed on a log entry in sequence and a result is returned.
+-   If an operation is performed to delete a log entry, no other operations can be performed on the log entry. |
+|[e\_if](#section_dhk_ius_2q8)|Performs an operation if a condition is met. Multiple condition-operation pairs can be specified. -   If a condition is met, the paired operation is performed. If the condition is not met, the operation is not performed and the next condition is evaluated.
+-   If an operation is performed to delete a log entry, no other operations are performed on the log entry. |
+|[e\_if\_else](#section_6dy_m0v_hig)|Performs an operation based on the evaluation result of a condition.|
+|[e\_switch](#section_f1t_ukb_ilk)|Performs an operation if a condition is met. Multiple condition-operation pairs can be specified. -   If a condition is met, the paired operation is performed and a result is returned. If the condition is not met, the operation is not performed and the next condition is evaluated.
+-   If no specified conditions are met and the default parameter is specified, the default operations specified in the default parameter are performed and a result is returned.
+-   If an operation is performed to delete a log entry, no other operations are performed on the log entry. |
 
 ## e\_compose
 
@@ -28,16 +28,16 @@ This topic describes the syntax of the flow control functions and provides param
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |Operation 1|Global operation function|Yes|One or more other global operation functions.|
-    |Operation 2|Global operation function|No|One or more other global operation functions.|
+    |Operation 1|Global processing function|Yes|One or more global processing functions.|
+    |Operation 2|Global processing function|No|One or more global processing functions.|
 
 -   Response
 
-    An event on which the specified operations have been invoked is returned.
+    A log entry on which the specified operations are performed is returned.
 
--   Example: If the value of the `content` field is 123, delete the `age` and `name` fields and then set the `content` field to ctx.
+-   Example: If the value of the `content` field is 123, the `age` and `name` fields are deleted and the `content` field is set to ctx.
 
-    Raw log:
+    Raw log entry:
 
     ```
     content: 123
@@ -45,13 +45,13 @@ This topic describes the syntax of the flow control functions and provides param
     name: twiss
     ```
 
-    Processing rule:
+    Transformation rule:
 
     ```
     e_if(e_search("content==123"), e_compose(e_drop_fields("age|name"), e_rename("content", "ctx")))
     ```
 
-    Processing result:
+    Result:
 
     ```
     ctx:  123
@@ -64,48 +64,48 @@ This topic describes the syntax of the flow control functions and provides param
 
     ```
     e_if(Condition, Operation)
-    e_if(Condition 1, Operation 1, Condition 2, Operation 2, ....)
+    e_if(Condition 1, Operation 1, Condition 2, Operation 2, ...)
     ```
 
-    **Note:** The `Condition` and `Operation` parameters must appear in pairs.
+    **Note:** The `Condition` and `Operation` parameters must be used in pairs.
 
 -   Parameters
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |Condition|All|Yes|One or more other expressions. If the result is not a Boolean value, the system evaluates whether the condition is true or false.|
-    |Operation|Global operation function|No|One or more other global operation functions.|
+    |Condition|Arbitrary|Yes|One or more expressions. If the result is not a Boolean value, the system evaluates whether the condition is true or false.|
+    |Operation|Global processing function|No|One or more global processing functions.|
 
 -   Response
 
-    An event on which the specified operations have been invoked is returned.
+    A log entry on which the specified operations are performed is returned.
 
 -   Examples
-    -   Example 1: When a specified field is a certain value, invoke an associated operation.
+    -   Example 1: If the value of a specified field meets a condition, the paired operation is performed.
 
-        If the value of the `result` field is `failed` or `failure`, the system sets the topic field to `login_failed_event`:
+        If the value of the `result` field is `failed` or `failure`, the topic field is set to `login_failed_event`.
 
         ```
         e_if(e_match("result", r"failed|failure"), e_set("__topic__", "login_failed_event"))
         ```
 
-    -   Example 2: When the specified field exists and its value is not null, extract data.
+    -   Example 2: If the value of a specified field meets a condition, the value is extracted and the paired operation is performed.
 
-        If the `request_body` field exists and its value is not null, the system invokes a JSON function to expand the `request_body` field to show more than one value:
+        If the `request_body` field exists and the value of the field is not null, the field processing function "e\_json" is used to expand the `request_body` field.
 
         ```
         e_if(v("request_body"), e_json("request_body"))
         ```
 
-    -   Example 3: When a specified nested field is a certain value, invoke an associated operation.
+    -   Example 3: If the value of a specified field meets a combined condition, the operation is performed.
 
-        If the value of the `valid` field is failed in lowercase, the system discards the event:
+        If the value of the `valid` field is failed, the log entry is deleted.
 
         ```
         e_if(op_eq(str_lower(v("valid")), "failed"), DROP)
         ```
 
-    -   Example 4: Invoke operations associated with multiple conditions in sequence.
+    -   Example 4: Multiple operations are performed in sequence based on the specified conditions.
 
         ```
         e_if(True, e_set("__topic__", "default_login"), 
@@ -119,24 +119,24 @@ This topic describes the syntax of the flow control functions and provides param
 -   Syntax
 
     ```
-    e_if_else(Condition, Operation invoked with Condition evaluated to true, Operation invoked with Condition evaluated to false)
+    e_if_else(Condition, Operation 1 if Condition is evaluated to be true, Operation 2 if Condition is evaluated to be false)
     ```
 
 -   Parameters
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |Condition|All|Yes|One or more other expressions. If the result is not a Boolean value, the system evaluates whether the condition is true or false.|
-    |Operation invoked with Condition evaluated to true|Global operation function|Yes|One or more other global operation functions.|
-    |Operation invoked with Condition evaluated to false|Global operation function|Yes|One or more other global operation functions.|
+    |Condition|Arbitrary|Yes|One or more expressions. If the result is not a Boolean value, the system evaluates whether the condition is true or false.|
+    |Operation 1 if Condition is evaluated to be true|Global processing function|Yes|One or more global processing functions.|
+    |Operation 2 if Condition is evaluated to be false|Global processing function|Yes|One or more global processing functions.|
 
 -   Response
 
-    The results of operations associated with specified conditions are returned.
+    A log entry on which an operation is performed based on the evaluation result of a condition is returned.
 
--   Example: If the value of the `result` field is ok or pass or the value of the `status` field is 200, retain the log. Otherwise, delete the log.
+-   Example: If the value of the `result` field is ok or pass, or the value of the `status` field is 200, the log entry is retained. Otherwise, the log entry is deleted.
 
-    Raw log:
+    Raw log entries:
 
     ```
     result: Ok
@@ -153,13 +153,13 @@ This topic describes the syntax of the flow control functions and provides param
     status: 500
     ```
 
-    Processing rule:
+    Transformation rule:
 
     ```
-    e_if_else(op_or(e_match("result", r"(? i)ok|pass"), e_search("status== 200"), KEEP, DROP)
+    e_if_else(op_or(e_match("result", r"(? i)ok|pass"), e_search("status== 200")), KEEP, DROP)
     ```
 
-    Processing result: The system retains only the first two log entries.
+    Result: Only the first two log entries are retained.
 
     ```
     result: Ok
@@ -180,62 +180,92 @@ This topic describes the syntax of the flow control functions and provides param
     e_switch(Condition 1, Operation 1, ..., default=None)
     ```
 
-    **Note:** The `Condition` and `Operation` parameters must appear in pairs.
+    **Note:** The `Condition` and `Operation` parameters must be used in pairs.
 
 -   Parameters
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |Condition|All|Yes|One or more other expressions. If the result is not a Boolean value, the system evaluates whether the condition is true or false.|
-    |Operation|Global operation function|Yes|One or more other global operation functions.|
-    |default|Global operation function|No|One or more other default global operation functions. If none of the specified conditions evaluates to true, the system invokes the operations specified by this parameter.|
+    |Condition|Arbitrary|Yes|One or more expressions. If the result is not a Boolean value, the system evaluates whether the condition is true or false.|
+    |Operation|Global processing function|Yes|One or more global processing functions.|
+    |default|Global processing function|No|One or more default global processing functions. If no specified conditions are met and the default parameter is specified, the default operations specified in the default parameter are performed.|
 
 -   Response
 
-    An event on which the specified operations have been invoked is returned.
+    A log entry on which the specified operations are performed is returned.
 
--   Example: If the value of the `content` field is 123, set the `__topic__` field to Number. If the value of the `data` field is 123, set the `__topic__` field to PRO.
+-   Examples
+    -   If the value of the `content` field is 123, the `__topic__` field is set to Number. If the value of the `data` field is 123, the `__topic__` field is set to PRO.
 
-    Raw log:
+        Raw log entries:
 
-    ```
-    __topic__:  
-    age:  18
-    content:  123
-    name:  maki
-    data: 342
-    ```
+        ```
+        __topic__:  
+        age:  18
+        content:  123
+        name:  maki
+        data: 342
+        ```
 
-    ```
-    __topic__:  
-    age:  18
-    content:  23
-    name:  maki
-    data: 123
-    ```
+        ```
+        __topic__:  
+        age:  18
+        content:  23
+        name:  maki
+        data: 123
+        ```
 
-    Processing rule:
+        Transformation rule:
 
-    ```
-    e_switch(e_search("content==123"), e_set("__topic__", "Number", mode="overwrite"), e_search("data==123"), e_set("__topic__", "PRO", mode="overwrite"))
-    ```
+        ```
+        e_switch(e_search("content==123"), e_set("__topic__", "Number", mode="overwrite"), e_search("data==123"), e_set("__topic__", "PRO", mode="overwrite"))
+        ```
 
-    Processing result:
+        Result:
 
-    ```
-    __topic__:  Number
-    age:  18
-    content:  123
-    name:  maki
-    data: 342
-    ```
+        ```
+        __topic__:  Number
+        age:  18
+        content:  123
+        name:  maki
+        data: 342
+        ```
 
-    ```
-    __topic__:  PRO
-    age:  18
-    content:  23
-    name:  maki
-    data: 123
-    ```
+        ```
+        __topic__:  PRO
+        age:  18
+        content:  23
+        name:  maki
+        data: 123
+        ```
+
+    -   You can use the e\_switch and e\_output functions to deliver log entries that meet specified conditions to different Logstores. default=e\_drop\(\) indicates that log entries that do not meet specified conditions are deleted, and no other operations are performed on these log entries. If you do not set the default parameter, log entries that meet the specified conditions are delivered to the first specified Logstore.
+
+        Raw log entries:
+
+        ```
+        __topic__:sas-log-dns
+        test: aliyun
+        
+        __topic__: aegis-log-network
+        test:ecs
+        
+        __topic__: local-dns
+        test:sls
+        
+        __topic__:aegis-log-login
+        test:sls
+        ```
+
+        Transformation rule:
+
+        ```
+        e_switch(e_match("__topic__","sas-log-dns"),e_output(name="target1"),
+        e_match("__topic__","sas-log-process"),e_output(name="target2"),
+        e_match("__topic__","local-dns"),e_output(name="target3"),
+        e_match("__topic__","aegis-log-network"),e_output(name="target4"),
+        e_match("__topic__","aegis-log-login"),e_output(name="target5"),
+        default=e_drop())
+        ```
 
 
