@@ -8,7 +8,7 @@
 
 ## 使用限制
 
--   只有阿里云主账号采集创建投递任务，不支持子账号操作。
+-   只有阿里云账号能够创建投递任务，不支持RAM账号操作。
 -   不同Logstore中的数据请勿投递到同一张MaxCompute表中，可能造成多个投递任务的数据写入到一张MaxCompute表中。
 -   投递不支持日志时间（对应保留字段\_\_time\_\_）距离当前时间14天以前的数据，在投递过程中自动丢弃超过14天的数据。
 -   通过日志服务投递日志到MaxCompute，暂不支持DECIMAL、DATETIME、DATE、TIMESTAMP数据类型，数据类型详情请参见[2.0数据类型版本](/cn.zh-CN/开发/数据类型/2.0数据类型版本.md)。
@@ -26,7 +26,7 @@
     |中国（香港）|华东2（上海）|
 
 
-## 操作步骤
+## 步骤一：创建投递任务
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
@@ -46,7 +46,7 @@
 
 7.  在LogHub —— 数据投递页面，配置投递规则，并单击**确定**。
 
-    ![投递规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7369498951/p5816.png)
+    ![投递规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1778717161/p5816.png)
 
     重要参数配置如下所示。
 
@@ -56,19 +56,19 @@
     |投递名称|投递任务的名称。|
     |项目名|MaxCompute项目名称，支持新建或选择已创建的MaxCompute项目。|
     |项目表名|MaxCompute表名称，支持新建或选择已创建的MaxCompute表。|
-    |字段关联|左边文本框中填写与MaxCompute表列相映射的日志字段名称，右边为MaxCompute表的列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 日志服务投递日志到MaxCompute按照日志字段与MaxCompute表列的顺序进行映射，修改MaxCompute表列名不影响数据投递。如果更改MaxCompute表schema，请重新配置日志字段与MaxCompute表列映射关系。 |
-    |分区字段|左边文本框中填写与MaxCompute表分区列相映射的日志字段名称，右边为MaxCompute表分区列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 最大配置3个分区列，请谨慎选择自定义字段作为分区列，保证一次投递任务中生成的分区数目小于512个，否则会导致投递任务写数据到MaxCompute表失败，整批数据无法投递。 |
+    |MaxCompute普通列|左边文本框中填写与MaxCompute表列相映射的日志字段名称，右边为MaxCompute表的列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 日志服务投递日志到MaxCompute按照日志字段与MaxCompute表列的顺序进行映射，修改MaxCompute表列名不影响数据投递。如果更改MaxCompute表schema，请重新配置日志字段与MaxCompute表列映射关系。 |
+    |MaxCompute分区列|左边文本框中填写与MaxCompute表分区列相映射的日志字段名称，右边为MaxCompute表分区列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 最大配置3个分区列，请谨慎选择自定义字段作为分区列，保证一次投递任务中生成的分区数目小于512个，否则会导致投递任务写数据到MaxCompute表失败，整批数据无法投递。 |
     |时间分区格式|时间分区格式，配置示例请参见[参考信息](#section_vil_1oe_niu)，参数详情请参见[Java SimpleDateFormat](https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html?spm=5176.doc29001.2.4.vP4zF4)。 **说明：**
 
     -   仅当**分区字段**配置为**\_\_partition\_time\_\_**时，时间分区格式才生效。
-    -   请勿使用精确到秒的日期格式，易导致单表的分区数目超过限制（60000个）
+    -   请勿使用精确到秒的日期格式，易导致单表的分区数目超过限制（60000个）。
     -   单次投递任务的数据分区数目必须在512以内。 |
     |导入时间间隔|投递任务的时长，默认值为1800，单位为秒。 当投递任务的时长达到此处设置的大小时，会自动创建一个新的投递任务。 |
 
     开启投递后，一般情况下日志数据会在写入Logstore后的1个小时导入到MaxCompute，导入成功后即可在MaxCompute内查看到相关日志数据。判断数据是否已完全投递请参见[日志投递MaxCompute后，如何检查数据完整性]()。
 
 
-## 查看MaxCompute数据
+## 步骤一：查看MaxCompute数据
 
 投递到MaxCompute成功后，您可以查看MaxCompute数据，数据样例如下所示。您可以使用已经与MaxCompute绑定的大数据开发工具Data IDE来消费数据，进行可视化的BI分析及数据挖掘。
 
@@ -79,13 +79,52 @@
 +------------+------------+-----------+-----------+-----------+-----------+------------------+--------------------+-----------+
 ```
 
+## 授予日志服务账号投递权限
+
+在数加平台删除表后再重建，会导致默认授权失效，您需手动为日志服务投递数据操作重新授权。
+
+1.  登录[DataWorks控制台](https://workbench.data.aliyun.com/console)。
+
+2.  在工作空间列表页面，单击目标工作空间对应的**进入数据开发**。
+
+3.  新建业务流程。
+
+    1.  在**数据开发**页面，将鼠标悬停至![新建](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7190659951/p72306.png)图标，单击**业务流程**。
+
+    2.  在新建业务流程对话框中，配置**业务名称**，并单击**新建**。
+
+4.  新建节点。
+
+    1.  在**数据开发**页面，将鼠标悬停至![新建](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7190659951/p72306.png)图标，选择**MaxCompute** \> **ODPS SQL**。
+
+    2.  在新建节点对话框中，配置**节点名称**和**目标文件夹**，并单击**提交**。
+
+        其中，**目标文件夹**需配置为您在步骤[3](#step_979_bh8_55u)中所创建的业务流程。
+
+5.  在已创建的节点编辑框中，执行如下命令，完成授权。
+
+    ![授权](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9755717161/p259316.png)
+
+    |命令|含义|
+    |--|--|
+    |`ADD USER aliyun$shennong_open@aliyun.com;`|在MaxCompute项目空间中添加用户。其中shennong\_open@aliyun.com为日志服务账号（固定值，请勿修改）。 |
+    |`GRANT Read, List ON PROJECT \{ODPS\_PROJECT\_NAME\} TO USER aliyun$shennong_open@aliyun.com;`|授予用户读和查询MaxCompute项目空间的权限。其中\{ODPS\_PROJECT\_NAME\}为MaxCompute项目空间名称，请使用实际值替换。 |
+    |`GRANT Describe, Alter, Update ON TABLE \{ODPS\_TABLE\_NAME\} TO USER aliyun$shennong_open@aliyun.com;`|授予用户Describe、Alter和Update权限。其中\{ODPS\_TABLE\_NAME\}为MaxCompute表名称，请使用实际值替换。 |
+    |`SHOW GRANTS FOR aliyun$shennong_open@aliyun.com;`|确认授权是否成功。如果返回如下信息表示授权成功。
+
+    ```
+A       projects/\{ODPS\_PROJECT\_NAME\}: List | Read
+A       projects/{\{ODPS\_PROJECT\_NAME\}/tables/\{ODPS\_TABLE\_NAME\}: Describe | Alter | Update
+    ``` |
+
+
 ## 相关操作
 
 创建投递任务后，您可以在MaxCompute（原ODPS）投递管理页面，执行修改投递配置、关闭投递任务、查看投递任务状态及错误信息、重试投递任务等操作。
 
 -   修改投递配置
 
-    单击**投递配置**，修改投递配置，参数详情请参见本文中的[操作步骤](#section_pwg_1mp_yy)。其中如果想新增列，可以在大数据计算服务MaxCompute修改投递的数据表列信息。
+    单击**投递配置**，修改投递配置，参数详情请参见本文中的[步骤一：创建投递任务](#section_pwg_1mp_yy)。其中如果想新增列，可以在大数据计算服务MaxCompute修改投递的数据表列信息。
 
 -   关闭投递任务
 
@@ -121,41 +160,6 @@
 
         如果您需要立即重试失败任务，请单击**重试全部失败任务**或通过API、SDK指定任务进行重试。
 
-
-## 授予日志服务账号投递权限
-
-如果在数加平台，删除表后再重建，会导致默认授权失效，需手动为日志服务投递数据重新授权。
-
-执行如下命令，在MaxCompute项目空间下添加用户，其中shennong\_open@aliyun.com是日志服务账号（固定值，请勿修改），授权目的是为了能将数据写入到MaxCompute。
-
-```
-ADD USER aliyun$shennong_open@aliyun.com;
-```
-
-执行如下命令，授予MaxCompute项目空间Read和List权限。
-
-```
-GRANT Read, List ON PROJECT {ODPS_PROJECT_NAME} TO USER aliyun$shennong_open@aliyun.com;
-```
-
-执行如下命令，授予MaxCompute项目空间的表Describe、Alter、Update权限。
-
-```
-GRANT Describe, Alter, Update ON TABLE {ODPS_TABLE_NAME} TO USER aliyun$shennong_open@aliyun.com;
-```
-
-执行如下命令，确认MaxCompute授权是否成功。
-
-```
-SHOW GRANTS FOR aliyun$shennong_open@aliyun.com;
-```
-
-返回如下信息表示授权成功。
-
-```
-A       projects/{ODPS_PROJECT_NAME}: List | Read
-A       projects/{ODPS_PROJECT_NAME}/tables/{ODPS_TABLE_NAME}: Describe | Alter | Update
-```
 
 ## 参考信息
 
@@ -209,7 +213,7 @@ A       projects/{ODPS_PROJECT_NAME}/tables/{ODPS_TABLE_NAME}: Describe | Alter 
     -   MaxCompute分区列的值不支持配置为MaxCompute的保留字和关键字。更多信息，请参见[保留字与关键字](/cn.zh-CN/开发/SQL及函数/附录/保留字与关键字.md)。
     -   MaxCompute分区列取值不支持配置为空，所以映射到分区列的字段必须为保留字段或日志字段，且可以通过cast运算符将string类型字段值转换为对应分区列类型，空分区列的日志会在投递中被丢弃。
     -   日志服务中一个日志字段只能映射到一个MaxCompute表的列（数据列或分区列），不支持字段冗余，同一个字段名第二次使用时其投递的值为null，如果null出现在分区列会导致数据无法被投递。
-    MaxCompute数据列、分区列与日志服务字段的映射关系示例如下所示，其中日志服务保留字段详情请参见[保留字段](/cn.zh-CN/产品简介/限制说明/保留字段.md)。
+    MaxCompute数据列、分区列与日志服务字段的映射关系示例如下所示，其中日志服务保留字段详情请参见[保留字段](/cn.zh-CN/产品简介/使用限制/保留字段.md)。
 
     |MaxCompute 列类型|列名（MaxCompute）|数据类型（MaxCompute）|日志字段名称（日志服务）|字段类型（日志服务）|字段说明|
     |--------------|--------------|----------------|------------|----------|----|
