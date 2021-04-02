@@ -1,63 +1,124 @@
 # IP functions
 
-IP functions can identify whether an IP address is an internal or external IP address. IP functions can also identify the country, province, and city to which an IP address belongs. This topic describes the syntax of IP functions and provides examples.
+IP functions can be used to identify whether an IP address is an internal or external IP address. IP functions can also be used to identify the country, state, and city to which an IP address belongs. This topic describes the syntax of IP functions and provides related examples.
 
-## Basic syntax
+## Syntax
+
+**Note:** The KEY parameter in the following functions indicates a log field, for example, client\_ip. The value of this parameter must be an IP address.
 
 |Function|Description|Example|
 |:-------|:----------|:------|
-|ip\_to\_domain\(ip\)|Identifies whether an IP address is an internal or external IP address. The returned result is intranet or internet.|SELECT ip\_to\_domain\(ip\)|
-|ip\_to\_country\(ip\)|Identifies the country to which an IP address belongs.|SELECT ip\_to\_country\(ip\)|
-|ip\_to\_province\(ip\)|Identifies the province to which an IP address belongs.|SELECT ip\_to\_province\(ip\)|
-|ip\_to\_city\(ip\)|Identifies the city to which an IP address belongs.|SELECT ip\_to\_city\(ip\)|
-|ip\_to\_geo\(ip\)|Identifies the longitude and latitude of an IP address. The result is returned in the `latitude, longitude` format.For more information about geohash functions, see [Geo functions](/intl.en-US/Index and query/Analysis grammar/Geo functions.md).
+|ip\_to\_domain\(KEY\)|Identifies whether an IP address is an internal or external IP address. The returned result is **intranet** or **internet**.
 
-|SELECT ip\_to\_geo\(ip\)|
-|ip\_to\_city\_geo\(ip\)|Identifies the longitude and latitude of the city to which an IP address belongs. The result is returned in the `latitude, longitude` format. This function returns the longitude and latitude of a city. Each city has only one longitude and latitude coordinate.|SELECT ip\_to\_city\_geo\(ip\)|
-|ip\_to\_provider\(ip\)|Identifies the Internet Service Provider \(ISP\) corresponding to an IP address.|SELECT ip\_to\_provider\(ip\)|
-|ip\_to\_country\(ip,'en'\)|Identifies the country to which an IP address belongs. The result is returned as a country code.|SELECT ip\_to\_country\(ip,'en'\)|
-|ip\_to\_country\_code\(ip\)|Identifies the country to which an IP address belongs. The result is returned as a country code.|SELECT ip\_to\_country\_code\(ip\)|
-|ip\_to\_province\(ip,'en'\)|Identifies the province to which an IP address belongs. The result is returned in English or Chinese Pinyin.|SELECT ip\_to\_province\(ip,'en'\)|
-|ip\_to\_city\(ip,'en'\)|Identifies the city to which an IP address belongs. The result is returned in English or Chinese Pinyin.|SELECT ip\_to\_city\(ip,'en'\)|
+-   **intranet**: indicates an internal IP address.
+-   **internet**: indicates an external IP address.
+
+|```
+* | SELECT ip_to_domain(client_ip)
+``` |
+|ip\_to\_country\(KEY\)|Identifies the country to which an IP address belongs. The returned result is the Chinese characters of a country or region.
+
+|```
+* | SELECT ip_to_country(client_ip)
+``` |
+|ip\_to\_country\(KEY,'en'\)|Identifies the country or region to which an IP address belongs. The returned result is the code of a country or region.
+
+|```
+* | SELECT ip_to_country(client_ip,'en')
+``` |
+|ip\_to\_country\_code\(KEY\)|Identifies the country or region to which an IP address belongs. The returned result is the code of a country or region.
+
+|```
+* | SELECT ip_to_country_code(client_ip)
+``` |
+|ip\_to\_province\(KEY\)|Identifies the state to which an IP address belongs. The returned result is the Chinese characters of a state.
+
+|```
+* | SELECT ip_to_province(client_ip)
+``` |
+|ip\_to\_province\(KEY,'en'\)|Identifies the state to which an IP address belongs. The returned result is the administrative region code of a state.
+
+|```
+* | SELECT ip_to_province(client_ip,'en')
+``` |
+|ip\_to\_city\(KEY\)|Identifies the city to which an IP address belongs. The returned result is the Chinese characters of a city.
+
+|```
+* | SELECT ip_to_city(client_ip)
+``` |
+|ip\_to\_city\(KEY,'en'\)|Identifies the city to which an IP address belongs. The returned result is the administrative region code of a city.
+
+|```
+* | SELECT ip_to_city(client_ip,'en')
+``` |
+|ip\_to\_geo\(KEY\)|Identifies the longitude and latitude of an IP address. The returned result is in the `latitude,longitude` format.
+
+For information about geohash functions, see [Geo functions](/intl.en-US/Index and query/Analysis grammar/Geo functions.md).
+
+|```
+* | SELECT ip_to_geo(client_ip)
+``` |
+|ip\_to\_city\_geo\(KEY\)|Identifies the longitude and latitude of the city to which an IP address belongs. This function returns the longitude and latitude of a city. Each city has only one longitude and latitude coordinate. The returned result is in the `latitude,longitude` format.
+
+|```
+* | SELECT ip_to_city_geo(client_ip)
+``` |
+|ip\_to\_provider\(KEY\)|Identifies the Internet service provider \(ISP\) of an IP address. The returned result is the name of an ISP.
+
+|```
+* | SELECT ip_to_provider(client_ip)
+``` |
 
 ## Examples
 
 The following examples show how to use IP functions in different scenarios. You can also display the query and analysis results on a chart.
 
--   To exclude the access requests over the internal network from the query results and view the total number of access requests, use the following query statement:
+**Note:** In the following examples, client\_ip, latency, and requestId are log fields.
+
+-   To calculate the total number of requests that are not from the internal network, execute the following query statement:
 
     ```
-    * | SELECT count(1) where ip_to_domain(ip)! ='intranet'
+    * | SELECT count(*) AS PV where ip_to_domain(client_ip)!='intranet'
     ```
 
--   To query the top 10 provinces from which access requests originate, use the following query and analysis statement:
+    ![Requests that are not from the internal network](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0818537161/p230090.png)
+
+-   To calculate the top 10 states from which the most requests are sent, execute the following query statement:
 
     ```
-    * | SELECT count(1) as pv, ip_to_province(ip) as province GROUP BY province order by pv desc limit 10
+    * | SELECT count(*) as PV, ip_to_province(client_ip) AS province GROUP BY province ORDER BY PV desc LIMIT 10
     ```
 
-    If the preceding result contains access requests from the internal network and you want to filter out these requests, use the following query and analysis statement:
+    ![Top 10 provinces](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0818537161/p230092.png)
+
+    If the result of the preceding query statement contains requests from the internal network and you want to exclude these requests, execute the following query statement:
 
     ```
-    * | SELECT count(1) as pv, ip_to_province(ip) as province WHERE ip_to_domain(ip) ! = 'intranet'  GROUP BY province ORDER BY pv desc limit 10
+    * | SELECT count(*) AS PV, ip_to_province(client_ip) AS province WHERE ip_to_domain(client_ip) != 'intranet'  GROUP BY province ORDER BY PV DESC LIMIT 10
     ```
 
--   To view the average latency, maximum latency, and the request with the maximum latency by country, use the following query and analysis statement:
+-   To calculate the average response latency, maximum response latency, and the requests associated with the maximum latency by country \(region\), execute the following query statement:
 
     ```
-    * | SELECT AVG(latency),MAX(latency),MAX_BY(requestId, latency) ,ip_to_country(ip) as country group by country limit 100
+    * | SELECT AVG(latency) AS avg_latency, MAX(latency) AS max_latency, MAX_BY(requestId, latency) AS requestId, ip_to_country(client_ip) AS country GROUP BY country
     ```
 
--   To view the average latency of different ISPs, use the following query and analysis statement:
+    ![Latency](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1818537161/p230160.png)
+
+-   To calculate the average latency of different ISPs, execute the following query statement:
 
     ```
-    * | SELECT AVG(latency) , ip_to_provider(ip) as provider group by provider limit 100
+    * | SELECT AVG(latency) AS avg_latency, ip_to_provider(client_ip) AS provider GROUP BY provider ORDER BY avg_latency
     ```
 
--   To view the longitude and latitude of an IP address, use the following query and analysis statement:
+    ![ISP latency](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1818537161/p230066.png)
+
+-   To query the longitude and latitude to which an IP address belongs and view the distribution of clients, execute the following query statement:
 
     ```
-    * | SELECT count(1) as pv , ip_to_geo(ip) as geo group by geo order by pv desc
+    * | SELECT count(*) AS PV , ip_to_geo(client_ip) AS geo GROUP BY geo ORDER BY PV DESC
     ```
+
+    ![Client distribution](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1818537161/p230060.png)
 
 
