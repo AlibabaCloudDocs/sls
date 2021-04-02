@@ -111,7 +111,7 @@ The following examples show how to use IP functions in different scenarios. You 
     * | SELECT AVG(latency) AS avg_latency, ip_to_provider(client_ip) AS provider GROUP BY provider ORDER BY avg_latency
     ```
 
-    ![ISP latency](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/1818537161/p230066.png)
+    ![ISP latency](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2528537161/p230066.png)
 
 -   To query the longitude and latitude to which an IP address belongs and view the distribution of clients, execute the following query statement:
 
