@@ -22,7 +22,7 @@
 |start|INT|是|开始时间。Unix时间戳类型，单位：微秒。|1615882567123456|
 |end|INT|否|结束时间。Unix时间戳类型，单位：微秒。|1615882567234567|
 |duration|INT|是|延迟时间，start参数与end参数之间的差值。单位：微秒。|1020|
-|attribute|JSON Object|否|Span相关的属性信息，例如HTTP请求的URL、状态码等。更多信息，请参见[Attribute and Label Naming](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/attribute-and-label-naming.md)。|\{"custom":"custom","host.hostname":"myhost","my-label":"myapp-type","null-value":"","service.name":"myapp"\}|
+|attribute|JSON Object|是|Span相关的属性信息，例如HTTP请求的URL、状态码等。更多信息，请参见[Attribute and Label Naming](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/common/attribute-and-label-naming.md)。|\{"custom":"custom","host.hostname":"myhost","my-label":"myapp-type","null-value":"","service.name":"myapp"\}|
 |statusCode|String|是|状态码。取值为OK、ERROR、UNSET。其中，UNSET与OK同义。|ERROR|
 |statusMessage|String|否|状态信息。|stack overflow|
 
