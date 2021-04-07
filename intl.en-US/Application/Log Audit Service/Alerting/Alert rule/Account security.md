@@ -4,7 +4,7 @@ This topic describes the alert rules for account security. You can configure and
 
 ## Alert rules
 
-The following alert rules are supported. For information about how to set alert parameters, configure whitelists, and perform other related operations, see [Manage alert rules]().
+The following alert rules are supported. For information about how to set alert parameters, configure whitelists, and perform other related operations, see [Manage alert rules](/intl.en-US/Application/Log Audit Service/Alerting/Manage alert rules.md).
 
 -   [RAM Sub-Account Login without MFA Alert](#section_z34_l6v_isj)
 -   [RAM Password Expiration Policy Exception Alert](#section_wro_6cr_ztd)
@@ -75,7 +75,7 @@ The following alert rules are supported. For information about how to set alert 
 -   Max login failures/h: In the RAM password policy, the maximum number of failed logons due to invalid passwords that are allowed within a single hour. Default value: 5. To meet the Center for Internet Security \(CIS\) rules of Alibaba Cloud, we recommend that you set the value to 5. |
 |**External Configurations**|None|
 |**Solution**|You can reset the number of failed logons that are allowed within one hour due to invalid passwords in the RAM password policy. Make sure that it is smaller than or equal to the specified Max login failures/h parameter.|
-|**Prerequisites**|The **Operations Log** switch next to ActionTrail is turned on. To turn on the switch, go to the Log Audit Service page, and then choose**Audit Configurations** \> **Access to Cloud Products** \> **Global Configurations**.|
+|**Prerequisites**|The **Operations Log** switch next to ActionTrail is turned on. To turn on the switch, go to the Log Audit Service page, and then choose **Audit Configurations** \> **Access to Cloud Products** \> **Global Configurations**.|
 
 ## Root Account Frequent Login Alert
 
