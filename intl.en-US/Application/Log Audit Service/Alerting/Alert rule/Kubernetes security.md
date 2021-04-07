@@ -4,7 +4,7 @@ This topic describes the alert rules for Kubernetes security, including excessiv
 
 ## Alert rules
 
-The following alert rules are supported. For information about how to set alert parameters, configure whitelists, and perform other related operations, see [Manage alert rules]().
+The following alert rules are supported. For information about how to set alert parameters, configure whitelists, and perform other related operations, see [Manage alert rules](/intl.en-US/Application/Log Audit Service/Alerting/Manage alert rules.md).
 
 -   [Too Many K8s Warning Events Alert](#section_cxc_jou_ix4)
 -   [K8s Frequent Delete Event Alert](#section_615_knr_crk)
@@ -28,7 +28,7 @@ The following alert rules are supported. For information about how to set alert 
 -   K8s Cluster Name: The name of the Kubernetes cluster that you want to monitor. Regular expressions are supported. The default value is `.*`, which indicates the Kubernetes clusters that are configured in the Log Audit Service application. |
 |**External Configurations**|None|
 |**Solution**|You can check whether exceptions have occurred on clusters that broadcast a great number of warning events.|
-|**Prerequisites**|The **K8s Event Center** switch next to Kubernetes is turned on. To turn on the switch, go to the Log Audit Service page, and then choose**Audit Configurations** \> **Access to Cloud Products** \> **Global Configurations**.|
+|**Prerequisites**|The **K8s Event Center** switch next to Kubernetes is turned on. To turn on the switch, go to the Log Audit Service page, and then choose **Audit Configurations** \> **Access to Cloud Products** \> **Global Configurations**.|
 
 ## K8s Frequent Delete Event Alert
 
