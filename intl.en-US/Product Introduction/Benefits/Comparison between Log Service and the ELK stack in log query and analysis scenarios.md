@@ -124,7 +124,7 @@ For example, you want to calculate the number and traffic of read requests whose
     * | select content where content like '%substring%' limit 100
     
     To query data that matches the specified regular expression, execute the following query statement:
-    * | select content where regexp_like(content, '\d+m'）limit 100
+    * | select content where regexp_like(content, '\d+m') limit 100
     
     To query parsed JSON-formatted data that matches the specified conditions, execute the following query statement:
     * | select content where json_extract(content, '$.store.book')='mybook' limit 100
@@ -177,7 +177,7 @@ Elasticsearch supports data aggregation based on the doc values. Elasticsearch 6
 
 In addition to SQL-92 standard functions, Log Service also provides the following features that are specific to log analysis scenarios:
 
--   [Interval-valued comparison and periodicity-valued comparison function](/intl.en-US/Index and query/Analysis grammar/Interval-valued comparison and periodicity-valued comparison function.md)
+-   [Interval-valued comparison and periodicity-valued comparison functions](/intl.en-US/Index and query/Analysis grammar/Interval-valued comparison and periodicity-valued comparison functions.md)
 
     You can nest the interval-valued comparison and periodicity-valued comparison functions in SQL statements. You can use this method to calculate the changes of a single field value, multiple field values, and curves in different time windows.
 
