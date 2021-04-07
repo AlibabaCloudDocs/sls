@@ -28,35 +28,35 @@ The following alert rules are supported. For information about how to set alert 
 |Account Continuous Login Failure Alert|
 |Root Account AK Usage Detection|
 |RAM Password Length Policy Exception Alert|
-|[Permission control]()|OSS Bucket Authority Change Alert|
+|[Permission control](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Permission control.md)|OSS Bucket Authority Change Alert|
 |RAM Policy Change Alert|
 |RAM Policy Abnormal Attach Alert|
-|[OSS operation compliance]()|OSS Bucket Encryption Shutdown Alert|
+|[OSS operation compliance](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/OSS operation compliance.md)|OSS Bucket Encryption Shutdown Alert|
 |OSS Newly Created Bucket Encryption Not Enabled Alert|
 |OSS Bucket Logging Shutdown Alert|
 |OSS Newly Created Bucket Logging Not Enabled Alert|
-|[Operation compliance of RDS instances]()|RDS Instance SQL Insight Disabled Alert|
+|[Operation compliance of RDS instances](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Operation compliance of RDS instances.md)|RDS Instance SQL Insight Disabled Alert|
 |RDS Instance Access Whitelist Abnormal Setting Alert|
 |Newly Created RDS Instance's SSL Not Enabled AlertNot CreatedEnable Settings|
 |Newly Created RDS Instance's TDE Not Enabled Alert|
 |RDS Instance SSL Disabled Alert|
 |RDS Instance Configuration Change Alert|
-|[Server Load Balancer \(SLB\) operation compliance]()|SLB Modification Protection Shutdown Alert|
+|[Server Load Balancer \(SLB\) operation compliance](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Server Load Balancer (SLB) operation compliance.md)|SLB Modification Protection Shutdown Alert|
 |SLB Health Check Shutdown Alert|
-|[Operation compliance of ECS instances]()|ECS Disk Encryption Shutdown Alert|
+|[Operation compliance of ECS instances](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Operation compliance of ECS instances.md)|ECS Disk Encryption Shutdown Alert|
 |ECS Automatic Snapshot Strategy Shutdown Alert|
 |Security Group Configuration Change Alert|
 |ECS Network Type Check|
-|[Operation compliance of VPCs]()|VPC Network Routing Change Alert|
+|[Operation compliance of VPCs](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Operation compliance of VPCs.md)|VPC Network Routing Change Alert|
 |VPC Flow Log Abnormally Configured Alert|
 |VPC Configuration Change Alert|
-|[Operation compliance of Cloud Firewall]()|Cloudfirewall Control Policy Change Alert|
-|[API calls]()|Unauthorized Api Call Alert|
-|[Operation compliance of TDI]()|TDI Webpage Anti-tampering Disabled Alert|
-|[Kubernetes security]()|Too Many K8s Warning Events Alert|
+|[Operation compliance of Cloud Firewall](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Operation compliance of Cloud Firewall.md)|Cloudfirewall Control Policy Change Alert|
+|[API calls](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/API calls.md)|Unauthorized Api Call Alert|
+|[Operation compliance of TDI](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Operation compliance of TDI.md)|TDI Webpage Anti-tampering Disabled Alert|
+|[Kubernetes security](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Kubernetes security.md)|Too Many K8s Warning Events Alert|
 |K8s Frequent Delete Event Alert|
 |Too Many K8s Error Events Alert|
-|[Security of RDS instances]()|RDS Slow SQL detection|
+|[Security of RDS instances](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Security of RDS instances.md)|RDS Slow SQL detection|
 |RDS Data Mass Deletion Alert|
 |Detection of RDS Visit through Internet|
 |RDS Query SQL Average Execution Time Monitoring|
@@ -69,16 +69,16 @@ The following alert rules are supported. For information about how to set alert 
 |Rds Mass Data Update Event Alert|
 |RDS Dangerous SQL Execution Alert|
 |Too Many RDS SQL Execution Errors Alert|
-|[Flow security of SLB]()|Inspection of SLB Abnormal Response Length|
+|[Flow security of SLB](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Flow security of SLB.md)|Inspection of SLB Abnormal Response Length|
 |Inspection of SLB Abnormal Request Length|
 |SLB Average Response Delay Too High Alert|
 |SLB HTTP Access Protocol Enabled Alert|
 |Load Balance Access UV Anomaly Inspection|
 |Load Balance Access PV Anomaly Inspection|
-|[Flow security of API Gateway]()|APIgateway Server Average Delay Too High Alert|
+|[Flow security of API Gateway](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Flow security of API Gateway.md)|APIgateway Server Average Delay Too High Alert|
 |APIGateway Backend Server Error Rate Too High Alert|
 |APIgateway Request Success Rate Too Low Alert|
-|[Security of OSS traffic]()|OSS Inflow Anomaly Inspection|
+|[Security of OSS traffic](/intl.en-US/Application/Log Audit Service/Alerting/Alert rule/Security of OSS traffic.md)|OSS Inflow Anomaly Inspection|
 |OSS Bucket Valid Request Rate Too Low Alert|
 |Detection of OSS Bucket Visit through Internet|
 |OSS Access PV Anomaly Inspection|
