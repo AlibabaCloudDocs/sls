@@ -23,7 +23,7 @@ Action policies are attached to the alert rules in the Log Audit Service applica
     -   Basic edit mode
         1.  In the Action Policy to Add section, set the required parameters, and click **Add Policy**. The following table describes the parameters.
 
-            ![Silence policy](../images/p188426.png)
+            ![policy](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4041687161/p261528.png)
 
             The preceding figure shows that the alert is discarded if you perform related operations by using the Alibaba Cloud account 12\*\*\*\*768768 from the UNIX timestamp 1607072446 to 1607086846. The following table describes the required parameters.
 
@@ -38,7 +38,7 @@ Action policies are attached to the alert rules in the Log Audit Service applica
 
             -   To modify a policy, click **Edit** next to the policy.
             -   To adjust the execution sequence of a policy, click the Up or Down arrow next to the policy.
-            ![Alert policy](../images/p188206.png)
+            ![dd](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5041687161/p261531.png)
 
         3.  Confirm the policy and click **OK**.
     -   Advanced edit mode
