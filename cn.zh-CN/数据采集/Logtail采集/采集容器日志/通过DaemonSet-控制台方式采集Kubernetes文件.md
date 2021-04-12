@@ -34,17 +34,15 @@ Logtail支持采集容器内产生的文本日志，并附加容器的相关元�
 
 2.  在接入数据区域，单击**Kubernetes-文件**。
 
-3.  在选择日志空间页签中，选择目标Project和Logstore，单击**下一步**。
-
-    您也可以单击**立即创建**，重新创建Project和Logstore。
+3.  选择目标Project和Logstore，单击**下一步**。
 
 4.  创建机器组，创建完成后单击**确认安装完毕**。
 
     根据页面提示创建机器组，如果您已有可用的机器组，可直接单击**使用现有机器组**。
 
-5.  在机器组配置页签中，应用机器组。
+5.  选中目标机器组，将该机器组从**源机器组**移动到**应用机器组**，单击**下一步**。
 
-    选择一个机器组，将该机器组从**源机器组**移动到**应用机器组**。
+    **说明：** 如果创建机器组后立刻应用，可能因为连接未生效，导致心跳为**FAIL**，您可单击**自动重试**。如果还未解决，请参见[Logtail机器组无心跳]()进行排查。
 
 6.  设置数据源，单击**下一步**。
 
@@ -69,7 +67,7 @@ Logtail支持采集容器内产生的文本日志，并附加容器的相关元�
 
     -   多个键值对之间为或关系，即只要容器的环境变量满足任一键值对即可被采集。
     -   EnvValue默认为字符串匹配，即只有EnvValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：EnvValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
-    |其他配置项|无|其他采配置项及说明请参见[概述](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/概述.md)。|
+    |其他配置项|无|其他采配置项及说明请参见[概述](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/概述.md)。**说明：** 采集宿主机文本文件时，默认将宿主机根目录挂载到Logtail容器的`/logtail_host`目录。所以配置路径时，您需要加上此前缀。例如需要采集宿主机上`/home/logs/app_log/`目录下的日志，配置页面中日志路径设置为`/logtail_host/home/logs/app_log/`。 |
 
     **说明：**
 
@@ -86,21 +84,21 @@ Logtail支持采集容器内产生的文本日志，并附加容器的相关元�
 
     例如：采集环境变量为`NGINX_PORT_80_TCP_PORT=80`且不为`POD_NAMESPACE=kube-system`的容器日志，日志文件路径为`/var/log/nginx/access.log`，日志解析方式为极简类型。
 
-    ![environment 配置方式示例](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0330559951/p54512.png)
+    ![environment 配置方式示例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0330559951/p54512.png)
 
-    本示例中数据源配置如下，日志格式解析内容请参见[完整正则模式](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/完整正则模式.md)、[Nginx模式](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/Nginx模式.md)和[分隔符模式](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/分隔符模式.md)。
+    本示例中数据源配置如下，日志格式解析内容请参见[使用完整正则模式采集日志](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/使用完整正则模式采集日志.md)、[使用Nginx模式采集日志](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/使用Nginx模式采集日志.md)和[使用分隔符模式采集日志](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/使用分隔符模式采集日志.md)。
 
-    ![数据源配置示例](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0330559951/p54511.png)
+    ![数据源配置示例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0330559951/p54511.png)
 
 -   Label配置方式
 
     采集label为`io.kubernetes.container.name=nginx`的容器日志，日志文件路径为`/var/log/nginx/access.log`，日志解析方式为极简类型。
 
-    ![label方式示例](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0330559951/p54510.png)
+    ![label方式示例](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0330559951/p54510.png)
 
-    本示例中数据源配置如下，日志格式解析内容请参见[完整正则模式](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/完整正则模式.md)、[Nginx模式](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/Nginx模式.md)和[分隔符模式](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/分隔符模式.md)。
+    本示例中数据源配置如下，日志格式解析内容请参见[使用完整正则模式采集日志](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/使用完整正则模式采集日志.md)、[使用Nginx模式采集日志](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/使用Nginx模式采集日志.md)和[使用分隔符模式采集日志](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/使用分隔符模式采集日志.md)。
 
-    ![数据源设置](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/1330559951/p54509.png)
+    ![数据源设置](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1330559951/p54509.png)
 
 
 ## 默认字段
