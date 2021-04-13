@@ -11,11 +11,11 @@ Splunk Add-on架构：
 
 **说明：** 此Add-on仅用于采集数据，只需要在Splunk Heavy Forwarder上安装，不需要在Indexer和Search Head上安装。
 
-![Splunk-001](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7031649951/p95069.png)
+![Splunk-001](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7031649951/p95069.png)
 
 ## 机制
 
-![Splunk-002](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7031649951/p95070.png)
+![Splunk-002](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7031649951/p95070.png)
 
 -   一个Data Input相当于一个消费者，对日志进行消费。
 -   一个消费组由多个消费者构成，同一个消费组下面的消费者共同消费一个Logstore中的数据，消费者之间不会重复消费数据。
@@ -30,9 +30,9 @@ Splunk Add-on架构：
 
 -   获取日志服务的AccessKey。
 
-    您可以通过阿里云RAM获取日志服务Project的AccessKey，详情请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)和[配置访问密钥](/cn.zh-CN/数据加工/配置访问授权/配置访问密钥.md)。
+    您可以通过阿里云RAM获取日志服务Project的AccessKey。更多信息，请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)和[配置访问密钥](/cn.zh-CN/数据加工/配置访问授权/配置访问密钥.md)。
 
-    您可以通过权限助手配置RAM权限，详情请参见[配置权限助手](/cn.zh-CN/开发指南/访问控制RAM/配置权限助手.md)。常用的RAM配置如下：
+    您可以通过权限助手配置RAM权限。更多信息，请参见[配置权限助手](/cn.zh-CN/开发指南/访问控制RAM/配置权限助手.md)。常用的RAM配置如下：
 
     **说明：** <Project name\>为您的日志服务Project名称，<Logstore name\>为您的日志服务Logstore名称，请根据实际情况替换，名字替换支持通配符\*。
 
@@ -65,7 +65,7 @@ Splunk Add-on架构：
     -   确保使用最新的Add-on版本。
     -   操作系统：Linux、Mac OS、Windows。
     -   Splunk版本：Splunk heavy forwarder 8.0及以上版本、Splunk indexer 7.0及以上版本。
--   配置Splunk HTTP Event Collector，详情请参见[Configure HTTP Event Collector on Splunk Enterprise](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector#Configure_HTTP_Event_Collector_on_Splunk_Enterprise)。
+-   配置Splunk HTTP Event Collector。更多信息，请参见[Configure HTTP Event Collector on Splunk Enterprise](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector#Configure_HTTP_Event_Collector_on_Splunk_Enterprise)。
 
     如果需要使用HEC来发送event，请确保HEC配置成功。如果选择Splunk私有协议，则可以跳过该步骤。
 
@@ -79,12 +79,12 @@ Splunk Add-on架构：
 **说明：** 此Add-on仅用于采集数据，只需要在Splunk Heavy Forwarder上安装，不需要在Indexer和Search Head上安装。
 
 -   方法一
-    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
+    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
     2.  在应用页面，单击**浏览更多应用**。
     3.  搜索**Alibaba Cloud Log Service Add-on for Splunk**，单击**安装**。
     4.  安装完成后，根据页面提示重启 Splunk服务。
 -   方法二
-    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
+    1.  单击**![Splunk-004](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8031649951/p95176.png)**图标。
     2.  在应用页面，单击**从文件安装应用**。
     3.  选择目标.tgz文件，单击**上载**。
 
@@ -94,6 +94,8 @@ Splunk Add-on架构：
     5.  安装完成后，根据页面提示重启 Splunk服务。
 
 ## 配置Add-on
+
+当Splunk运行在非阿里云ECS上时，您可以使用阿里云访问密钥AccessKey ID和AccessKey Secret来访问日志服务。具体操作如下：
 
 1.  在Splunk Web UI页面中，单击Alibaba Cloud Log Service Add-on for Splunk。
 
@@ -121,11 +123,11 @@ Splunk Add-on架构：
         |SLS AccessKey|是，String|阿里云访问密钥由AccessKey ID、AccessKey Secret组成。**说明：** 此处配置的用户名、密码分别对应日志服务的AccessKey ID、AccessKey Secret。
 
 |全局账号配置中配置的用户名和密码。|
-        |SLS endpoint|是，String|阿里云日志服务入口，详情请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。|        -   cn-huhehaote.log.aliyuncs.com
+        |SLS endpoint|是，String|阿里云日志服务入口。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。|        -   cn-huhehaote.log.aliyuncs.com
         -   https://cn-huhehaote.log.aliyuncs.com |
-        |SLS project|是，String|日志服务Project，详情请参见[管理Project](/cn.zh-CN/数据采集/准备工作/管理Project.md)。|无|
-        |SLS logstore|是，String|日志服务Logstore，详情请参见[管理Logstore](/cn.zh-CN/数据采集/准备工作/管理Logstore.md)。|无|
-        |SLS consumer group|是，String|日志服务消费组。扩容时，多个Data Input需要配置相同的消费组名称，详情请参见[通过消费组消费日志数据](/cn.zh-CN/消费与投递/实时消费/消费组消费/通过消费组消费日志数据.md)。|无|
+        |SLS project|是，String|日志服务Project。更多信息，请参见[管理Project](/cn.zh-CN/数据采集/准备工作/管理Project.md)。|无|
+        |SLS logstore|是，String|日志服务Logstore。更多信息，请参见[管理Logstore](/cn.zh-CN/数据采集/准备工作/管理Logstore.md)。|无|
+        |SLS consumer group|是，String|日志服务消费组。扩容时，多个Data Input需要配置相同的消费组名称。更多信息，请参见[通过消费组消费日志数据](/cn.zh-CN/消费与投递/实时消费/消费组消费/通过消费组消费日志数据.md)。|无|
         |SLS cursor start time|是，String|消费起始时间。该参数只有消费组首次创建时有效。非首次创建日志都是从上次的保存点开始消费。**说明：** 这里的时间是日志到达时间。
 
 |取值：begin、end、ISO格式的时间（例如2018-12-26 0:0:0+8:00\)。|
@@ -139,10 +141,35 @@ Splunk Add-on架构：
         |Event protocol|是|Splunk event发送协议。如果选择私有协议，后续参数可以忽略。|        -   HTTP for HEC
         -   HTTPS for HEC
         -   Private protocol |
-        |HEC host|是，只有Event protocol选择HEC时有效，String。|HEC host，详情请参见[Set up and use HTTP Event Collector in Splunk Web](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector)。|无|
+        |HEC host|是，只有Event protocol选择HEC时有效，String。|HEC host。更多信息，请参见[Set up and use HTTP Event Collector in Splunk Web](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector)。|无|
         |HEC port|是，只有Event protocol选择HEC时有效，Integer。|HEC端口。|无|
-        |HEC token|是，只有Event protocol选择HEC时有效，String。|HEC token，详情请参见[HEC token](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector#About_Event_Collector_tokens)。|无|
+        |HEC token|是，只有Event protocol选择HEC时有效，String。|HEC token。更多信息，请参见[HEC token](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector#About_Event_Collector_tokens)。|无|
         |HEC timeout|是，只有Event protocol选择HEC时有效，Integer。|HEC超时时间，单位：s。|默认：120s|
+
+
+当Splunk运行在阿里云ECS上时，可为ECS实例绑定RAM角色，并以此RAM角色来访问日志服务。具体操作如下：
+
+**说明：** 请确保Splunk运行在被授予RAM角色的阿里云ECS实例上。
+
+1.  授予实例RAM角色。
+
+    此操作包括创建实例RAM角色、为RAM角色授予权限和为实例授予RAM角色。具体操作，请参见[授予实例RAM角色](/cn.zh-CN/安全/实例RAM角色/授予实例RAM角色.md)。
+
+    其中，RAM角色的权限策略请参见[准备工作](#section_l84_pj5_oiy)中AccessKey的授权策略。
+
+2.  在Splunk Web UI页面中，单击Alibaba Cloud Log Service Add-on for Splunk。
+
+3.  配置全局账号。
+
+    选择**配置** \> **Account**，在Account页签中，配置ECS实例的RAM角色信息。即添加一个账号，用户名为ECS\_RAM\_ROLE，密码为[步骤1](#step_zxt_z2e_vgv)中所创建的RAM角色名称。
+
+4.  创建Data Input。
+
+    1.  单击**输入**，进入输入页面。
+
+    2.  单击**Create New Input**，创建新的Data Input。
+
+        其中SLS AccessKey参数需配置为[步骤3](#step_9e4_i89_n8h)中所创建的全局账号，其他参数说明请参见[表 1](#table_3m7_ks5_n9x)。
 
 
 ## 开始工作
@@ -151,7 +178,7 @@ Splunk Add-on架构：
 
     首先确保创建的Data Input是启动状态。然后您可以在Splunk web UI首页单击Search & Reporting，进入App: Search & Reporting页面，查询采集到的审计日志。
 
-    ![Splunk-003](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/8031649951/p95102.png)
+    ![Splunk-003](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8031649951/p95102.png)
 
 -   内部日志
     -   使用`index="_internal" | search "SLS info"`查询日志服务相关的信息。
@@ -163,10 +190,10 @@ Splunk Add-on架构：
 
     日志服务Splunk Add-on性能及数据传输的吞吐量受到如下因素的影响：
 
-    -   服务入口：可以使用公网、经典网络、VPC网络或者全球加速服务入口。一般情况下，建议采用经典网络或VPC网络的服务入口，详情请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
+    -   服务入口：可以使用公网、经典网络、VPC网络或者全球加速服务入口。一般情况下，建议采用经典网络或VPC网络的服务入口。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
     -   带宽：包括日志服务与Splunk heavy forwarder间的带宽、Splunk heavy forwarder与indexer之间的带宽。
     -   Splunk indexer处理能力：indexer的数据接收能力。
-    -   Shard数量：对于单个日志服务Logstore，配置的Shard数越多，数据传输能力越强。您需要根据原始日志的生成速率确认Shard数量，详情请参见[管理Shard](/cn.zh-CN/数据采集/准备工作/管理Shard.md)。
+    -   Shard数量：对于单个日志服务Logstore，配置的Shard数越多，数据传输能力越强。您需要根据原始日志的生成速率确认Shard数量。更多信息，请参见[管理Shard](/cn.zh-CN/数据采集/准备工作/管理Shard.md)。
     -   Splunk Data Input的配置数量：同一个Logstore，配置越多的Data Input（相同的消费组），吞吐量越大。
 
         **说明：** 消费者的并发受到日志服务Logstore Shard数量的影响。
@@ -189,7 +216,7 @@ Splunk Add-on架构：
 
     -   Splunk
 
-        为了使用HTTPS的HEC能力，需要在Splunk HEC全局配置界面上打开SSL功能，详情请参见[Configure HTTP Event Collector on Splunk Enterprise](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector#Configure_HTTP_Event_Collector_on_Splunk_Enterprise)。
+        为了使用HTTPS的HEC能力，需要在Splunk HEC全局配置界面上打开SSL功能。更多信息，请参见[Configure HTTP Event Collector on Splunk Enterprise](https://docs.splunk.com/Documentation/Splunk/8.0.2/Data/UsetheHTTPEventCollector#Configure_HTTP_Event_Collector_on_Splunk_Enterprise)。
 
 -   AccessKey存储保护
 
@@ -227,6 +254,22 @@ Splunk Add-on架构：
             errorMessage: signature J70VwxYH0+W/AciA4BdkuWxK6W8= not match
             ```
 
+    -   ECS RAM鉴权失败
+        -   命令：`index="_internal" | search "error"`
+        -   异常日志：
+
+            ```
+            ECS RAM Role detected in user config, but failed to get ECS RAM credentials. Please check if ECS instance and RAM role 'ECS-Role' are configured appropriately.
+            ```
+
+            其中，ECS-Role为您创建的RAM角色，将根据实际情况显示。
+
+        -   可能原因：
+            -   确认Data Input中的SLS AccessKey参数是否已配置为具备RAM角色的全局账号。
+            -   确认全局账号是否正确配置了RAM角色，账号必须为ECS\_RAM\_ROLE，密码为RAM角色名称。
+            -   确认ECS实例是否已绑定RAM角色。
+            -   确认RAM角色的可信实体类型是否为阿里云服务，受信服务是否为云服务器。
+            -   确认绑定RAM角色的ECS实例是否为运行Splunk的机器。
     -   无权限访问HEC
         -   命令：`index="_internal" | search "error"`
         -   异常日志：
@@ -246,9 +289,9 @@ Splunk Add-on架构：
 -   消费时延
 
     -   如果您开启了[服务日志](/cn.zh-CN/开发指南/监控日志服务/服务日志/简介.md)功能，可以进行如下操作。
-        -   通过消费组监控仪表盘查看消费组状态，详情请参见[服务日志仪表盘](/cn.zh-CN/开发指南/监控日志服务/服务日志/服务日志仪表盘.md)。
-        -   对消费者监控仪表盘中的图表设置告警，详情请参见[设置告警](/cn.zh-CN/可视化与告警/告警/设置告警.md)。
-    -   如果您未开启服务日志功能，可通过日志服务控制台查看消费组状态，详情请参见[查看消费组状态](/cn.zh-CN/消费与投递/实时消费/消费组消费/通过消费组消费日志数据.md)。
+        -   通过消费组监控仪表盘查看消费组状态。更多信息，请参见[服务日志仪表盘](/cn.zh-CN/开发指南/监控日志服务/服务日志/服务日志仪表盘.md)。
+        -   对消费者监控仪表盘中的图表设置告警。更多信息，请参见[设置告警](/cn.zh-CN/可视化与告警/告警/设置告警.md)。
+    -   如果您未开启服务日志功能，可通过日志服务控制台查看消费组状态。更多信息，请参见[查看消费组状态](/cn.zh-CN/消费与投递/实时消费/消费组消费/通过消费组消费日志数据.md)。
     建议参见[性能规格](#section_0p1_mj7_a9l)，采用扩充Shard数或者创建具有相同消费组的Data Input的方式解决消费时延问题。
 
 -   网络抖动
