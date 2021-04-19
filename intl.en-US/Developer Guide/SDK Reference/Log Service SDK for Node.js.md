@@ -2,7 +2,7 @@
 
 This topic describes how to install and use Log Service SDK for Node.js.
 
--   Log Service is activated. For more information, see [Activate Log Service](https://www.aliyun.com/product/sls?spm=5176.7933691.J_8058803260.20.3eeb2a665LA0eU).
+-   Log Service is activated. For more information, see [Activate Log Service](https://www.alibabacloud.com/product/log-service?spm=a2c5t.10695662.1996646101.searchclickresult.536d31bdPTqffd).
 -   An AccessKey pair is created and obtained. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md).
 -   A Node.js development environment is installed.
 
@@ -60,7 +60,7 @@ Add the following code to the app.js file to initialize Log Service SDK for Node
    var sls = new ALY.SLS({
     "accessKeyId": "11****ut", // The AccessKey ID of your Alibaba Cloud account. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md). High security risks may arise if you use the AccessKey pair of your Alibaba Cloud account because the account has permissions to call all API operations. We recommend that you create and use a RAM user to call API operations or perform routine O&M. 
     "secretAccessKey": "TS****7Y", // The AccessKey secret of your Alibaba Cloud account. 
-    endpoint: 'http://cn-hangzhou.sls.aliyuncs.com', // The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The endpoint of the China (Hangzhou) region is used as an example. Replace it with the actual endpoint.
+    endpoint: 'http://cn-hangzhou.log.aliyuncs.com', // The endpoint of Log Service. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). The endpoint of the China (Hangzhou) region is used as an example. Replace it with the actual endpoint.
     apiVersion: '2015-06-01' // The version of the SDK. Set the value to 2015-06-01.
   })
 ```
