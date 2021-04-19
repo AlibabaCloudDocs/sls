@@ -23,7 +23,7 @@
 Aliyun\_Log\_Client是日志服务的PHP客户端，用于管理Project、Logstore等日志服务资源。使用PHP SDK发起日志服务请求，您需要初始化一个Client实例。
 
 ```
-$endpoint = 'cn-hangzhou.sls.aliyuncs.com'; //日志服务的域名。更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。
+$endpoint = 'cn-hangzhou.log.aliyuncs.com'; //日志服务的域名。更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。
 $accessKeyId = '11****TY';        //阿里云访问密钥AccessKey ID。更多信息，请参见[访问密钥](/intl.zh-CN/开发指南/API 参考/访问密钥.md)。阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维。
 $accessKey = 'YT****ED';             //阿里云访问密钥AccessKey Secret。
 $client = new Aliyun_Log_Client($endpoint, $accessKeyId, $accessKey);  //创建日志服务Client。
