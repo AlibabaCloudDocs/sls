@@ -60,7 +60,7 @@
    var sls = new ALY.SLS({
     "accessKeyId": "11****ut",         //阿里云访问密钥AccessKey ID。更多信息，请参见[访问密钥](/intl.zh-CN/开发指南/API 参考/访问密钥.md)。阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维。 
     "secretAccessKey": "TS****7Y",    //阿里云访问密钥AccessKey Secret。 
-    endpoint: 'http://cn-hangzhou.sls.aliyuncs.com',   //日志服务的域名。更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。
+    endpoint: 'http://cn-hangzhou.log.aliyuncs.com',   //日志服务的域名。更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。
     apiVersion: '2015-06-01'                           //SDK版本号，固定值。
   })
 ```
