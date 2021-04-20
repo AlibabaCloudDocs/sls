@@ -2,7 +2,7 @@
 
 您可以通过直接发送方式或OpenTelemetry Collector转发方式，将Zipkin平台上的Trace数据发送到日志服务。
 
-已创建Trace实例。更多信息，请参见[创建Trace实例]()。
+已创建Trace实例。更多信息，请参见[创建Trace实例](/cn.zh-CN/Trace服务/创建Trace实例.md)。
 
 ## 直接发送
 
@@ -78,9 +78,7 @@
 
             |参数|说明|示例|
             |--|--|--|
-            |$\{endpoint\}|日志服务的接入地址，格式为$\{project\}.$\{region-endpoint\}，其中：            -   $\{project\}：日志服务Project名称。
-            -   $\{region-endpoint\}：Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
-|test-project.cn-hangzhou.log.aliyuncs.com|
+            |$\{endpoint\}|日志服务的接入地址，格式为$\{region-endpoint\}，其中$\{region-endpoint\}为Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。|cn-hangzhou.log.aliyuncs.com|
             |$\{project\}|日志服务Project名称。|test-project|
             |$\{instance\}|Trace服务实例名称。|test-traces|
             |$\{access-key-id\}|阿里云账号AccessKey ID。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey。授予RAM用户向指定Project写入数据权限的具体操作，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。如何获取AccessKey的具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)。
@@ -101,6 +99,6 @@
     将Zipkin的输出端地址改为OpenTelemetry Collector监听的地址，例如OpenTelemetry Collector的地址为$\{collector-host\}，则将Zipkin的输出端地址设置为$\{collector-host\}:9411。
 
 
--   [查看Trace实例详情]()
--   [查询和分析Trace数据]()
+-   [查看Trace实例详情](/cn.zh-CN/Trace服务/查看Trace实例详情.md)
+-   [查询和分析Trace数据](/cn.zh-CN/Trace服务/查询和分析Trace数据.md)
 
