@@ -2,7 +2,7 @@
 
 您可以通过直接发送方式或OpenTelemetry Collector转发方式，将Jaeger平台上的Trace数据发送到日志服务。
 
-已创建Trace实例。更多信息，请参见[创建Trace实例]()。
+已创建Trace实例。更多信息，请参见[创建Trace实例](/cn.zh-CN/Trace服务/创建Trace实例.md)。
 
 ## 直接发送
 
@@ -10,7 +10,7 @@
 
 -   接入点信息
 
-    -   HTTPS协议的接入点为$\{endpoint\}/jager/api/traces，例如https://test-project.cn-hangzhou-intranet.log.aliyuncs.com/jaeger/api/traces。
+    -   HTTPS协议的接入点为$\{endpoint\}/jaeger/api/traces，例如https://test-project.cn-hangzhou-intranet.log.aliyuncs.com/jaeger/api/traces。
     -   gRPC协议的接入点为$\{endpoint\}:10010，例如test-project.cn-hangzhou-intranet.log.aliyuncs.com:10010。
 
         **说明：** 为保证传输安全性，使用gRPC协议时必须开启TLS。
@@ -85,9 +85,7 @@
 
             |变量|说明|示例|
             |--|--|--|
-            |$\{endpoint\}|日志服务的接入地址，格式为$\{project\}.$\{region-endpoint\}，其中：            -   $\{project\}：日志服务Project名称。
-            -   $\{region-endpoint\}：Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
-|test-project.cn-hangzhou.log.aliyuncs.com:10010|
+            |$\{endpoint\}|日志服务的接入地址，格式为$\{region-endpoint\}。其中$\{region-endpoint\}为Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。|cn-hangzhou.log.aliyuncs.com:10010|
             |$\{project\}|日志服务Project名称。|test-project|
             |$\{instance\}|Trace服务实例名称。|test-traces|
             |$\{access-key-id\}|阿里云账号AccessKey ID。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey。授予RAM用户向指定Project写入数据权限的具体操作，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。如何获取AccessKey的具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)。
@@ -110,6 +108,6 @@
     **说明：** 如果OpenTelemetry Collector报错（解析失败），则可切换Jaeger Receiver的4种接收模式逐一排查。
 
 
--   [查看Trace实例详情]()
--   [查询和分析Trace数据]()
+-   [查看Trace实例详情](/cn.zh-CN/Trace服务/查看Trace实例详情.md)
+-   [查询和分析Trace数据](/cn.zh-CN/Trace服务/查询和分析Trace数据.md)
 
