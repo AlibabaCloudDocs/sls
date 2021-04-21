@@ -2,13 +2,13 @@
 
 Log Service allows you to create a custom ID-based machine group. This topic describes how to create a custom ID-based machine group in the Log Service console.
 
--   A project and a Logstore are created. For more information, see [Create a project and a Logstore](/intl.en-US/Quick Start/Quick Start.md).
+-   A project and a Logstore are created. For more information, see [Create a project and a Logstore](/intl.en-US/.md).
 -   At least one server is available.
     -   If you use an ECS instance, you must ensure that the ECS instance and Log Service project share the same Alibaba Cloud account and belong to the same region.
     -   If the ECS instance is purchased by another Alibaba Cloud account, you must configure a user identifier before you create an IP address-based machine group. If the server is provided by another cloud service vendor or is deployed in a user-created data center, you must also perform the preceding operation. For more information, see [Configure an account ID for a server](/intl.en-US/Data Collection/Logtail collection/Machine Group/Configure an account ID for a server.md).
 -   Logtail is installed on the server. For more information, see [Install Logtail on ECS instances](/intl.en-US/Data Collection/Logtail collection/Install/Install Logtail on ECS instances.md).
 
-Custom ID-based machine groups offer distinct advantages in the following scenarios:
+Custom ID-based machine groups offer significant benefits in the following scenarios:
 
 -   If your servers reside in multiple custom network environments such as virtual private clouds \(VPCs\), some IP addresses of the servers may conflict. In this case, Logtail cannot collect logs as expected. You can use a custom ID to prevent this issue.
 -   If you want to add multiple servers to a machine group, you can set the same custom ID for new servers as the machine group. Log Service identifies the custom ID and adds the servers with the same custom ID to the machine group.
@@ -21,11 +21,14 @@ Custom ID-based machine groups offer distinct advantages in the following scenar
     -   Windows: Store the file in the C:\\LogtailData\\user\_defined\_ided\_id directory.
 2.  Set a custom ID for the server.
 
+    **Note:**
+
+    -   Windows and Linux servers cannot be added to the same machine group. You cannot set the same custom ID for Linux and Windows servers.
+    -   You can set one or more custom IDs for a single server and separate custom IDs with line feeds.
+    -   In the Linux server, if the /etc/ilogtail/ directory or the /etc/ilogtail/user\_defined\_id file does not exist, you can create the directory and file. In the Windows server, if the C:\\LogtailData directory or the C:\\LogtailData\\user\_defined\_id file does not exist, you can also create the directory and file.
     -   Linux:
 
-        Set the custom ID in the /etc/ilogtail/user\_defined\_id file.
-
-        For example, if you want to set the custom ID to `userdefined`, run the following command to edit the file. In the file, enter `userdefined`.
+        Set the custom ID in the /etc/ilogtail/user\_defined\_id file. For example, if you want to set the custom ID to `userdefined`, run the following command to edit the file. In the file, enter `userdefined`.
 
         ```
         vim /etc/ilogtail/user_defined_id
@@ -33,20 +36,8 @@ Custom ID-based machine groups offer distinct advantages in the following scenar
 
     -   Windows:
 
-        Set the custom ID in the C:\\LogtailData\\user\_defined\_id file.
+        Set the custom ID in the C:\\LogtailData\\user\_defined\_id file. For example, if you want to set the custom ID to `userdefined_windows`, enter `userdefined_windows` in the C:\\LogtailData\\user\_defined\_id file.
 
-        For example, if you want to set the custom ID to `userdefined_windows`, run the following command:
-
-        ```
-        C:\LogtailData>more user_defined_id
-        userdefined_windows
-        ```
-
-    **Note:**
-
-    -   Windows and Linux servers cannot be added to the same machine group. You cannot set the same custom ID for Linux and Windows servers.
-    -   You can set one or more custom IDs for a single server and separate custom IDs with line feeds.
-    -   In the Linux server, if the /etc/ilogtail/ directory or the /etc/ilogtail/user\_defined\_id file does not exist, you can create the directory and file. In the Windows server, if the C:\\LogtailData directory or the C:\\LogtailData\\user\_defined\_id file does not exist, you can also create the directory and file.
 3.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
 4.  In the Projects section, click the destination project.
@@ -97,7 +88,7 @@ If you want to set the Identifier parameter to IP Addresses, delete the user\_de
 
 ## Time to take effect
 
-After you add, delete, or modify the user\_defined\_id file, the new configurations take effect within 1 minute by default. If you want the configurations to immediately take effect, run the following command to restart Logtail:
+By default, after you add, delete, or modify the user\_defined\_id file, the new configurations take effect within 1 minute. If you want the configurations to immediately take effect, run the following command to restart Logtail.
 
 -   Linux:
 
@@ -111,5 +102,5 @@ After you add, delete, or modify the user\_defined\_id file, the new configurati
     2.  In the Services window, select the required service.
         -   For Logtail V0.x.x.x, select LogtailWorker.
         -   For Logtail V1.0.0.0 or later, select LogtailDaemon.
-    3.  Right-click **Restart** to make the configurations take effect.
+    3.  Right-click the service and then select **Restart** to validate the configurations.
 
