@@ -46,7 +46,7 @@ The flow log feature allows you to ship only the captured flow logs to Log Servi
 
 -   Supported regions
     -   The project that stores VPC flow logs must reside in the same region as the flow log instance.
-    -   The flow log feature is available for public preview. To use this feature, you can[submit a ticket](https://workorder-intl.console.aliyun.com/#/ticket/createIndex).
+    -   The flow log feature is available for public preview. To use this feature, you can [submit a ticket](https://workorder-intl.console.aliyun.com/#/ticket/createIndex).
 
         The following table lists the regions where the flow log feature is supported.
 
