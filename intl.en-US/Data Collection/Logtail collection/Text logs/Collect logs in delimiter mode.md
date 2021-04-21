@@ -1,6 +1,6 @@
 # Collect logs in delimiter mode
 
-Log Service allows you to collect logs in delimiter mode. After logs are collected, you can transform and ship logs, and perform multidimensional log analysis. This topic describes how to configure Logtail in delimiter mode in the Log Service console to collect logs.
+Log Service allows you to collect logs in delimiter mode. After logs are collected, you can transform and ship the logs, and perform multidimensional log analysis. This topic describes how to create a Logtail configuration file to collect logs in delimiter mode by using the Log Service console.
 
 -   A project and a Logstore are created. For more information, see [Create a project](/intl.en-US/Data Collection/Preparation/Manage a project.md) and [Create a Logstore](/intl.en-US/Data Collection/Preparation/Manage a Logstore.md).
 -   Ports 80 and 443 of the server from which you want to collect logs are enabled.
@@ -38,8 +38,8 @@ Log Service allows you to collect logs in delimiter mode. After logs are collect
 
     |Parameter|Description|
     |---------|-----------|
-    |Config Name|The name of the Logtail configuration file. The name must be unique in a project and cannot be modified after the file is created.You can also click **Import Other Configuration** to import a Logtail configuration file from another project. |
-    |Log Path|The directories and files from which logs are collected. The file names can be complete names or names that contain wildcards. For more information, see [Wildcard matching](http://man7.org/linux/man-pages/man7/glob.7.html). The log files in all levels of subdirectories under a specified directory are monitored if the log files match the specified pattern. Examples:
+    |Config Name|The name of the Logtail configuration file. The name must be unique in a project and cannot be modified after the file is created. You can also click **Import Other Configuration** to import a Logtail configuration file from another project. |
+    |Log Path|The directory and name of the log file. The file names can be complete names or names that contain wildcards. For more information, see [Wildcard matching](http://man7.org/linux/man-pages/man7/glob.7.html). The log files in all levels of subdirectories under a specified directory are monitored if the log files match the specified pattern. Examples:
 
     -   /apsara/nuwa/… /\*.log indicates that the files whose extension is .log in the /apsara/nuwa directory and its subdirectories are monitored.
     -   /var/logs/app\_\*/\*.log indicates that each file that meets the following conditions is monitored: The file name contains .log. The file is stored in a subdirectory \(at all levels\) of the /var/logs directory. The name of the subdirectory matches the app\_\* pattern.
@@ -53,26 +53,28 @@ ln -s /home/log/nginx/log /home/log/nginx/link_log
         ```
 
     -   You can include only asterisks \(\*\) and question marks \(?\) as wildcard characters in the log path. |
-    |Docker File|If you collect logs from Docker containers, you can turn on the **Docker File** switch and configure the paths and tags of the containers. Logtail monitors the containers when they are created and destroyed, filters the logs of the containers by tag, and collects the filtered logs. For more information about container text logs, see [Use the console to collect Kubernetes text logs in DaemonSet mode](/intl.en-US/Data Collection/Logtail collection/Container log collection/Use the console to collect Kubernetes text logs in DaemonSet mode.md).|
+    |Docker File|If you collect logs from Docker containers, you can turn on the **Docker File** switch and configure the paths and tags of the containers. Logtail monitors the containers that are being created and destroyed, filters the logs of the containers by tag, and collects the filtered logs. For more information about container text logs, see [Use the console to collect Kubernetes text logs in DaemonSet mode](/intl.en-US/Data Collection/Logtail collection/Container log collection/Use the console to collect Kubernetes text logs in DaemonSet mode.md).|
     |Blacklist|If you turn on the **Blacklist** switch, you can configure a blacklist to skip the specified directories or files when you collect logs. You can use exact match or wildcard match to specify directories and files. Examples:    -   If you select **Filter by Directory** from the Filter Type drop-down list and enter /tmp/mydir in the Content column, all files in the directory are skipped.
     -   If you select **Filter by File** from the Filter Type drop-down list and enter /tmp/mydir/file in the Content column, only the specified file is skipped. |
     |Mode|The default mode is **Delimiter Mode**. You can change the mode.|
     |Log Sample|Enter a sample log entry that is retrieved from a log source in an actual scenario. Example:    ```
 127.0.0.1|#|-|#|13/Apr/2020:09:44:41 +0800|#|GET /1 HTTP/1.1|#|0.000|#|74|#|404|#|3650|#|-|#|curl/7.29.0
-    ``` |
-    |Delimiter|Select a delimiter based on the log format. For example, you can select a vertical bar \(\|\). For more information, see [Appendix: delimiters and sample log entries](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in delimiter mode.md).**Note:** If you select **Hidden Characters** as the delimiter, you must enter the character in the following format: `0xthe hexadecimal ASCII code of the non-printable character`. For example, to use the non-printable character whose hexadecimal ASCII code is 01, you must enter **0x01**. |
-    |Quote|If a log field contains delimiters, you must specify a pair of quotes to enclose the field. Log Service parses the content that is enclosed in a pair of quotes into a new complete field. Select a quote based on the log format.**Note:** If you select **Hidden Characters** as the quote, you must enter the character in the following format: `0xthe hexadecimal ASCII code of the non-printable character`. For example, to use the non-printable character whose hexadecimal ASCII code is 01, you must enter **0x01**. |
+    ```
+
+**Note:** The delimiter mode applies only to single-line logs. If you want to collect multi-line logs, we recommend that you select [Simple Mode - Multi-line](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in simple mode.md) or [Full Regex Mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in full regex mode.md). |
+    |Delimiter|Select a delimiter based on the log format. For example, you can select a vertical bar \(\|\). For more information, see [Appendix: delimiters and sample log entries](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in delimiter mode.md). **Note:** If you select **Hidden Characters** as the delimiter, you must enter the character in the following format: `0xthe hexadecimal ASCII code of the non-printable character`. For example, to use the non-printable character whose hexadecimal ASCII code is 01, you must enter **0x01**. |
+    |Quote|If a log field contains delimiters, you must specify a pair of quotes to enclose the field. Log Service parses the content that is enclosed in a pair of quotes into a new complete field. Select a quote based on the log format. **Note:** If you select **Hidden Characters** as the quote, you must enter the character in the following format: `0xthe hexadecimal ASCII code of the non-printable character`. For example, to use the non-printable character whose hexadecimal ASCII code is 01, you must enter **0x01**. |
     |Extracted Content|Log Service extracts the log content based on the specified sample log and delimiter. The extracted log content is delimited into values. You must specify a key for each value.|
     |Incomplete Entry Upload|This feature specifies whether to upload a log entry whose number of parsed fields is less than the number of the specified keys. If you enable this feature, the log entry is uploaded. Otherwise, the log entry is dropped. For example, if you set the delimiter to the vertical bar \(\|\), the log entry 11\|22\|33\|44\|55 is parsed into the following fields: 11, 22, 33, 44, and 55. You can set the keys to A, B, C, D, and E, respectively.
 
-    -   If you enable the **Incomplete Entry Upload** switch, 55 is uploaded as the value of the D key when Log Service collects the log entry 11\|22\|33\|55.
+    -   If you turn on the **Incomplete Entry Upload** switch, 55 is uploaded as the value of the D key when Log Service collects the log entry 11\|22\|33\|55.
     -   If you turn off the **Incomplete Entry Upload** switch, the log entry 11\|22\|33\|55 is dropped because the field value does not match the specified key. |
     |Use System Time|Specifies whether to use the system time.    -   If you turn on the **Use System Time** switch, the timestamp of a log entry indicates the system time of the server when the log entry is collected.
     -   If you turn off the **Use System Time** switch, you must set the **Specified Time Key** and **Time Format** based on the time fields of **Extracted Content**. For more information about the time formats, see [Time formats](/intl.en-US/Data Collection/Logtail collection/Text logs/Time formats.md).
 
-For example, assume that you set the **Specify Time Key** to **time\_local** and **Time Format** to **%d/%b/%Y:%H:%M:%S**. The timestamp of a log entry is the value indicated by the **time\_local** field. |
-    |Drop Failed to Parse Logs|Specifies whether to discard logs that fail to be parsed.    -   If you select **Filter by Directory** from the Filter Type drop-down list and enter /tmp/mydir in the Content column, all files in the directory are skipped.
-    -   If you select **Filter by File** from the Filter Type drop-down list and enter /tmp/mydir/file in the Content column, only the specified file is skipped. |
+For example, you can set the **Specify Time Key** parameter to **time\_local** and set the **Time Format** parameter to **%d/%b/%Y:%H:%M:%S**. The timestamp of a log entry is the value of the **time\_local** field. |
+    |Drop Failed to Parse Logs|Specifies whether to drop logs that fail to be parsed.    -   If you turn on the **Drop Failed to Parse Logs** switch, logs that fail to be parsed are not uploaded to Log Service.
+    -   If you turn off the **Drop Failed to Parse Logs** switch, raw logs are uploaded to Log Service if the raw logs fail to be parsed. |
     |Maximum Directory Monitoring Depth|The maximum depth at which the specified log directory is monitored. Valid values: 0 to 1000. The value 0 indicates that only the directory specified in the log path is monitored.|
 
     You can configure advanced options based on your business requirements. We recommend that you do not modify the settings. The following table describes the parameters in the advanced options.
@@ -105,7 +107,7 @@ For more examples, see [regex-exclude-word](https://stackoverflow.com/questions/
     -   If an error occurs when you use Logtail to collect logs, see [Diagnose collection errors]().
 7.  Preview the data, configure indexes, and then click **Next**.
 
-    By default, Log Service enables the Full Text Index to query and analyze logs. You can also manually or automatically configure Field Search. For more information, see [Enable and configure the indexing feature for a Logstore](/intl.en-US/Index and query/Enable and configure the index feature for a Logstore.md).
+    By default, Log Service enables the Full Text Index to query and analyze logs. You can also manually or automatically configure Field Search. For more information, see [Configure indexes](/intl.en-US/Index and query/Configure indexes.md).
 
     **Note:**
 
@@ -118,38 +120,38 @@ DSV formatted logs use line feeds as boundaries. Each line indicates a log entry
 
 -   Single-character delimiter
 
-    The following examples list sample log entries with single-character delimiters:
+    The following example shows sample log entries with single-character delimiters:
 
     ```
-    05/May/2016:13:30:28,10.10. *. *,"POST /PutData? Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=******************************** HTTP/1.1",200,18204,aliyun-sdk-java
-    05/May/2016:13:31:23,10.10. *. *,"POST /PutData? Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=******************************** HTTP/1.1",401,23472,aliyun-sdk-java
+    05/May/2016:13:30:28,10.10.*.*,"POST /PutData?Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=******************************** HTTP/1.1",200,18204,aliyun-sdk-java
+    05/May/2016:13:31:23,10.10.*.*,"POST /PutData?Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=******************************** HTTP/1.1",401,23472,aliyun-sdk-java
     ```
 
     For the log entries with single-character delimiters, you must specify each delimiter. You can also use a pair of quotes in the log entry.
 
     -   Delimiter: Available single-character delimiters include the tab \(\\t\), vertical bar \(\|\), space, comma \(,\), and semicolon \(;\). You can also specify a non-printable character as the delimiter. A double quotation mark \("\) cannot be used as the delimiter.
 
-        However, a double quotation mark \("\) can be used as a quote. You can place the double quotation mark at the border of a field, or in the field. If a double quotation mark \("\) is included in a log field but is not used as a quote, it must be escaped as double quotation marks \(""\). When Log Service parses log fields, the double quotation marks \(""\) are automatically converted into a double quotation mark \("\). For example, assume that you specify a comma \(,\) as the delimiter and double quotation mark \("\) as the quote in a log field. You must enclose the field that contains commas by using a pair of quotes. In addition, you must escape the double quotation mark \("\) in the field to double quotation marks \(""\). The log format after processing is 1999,Chevy,"Venture ""Extended Edition, Very Large""","",5000.00. The log entry can be parsed into five fields: 1999, Chevy, Venture "Extended Edition, Very Large", an empty field, and 5000.00.
+        However, a double quotation mark \("\) can be used as a quote. You can place the double quotation mark at the border of a field, or in the field. If a double quotation mark \("\) is included in a log field but is not used as a quote, it must be escaped as double quotation marks \(""\). When Log Service parses log fields, the double quotation marks \(""\) are automatically converted to a double quotation mark \("\). For example, you can specify a comma \(,\) as the delimiter and double quotation mark \("\) as the quote in a log field. You must enclose the field that contains commas by using a pair of quotes. In addition, you must escape the double quotation mark \("\) in the field to double quotation marks \(""\). The log format after processing is 1999,Chevy,"Venture ""Extended Edition, Very Large""","",5000.00. The log entry can be parsed into five fields: 1999, Chevy, Venture "Extended Edition, Very Large", an empty field, and 5000.00.
 
     -   Quote: If a log field contains delimiters, you must specify a pair of quotes to enclose the field. Log Service parses the content that is enclosed in a pair of quotes into a new complete field.
 
-        Available quotes include the tab \(\\t\), vertical bar \(\|\), space, comma \(,\), semicolon \(;\), and non-printable characters.
+        Available quotes include the tab \(\\t\), vertical bar \(\|\), space, comma \(,\), and semicolon \(;\). You can also specify a non-printable character as the quote.
 
-        For example, assume that you specify a comma \(,\) as the delimiter and double quotation mark \("\) as the quote in log fields. The log entry is 1997,Ford,E350,"ac, abs, moon",3000.00. The log entry can be parsed into five fields: 1997, Ford, E350, ac, abs, moon, and 3000.00.
+        For example, you can specify a comma \(,\) as the delimiter and double quotation mark \("\) as the quote in log fields. The log entry is 1997,Ford,E350,"ac, abs, moon",3000.00. The log entry can be parsed into five fields: 1997, Ford, E350, ac, abs, moon, and 3000.00.
 
 -   Multi-character delimiter
 
-    The following example lists sample log entries with multi-character delimiters:
+    The following example shows sample log entries with multi-character delimiters:
 
     ```
-    05/May/2016:13:30:28&&10.200. **. **&&POST /PutData? Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=pD12XYLmGxKQ%2Bmkd6x7hAgQ7b1c%3D HTTP/1.1&&200&&18204&&aliyun-sdk-java
-    05/May/2016:13:31:23&&10.200. **. **&&POST /PutData? Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=******************************** HTTP/1.1&&401&&23472&&aliyun-sdk-java
+    05/May/2016:13:30:28&&10.200.**.**&&POST /PutData?Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=pD12XYLmGxKQ%2Bmkd6x7hAgQ7b1c%3D HTTP/1.1&&200&&18204&&aliyun-sdk-java
+    05/May/2016:13:31:23&&10.200.**.**&&POST /PutData?Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=******************************** HTTP/1.1&&401&&23472&&aliyun-sdk-java
     ```
 
     A multi-character delimiter can contain two or three characters, such as \|\|, &&&, and ^\_^\). Log Service parses log field based on delimiters. You do not need to use quotes to enclose the log field to be parsed.
 
-    **Note:** You must ensure that the delimiters in a field cannot be parsed into a new field. Otherwise, Log Service does not parse the field as expected.
+    **Note:** You must make sure that the delimiters in a field cannot be parsed into a new field. Otherwise, Log Service does not parse the field as expected.
 
-    For example, assume that you specify && as the delimiter. The log entry 1997&&Ford&&E350&&ac&abs&moon&&3000.00 is parsed into the following five fields: 1997, Ford, E350, ac&abs&moon, and 3000.00.
+    For example, you can specify && as the delimiter. The log entry 1997&&Ford&&E350&&ac&abs&moon&&3000.00 is parsed into the following five fields: 1997, Ford, E350, ac&abs&moon, and 3000.00.
 
 
