@@ -152,7 +152,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_replace(value, old [,new [,count] ])
+    str_replace(value, old,new,count)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -197,7 +197,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_sort(value, [reverse])
+    str_sort(value, reverse)
     ```
 
 -   Parameters
@@ -342,7 +342,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_strip(value, [chars] )
+    str_strip(value, chars )
     ```
 
 -   Parameters
@@ -586,7 +586,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_lstrip(value,[chars])
+    str_lstrip(value,chars)
     ```
 
 -   Parameters
@@ -670,7 +670,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_rstrip(value,[chars])
+    str_rstrip(value, chars)
     ```
 
 -   Parameters
@@ -815,7 +815,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    tr_endwith(value, suffix [, start [, end ] ] )
+    tr_endwith(value, suffix, start, end )
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -860,7 +860,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_startswith(value, prefix [, start [, end ] ])
+    str_startswith(value, prefix, start, end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -905,7 +905,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_find(value,str [, begin [,end]])
+    str_find(value,str, begin, end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -950,7 +950,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_count(value,sub[,start [,end]])
+    str_count(value,sub,start,end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -995,7 +995,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_rfind(value,substr[,beg [,end]])
+    str_rfind(value,substr,beg,end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -1082,7 +1082,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_splitlines(value,[keepends])
+    str_splitlines(value,keepends)
     ```
 
 -   Parameters
@@ -1227,7 +1227,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_center(value,width,[fillchar])
+    str_center(value,width,fillchar)
     ```
 
 -   Parameters
@@ -1334,7 +1334,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_expandtabs(value,[tabsize])
+    str_expandtabs(value,tabsize)
     ```
 
 -   Parameters
@@ -1397,7 +1397,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_ljust(value,width,[fillchar])
+    str_ljust(value,width,fillchar)
     ```
 
 -   Parameters
@@ -1484,7 +1484,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_ljust(value,width,[fillchar])
+    str_ljust(value,width,fillchar)
     ```
 
 -   Parameters
