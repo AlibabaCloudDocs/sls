@@ -217,7 +217,7 @@ Procedure
 
     In this example, the value of the static variable status2 is 400, which indicates the status field. The value of the request\_method field is GET and the dynamic value of the variable method is GET. The result of the saved search shows the PV distribution of IP addresses whose request method is GET and status code is 400.
 
-    For example, the value of therequest\_method field is PUT. The result of the saved search shows the PV distribution of IP addresses whose request method is PUT and status code is 400.
+    For example, the value of the request\_method field is PUT. The result of the saved search shows the PV distribution of IP addresses whose request method is PUT and status code is 400.
 
     ![step6](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5381009161/p266521.png)
 
