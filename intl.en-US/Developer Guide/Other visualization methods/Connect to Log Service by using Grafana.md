@@ -31,8 +31,10 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
     2.  Run the following command to install the plug-in:
 
         ```
-        git clone https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
+        git clone --depth 1 https://github.com/aliyun/aliyun-log-grafana-datasource-plugin
         ```
+
+        You can also download [master.zip](https://github.com/aliyun/aliyun-log-grafana-datasource-plugin/archive/master.zip) to the /var/lib/grafana/plugins/ directory and install the plug-in.
 
     3.  Run the following command to restart the Grafana service:
 
@@ -40,12 +42,12 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
         service grafana-server restart
         ```
 
-3.  Optional. To install Grafana version 7.0 or later, modify the Grafana configuration file.
+3.  To install Grafana version 7.0 or later, modify the Grafana configuration file.
 
     1.  Open the configuration file.
 
         -   The file path in macOS is /usr/local/etc/grafana/grafana.ini.
-        -   The file path in Linux is/etc/grafana/grafana.ini
+        -   The file path in Linux is /etc/grafana/grafana.ini.
     2.  Set the allow\_loading\_unsigned\_plugins parameter in plugins.
 
         ```
@@ -70,7 +72,7 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
     |Parameter|Description|
     |:--------|:----------|
     |Name|The name of the data source.|
-    |HTTP|Set the URL, Access, and Whitelisted Cookies parameters.    -   URL: The format is `http://Endpoint`. Replace the Endpoint variable based on the actual scenario. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). Example: `http://cn-qingdao.log.aliyuncs.com`.
+    |HTTP|Set the URL, Access, and Whitelisted Cookies parameters. The following list describes the parameters:    -   URL: The format is `http://Endpoint`. Replace the Endpoint variable with the actual value. For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md). Example: `http://cn-qingdao.log.aliyuncs.com`.
     -   Access: Select Server or Browser. Default value: Server.
     -   Whitelisted Cookies: Add a whitelist. |
     |Auth|Use the default settings.|
@@ -96,7 +98,7 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
         3.  Click **Add variable**.
         4.  Set the required parameters to configure a template variable. Then, click **Add**.
 
-            The following table describes the required parameters.
+            The following table describes the parameters.
 
             |Parameter|Description|
             |---------|-----------|
@@ -123,7 +125,7 @@ This topic describes how to use Grafana to analyze and visualize NGINX logs that
 
 4.  Add visualized panels.
 
-    -   Add a graph panel to show page view \(PV\) and unique visitor \(UV\) statistics.
+    -   Add a graph panel to show page views \(PVs\) and unique visitors \(UVs\).
         1.  Click the **![Icon 3 ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2914221161/p112908.png)** icon in the upper-right corner.
         2.  In the New Panel panel, click **Add Query**.
         3.  Click the **![Icon 4](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2914221161/p112921.png)** icon and select **Graph** from the **Visualization** drop-down list.
@@ -144,7 +146,7 @@ In the query result, `$hostname` is replaced by a specified domain name, and `$$
             |X-Column|Enter **time**.|
             |Y-Column|Enter **uv,pv**.|
 
-        6.  If a significant difference exists between the UV value and the PV value, you can use a dual Y-axis chart to show UV and PV statistics.
+        6.  If a significant difference exists between the value of UV and the value of PV, you can use a dual Y-axis chart to show UV and PV.
 
             ![grafana-pv&uv02](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5105311161/p112952.png)
 
@@ -207,7 +209,7 @@ In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|Enter **pie**.|
         |Y-Column|Enter **referer,pv**.|
 
-    -   Add a table panel to show pages whose latency ranks in the top places.
+    -   Add a table panel to show pages that rank in the top places for high latency.
 
         For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
@@ -235,9 +237,9 @@ In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|You do not need to set this parameter.|
         |Y-Column|Enter **path,pv**.|
 
-    -   Add a table panel to show pages that have the most access requests to which a non-200 HTTP status code is returned.
+    -   Add a table panel to show the pages with the most access requests to which a non-200 HTTP status code is returned.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV](#step_718_ird_p4y). The following table describes the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
@@ -249,7 +251,7 @@ In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|You do not need to set this parameter.|
         |Y-Column|Enter **uv,pv**.|
 
-    -   Add a Singlestat panel to show average latency.
+    -   Add a singlestat panel to show average latency.
 
         For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
@@ -297,11 +299,11 @@ $hostname  | select to_unixtime(time) as time,status,count from (select time_ser
 
 In the query result, `$hostname` is replaced by a specified domain name. |
         |X-Column|Enter time.|
-        |Y-Column|Enter col1\#:\# col2. col1 is the aggregate column and col2 is one of the other columns.|
+        |Y-Column|Enter col1\#:\# col2. col1 is the aggregated column and col2 is one of the other columns.|
 
-    -   Add a Worldmap panel to show the distribution of source IP addresses.
+    -   Add a worldmap panel to show the distribution of source IP addresses.
 
-        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following tables describe the related parameters.
+        For more information about how to add a panel, see [Add a graph panel to show PV and UV statistics](#step_718_ird_p4y). The following table describes the related parameters.
 
         |Parameter|Description|
         |:--------|:----------|
@@ -322,7 +324,7 @@ In the query result, `$hostname` is replaced by a specified domain name. |
 
 5.  View the results.
 
-    On the top of the Dashboard page, you can select a time range. You can also filter the results by time interval and hostname.
+    On the top of Dashboard page, you can select a time range. You can also filter the results by time interval and hostname.
 
 
 ## FAQ
