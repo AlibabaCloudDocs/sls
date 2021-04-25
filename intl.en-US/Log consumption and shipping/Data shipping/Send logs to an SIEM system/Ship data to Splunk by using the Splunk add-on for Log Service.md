@@ -170,7 +170,7 @@ If you run Splunk on an ECS instance, you can assign a RAM role to the ECS insta
 
     2.  Click **Create New Input**. In the Add sls\_datainput dialog box, set the parameters of the data input.
 
-        The SLS AccessKey parameter must be set to the account created in [Step 3](#step_9e4_i89_n8h). For more information about other parameters, see[Table 1](#table_3m7_ks5_n9x).
+        The SLS AccessKey parameter must be set to the account created in [Step 3](#step_9e4_i89_n8h). For more information about other parameters, see [Table 1](#table_3m7_ks5_n9x).
 
 
 ## Operations
