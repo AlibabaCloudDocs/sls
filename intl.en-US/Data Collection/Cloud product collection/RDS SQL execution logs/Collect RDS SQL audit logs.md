@@ -3,9 +3,10 @@
 This topic describes how to collect RDS SQL audit logs by using the Log Service console.
 
 -   An ApsaraDB RDS instance is created.If an ApsaraDB RDS for PostgreSQL instance is created, the SQL audit feature is enabled for the instance. If an ApsaraDB RDS for MySQL instance is created, the SQL explorer feature of a paid edition is enabled for the instance.
-    -   To create an ApsaraDB RDS for MySQL instance, see [Create an ApsaraDB RDS for MySQL instance](/intl.en-US/RDS MySQL Database/Quick start/Create an ApsaraDB RDS for MySQL instance.md) and [SQL Explorer](/intl.en-US/RDS MySQL Database/Audit/SQL Explorer.md).
-    -   To create an ApsaraDB RDS for PostgreSQL instance, see [Create an ApsaraDB RDS for PostgreSQL instance](/intl.en-US/RDS PostgreSQL Database/Quick start/Create an ApsaraDB RDS for PostgreSQL instance.md) and [Enable and disable SQL Audit \(database audit\) on an ApsaraDB RDS for PostgreSQL instance](/intl.en-US/RDS PostgreSQL Database/Audit/Enable and disable SQL Audit (database audit) on an ApsaraDB RDS for PostgreSQL instance.md).
--   A Log Service project and Logstore are created in the region where the RDS instance resides. For more information, see [Step 1: Create a project and a Logstore](/intl.en-US/Quick Start/Quick start.md).
+
+    To create an ApsaraDB RDS for MySQL instance, see [Create an ApsaraDB RDS for MySQL instance](/intl.en-US/RDS MySQL Database/Quick start/Create an ApsaraDB RDS for MySQL instance.md) and [Use the SQL Explorer feature on an ApsaraDB RDS for MySQL instance](/intl.en-US/RDS MySQL Database/Audit/Use the SQL Explorer feature on an ApsaraDB RDS for MySQL instance.md).
+
+-   A Log Service project and Logstore are created in the region where the RDS instance resides. For more information, see [Step 2: Create a project and a Logstore](/intl.en-US/.md).
 
 1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
@@ -23,7 +24,7 @@ This topic describes how to collect RDS SQL audit logs by using the Log Service 
 
 5.  In the Configure Query and Analysis step, click **Next**.
 
-    The indexing feature is enabled for the Logstore where RDS SQL audit logs are stored. Indexes are configured for these audit logs. You can modify indexes as required. For more information, see [Enable and configure the index feature for a Logstore](/intl.en-US/Index and query/Enable and configure the index feature for a Logstore.md).
+    The indexing feature is enabled for the Logstore where RDS SQL audit logs are stored. Indexes are configured for these audit logs. You can modify indexes as required. For more information, see [Configure indexes](/intl.en-US/Index and query/Configure indexes.md).
 
 
 After RDS SQL audit logs are collected to Log Service, you can search, analyze, download, ship, and transform these logs. You can also configure alerts for these logs. For more information, see [Common operations on logs of Alibaba Cloud services](/intl.en-US/Data Collection/Cloud product collection/Common operations on logs of Alibaba Cloud services.md).
