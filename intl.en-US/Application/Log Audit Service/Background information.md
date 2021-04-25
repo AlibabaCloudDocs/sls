@@ -198,11 +198,11 @@ cps\_log
 |China \(Shanghai\), China \(Beijing\), China \(Hangzhou\), China \(Shenzhen\), China \(Hohhot\), China \(Zhangjiakou\), China \(Chengdu\), and China \(Hong Kong\)|You must manually enable the log collection feature for Kubernetes logs. **Note:**
 
 -   You must use the automatically created project named in the k8s-log-\{ClusterID\} format. Custom projects are not supported.
--   The collection of Kubernetes logs depends on the data transformation feature. When you collect Kubernetes logs, you are charged for the data transformation feature. For more information, see [Billing overview](/intl.en-US/Pricing/Billing overview.md).
+-   The collection of Kubernetes logs depends on the data transformation feature. When you collect Kubernetes logs, you are charged for the data transformation feature. For more information, see [Billable items and billing method](/intl.en-US/Pricing/Billable items and billing method.md).
 
 -   For more information about Kubernetes audit logs, see [Use Log Service to collect container logs](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Use Log Service to collect container logs.md).
 -   For more information about Kubernetes event centers, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
--   For more information about Ingress access logs, see[Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor and analyze the logs of nginx-ingress.md).
+-   For more information about Ingress access logs, see [Monitor and analyze the logs of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor and analyze the logs of nginx-ingress.md).
 
 |-   Logstore
     -   k8s\_log
