@@ -6,7 +6,7 @@ The Helm package alibaba-log-controller is installed. For more information, see 
 
 ## Features
 
-Logtail can collect and upload container text logs with container metadata to Log Service. The collection of Kubernetes text logs has the following features:
+Logtail can collect and upload container text logs that contain container metadata to Log Service. The collection of Kubernetes text logs includes the following features:
 
 -   Allows you to specify the log path of a container without the need to manually map the path to a path on the host.
 -   Uses labels to specify containers for log collection.
@@ -20,7 +20,7 @@ Logtail can collect and upload container text logs with container metadata to Lo
 **Note:**
 
 -   The preceding labels are retrieved by using the docker inspect command. These labels are not the labels that are specified in a Kubernetes cluster.
--   The preceding environment variables are the environment variables that you have specified to start containers.
+-   The preceding environment variables are the environment variables that you specified to start containers.
 
 ## Limits
 
@@ -34,19 +34,17 @@ Logtail can collect and upload container text logs with container metadata to Lo
 
 2.  In the Import Data section, click **Kubernetes - Object**.
 
-3.  In the Specify Logstore step, select the project and Logstore, and then click **Next**.
-
-    You can also click **Create Now** to create a project and a Logstore.
+3.  Select the created project and Logstore and click **Next**.
 
 4.  In the Create Machine Group step, create a machine group as prompted, and then click **Complete Installation**.
 
     If a machine group is available, click **Use Existing Machine Groups**.
 
-5.  In the Machine Group Settings step, apply the configurations to the machine group.
+5.  Select and move the destination machine group from **Source Server Groups** to **Applied Server Groups**, and then click **Next**.
 
-    Select the created machine group and move the group from **Source Server Groups** to **Applied Server Groups**.
+    **Note:** If you want to apply a machine group immediately after it is created, the heartbeat status of the machine group may be **FAIL**. This issue occurs because the machine group has not been connected to Log Service. In this case, you can click **Automatic Retry**. If the issue persists, see [What can I do if the Logtail client has no heartbeat?]()
 
-6.  In the Logtail Config step, specify the data source, and then click **Next**. The following table describes the required parameters.
+6.  In the Logtail Config step, specify the data source, and then click **Next**. The following table describes the parameters.
 
     |Parameter|Required|Description|
     |:--------|:-------|:----------|
@@ -55,12 +53,12 @@ Logtail can collect and upload container text logs with container metadata to Lo
 
     -   Key-value pairs are associated by the OR operator. If a label key-value pair of a container matches one of the specified key-value pairs, logs of the container are collected.
     -   By default, the value of the LabelValue parameter is a string. Logs are collected from the container whose name matches the value of the LabelValue parameter. If you use a regular expression to specify the value of the LabelValue parameter, logs are collected from the containers whose names match the regular expression. For example, if you specify the parameter value that starts with a caret \(^\) and ends with a dollar sign \($\) such as ^\(kube-system\|istio-system\)$, logs are collected from the container named kube-system and the container named istio-system.
-    -   Do not specify the duplicate values for the LabelKey parameter. Otherwise, the existing value of the LabelValue parameter is overwritten. |
+    -   Do not specify duplicate values for the LabelKey parameter. Otherwise, the existing value of the LabelValue parameter is overwritten. |
     |Label Blacklist|No|If you specify a label blacklist, the LabelKey parameter must be specified. If the value of the LabelValue parameter is not empty, logs are not collected from the containers whose label key-value pairs match the specified key-value pairs. If the value of the LabelValue parameter is empty, logs are not collected from the containers whose label keys match the specified keys. **Note:**
 
     -   Key-value pairs are associated by the OR operator. If a label key-value pair of a container matches one of the specified key-value pairs, logs of the container are collected.
     -   By default, the value of the LabelValue parameter is a string. Logs are collected from the container whose name matches the value of the LabelValue parameter. If you use a regular expression to specify the value of the LabelValue parameter, logs are collected from the containers whose names match the regular expression. For example, if you specify the parameter value that starts with a caret \(^\) and ends with a dollar sign \($\) such as ^\(kube-system\|istio-system\)$, logs are collected from the container named kube-system and the container named istio-system.
-    -   Do not specify the duplicate values for the LabelKey parameter. Otherwise, the existing value of the LabelValue parameter is overwritten. |
+    -   Do not specify duplicate values for the LabelKey parameter. Otherwise, the existing value of the LabelValue parameter is overwritten. |
     |Environment Variable Whitelist|No|If you specify an environment variable whitelist, the EnvKey parameter must be specified. If the value of the EnvValue parameter is not empty, logs are collected from the containers whose environment variable key-value pairs match the specified key-value pairs. If the value of the EnvValue parameter is empty, logs are collected from the containers whose environment variable keys match the specified keys. **Note:**
 
     -   Key-value pairs are associated by the OR operator. If an environment variable key-value pair of a container matches one of the specified key-value pairs, logs of the container are collected.
@@ -69,7 +67,7 @@ Logtail can collect and upload container text logs with container metadata to Lo
 
     -   Key-value pairs are associated by the OR operator. If an environment variable key-value pair of a container matches one of the specified key-value pairs, logs of the container are collected.
     -   By default, the value of the EnvValue parameter is a string. Logs are collected from the container whose name matches the value of the EnvValue parameter. If you use a regular expression to specify the value of the EnvValue parameter, logs are collected from the containers whose names match the regular expression. For example, if you specify the value of the EnvValue parameter that starts with a caret \(^\) and ends with a dollar sign \($\) such as ^\(kube-system\|istio-system\)$, logs are collected from the container named kube-system and the container named istio-system. |
-    |Other parameters|N/A|For more information about other parameters, see [Overview](/intl.en-US/Data Collection/Logtail collection/Text logs/Overview.md).|
+    |Other parameters|N/A|For more information about other parameters, see [Overview](/intl.en-US/Data Collection/Logtail collection/Text logs/Overview.md). **Note:** By default, the root directory of the host is mounted on the `/logtail_host` directory of the Logtail container. When you configure the directory for log collection, you must add the container directory as the prefix of the log path. For example, to collect data from the `/home/logs/app_log/` directory of the host, you must set the log path to `/logtail_host/home/logs/app_log/`. |
 
     **Note:**
 
@@ -86,21 +84,21 @@ Logtail can collect and upload container text logs with container metadata to Lo
 
     Collect the logs of the containers that meet the following conditions: The environment variables include `NGINX_PORT_80_TCP_PORT=80` and exclude `POD_NAMESPACE=kube-system`, the log file path is `/var/log/nginx/access.log`, and logs are parsed in simple mode.
 
-    ![Configuration example of environment variables](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6323359951/p54512.png)
+    ![Configuration example of environment variables](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6323359951/p54512.png)
 
-    The following figure shows the configuration of a data source. For more information about log collection modes, see [Use the full regex mode to collect logs](/intl.en-US/Data Collection/Logtail collection/Text logs/Use the full regex mode to collect logs.md), [Collect NGINX logs](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect NGINX logs.md), and [Collect DSV formatted logs](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect DSV formatted logs.md).
+    The following figure shows the configuration of a data source. For more information about log collection modes, see [Collect logs in full regex mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in full regex mode.md), [Collect logs in NGINX mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in NGINX mode.md), and [Collect logs in delimiter mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in delimiter mode.md).
 
-    ![Configuration example of a data source](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2996549951/p54511.png)
+    ![Configuration example of a data source](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2996549951/p54511.png)
 
--   Configure labels
+-   Label configuration
 
     Collect the logs of the containers that meet the following conditions: The container labels include `io.kubernetes.container.name=nginx`, the log file path is `/var/log/nginx/access.log`, and logs are parsed in simple mode.
 
-    ![Configuration example of labels](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/6323359951/p54510.png)
+    ![Configuration example of labels](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6323359951/p54510.png)
 
-    The following figure shows the configuration of a data source. For more information about log collection modes, see [Use the full regex mode to collect logs](/intl.en-US/Data Collection/Logtail collection/Text logs/Use the full regex mode to collect logs.md), [Collect NGINX logs](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect NGINX logs.md), and [Collect DSV formatted logs](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect DSV formatted logs.md).
+    The following figure shows the configuration of a data source. For more information about log collection modes, see [Collect logs in full regex mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in full regex mode.md), [Collect logs in NGINX mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in NGINX mode.md), and [Collect logs in delimiter mode](/intl.en-US/Data Collection/Logtail collection/Text logs/Collect logs in delimiter mode.md).
 
-    ![Data source configuration](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2996549951/p54509.png)
+    ![Data source configuration](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2996549951/p54509.png)
 
 
 ## Default fields
