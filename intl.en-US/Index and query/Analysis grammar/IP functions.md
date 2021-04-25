@@ -1,10 +1,10 @@
 # IP functions
 
-IP functions can be used to identify whether an IP address is an internal or external IP address. IP functions can also be used to identify the country, state, and city to which an IP address belongs. This topic describes the syntax of IP functions and provides related examples.
+IP functions can be used to identify whether an IP address is an internal or external IP address. IP functions can also be used to identify the country, state,and city to which an IP address belongs. This topic describes the syntax of IP functions and provides related examples.
 
-## Syntax
+## IP functions
 
-**Note:** The KEY parameter in the following functions indicates a log field, for example, client\_ip. The value of this parameter must be an IP address.
+**Note:** The KEY parameter in the following functions indicates a log field, for example, client\_ip. The value of this parameter is an IP address.
 
 |Function|Description|Example|
 |:-------|:----------|:------|
@@ -69,9 +69,46 @@ For information about geohash functions, see [Geo functions](/intl.en-US/Index a
 * | SELECT ip_to_provider(client_ip)
 ``` |
 
+## CIDR block functions
+
+**Note:** The KEY parameter in the following functions indicates a log field, for example, client\_ip. The value of this parameter is an IP address. The field values in the ip\_subnet\_min, ip\_subnet\_max, ip\_subnet\_range, is\_subnet\_of, and is\_prefix\_subnet\_of functions are IP addresses in the subnet mask format, for example, 192.168.1.1/24. If the field values are common IP addresses, you can use the concat function \(concat\(key,'/24'\)\) to convert the IP addresses into the subnet mask format.
+
+|Function|Description|Example|
+|:-------|:----------|:------|
+|ip\_prefix\(KEY,prefix\_bits\)|Obtains the prefix of an IP address. The returned result is an IP address in the subnet mask format, for example, 192.168.1.0/24.
+
+|```
+* | SELECT ip_prefix(client_ip,24)
+``` |
+|ip\_subnet\_min\(KEY\)|Obtains the smallest IP address within a CIDR block. The returned result is an IP address, for example, 192.168.1.0.
+
+|```
+* | SELECT ip_subnet_min(concat(client_ip,'/24'))
+``` |
+|ip\_subnet\_max\(KEY\)|Obtains the largest IP address within a CIDR block. The returned result is an IP address, for example, 192.168.1.255.
+
+|```
+* | SELECT ip_subnet_max(concat(client_ip,'/24'))
+``` |
+|ip\_subnet\_range\(KEY\)|Obtains a CIDR block. The returned result is an Array of IP addresses, for example, \["192.168.1.0","192.168.1.255"\].
+
+|```
+* | SELECT ip_subnet_range(concat(client_ip,'/24'))
+``` |
+|is\_subnet\_of\('CIDR block', KEY\)|Identifies whether an IP address is within a specified CIDR block. The returned result is a Boolean value.
+
+|```
+* | SELECT is_subnet_of('192.168.0.1/24',client_ip)
+``` |
+|is\_prefix\_subnet\_of\(''CIDR block', KEY\)|Identifies whether a CIDR block is a subnet of a specified CIDR block. The returned result is a Boolean value.
+
+|```
+* | SELECT is_prefix_subnet_of('192.168.0.1/24',concat(client_ip,'/24'))
+``` |
+
 ## Examples
 
-The following examples show how to use IP functions in different scenarios. You can also display the query and analysis results on a chart.
+The following examples show how to use IP functions in different scenarios. You can also visualize the query and analysis results on a chart.
 
 **Note:** In the following examples, client\_ip, latency, and requestId are log fields.
 
