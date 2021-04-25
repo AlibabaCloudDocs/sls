@@ -19,7 +19,7 @@ JDBC的使用场景：
 
 ```
 Time :10-12 14:26:44
-__source__: 11.164.232.105 
+__source__: 192.168.0.0
 __topic__: v1 
 age: 55 
 battery: 118497.673842 
@@ -49,6 +49,10 @@ userid: 292
 
 2.  使用Java程序通过JDBC查询日志数据，示例代码如下所示。
 
+    **说明：** 在where条件中必须包含\_\_date\_\_字段或\_\_time\_\_字段来限制查询的时间范围。\_\_date\_\_字段是timestamp类型，\_\_time\_\_字段是bigint类型。例如：
+
+    -   \_\_date\_\_ \> '2017-08-07 00:00:00' and \_\_date\_\_ < '2017-08-08 00:00:00'
+    -   \_\_time\_\_ \> 1502691923 and \_\_time\_\_ < 1502692923
     ```
     /**
     * Created by mayunlei on 2017/6/19.
@@ -62,37 +66,36 @@ userid: 292
     */
     public class jdbc {
      public static void main(String args[]){
-          //配置您创建的Project名称，Logstore名称等相关信息。
-         final String endpoint = "cn-hangzhou-intranet.sls.aliyuncs.com";//日志服务内网或VPC域名。
-         final String port = "10005"; //通过JDBC访问日志默认使用10005作为端口号。
-         final String project = "trip-demo";
-         final String logstore = "ebike";
-         final String accessKeyId = "";
-         final String accessKey = "";
+         final String endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"; //日志服务经典网络或VPC网络访问域名，请根据实际情况替换。更多信息，请参见[经典网络及VPC网络服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。
+         final String port = "10005"; //通过JDBC访问时，默认使用10005端口。
+         final String project = "trip-demo"; //Project名称。
+         final String logstore = "ebike"; //Logstore名称。
+         final String accessKeyId = "";  //阿里云访问密钥AccessKey ID。更多信息，请参见[访问密钥](/intl.zh-CN/开发指南/API 参考/访问密钥.md)。
+         final String accessKey = "";  //阿里云访问密钥AccessKey Secret。
          Connection conn = null;
          Statement stmt = null;
          try {
-             //步骤1 ： 加载JDBC驱动。
+             //步骤1 ：加载JDBC驱动。
              Class.forName("com.mysql.jdbc.Driver");
-             //步骤2 ： 创建一个链接。
+             //步骤2 ：创建一个链接。
              conn = DriverManager.getConnection("jdbc:mysql://"+endpoint+":"+port+"/"+project,accessKeyId,accessKey);
-             //步骤3 ： 创建statement。
+             //步骤3 ：创建statement。
              stmt = conn.createStatement();
-             //步骤4 ： 定义查询语句，查询2017年10月11日全天日志中满足条件op = "unlock"的日志条数。
+             //步骤4 ：定义查询语句，查询2017年10月11日全天日志中满足条件op = "unlock"的日志条数。
              String sql = "select count(1) as pv,avg(latency) as avg_latency from "+logstore+"  " +
                      "where     __date__  >=  '2017-10-11 00:00:00'   " +
                      "     and  __date__  <   '2017-10-12 00:00:00'" +
                      " and     op ='unlock'";
-             //步骤5 ： 执行查询条件。
+             //步骤5 ：执行查询条件。
              ResultSet rs = stmt.executeQuery(sql);
-             //步骤6 ： 提取查询结果。
+             //步骤6 ：提取查询结果。
              while(rs.next()){
                  //Retrieve by column name
                  System.out.print("pv:");
-                 //获取结果中的pv
+                 //获取结果中的pv。
                  System.out.print(rs.getLong("pv"));
                  System.out.print(" ; avg_latency:");
-                 //获取结果中的avg_latency
+                 //获取结果中的avg_latency。
                  System.out.println(rs.getDouble("avg_latency"));
                  System.out.println();
              }
