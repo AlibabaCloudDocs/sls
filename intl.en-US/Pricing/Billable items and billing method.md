@@ -25,8 +25,6 @@ The following table describes the billable items of Log Service.
 -   You can view the following statistics of the previous day in the [Log Service console](https://sls.console.aliyun.com): write traffic, read traffic, number of read and write operations, transformation traffic, shipping traffic, and used storage space.
 -   When you use Log Service to collect logs, log data is automatically compressed. The compression ratio is 10:1 to 5:1.
 
-![Billable items](../images/p238972.png)
-
 |Billable item|Description|Billing formula|
 |-------------|-----------|---------------|
 |Storage space occupied by log data|The storage space is the total size of compressed log data and indexed log data. For example, the volume of raw log data that is uploaded to Log Service is 1 GB, and indexes are created for two fields. The compression ratio is 5:1, and the size of indexes that are created for the two fields is 0.5 GB. In this case, the storage space occupied by log data is 0.7 GB \(0.2 GB + 0.5 GB = 0.7 GB\).
