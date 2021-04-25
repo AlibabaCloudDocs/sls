@@ -2,7 +2,7 @@
 
 This topic describes how to use Java Database Connectivity \(JDBC\) to connect to Log Service, read log data, and use the MySQL protocol and SQL syntax to collect log statistics.
 
-The indexing and analytics features are enabled for the destination field. For more information, see [Enable and configure the index feature for a Logstore](/intl.en-US/Index and query/Enable and configure the index feature for a Logstore.md).
+The indexing and analytics features are enabled for the destination field. For more information, see [Configure indexes](/intl.en-US/Index and query/Configure indexes.md).
 
 MySQL is a popular relational database. Many software products allow you to obtain MySQL data by using the MySQL protocol and SQL syntax. To connect Log Service with JDBC, you must familiarize yourself with the SQL syntax. Log Service provides MySQL protocol to query and analyze logs. You can use a standard MySQL client to connect to Log Service and use the standard SQL syntax to compute and analyze logs. You can use a standard MySQL client to connect to Log Service and use the standard SQL syntax to collect log statistics and analyze logs. Clients that support the MySQL transport protocol include MySQL client, JDBC, and Python MySQLdb.
 
@@ -63,7 +63,7 @@ userid: 292
     public class jdbc {
      public static void main(String args[]){
           // Set the required parameters, such as the project name and Logstore name.
-         final String endpoint = "cn-hangzhou-intranet.sls.aliyuncs.com";// Set the private endpoint of Log Service or a VPC.
+         final String endpoint = "cn-hangzhou-intranet.log.aliyuncs.com";// Set the private endpoint of Log Service or a VPC.
          final String port = "10005"; // Set the MySQL port to 10005. JDBC uses this port to access log by default.
          final String project = "trip-demo";
          final String logstore = "ebike";
