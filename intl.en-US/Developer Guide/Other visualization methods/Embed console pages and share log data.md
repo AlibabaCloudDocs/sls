@@ -119,4 +119,5 @@ The following sample scripts are written in Java, PHP, and Python:
 
 -   [PHP](https://samplecode.oss-cn-hangzhou.aliyuncs.com/slsconsole.php?spm=a2c4g.11186623.2.7.LewJJX)
 -   [Python](https://samplecode.oss-cn-hangzhou.aliyuncs.com/slsconsole.py?spm=a2c4g.11186623.2.8.LewJJX&file=slsconsole.py)
+-   [Go](https://samplecode.oss-cn-hangzhou.aliyuncs.com/sls-sts-golang.zip)
 
