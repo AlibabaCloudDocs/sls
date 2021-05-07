@@ -91,13 +91,6 @@
                 "log:*"
             ],
             "Resource":"acs:log:*:*:project/Project名称/job/*"
-        },
-        {
-            "Effect":"Allow",
-            "Action":[
-                "log:*"
-            ],
-            "Resource":"acs:log:*:*:project/Project名称/jobschedule/*"
         }
     ]
 }
