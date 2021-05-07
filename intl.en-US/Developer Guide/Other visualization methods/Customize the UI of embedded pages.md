@@ -362,8 +362,6 @@ https://sls4service.console.aliyun.com/lognext/project/$\{ProjectName\}/logsearc
 
 If you embed an inline frame into a dashboard, the height of the inline frame cannot be calculated. The scroll bar of the dashboard and the scroll bar of the inline frame may appear at the same time. In this case, you can set advanced dashboard parameters to adjust the dashboard height.
 
-![Advanced dashboard parameters](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2651520061/p120907.png)
-
 To fix this issue, you can use the postMessage method of Log Service to obtain the height of the dashboard and specify the height for the inline frame. The following sample code is used:
 
 ```
