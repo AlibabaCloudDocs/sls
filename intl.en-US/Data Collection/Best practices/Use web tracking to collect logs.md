@@ -17,7 +17,7 @@ Traditional solutions are developed for websites and webmasters. These solutions
 
 For these reasons, if you need to deliver content to intended users, these users require an efficient method to collect and analyze user behavior data.
 
-[Log Service](https://www.alibabacloud.com/zh/product/log-service?spm) provides Web Tracking, JavaScript, and Tracking Pixel SDKs for the preceding lightweight scenarios where you need to collect data based on tracking points. This allows you to report tracking points and data within 1 minute. In addition, Log Service provides 500 MB of free quota per month for each Alibaba Cloud account. For more information, see [Pricing](/intl.en-US/Pricing/Pay-as-you-go.md).
+[Log Service](https://www.alibabacloud.com/product/log-service?spm=a2c63.p38356.a3.1.bb254a2a0u1RgG&spm) provides Web Tracking, JavaScript, and Tracking Pixel SDKs for the preceding lightweight scenarios where you need to collect data based on tracking points. This allows you to report tracking points and data within 1 minute. In addition, Log Service provides 500 MB of free quota per month for each Alibaba Cloud account. For more information, see [Pricing](/intl.en-US/Pricing/Pay-as-you-go.md).
 
 ## Features
 
@@ -84,7 +84,7 @@ To use web tracking, perform the following steps:
         logger.push('product', 'iphone 6s');
         logger.push('price', 5500);
         logger.logger();
-        								
+                                        
         ```
 
 
@@ -140,7 +140,7 @@ In this example, if you can monitor the effectiveness of the promotion in real t
 
 3.  Analyze logs.
 
-    After you collect logs, you can use the log query and analysis feature of Log Service to query and analyze large amounts of log data in real time. For more information, see [Overview](/intl.en-US/Index and query/Overview.md). Log Service can show log analysis results on built-in dashboards and connect with DataV, Grafana, and Tableau to visualize the log analysis results. For more information, see [Create a dashboard](/intl.en-US/Query and visualization/Dashboard/Create a dashboard.md), [Connect Log Service with DataV](/intl.en-US/Developer Guide/Other visualization methods/Connect Log Service with DataV.md), and [Connect to Log Service by using Grafana](/intl.en-US/Developer Guide/Other visualization methods/Connect to Log Service by using Grafana.md).
+    After you collect logs, you can use the log query and analysis feature of Log Service to query and analyze large amounts of log data in real time. For more information, see [Overview](/intl.en-US/Index and query/Log search.md). Log Service can show log analysis results on built-in dashboards and connect with DataV, Grafana, and Tableau to visualize the log analysis results. For more information, see [Create a dashboard](/intl.en-US/Query and visualization/Dashboard/Create a dashboard.md), [Connect Log Service with DataV](/intl.en-US/Developer Guide/Other visualization methods/Connect Log Service with DataV.md), and [Connect to Log Service by using Grafana](/intl.en-US/Developer Guide/Other visualization methods/Connect to Log Service by using Grafana.md).
 
     The following figure shows the collected log data. You can enter a keyword in the search box to query logs.
 
@@ -152,7 +152,7 @@ In this example, if you can monitor the effectiveness of the promotion in real t
 
     1.  Create query statements.
 
-        The following examples describe how to create query statements to obtain page click and page view \(PV\) statistics. For more information, see [Real-time log analysis](/intl.en-US/Index and query/Real-time log analysis.md).
+        The following examples describe how to create query statements to obtain page click and page view \(PV\) statistics. For more information, see [Real-time log analysis](/intl.en-US/Index and query/Log analysis.md).
 
         -   To query the current total traffic and PVs, execute the following statement:
 
