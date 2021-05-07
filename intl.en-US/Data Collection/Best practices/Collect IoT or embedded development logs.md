@@ -31,7 +31,7 @@ Traditional software development solutions cannot meet the preceding requirement
 
 A log data collection solution customized by Log Service
 
-Logtail is the agent of [Log Service](https://www.alibabacloud.com/zh/product/log-service?spm) and is deployed on millions of x86 servers. In addition, Log Service provides a variety of collection solutions:
+Logtail is the agent of Log Service and is deployed on millions of x86 servers. In addition, Log Service provides a variety of collection solutions:
 
 -   Mobile SDK: You can use the SDKs to collect data from Android or iOS platforms with tens of millions of daily active users \(DAUs\).
 -   Web tracking \(JavaScript\): Web tracking is a lightweight solution that is similar to Baidu Tongji and Google Analytics. You can use web tracking to collect data without a signature.
@@ -93,7 +93,7 @@ The following table compares C Producer Library and other embedded collection so
 
 ## C Producer Library + Log Service solution
 
-C Producer Library can be integrated with [Log Service](https://www.alibabacloud.com/zh/product/log-service?spm) to provide a full range of log collection solutions for IoT devices.
+C Producer Library can be integrated with Log Service to provide a full range of log collection solutions for IoT devices.
 
 -   Large scale
     -   Writes hundreds of millions of logs from clients to Log Service in real time.
@@ -146,9 +146,7 @@ C Producer Library configuration
     -   Number of sending threads: 4
     -   Number of custom tags: 5
 
-Sample log
-
-1.  2.  The following sample log contains nine key-value pairs:
+The following sample log contains nine key-value pairs:
 
 ```
 __source__: 11.164.233.187
@@ -185,6 +183,4 @@ Test results
     -   When Raspberry Pi is connected to a PC shared network by using a USB port, each sending thread consumes 12 μs to send a log on average.
     ![Test results on Raspberry Pi](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9507549951/p32661.png)
 
-
-For more information about typical scenarios of Log Service, visit [Yunqi Community](https://yq.aliyun.com/teams/4/type_blog-cid_8?spm=a2c4g.11186623.2.35.2dfc505eazEyHL) or see [Typical scenarios]().
 
