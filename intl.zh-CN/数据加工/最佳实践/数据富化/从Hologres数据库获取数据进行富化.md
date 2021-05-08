@@ -2,7 +2,7 @@
 
 本文介绍如何通过资源函数从Hologres数据库获取数据进行数据富化。
 
--   已获取连接Hologress数据库的访问地址、用户名、密码、数据库名和数据库表等。
+-   已获取连接Hologres数据库的访问地址、用户名、密码、数据库名和数据库表等。
 -   Hologres数据库实例与日志服务Project处于同一地域。
 
 某电商平台将所有物品的销量、购买人的身份信息存储在Hologres数据库中。当新注册的用户登录电商平台时，电商平台根据新用户的性别，在主页为用户推荐相应的商品。面对此类问题，您可以通过日志服务数据加工功能从Hologres数据库获取数据，并通过富化函数将推荐商品存储到日志服务Logstore中，便于其它服务在Logstore中使用推荐的数据。
@@ -12,7 +12,7 @@
 ## 使用e\_search\_table\_map函数进行数据富化
 
 -   原始数据
-    -   Hologress数据库表中的数据样例如下表所示。
+    -   Hologres数据库表中的数据样例如下表所示。
 
         |product\_id|product\_name|product\_price|product\_sales\_number|sex|
         |-----------|-------------|--------------|----------------------|---|
@@ -52,7 +52,7 @@
                                     inpt="sex",output_fields="product_name", multi_match=True, multi_join=",")
     ```
 
-    **说明：** 为了访问Hologress实例的安全性和稳定性，建议通过VPC方式访问Hologress数据库。您可以在Hologress实例的网络配置中，获取Hologress数据库的VPC访问域名，将address配置为该值即可。
+    **说明：** 为了访问Hologres实例的安全性和稳定性，建议通过VPC方式访问Hologres数据库。您可以在Hologres实例的网络配置中，获取Hologres数据库的VPC访问域名，将address配置为该值即可。
 
 -   加工结果
 
