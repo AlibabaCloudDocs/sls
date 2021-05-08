@@ -305,7 +305,7 @@
 ## 0.16.8
 
 -   新功能
-    -   新增Logtail Lumberjack插件，用于采集采集Logstash、Beats数据源。更多信息，请参见[采集Beats和Logstash数据源](/cn.zh-CN/数据采集/Logtail采集/使用Logtail插件采集数据/采集Beats和Logstash数据源.md)。
+    -   新增Logtail Lumberjack插件，用于采集Logstash、Beats数据源。更多信息，请参见[采集Beats和Logstash数据源](/cn.zh-CN/数据采集/Logtail采集/使用Logtail插件采集数据/采集Beats和Logstash数据源.md)。
     -   增加inotify黑名单功能。
 -   问题修复
     -   修复旧安装包参数不统一的问题。
