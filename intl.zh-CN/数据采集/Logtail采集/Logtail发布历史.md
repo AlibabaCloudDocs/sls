@@ -78,7 +78,7 @@
 
 -   新功能
 
-    新增service\_telegraf插件，支持采集指标数据。更多信息，请参见[接入Telegraf数据]()。
+    新增service\_telegraf插件，支持采集指标数据。
 
 
 ## 0.16.42
@@ -95,7 +95,7 @@
 ## 0.16.40
 
 -   新功能
-    -   新增主机状态数据插件metric\_system\_v2。更多信息，请参见[采集主机监控数据]()。
+    -   新增主机状态数据插件metric\_system\_v2。
     -   新增环境变量ALIYUN\_LOGTAIL\_MAX\_DOCKER\_CONFIG\_UPDATE\_TIMES对应的参数max\_docker\_config\_update\_times，适用于在K8s环境中频繁创建Job短时任务的场景。
 -   优化
 
@@ -304,7 +304,7 @@
 ## 0.16.8
 
 -   新功能
-    -   新增Logtail Lumberjack插件，用于采集采集Logstash、Beats数据源。更多信息，请参见[采集Beats和Logstash数据源](/intl.zh-CN/数据采集/Logtail采集/使用Logtail插件采集数据/采集Beats和Logstash数据源.md)。
+    -   新增Logtail Lumberjack插件，用于采集Logstash、Beats数据源。更多信息，请参见[采集Beats和Logstash数据源](/intl.zh-CN/数据采集/Logtail采集/使用Logtail插件采集数据/采集Beats和Logstash数据源.md)。
     -   增加inotify黑名单功能。
 -   问题修复
     -   修复旧安装包参数不统一的问题。
