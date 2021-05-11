@@ -10,15 +10,15 @@
 
 ## 配置方式
 
-使用Syslog协议上传日志时，需配置日志上传地址，格式为`Project名称.日志服务Endpoint:Syslog协议端口`，例如test-project-1.cn-hangzhou-intranet.log.aliyuncs.com:10009，请根据您的日志服务Project所在地域选择Endpoint，详情请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)，Syslog的端口为10009。同时您需要在STRUCTURED-DATA字段中配置日志服务Project、Logstore，阿里云账号AccessKey等信息。
+使用Syslog协议上传日志时，需配置日志上传地址，格式为`Project名称.日志服务Endpoint:Syslog协议端口`，例如test-project-1.cn-hangzhou-intranet.log.aliyuncs.com:10009。请根据您的日志服务Project所在地域选择Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。Syslog的端口为10009。同时您需要在STRUCTURED-DATA字段中配置日志服务Project、Logstore，阿里云账号AccessKey等信息。
 
 |参数|说明|示例|
 |--|--|--|
 |STRUCTURED-DATA|固定为Logservice。|Logservice|
 |Project|日志服务Project名称，请提前在日志服务中创建Project。|test-project-1|
 |Logstore|日志服务Logstore名称，请提前在日志服务中创建Logstore。|test-logstore-1|
-|access-key-id|AccessKey ID。建议使用子账号AK，详情请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/创建RAM用户及授权.md)。|<yourAccessKeyId\>|
-|access-key-secret|AccessKey Secret。建议使用子账号AK，详情请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/创建RAM用户及授权.md)。|<yourAccessKeySecret\>|
+|access-key-id|AccessKey ID。建议使用RAM用户的AccessKey。更多信息，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/创建RAM用户及授权.md)。|<yourAccessKeyId\>|
+|access-key-secret|AccessKey Secret。建议使用RAM用户的AccessKey。更多信息，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/创建RAM用户及授权.md)。|<yourAccessKeySecret\>|
 
 ## 示例1：使用Rsyslog采集日志
 
@@ -123,7 +123,7 @@ syslog-ng是基于syslog协议的Unix和类Unix系统的开源软件。您可以
 
 ## 日志样例
 
-上传日志到日志服务后，您可以在日志服务控制台查看日志。日志字段详情请参见[RFC5424协议](https://tools.ietf.org/html/rfc5424)。
+上传日志到日志服务后，您可以在日志服务控制台查看日志。关于日志字段详情，请参见[RFC5424协议](https://tools.ietf.org/html/rfc5424)。
 
 **说明：** 为避免泄露AccessKey信息，日志服务默认将上报的Logservice字段删除。
 
@@ -142,26 +142,50 @@ syslog-ng是基于syslog协议的Unix和类Unix系统的开源软件。您可以
 
 ## 常见问题与排查
 
--   手动上传日志
+-   测试日志上传
 
-    您可使用ncat命令模拟上传日志，以此检查网络连通性以及AccessKey是否具备上报权限。如果您的服务器上没有安装ncat，可执行sudo yum install nmap-ncat命令安装。
+    您可以使用[Netcat](http://netcat.sourceforge.net/)测试日志上传，以检查网络是否连通以及AccessKey是否具有上传权限。
 
-    **说明：**
+    1.  登录要测试日志上传的服务器。
+    2.  执行以下命令安装Netcat。
 
-    -   上传时间为0时区时间，例如2019-03-28T03:00:15.003Z的东八区时间为：2019-03-28T11:00:15.003。
-    -   ncat命令不会自动判断网络连接中断，请在执行ncat命令30秒内输入待发送的信息并按回车键。
-    示例：向日志服务发送一条日志，其中日志服务Project名为test-project-1，Logstore名为test-logstore-1，Project所在地域为cn-hangzhou，具有写入权限的子账号AccessKey ID为<yourAccessKeyId\>、AccessKey Secret为<yourAccessKeySecret\>。
+        ```
+        sudo yum install nmap-ncat
+        ```
 
-    ```
-    [root@iZbp145dd9fccuidd7g**** ~]# ncat --ssl test-project-1.cn-hangzhou.log.aliyuncs.com 10009 
-    <34>1 2019-03-28T03:00:15.003Z mymachine.example.com su - ID47 [logservice project="test-project-1" logstore="test-logstore-1" access-key-id="<yourAccessKeyId>" access-key-secret="<yourAccessKeySecret>"] this is a test message
-    ```
+    3.  执行以下命令连接日志服务。
 
-    上传成功后，可通过日志服务控制台预览日志，详情请参考[日志预览](/cn.zh-CN/消费与投递/实时消费/普通消费.md)。
+        ```
+        ncat --ssl <yourProject>.<yourEndpoint> 10009
+        ```
+
+        示例命令：
+
+        ```
+        ncat --ssl test-project-1.cn-hangzhou.log.aliyuncs.com 10009
+        ```
+
+    4.  Netcat不会自动判断网络连接是否中断，您需要在执行ncat命令后的30秒内，输入要发送的日志，然后按回车键。
+
+        ```
+        <34>1 2019-03-28T03:00:15.003Z mymachine.example.com su - ID47 [logservice project="<yourProject>" logstore="<yourLogstore>" access-key-id="<yourAccessKeyID>" access-key-secret="<yourAccessKeySecret>"] this is a test message
+        ```
+
+        示例命令：
+
+        ```
+        <34>1 2019-03-28T03:00:15.003Z mymachine.example.com su - ID47 [logservice project="trace-doc-test" logstore="doc-test-001-logs" access-key-id="LTAI4***" access-key-secret="HfJEw***"] this is a test message
+        ```
+
+    5.  在日志服务控制台预览日志，验证日志是否上传成功。
+
+        具体操作，请参见[日志预览](/cn.zh-CN/消费与投递/实时消费/普通消费.md)。
+
+        ![ncat_output](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5781560261/p272360.png)
 
 -   诊断采集错误
 
-    如果手动上传日志失败，您可通过诊断采集错误查看具体报错信息，详情请参见[诊断采集错误]()。
+    如果手动上传日志失败，您可通过诊断采集错误查看具体报错信息。更多信息，请参见[诊断采集错误]()。
 
 -   查看Rsyslog报错日志
 
