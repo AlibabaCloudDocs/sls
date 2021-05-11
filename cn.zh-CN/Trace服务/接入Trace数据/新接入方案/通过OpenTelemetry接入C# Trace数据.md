@@ -31,6 +31,7 @@
     using OpenTelemetry.Trace;
     using System.Diagnostics;
     using System.Collections.Generic;
+    using OpenTelemetry.Resources;
     using Grpc.Core;
     
     namespace mydemo
