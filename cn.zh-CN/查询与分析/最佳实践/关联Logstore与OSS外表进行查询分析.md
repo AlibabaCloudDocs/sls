@@ -3,8 +3,8 @@
 在进行日志数据查询分析时，经常需要结合外部表格对日志数据进行分析。本文介绍如何在日志服务中联合OSS外表进行数据分析。
 
 -   已采集日志，详情请参见[数据采集](/cn.zh-CN/数据采集/采集方式.md)。
--   已开启并配置索引，详情请参见[开启并配置索引](/cn.zh-CN/查询与分析/开启并配置索引.md)。
--   已创建OSS Bucket，详情请参见[创建存储空间](/cn.zh-CN/快速入门/创建存储空间.md)。
+-   已开启并配置索引，详情请参见[配置索引](/cn.zh-CN/查询与分析/配置索引.md)。
+-   已创建OSS Bucket，详情请参见[创建存储空间](/cn.zh-CN/快速入门/控制台快速入门/创建存储空间.md)。
 
 某支付公司，想要分析用户年龄、地域、性别等因素对支付习惯的影响。该公司已通过日志服务实时采集用户支付行为（支付方式、支付费用等）日志，并将用户属性（地域、年龄、性别等）信息保存在OSS中。针对该场景，日志服务查询分析引擎提供Logstore和外部数据源（ExternalStore，例如MySQL数据库、OSS等）联合查询分析功能。您可以使用SQL的JOIN语法把用户属性数据和行为数据进行联合，分析与用户属性相关的指标。
 
@@ -18,9 +18,9 @@
 
     1.  创建名为user.csv的文件。
 
-        ![属性文件](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0540559951/p41528.png)
+        ![属性文件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0540559951/p41528.png)
 
-    2.  上传user.csv文件到OSS，详情请参见[上传文件](/cn.zh-CN/快速入门/上传文件.md)。
+    2.  上传user.csv文件到OSS，详情请参见[上传文件](/cn.zh-CN/快速入门/控制台快速入门/上传文件.md)。
 
 2.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
@@ -36,7 +36,7 @@
     * | create table user_meta1 ( userid bigint, nick varchar, gender varchar, province varchar, gender varchar,age bigint) with ( endpoint='example.com',accessid='<youraccessid>',accesskey='<accesskey>',bucket='testossconnector',objects=ARRAY['user.csv'],type='oss')
     ```
 
-    ![外部存储](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/7926703061/p8538.png)
+    ![外部存储](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7926703061/p8538.png)
 
     在查询分析语句中定义外部存储名称、表的Schema等信息，并通过WITH语法指定OSS访问信息及文件信息，详细信息如下表所示。
 
@@ -59,7 +59,7 @@
     select * from user_meta1
     ```
 
-    ![验证结果](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0540559951/p8539.png)
+    ![验证结果](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0540559951/p8539.png)
 
 7.  通过JOIN语法完成Logstore和OSS外表的联合查询。
 
@@ -77,7 +77,7 @@
         * | select u.gender, count(1) from test_accesslog l join user_meta1 u on l.userid = u.userid group by u.gender
         ```
 
-        ![性别访问](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0540559951/p41547.png)
+        ![性别访问](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0540559951/p41547.png)
 
     -   统计不同年龄用户的访问情况
 
@@ -85,7 +85,7 @@
         * | select u.age, count(1) from test_accesslog l join user_meta1 u on l.userid = u.userid group by u.age
         ```
 
-        ![年龄访问](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0540559951/p41550.png)
+        ![年龄访问](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0540559951/p41550.png)
 
     -   统计不同年龄段在时间维度上的访问趋势
 
@@ -93,6 +93,6 @@
         * | select date_trunc('minute',__time__) as minute, count(1) ,u.age from test_accesslog l join user_meta1 u on l.userid = u.userid group by u.age,minute
         ```
 
-        ![时间访问](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/0540559951/p41551.png)
+        ![时间访问](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0540559951/p41551.png)
 
 
