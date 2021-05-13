@@ -1,6 +1,6 @@
 # 管理Project
 
-本文介绍如何在日志服务控制台上创建、删除Project等操作。
+项目（Project）是日志服务中的资源管理单元，用于资源隔离和控制。本文介绍如何在日志服务控制台上创建、删除Project等操作。
 
 已开通日志服务。
 
@@ -12,7 +12,7 @@
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
-2.  在**Project列表**区域，单击**创建Project**。
+2.  在Project列表区域，单击**创建Project**。
 
 3.  在创建Project对话框中，配置如下参数。
 
@@ -38,4 +38,14 @@
 
 2.  在删除Project对话框，选择删除原因，并单击**确定**。
 
+
+## Project接口
+
+|操作|接口|
+|--|--|
+|创建Project|[CreateProject](/cn.zh-CN/开发指南/API 参考/日志项目接口/CreateProject.md)|
+|删除Project|[DeleteProject](/cn.zh-CN/开发指南/API 参考/日志项目接口/DeleteProject.md)|
+|查询Project|-   查询目标Project：[GetProject](/cn.zh-CN/开发指南/API 参考/日志项目接口/GetProject.md)
+-   查询所有Project：[ListProject](/cn.zh-CN/开发指南/API 参考/日志项目接口/ListProject.md) |
+|修改Project|[UpdateProject](/cn.zh-CN/开发指南/API 参考/日志项目接口/UpdateProject.md)|
 
