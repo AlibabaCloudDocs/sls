@@ -1,6 +1,6 @@
 # 管理Logstore
 
-本文介绍如何在日志服务控制台上创建、修改、删除Logstore。
+日志库（Logstore）是日志服务中日志数据的采集、存储和查询单元。本文介绍如何在日志服务控制台上创建、修改、删除Logstore。
 
 ## 创建Logstore
 
@@ -56,4 +56,14 @@
 
 2.  在删除对话框中，单击**确认**。
 
+
+## Logstore接口
+
+|操作|接口|
+|--|--|
+|创建Logstore|[CreateLogstore](/intl.zh-CN/开发指南/API 参考/日志库相关接口/CreateLogstore.md)|
+|删除Logstore|[DeleteLogstore](/intl.zh-CN/开发指南/API 参考/日志库相关接口/DeleteLogstore.md)|
+|查询Logstore|-   查询目标Logstore：[GetLogstore](/intl.zh-CN/开发指南/API 参考/日志库相关接口/GetLogstore.md)
+-   查询所有Logstore：[ListLogstore](/intl.zh-CN/开发指南/API 参考/日志库相关接口/ListLogstore.md) |
+|修改Logstore|[UpdateLogstore](/intl.zh-CN/开发指南/API 参考/日志库相关接口/UpdateLogstore.md)|
 
