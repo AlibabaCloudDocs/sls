@@ -26,7 +26,7 @@
 
     |参数|参数说明|
     |--|----|
-    |`${your_region_name}`|请根据日志服务Project所在地及网络类型填写。其中，地域信息请参见[表 1](/intl.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md)。     -   如果为公网，格式为：`region-internet`，例如：**华东 1（杭州）**为**cn-hangzhou-internet**。
+    |`${your_region_name}`|请根据日志服务Project所在地及网络类型填写。其中，地域信息请参见[表 1](/intl.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md)。     -   如果为公网，格式为`region-internet`，例如：**华东 1（杭州）**为**cn-hangzhou-internet**。
     -   如果为阿里云内网，格式为`region`。例如：**华东 1（杭州）**为**cn-hangzhou**。 |
     |`${your_aliyun_user_id}`|您的阿里云主账号ID。更多信息，请参见[配置用户标识](/intl.zh-CN/数据采集/Logtail采集/机器组/配置用户标识.md)。|
     |`${your_machine_group_user_defined_id}`|您机器组的自定义标识，请确保该标识在您的Project所在地域内唯一。更多信息，请参见[创建用户自定义标识机器组](/intl.zh-CN/数据采集/Logtail采集/机器组/创建用户自定义标识机器组.md)。|
@@ -48,7 +48,7 @@
 -   如果您需要采集Docker标准输出，操作步骤与采集Kubernetes标准输出类似。更多信息，请参见[通过DaemonSet-控制台方式采集标准输出](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/通过DaemonSet-控制台方式采集Kubernetes标准输出.md)。
 -   如果您需要采集宿主机文本文件。更多信息，请参见[采集宿主机文本文件](/intl.zh-CN/数据采集/Logtail采集/采集文本日志/概述.md)。
 
-    默认将宿主机根目录挂载到Logtail容器的`/logtail_host`目录。配置路径时，您需要加上此前缀。例如需要采集宿主机上`/home/logs/app_log/`目录下的日志，配置页面中日志路径设置为`/logtail_host/home/logs/app_log/`。
+    默认将宿主机根目录挂载到Logtail容器的/logtail\_host目录。配置路径时，您需要加上此前缀。例如需要采集宿主机上/home/logs/app\_log/目录下的日志，配置页面中日志路径设置为/logtail\_host/home/logs/app\_log/。
 
 
 其中，在创建机器组时，请在**用户自定义标识**中输入[步骤一：部署Logtail容器](#section_yqz_nfq_pdb)时配置的`ALIYUN_LOGTAIL_USER_DEFINED_ID`。
@@ -63,11 +63,11 @@
 
     |字段名|说明|
     |:--|:-|
-    |`_time_`|数据上传时间，例如：`2018-02-02T02:18:41.979147844Z`|
-    |`_source_`|输入源类型，stdout或stderr|
-    |`_image_name_`|镜像名|
-    |`_container_name_`|容器名|
-    |`_container_ip_`|容器IP地址|
+    |\_time\_|数据上传时间，例如：`2018-02-02T02:18:41.979147844Z`|
+    |\_source\_|输入源类型，stdout或stderr|
+    |\_image\_name\_|镜像名|
+    |\_container\_name\_|容器名|
+    |\_container\_ip\_|容器IP地址|
 
 -   Docker文件
 
@@ -75,26 +75,24 @@
 
     |字段名|说明|
     |:--|:-|
-    |`_image_name_`|镜像名|
-    |`_container_name_`|容器名|
-    |`_container_ip_`|容器IP地址|
+    |\_image\_name\_|镜像名|
+    |\_container\_name\_|容器名|
+    |\_container\_ip\_|容器IP地址|
 
 
 ## 其他操作
 
--   查看Logtail容器运行状态。
+-   查看Logtail运行状态。
 
-    您可以执行命令`docker exec ${logtail_container_id} /etc/init.d/ilogtaild status`查看Logtail运行状态。
+    您可以执行`docker exec ${logtail_container_id} /etc/init.d/ilogtaild status`命令查看Logtail运行状态。
 
--   查看Logtail的版本号信息、IP、启动时间等。
+-   查看Logtail的版本号、IP地址和启动时间等信息。
 
-    您可以执行命令`docker exec ${logtail_container_id} cat /usr/local/ilogtail/app_info.json`查看Logtail相关信息。
+    您可以执行`docker exec ${logtail_container_id} cat /usr/local/ilogtail/app_info.json`命令查看Logtail相关信息。
 
 -   查看Logtail的运行日志。
 
-    Logtail运行日志保存在`/usr/local/ilogtail/`目录下，文件名为`ilogtail.LOG`，轮转文件会压缩存储为`ilogtail.LOG.x.gz`。
-
-    示例如下：
+    Logtail运行日志保存在/usr/local/ilogtail/目录下，文件名为ilogtail.LOG，轮转文件会压缩存储为ilogtail.LOG.x.gz。示例如下：
 
     ```
     [root@iZbp17enxc2us3624wexh2Z ilogtail]# docker exec a287de895e40 tail -n 5 /usr/local/ilogtail/ilogtail.LOG
