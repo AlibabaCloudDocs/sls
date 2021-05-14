@@ -4,7 +4,7 @@
 
 A公司将其网站访问日志上传到日志服务的website-log Logstore中完成数据存储与分析。现在A公司希望通过Scheduled SQL功能每10分钟统计一次网站访问成功的次数，并将结果数据保存到dest-log Logstore中。
 
-**说明：** 目前，Scheduled SQL功能仅支持华北2（阿里政务云1）。
+**说明：** 目前，Scheduled SQL功能在公测阶段，仅支持西南1（成都）和华北2（阿里政务云）。如果您所在地域未支持Scheduled SQL功能，可提交[工单](https://selfservice.console.aliyun.com/ticket/category/sls/today)申请。
 
 ## 前提条件
 
