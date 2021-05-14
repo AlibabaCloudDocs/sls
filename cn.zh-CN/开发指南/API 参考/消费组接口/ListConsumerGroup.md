@@ -61,7 +61,7 @@ Connection: Keep-Alive
 -   请求示例
 
     ```
-    GET /logstores/my-logstore/consumergrops HTTP/1.1
+    GET /logstores/my-logstore/consumergroups HTTP/1.1
     Header :
     {
     Authorization: LOG yourAccessKeyId:yourSignature
