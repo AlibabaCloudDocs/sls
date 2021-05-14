@@ -61,7 +61,7 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 -   Sample requests
 
     ```
-    GET /logstores/my-logstore/consumergrops HTTP/1.1
+    GET /logstores/my-logstore/consumergroups HTTP/1.1
     Header :
     {
     Authorization: LOG yourAccessKeyId:yourSignature
