@@ -2,13 +2,9 @@
 
 项目（Project）是日志服务中的资源管理单元，用于资源隔离和控制。本文介绍如何在日志服务控制台上创建、删除Project等操作。
 
-已开通日志服务。
-
-首次登录[日志服务控制台](https://sls.console.aliyun.com)时，根据页面提示开通日志服务。
-
 ## 创建Project
 
-**说明：** 一个阿里云账户最多可创建50个Project。
+**说明：** 一个阿里云账户中，您最多可创建50个Project。
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
@@ -30,13 +26,26 @@
 4.  单击**确定**。
 
 
+## 查看Project的访问域名
+
+创建Project后，您可以在Project的概览页面，获取访问域名。
+
+1.  在Project列表中，单击目标Project。
+
+2.  在概览页面，查看Project的访问域名。
+
+    访问不同地域的Project时，所需的服务入口不同。通过私网或外网访问同一地域的Project时，所需的服务入口也是不同的。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
+
+    ![获取访问域名](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5840431261/p275087.png)
+
+
 ## 删除Project
 
 **警告：** 删除Project后，其管理的所有日志数据及配置信息都会被永久释放，不可恢复。在删除Project前请慎重确认，避免数据丢失。
 
-1.  在**Project列表**中，找到目标Project，单击**删除**。
+1.  在Project列表中，单击目标Project对应的**删除**。
 
-2.  在删除Project对话框，选择删除原因，并单击**确定**。
+2.  在删除Project面板中，选择删除原因，然后单击**确定**。
 
 
 ## Project接口
