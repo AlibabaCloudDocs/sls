@@ -20,7 +20,7 @@ Each query statement consists of a search statement and an analytic statement th
     |Statement|Description|
     |:--------|:----------|
     |Search statement|A search statement specifies one or more search conditions and returns the log entries that meet the specified conditions. A condition can be a keyword, a value, a value range, a space character, or an asterisk \(\*\). If you leave the search statement unspecified or specify an asterisk \(\*\) as the search statement, it indicates that no condition is specified and all log data is returned. For more information, see [Search syntax](/intl.en-US/Index and query/Query/Search syntax.md#). |
-    |Analytic statement|An analytic statement is used to aggregate or analyze a search result. For more information, see [Real-time log analysis](/intl.en-US/Index and query/Real-time log analysis.md).|
+    |Analytic statement|An analytic statement is used to aggregate or analyze a search result. For more information, see [Log analysis](/intl.en-US/Index and query/Log analysis.md).|
 
 -   Example
 
@@ -31,9 +31,9 @@ Each query statement consists of a search statement and an analytic statement th
 
 ## Limits
 
--   Each project supports up to 1,000 concurrent search statements at a time.
+-   Each project supports up to 100 concurrent search statements at a time.
 
-    For example, 1,000 users can concurrently search for data in all Logstores of a project at the same time.
+    For example, 100 users can concurrently search for data in all Logstores of a project at the same time.
 
 -   You can specify up to 30 keywords for each search statement.
 -   The maximum size of a field value to search for is 10 KB.
