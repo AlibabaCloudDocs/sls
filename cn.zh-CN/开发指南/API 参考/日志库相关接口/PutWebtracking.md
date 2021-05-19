@@ -8,6 +8,7 @@
 -   使用Web Tracking采集日志时，单个请求只能写入一条日志。更多信息，请参见[使用Web Tracking采集日志](/cn.zh-CN/数据采集/其他采集方式/使用Web Tracking采集日志.md)。
 -   针对日志量较大的场景，可以调用PutWebTracking接口将多条日志合并为一次请求。
 -   使用PutWebTracking接口写入日志时，需要先为Logstore打开Web Tracking开关。更多信息，请参见[使用Web Tracking采集日志](/cn.zh-CN/数据采集/其他采集方式/使用Web Tracking采集日志.md)。
+-   该接口不支持同时写入多个Topic的日志数据。
 
 ## 请求语法
 
