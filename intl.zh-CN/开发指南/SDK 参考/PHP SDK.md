@@ -8,8 +8,10 @@
 
     日志服务PHP SDK支持PHP 5.2.1及以上版本。您可以执行php -v命令检查您已安装的PHP版本。
 
+    **说明：** 日志服务PHP SDK暂不支持依赖管理工具Composer。
 
-## 安装PHP SDK
+
+## 步骤1：安装PHP SDK
 
 1.  [下载最新的PHP SDK包](https://github.com/aliyun/aliyun-log-php-sdk)。
 
