@@ -274,6 +274,12 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
                             
         ```
 
+    3.  访问服务，触发Trace数据生成并发送。
+
+        ```
+        127.0.0.1:5000/hello
+        ```
+
 -   手动埋点
 
     运行如下代码，其中代码中的变量需根据实际情况替换。关于代码的详细说明，请参见[表 1](#table_1lj_o0g_tnd)。
