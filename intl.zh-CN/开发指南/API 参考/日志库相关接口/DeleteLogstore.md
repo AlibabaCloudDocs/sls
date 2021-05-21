@@ -28,7 +28,8 @@ x-log-date: GMT Date
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |logstoreName|String|是|test\_logstore|日志库名称。|
+    |projectName|String|是|my-project|Project名称。|
+    |logstoreName|String|是|test\_logstore|Logstore名称。|
 
 
 ## 返回数据
@@ -54,7 +55,7 @@ x-log-date: GMT Date
         'x-log-bodyrawsize': '0',
         'x-log-apiversion': '0.6.0',
         'x-log-signaturemethod': 'hmac-sha1',
-        'Host' : 'ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com',
+        'Host' : 'my-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com',
         'Date' : 'Wed, 11 Nov 2015 08:09:38 GMT',
         'Authorization' : 'LOG yourAccessKeyId:yourSignature',
         'x-log-date' : 'Wed, 11 Nov 2015 08:09:38 GMT'      
@@ -81,6 +82,7 @@ x-log-date: GMT Date
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
+|404|ProjectNotExist|Project ProjectName does not exist.|Project不存在。|
 |404|LogStoreNotExist|logstore logstoreName does not exist|Logstore不存在。|
 |405|InvalidMethod|invalid request method: /logstores/logstoreName|logstoreName参数不合法。|
 |500|InternalServerError|Specified Server Error Message|内部服务调用错误。|
