@@ -41,7 +41,8 @@ x-log-date: Wed, 11 Nov 2015 08:28:19 GMT
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |logstoreName|String|是|test-logstore|日志库名称。|
+    |projectName|String|是|ali-test-project|Project名称。|
+    |logstoreName|String|是|test-logstore|Logstore名称。|
     |ttl|Integer|是|1|数据的保存时间，单位为天。取值范围为1~3650。如果配置为3650，表示永久保存。|
     |enable\_tracking|Boolean|否|false|是否开启WebTracking。    -   true：开启WebTracking。
     -   false：不开启WebTracking。 |
