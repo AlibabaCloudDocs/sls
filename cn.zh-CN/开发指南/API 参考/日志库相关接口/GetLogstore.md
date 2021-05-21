@@ -28,7 +28,8 @@ x-log-date: Wed, 11 Nov 2015 07:53:29 GMT
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
-    |logstoreName|String|是|test-logstore|日志库名称。|
+    |projectName|String|是|ali-test-project|Project名称。|
+    |logstoreName|String|是|test-logstore|Logstore名称。|
 
 
 ## 返回数据
@@ -43,7 +44,7 @@ x-log-date: Wed, 11 Nov 2015 07:53:29 GMT
 
     |参数名称|数据类型|示例值|描述|
     |----|----|---|--|
-    |logstoreName|String|test-logstore|日志库名称。|
+    |logstoreName|String|test-logstore|Logstore名称。|
     |ttl|Integer|1|数据的保存时间，单位为天。|
     |shardCount|Integer|2|Shard个数。|
     |enable\_tracking|Boolean|false|是否开启WebTracking。WebTracking即网络跟踪功能，支持采集HTML、H5、iOS和Android平台的日志。    -   true：开启WebTracking。
