@@ -2,7 +2,7 @@
 
 本文介绍如何通过控制台创建采集配置，并以DaemonSet采集方式采集Kubernetes标准输出。
 
-已安装alibaba-log-controller Helm，详情请参见[安装Logtail日志组件](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/安装Logtail日志组件.md)。
+已安装alibaba-log-controller Helm。更多信息，请参见[安装Logtail日志组件](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/安装Logtail日志组件.md)。
 
 ## 功能特点
 
@@ -28,17 +28,19 @@ Logtail与Docker的Domain Socket进行通信，查询该Docker上运行的所有
 
 Logtail在采集容器的标准输出时，会定期将采集的点位信息保存到checkpoint文件中，若Logtail停止后再次启动，会从上一次保存的点位开始采集日志。
 
-![实现原理](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2330559951/p2950.png)
+![实现原理](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2330559951/p2950.png)
 
 ## 使用限制
 
 -   此功能目前仅支持Linux，依赖Logtail 0.16.0及以上版本，版本查看与升级参见[安装Logtail（Linux系统）](/intl.zh-CN/数据采集/Logtail采集/安装/安装Logtail（Linux系统）.md)。
--   Logtail默认通过`/var/run/docker.sock`访问Docker，请确保该Domain Socket存在且具备访问权限。
+-   Logtail支持Docker和Containerd两种容器引擎的数据采集，访问路径说明如下：
+    -   Docker：Logtail通过/run/docker.sock访问Docker，请确保该路径存在且具备访问权限。
+    -   Containerd：Logtail通过/run/containerd/containerd.sock访问Containerd，请确保该路径存在且具备访问权限。
 -   多行日志限制：为保证多行组成的一条日志不因为输出延迟而被分割成多条，多行日志情况下，采集的最后一条日志默认都会缓存一段时间。默认缓存时间为3秒，可通过`BeginLineTimeoutMs`设置，但此值不能低于1000（毫秒），否则容易出现误判。
 -   采集停止策略：当容器被停止后，Logtail监听到容器`die`的事件后会停止采集该容器的标准输出，若此时采集出现延迟，则可能丢失停止前的部分输出。
 -   Docker日志驱动类型限制：目前标准输出采集仅支持JSON类型的日志驱动。
 -   上下文限制：默认一个采集配置在同一上下文中，若需要每个容器的日志在不同上下文中，请单独为每个容器创建采集配置。
--   数据处理：采集到的数据默认字段为`content`，支持通用的处理配置。
+-   数据处理：采集到的数据默认字段为`content`，支持通用的处理配置。具体操作，请参见[概述](/intl.zh-CN/数据采集/Logtail采集/使用Logtail插件处理数据/概述.md)。
 
 ## 创建采集配置
 
@@ -46,17 +48,15 @@ Logtail在采集容器的标准输出时，会定期将采集的点位信息保�
 
 2.  在接入数据区域，单击**Kubernetes标准输出-容器**。
 
-3.  在选择日志空间页签中，选择目标Project和Logstore，单击**下一步**。
-
-    您也可以单击**立即创建**，重新创建Project和Logstore。
+3.  选择目标Project和Logstore，单击**下一步**。
 
 4.  创建机器组，创建完成后单击**确认安装完毕**。
 
     如果您已有可用的机器组 ，可直接单击**使用现有机器组**。
 
-5.  在机器组配置页签中，应用机器组。
+5.  选中目标机器组，将该机器组从**源机器组**移动到**应用机器组**，单击**下一步**。
 
-    选择一个机器组，将该机器组从**源机器组**移动到**应用机器组**。
+    **说明：** 如果创建机器组后立刻应用，可能因为连接未生效，导致心跳为**FAIL**，您可单击**自动重试**。如果还未解决，请参见[Logtail机器组无心跳]()进行排查。
 
 6.  设置数据源，单击**下一步**。
 
@@ -146,7 +146,7 @@ Kubernetes集群的每条日志默认上传的字段如下所示。
 
     采集环境变量为`NGINX_PORT_80_TCP_PORT=80`且不为`POD_NAMESPACE=kube-system`的stdout以及stderr日志。
 
-    ![环境变量配置方式](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2330559951/p2951.png)
+    ![环境变量配置方式](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2330559951/p2951.png)
 
     采集配置示例如下所示。
 
@@ -174,7 +174,7 @@ Kubernetes集群的每条日志默认上传的字段如下所示。
 
     采集Label为`io.kubernetes.container.name=nginx`且不为`type=pre`的stdout以及stderr日志。
 
-    ![Label配置方式 ](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/zh-CN/2330559951/p2952.png)
+    ![Label配置方式 ](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2330559951/p2952.png)
 
     采集配置示例如下所示。
 
@@ -240,7 +240,7 @@ Kubernetes集群的每条日志默认上传的字段如下所示。
 
 ## 采集数据处理示例
 
-Logtail对于采集到的Docker标准输出，支持数据处理，详情请参见[处理数据](/intl.zh-CN/数据采集/Logtail采集/使用Logtail插件采集数据/处理数据.md)。
+Logtail对于采集到的Docker标准输出，支持数据处理。更多信息，请参见[概述](/intl.zh-CN/数据采集/Logtail采集/使用Logtail插件处理数据/概述.md)。
 
 -   采集Label为`app=monitor`输入的日志，日志以固定格式的日期开头（为提高匹配效率，这里只判断行首的10个字节）。使用正则表达式将日志解析成time、level、module、thread、message，采集配置和处理配置如下所示：
 
