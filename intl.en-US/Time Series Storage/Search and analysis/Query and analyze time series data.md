@@ -2,7 +2,7 @@
 
 This topic describes how to query and analyze time series data in a Metricstore and how to set the legend format for a time series chart.
 
-Time series data is collected. For more information, see [Collect host metrics]() and [Collect metrics from Cloud Monitor](/intl.en-US/Time Series Storage/Data collection/Collect metrics from Cloud Monitor.md).
+Time series data is collected.
 
 ## Procedure
 
@@ -64,7 +64,7 @@ Example: In the following query statement, set the values of the host, url, meth
 |Create a saved search for the specified query statement|On the Query Statements tab, click the ![Create a saved search for the specified query statement](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9435541061/p128501.png) icon to create a saved search for the specified query statement. For more information, see [Saved search](/intl.en-US/Index and query/Query/Saved search.md).|
 |Copy the specified query statement|On the Query Statements tab, click the ![Copy the specified query statement](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9435541061/p128502.png) icon to copy the specified query statement.|
 |View the raw time series data|On the Query Statements tab, click the ![View the raw time series data](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9435541061/p128504.png) icon to view the raw time series data.|
-|Set the properties of the time series chart|On the Properties tab, set the properties of the time series chart. For more information, see [Configure a time series chart]().|
+|Set the properties of the time series chart|On the Properties tab, set the properties of the time series chart. For more information, see [Configure a time series chart](/intl.en-US/Time Series Storage/Visualization/Configure a time series chart.md).|
 |Configure a drill-down event|On the Interactive Behavior tab, configure a drill-down event. For more information, see [Configure a drill-down event for a chart](/intl.en-US/Query and visualization/Dashboard/Configure a drill-down event for a chart.md).|
 |Add the query results to a dashboard|Click **Add to New Dashboard** to add the query results to a dashboard.|
 |Create an alert rule based on a query statement|Click **Save as Alert** to create the alert rule. For more information, see [Create an alert rule](/intl.en-US/Query and visualization/Alarm/Create an alert rule.md).|
