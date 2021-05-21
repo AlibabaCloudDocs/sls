@@ -39,6 +39,7 @@ x-log-date: Fri, 27 Nov 2020 08:25:10 GMT
 
     |参数名称|数据类型|是否必填|示例值|描述|
     |:---|:---|:---|---|:-|
+    |projectName|String|是|ali-test-project|Project名称。|
     |logstoreName|String|是|test-logstore|Logstore名称。其命名规则如下：    -   同一个Project下，Logstore名称不可重复。
     -   只能包括小写字母、数字、短划线（-）和下划线（\_）。
     -   必须以小写字母或者数字开头和结尾。
@@ -117,6 +118,7 @@ x-log-date: Fri, 27 Nov 2020 08:25:10 GMT
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
+|404|ProjectNotExist|Project ProjectName does not exist.|Project不存在。|
 |400|LogstoreAlreadyExist|logstore logstoreName already exists.|Logstore已存在。|
 |500|InternalServerError|Specified Server Error Message.|内部服务调用错误。|
 |400|LogStoreInfoInvalid|store name logstoreName is invalid|Logstore信息无效。|
