@@ -12,7 +12,7 @@ A Metricstore is created. For more information, see [Create a Metricstore](/intl
 
 3.  In the Specify Logstore step, select a project and Metricstore and click **Next**.
 
-    You can also click **Create Now** to create a project or Metricstore. For more information, see [Create a Metricstore](/intl.en-US/Time Series Storage/Manage Metricstores.md).
+    You can also click **Create Now** to create a project or Metricstore. For more information, see [Create a project](/intl.en-US/Data Collection/Preparation/Manage a project.md) and [Create a Metricstore](/intl.en-US/Time Series Storage/Manage Metricstores.md).
 
 4.  In the Configure Import Settings step, set the parameters and click **Next**.
 
