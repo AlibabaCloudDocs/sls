@@ -12,7 +12,7 @@ Grafana是一个开源的度量分析与可视化套件，兼容所有的Prometh
 
 ## 在自建Kubernetes上安装Prometheus
 
-如果您使用自建Kubernetes，推荐以[注册集群](https://help.aliyun.com/document_detail/155208.html)的方式接入到阿里云，注册好后按照[阿里云Kubernetes安装方式](#section_10t_rym_hng)安装Prometheus。如果您不使用注册集群方式，可通过[Helm安装包](https://github.com/helm/charts/blob/master/stable/prometheus-operator)安装Prometheus，安装前需先[创建保密字典](#step_61m_xab_8rs)并调整[默认配置](https://github.com/helm/charts/blob/master/stable/prometheus-operator/values.yaml)。
+如果您使用自建Kubernetes，推荐以注册集群的方式接入到阿里云。更多信息，请参见[注册集群概述](/cn.zh-CN/Kubernetes集群用户指南/多云混合云/注册集群管理/注册集群概述.md)。注册好后按照阿里云Kubernetes安装方式安装Prometheus。更多信息，请参见[阿里云Kubernetes安装方式](#section_10t_rym_hng)。如果您不使用注册集群方式，可通过[Helm安装包](https://github.com/helm/charts/blob/master/stable/prometheus-operator)安装Prometheus，安装前需先[创建保密字典](#step_61m_xab_8rs)并调整[默认配置](https://github.com/helm/charts/blob/master/stable/prometheus-operator/values.yaml)。
 
 ## 在阿里云Kubernetes上安装Prometheus
 
