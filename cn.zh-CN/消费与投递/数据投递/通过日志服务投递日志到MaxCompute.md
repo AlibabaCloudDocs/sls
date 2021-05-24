@@ -4,8 +4,6 @@
 
 已开通MaxCompute，并创建表。更多信息，请参见[创建和查看表](/cn.zh-CN/快速入门/创建和查看表.md)。
 
-您在创建表时，需根据日志服务中日志的数据结构创建表，数据结构详情请参见[日志](/cn.zh-CN/产品简介/基本概念/日志.md)，配置样例与注意事项请参见[数据模型映射](#section_vil_1oe_niu)。
-
 ## 使用限制
 
 -   只有阿里云账号能够创建投递任务，不支持RAM账号操作。
@@ -44,31 +42,34 @@
 
     初始化开通需10~20秒左右，请耐心等待。如果已完成初始化，将跳过该步骤。
 
-7.  在LogHub —— 数据投递页面，配置投递规则，并单击**确定**。
+7.  在MaxCompute投递功能页面，配置投递规则，并单击**确定**。
 
-    ![投递规则](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1778717161/p5816.png)
+    ![开启投递](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/3032951261/p276543.png)
 
     重要参数配置如下所示。
 
     |参数|说明|
     |:-|:-|
-    |选择要投递的区域|日志服务Project所在地域不同，所支持的MaxCompute地域不同。更多信息，请参见[使用限制](#section_olr_xqd_5cb)。|
-    |投递名称|投递任务的名称。|
-    |项目名|MaxCompute项目名称，支持新建或选择已创建的MaxCompute项目。|
-    |项目表名|MaxCompute表名称，支持新建或选择已创建的MaxCompute表。|
-    |MaxCompute普通列|左边文本框中填写与MaxCompute表列相映射的日志字段名称，右边为MaxCompute表的列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 日志服务投递日志到MaxCompute按照日志字段与MaxCompute表列的顺序进行映射，修改MaxCompute表列名不影响数据投递。如果更改MaxCompute表schema，请重新配置日志字段与MaxCompute表列映射关系。 |
-    |MaxCompute分区列|左边文本框中填写与MaxCompute表分区列相映射的日志字段名称，右边为MaxCompute表分区列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 最大配置3个分区列，请谨慎选择自定义字段作为分区列，保证一次投递任务中生成的分区数目小于512个，否则会导致投递任务写数据到MaxCompute表失败，整批数据无法投递。 |
-    |时间分区格式|时间分区格式，配置示例请参见[参考信息](#section_vil_1oe_niu)，参数详情请参见[Java SimpleDateFormat](https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html?spm=5176.doc29001.2.4.vP4zF4)。 **说明：**
+    |**选择要投递的区域**|日志服务Project所在地域不同，所支持的MaxCompute地域不同。更多信息，请参见[使用限制](#section_olr_xqd_5cb)。|
+    |**投递名称**|投递任务的名称。|
+    |**项目名**|MaxCompute项目名称，支持新建或选择已创建的MaxCompute项目。|
+    |**MaxCompute表名**|MaxCompute表名称，支持新建或选择已创建的MaxCompute表。|
+    |**MaxCompute普通列**|左边输入框中填写与MaxCompute表列相映射的日志字段名称，右边为MaxCompute表的列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：**
+
+    -   日志服务投递日志到MaxCompute按照日志字段与MaxCompute表列的顺序进行映射，修改MaxCompute表列名不影响数据投递。如果更改MaxCompute表schema，请重新配置日志字段与MaxCompute表列映射关系。
+    -   左边输入框的日志字段，不支持双引号（“”）、单引号（''）和含有空格的字符串。 |
+    |**MaxCompute分区列**|左边输入框中填写与MaxCompute表分区列相映射的日志字段名称，右边为MaxCompute表分区列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 最大配置3个分区列，请谨慎选择自定义字段作为分区列，保证一次投递任务中生成的分区数目小于512个，否则会导致投递任务写数据到MaxCompute表失败，整批数据无法投递。 |
+    |**时间分区格式**|时间分区格式，配置示例和参数详细请参见[参考示例](#section_vil_1oe_niu)和[Java SimpleDateFormat](https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html?spm=5176.doc29001.2.4.vP4zF4)。 **说明：**
 
     -   仅当**分区字段**配置为**\_\_partition\_time\_\_**时，时间分区格式才生效。
     -   请勿使用精确到秒的日期格式，易导致单表的分区数目超过限制（60000个）。
     -   单次投递任务的数据分区数目必须在512以内。 |
-    |导入时间间隔|投递任务的时长，默认值为1800，单位为秒。 当投递任务的时长达到此处设置的大小时，会自动创建一个新的投递任务。 |
+    |**导入时间间隔**|投递任务的时长，默认值为1800，单位为秒。 当投递任务的时长达到此处设置的大小时，会自动创建一个新的投递任务。 |
 
     开启投递后，一般情况下日志数据会在写入Logstore后的1个小时导入到MaxCompute，导入成功后即可在MaxCompute内查看到相关日志数据。判断数据是否已完全投递请参见[日志投递MaxCompute后，如何检查数据完整性]()。
 
 
-## 步骤一：查看MaxCompute数据
+## 步骤二：查看MaxCompute数据
 
 投递到MaxCompute成功后，您可以查看MaxCompute数据，数据样例如下所示。您可以使用已经与MaxCompute绑定的大数据开发工具Data IDE来消费数据，进行可视化的BI分析及数据挖掘。
 
@@ -199,7 +200,7 @@ A       projects/{\{ODPS\_PROJECT\_NAME\}/tables/\{ODPS\_TABLE\_NAME\}: Describe
 
     **说明：**
 
-    -   get\_json\_object是[MaxCompute提供的标准UDF](http://docs.aliyun.com/?spm=a2c4g.11186623.2.11.lo7w0K#/odps/SQL/udf&summary)，请联系MaxCompute团队开通使用该标准UDF的权限。
+    -   get\_json\_object是MaxCompute提供的标准UDF，请联系MaxCompute团队开通使用该标准UDF的权限。更多信息，请参见[MaxCompute提供的标准UDF](http://docs.aliyun.com/?spm=a2c4g.11186623.2.11.lo7w0K#/odps/SQL/udf&summary)。
     -   示例供参考，请以MaxCompute产品的建议为最终标准。
 -   数据模型映射
 
