@@ -142,7 +142,6 @@ public class Main {
     logItem.PushBack(nameKey, metricName);
     logItem.PushBack(valueKey, String.valueOf(value));
 
-    // 按照字典序对labels排序, 如果您的labels已排序, 请忽略此步骤。
     TreeMap sortedLabels = new TreeMap<>(labels);
     StringBuilder labelsBuilder = new StringBuilder();
 
