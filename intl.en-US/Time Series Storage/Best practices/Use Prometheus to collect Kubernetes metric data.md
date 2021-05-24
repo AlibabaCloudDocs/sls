@@ -12,7 +12,7 @@ Grafana is an open source metric analysis and visualization suite that is compat
 
 ## Install Prometheus in a user-created Kubernetes cluster
 
-If you use a user-created Kubernetes cluster, we recommend that you [register the cluster in Alibaba Cloud Container Service for Kubernetes \(ACK\)](https://help.aliyun.com/document_detail/155208.html) before you [install Prometheus](#section_10t_rym_hng). If you do not register a user-created cluster, install Prometheus by using the [Helm package](https://github.com/helm/charts/blob/master/stable/prometheus-operator). Before you install Prometheus, you must [create a secret](#step_61m_xab_8rs) and modify the [settings in the Helm package](https://github.com/helm/charts/blob/master/stable/prometheus-operator/values.yaml).
+If you use a user-created Kubernetes cluster, we recommend that you [register the cluster in Alibaba Cloud Container Service for Kubernetes \(ACK\)](/intl.en-US/User Guide for Kubernetes Clusters/Multi-cloud and hybrid cloud management/Management of registered clusters/Overview of registered clusters.md) before you [install Prometheus](#section_10t_rym_hng). If you do not register a user-created cluster, install Prometheus by using the [Helm package](https://github.com/helm/charts/blob/master/stable/prometheus-operator). Before you install Prometheus, you must [create a secret](#step_61m_xab_8rs) and modify the [settings in the Helm package](https://github.com/helm/charts/blob/master/stable/prometheus-operator/values.yaml).
 
 ## Install Prometheus in a cluster that is managed by ACK
 
