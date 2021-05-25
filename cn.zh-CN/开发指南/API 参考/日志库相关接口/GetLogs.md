@@ -43,7 +43,7 @@ x-log-signaturemethod: hmac-sha1
     |from|Integer|是|1409529600|查询开始时间点。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
     |to|Integer|是|1409608800|查询结束时间点。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
     |topic|String|否|groupA|日志主题。|
-    |query|String|否|error|查询和分析语句。更多信息，请参见[查询简介](/cn.zh-CN/查询与分析/查询简介.md)和[分析简介](/cn.zh-CN/查询与分析/分析简介.md)。在query参数的分析语句中加上`set session parallel_sql=true;`，表示使用SQL独享实例。例如`* | set session parallel_sql=true; select count(*) as pv`。
+    |query|String|否|`level:Information|select event_id as Key1,COUNT(*) as Key2 group by Key1`|查询和分析语句。更多信息，请参见[查询简介](/cn.zh-CN/查询与分析/查询简介.md)和[分析简介](/cn.zh-CN/查询与分析/分析简介.md)。在query参数的分析语句中加上`set session parallel_sql=true;`，表示使用SQL独享实例。例如`* | set session parallel_sql=true; select count(*) as pv`。
 
 **说明：** 当query参数中有分析语句（SQL语句）时，line参数和offset参数需要设置为0，通过LIMIT语法翻页。更多信息，请参见[分析结果分页](/cn.zh-CN/查询与分析/最佳实践/分页显示查询分析结果.md)。 |
     |line|Integer|否|20|请求返回的最大日志条数。最小值为0，最大值为100，默认值为100。|
@@ -82,12 +82,12 @@ x-log-signaturemethod: hmac-sha1
 
 ## 示例
 
-以杭州地域内名为big-game的Project为例，查询该Project内名为app\_log的Logstore中，主题为groupA的日志数据。查询区间为2014-09-01 00:00:00到2014-09-01 22:00:00，查询关键字为error，且从时间区间头开始查询，最多返回20条日志数据。
+以杭州地域内名为big-game的Project为例，查询该Project内名为app\_log的Logstore中，主题为groupA的日志数据。查询区间为2014-09-01 00:00:00到2014-09-01 22:00:00，查询和分析语句为`level:Information|select event_id as Key1,COUNT(*) as Key2 group by Key1`，且从时间区间头开始查询，最多返回20条日志数据。
 
 -   请求示例：
 
     ```
-    GET /logstores/app_log?type=log&topic=groupA&from=1409529600&to=1409608800&query=error&line=20&offset=0 HTTP/1.1
+    GET /logstores/app_log?type=log&topic=groupA&from=1409529600&to=1409608800&query="level:Information|select event_id as Key1,COUNT(*) as Key2 group by Key1"&line=20&offset=0 HTTP/1.1
     Header :
     {
     Authorization: LOG yourAccessKeyId:yourSignature
@@ -109,7 +109,7 @@ x-log-signaturemethod: hmac-sha1
     Content-Type: application/json
     Content-Length: 269
     Date: Wed, 3 Sept. 2014 08:33:47 GMT
-    x-log-requestid: efag01234-12341-15432f
+    x-log-requestid: 60AC5164947E71A31F55D8D0
     x-log-progress : Complete
     x-log-count : 10000
     x-log-processed-rows: 10000
@@ -149,7 +149,8 @@ x-log-signaturemethod: hmac-sha1
 |400|InvalidLine|Line is invalid.|请求的line参数无效。|
 |400|InvalidReverse|Reverse value is invalid.|Reverse参数的值无效。|
 |400|IndexConfigNotExist|Logstore without index config.|Logstore未开启索引。|
-|400|ParameterInvalid|ErrorType:OLSQueryParseError.ErrorMessage:offset is not available for pagination in sql query, please use limit x,y syntax for pagination.|当query参数中有分析语句（SQL语句）时，line参数和offset参数需要设置为0，通过LIMIT语法翻页。|
+|400|ParameterInvalid|ErrorType:OLSQueryParseError.ErrorMessage:offset is not available for pagination in sql query, please use limit x,y syntax for pagination.|-   当query参数中有分析语句（SQL语句）时，line参数和offset参数需要设置为0，通过LIMIT语法翻页。
+-   query参数中SQL语句存在问题，请检查修改后重试。 |
 
 更多错误码，请参见[通用错误码](/cn.zh-CN/开发指南/API 参考/通用错误码.md)。
 
