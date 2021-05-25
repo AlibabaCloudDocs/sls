@@ -110,7 +110,7 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
     |oas\_request\_timeout|long|Logtail发起获取Logtail配置、访问密钥等请求时，整个请求阶段的超时时间。默认值：10，单位：秒。 网络条件较差，建立连接时间过长时可修改此参数。
 
 |"" : 10|
-    |data\_server\_port|long|设置data\_server\_port为true后，Logtail将通过HTTPS协议传输数据到日志服务。仅支持Logtail 1.0.10及以上版本。
+    |data\_server\_port|long|设置data\_server\_port为443后，Logtail将通过HTTPS协议传输数据到日志服务。仅支持Logtail 1.0.10及以上版本。
 
 |"data\_server\_port": 443|
     |enable\_log\_time\_auto\_adjust|Boolean|设置enable\_log\_time\_auto\_adjust为true后，日志时间可自适应服务器本地时间。出于数据安全考虑，日志服务会对请求（包括Logtail发起的请求）所携带的时间进行校验，拒绝与日志服务端时间相差超过15分钟的请求。Logtail发起请求时所携带的时间为服务器本地时间，当服务器本地时间被修改后（例如某些测试场景下需要调整本地时间为未来时间），Logtail请求将被拒绝，导致写入数据失败。您可以使用该参数实现日志时间自适应服务器本地时间。
@@ -151,8 +151,8 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
 |check\_point\_filename|ALIYUN\_LOGTAIL\_CHECK\_POINT\_PATH|如果您通过环境变量和配置文件修改了Logtail启动参数，以环境变量为准。|Logtail 0.16.36及以上版本|
 |user\_config\_file\_path|user\_config\_file\_path|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 0.16.56及以上版本|
 |discard\_old\_data|discard\_old\_data|
-|working\_ip|working\_ip|
-|working\_hostname|working\_hostname|
+|working\_ip|ALIYUN\_LOGTAIL\_WORKING\_IP|
+|working\_hostname|ALIYUN\_LOGTAIL\_WORKING\_HOSTNAME|
 |max\_read\_buffer\_size|max\_read\_buffer\_size|
 |oas\_connect\_timeout|oas\_connect\_timeout|
 |oas\_request\_timeout|oas\_request\_timeout|
