@@ -7,7 +7,7 @@
 
 ## （推荐）方案一：通过Java Agent自动上传Trace数据
 
-目前有数十种Jave框架支持通过Java Agent自动上传Trace数据到日志服务，详细的Jave框架列表请参见[SupportedLibraries](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md)。
+目前有数十种Java框架支持通过Java Agent自动上传Trace数据到日志服务，详细的Java框架列表请参见[SupportedLibraries](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/supported-libraries.md)。
 
 **说明：** Java Agent上传方式不支持和其他类似的方案（例如SkyWalking Agent、Zipkin Agent等）同时使用，可能会产生未定义行为。
 
