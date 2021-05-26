@@ -43,16 +43,11 @@ x-log-signaturemethod: hmac-sha1
     |from|Integer|是|1409529600|查询开始时间点。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
     |to|Integer|是|1409608800|查询结束时间点。Unix时间戳格式，表示从1970-1-1 00:00:00 UTC计算起的秒数。|
     |topic|String|否|groupA|日志主题。|
-    |query|String|否|`level:Information|select event_id as Key1,COUNT(*) as Key2 group by Key1`|查询和分析语句。更多信息，请参见[查询简介](/intl.zh-CN/查询与分析/查询简介.md)和[分析简介](/intl.zh-CN/查询与分析/分析简介.md)。在query参数的分析语句中加上`set session parallel_sql=true;`，表示使用SQL独享实例。例如`* | set session parallel_sql=true; select count(*) as pv`。
-
-**说明：** 当query参数中有分析语句（SQL语句）时，line参数和offset参数需要设置为0，通过LIMIT语法翻页。更多信息，请参见[分析结果分页](/intl.zh-CN/查询与分析/最佳实践/分页显示查询分析结果.md)。 |
+    |query|String|否|`level:Information|select event_id as Key1,COUNT(*) as Key2 group by Key1`|查询和分析语句。更多信息，请参见[查询简介](/intl.zh-CN/查询与分析/查询简介.md)和[分析简介](/intl.zh-CN/查询与分析/分析简介.md)。**说明：** 当query参数中有分析语句（SQL语句）时，line参数和offset参数需要设置为0，通过LIMIT语法翻页。更多信息，请参见[分析结果分页](/intl.zh-CN/查询与分析/最佳实践/分页显示查询分析结果.md)。 |
     |line|Integer|否|20|请求返回的最大日志条数。最小值为0，最大值为100，默认值为100。|
     |offset|Integer|否|0|查询开始行。默认值为0。|
     |reverse|Boolean|否|false|是否按日志时间戳逆序返回日志，精确到分钟级别。    -   true：按照逆序返回日志。
     -   false（默认值）：按照顺序返回日志。 |
-    |powerSql|Boolean|否|false|是否使用SQL独享实例。更多信息，请参见[开启SQL独享实例]()。    -   true：使用SQL独享实例。
-    -   false（默认值）：使用SQL普通实例。
-除通过powerSql参数配置SQL独享实例外，您还可以使用query参数。 |
 
 
 ## 返回数据
