@@ -121,7 +121,7 @@ Prometheus告警消息被接入到日志服务后，映射为日志服务告警�
 -   \_\_pub\_alert\_service\_\_: \{开放告警服务id\}
 -   \_\_pub\_alert\_app\_\_: \{开放告警应用id\}
 -   \_\_pub\_alert\_protocol\_\_: "prometheus"
--   \_\_pub\_alert\_region\_\_: \{告警消息发送的endpoing对应的region\}
+-   \_\_pub\_alert\_region\_\_: \{告警消息发送的endpoint对应的region\}
 
 如果您在创建开放告警应用时 ，在**信息加工**中添加了标注信息，则此标注信息将被添加到annotations字段中。
 
