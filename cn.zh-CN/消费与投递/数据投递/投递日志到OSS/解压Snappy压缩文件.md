@@ -74,13 +74,21 @@
 
 2.  使用snappy.uncompress解压。
 
-    示例代码如下：
+    -   Python 2示例代码如下：
 
-    ```
-    import snappy
-    compressed = open('/tmp/temp.snappy').read()
-    snappy.uncompress(compressed)
-    ```
+        ```
+        import snappy
+        compressed = open('/tmp/temp.snappy').read()
+        snappy.uncompress(compressed)
+        ```
+
+    -   Python 3示例代码如下：
+
+        ```
+        import snappy
+        compressed = open('/tmp/temp.snappy','rb').read()
+        print(snappy.uncompress(compressed).decode(encoding='utf-8',errors="ignore"))
+        ```
 
     **说明：**
 
