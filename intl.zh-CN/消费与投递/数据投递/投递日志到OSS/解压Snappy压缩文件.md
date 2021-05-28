@@ -1,6 +1,6 @@
 # 解压Snappy压缩文件
 
-日志服务将日志投递到OSS时，支持通过Snappy压缩OSS文件。投递成功后，您可以通过C++ Lib、Java Lib、Python Lib、Linux、工具等方式解压OSS文件。
+日志服务将日志投递到OSS时，支持通过Snappy压缩OSS文件。投递成功后，您可以通过C++ Lib、Java Lib、Python Lib、Linux工具等方式解压OSS文件。
 
 ## 使用C++ Lib解压
 
