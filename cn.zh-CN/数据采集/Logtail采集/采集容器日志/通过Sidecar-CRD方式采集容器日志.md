@@ -169,7 +169,10 @@ spec:
 
 创建完成后，Logtail容器自动将产生的日志采集到日志服务，您可登录日志服务控制台查看。
 
-**说明：** Sidecar只支持文本文件采集，文本文件采集模式中，需把dockerFile选项设置为false。
+**说明：**
+
+-   请确保CRD中的configName字段值在SLS Project中唯一存在。如果多个CRD关联同一个Logtail配置，任意一个CRD的删除、修改均会影响到该Logtail配置，导致其他关联该Logtails配置的CRD状态与服务端不一致。
+-   Sidecar只支持文本文件采集，文本文件采集模式中，需把dockerFile选项设置为false。
 
 ## 示例
 
@@ -199,7 +202,7 @@ spec:
               mountPath: /var/log/nginx
           ##### logtail sidecar container
           - name: logtail
-            # more info: ttps://cr.console.aliyun.com/repository/cn-hangzhou/log-service/logtail/detail
+            # more info: https://cr.console.aliyun.com/repository/cn-hangzhou/log-service/logtail/detail
             # this images is released for every region
             image: registry.cn-hangzhou.aliyuncs.com/log-service/logtail:latest
             # when recevie sigterm, logtail will delay 10 seconds and then stop
@@ -264,30 +267,29 @@ spec:
         **说明：** Sidecar只支持文本文件采集，文本文件采集模式中，需把dockerFile选项设置为false。
 
         ```
-        # config for access log
         apiVersion: log.alibabacloud.com/v1alpha1
         kind: AliyunLogConfig
         metadata:
-          # your config name, must be unique in you k8s cluster
+          # 配置名称，在您的K8s集群中必须唯一。
           name: nginx-log-access-example
         spec:
-          # project name to upload log
+          # Project名称。
           project: k8s-nginx-sidecar-demo
-          # logstore name to upload log
+          # Logstore名称。
           logstore: nginx-access
-          # machine group list to apply config, should be same with your sidecar' [ALIYUN_LOGTAIL_USER_DEFINED_ID]
+          # 已应用Logtail配置的机器组，该机器组需与您sidecar中的[ALIYUN_LOGTAIL_USER_DEFINED_ID]保持一致。
           machineGroups:
           - nginx-log-sidecar
-          # logtail config detail
+          # Logtail配置详情。
           logtailConfig:
-            # log file's input type is 'file'
+            # 采集的数据源类型（file)。
             inputType: file
-            # logtail config name, should be same with [metadata.name]
+            # Logtail配置名称，必须与metadata.name相同。
             configName: nginx-log-access-example
             inputDetail:
               # 极简模式日志，logType设置为"common_reg_log"。
               logType: common_reg_log
-              # 日志文件夹
+              # 日志文件夹。
               logPath: /var/log/nginx
               # 文件名, 支持通配符，例如log_*.log。
               filePattern: access.log
@@ -295,7 +297,7 @@ spec:
               dockerFile: false
               # 行首正则表达式，如果为单行模式，设置成 .*。
               logBeginRegex: '.*'
-              # 解析正则
+              # 解析正则。
               regex: '(\S+)\s(\S+)\s\S+\s\S+\s"(\S+)\s(\S+)\s+([^"]+)"\s+(\S+)\s(\S+)\s(\d+)\s(\d+)\s(\S+)\s"([^"]+)"\s.*'
               # 提取出的key列表。
               key : ["time", "ip", "method", "url", "protocol", "latency", "payload", "status", "response-size",user-agent"]
@@ -312,23 +314,23 @@ spec:
           # your config name, must be unique in you k8s cluster
           name: nginx-log-error-example
         spec:
-          # project name to upload log
+          # Project名称
           project: k8s-nginx-sidecar-demo
-          # logstore name to upload log
+          # Logstore名称
           logstore: nginx-error
-          # machine group list to apply config, should be same with your sidecar' [ALIYUN_LOGTAIL_USER_DEFINED_ID]
+          # 已应用Logtail配置的机器组，该机器组需与您sidecar中的[ALIYUN_LOGTAIL_USER_DEFINED_ID]保持一致。
           machineGroups:
           - nginx-log-sidecar
-          # logtail config detail
+          # Logtail配置详情。
           logtailConfig:
-            # log file's input type is 'file'
+            # 采集的数据源类型（file)。
             inputType: file
-            # logtail config name, should be same with [metadata.name]
+            # Logtail配置名称，必须与metadata.name相同。
             configName: nginx-log-error-example
             inputDetail:
               # 极简模式日志，logType设置为"common_reg_log"。
               logType: common_reg_log
-              # 日志文件夹
+              # 日志文件夹。
               logPath: /var/log/nginx
               # 文件名, 支持通配符，例如log_*.log。
               filePattern: error.log
