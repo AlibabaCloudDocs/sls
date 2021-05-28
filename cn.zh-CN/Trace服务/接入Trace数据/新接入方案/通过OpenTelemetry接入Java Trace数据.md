@@ -3,7 +3,7 @@
 本文介绍通过OpenTelemetry Java SDK将Java应用的Trace数据接入到日志服务的操作步骤。
 
 -   已创建Trace实例。更多信息，请参见[创建Trace实例](/cn.zh-CN/Trace服务/创建Trace实例.md)。
--   安装Java 8及以上版本的开发环境（推荐使用JDK 8u252及以上版本）。
+-   已安装Java 8及以上版本的开发环境（推荐使用JDK 8u252及以上版本）。
 
 ## （推荐）方案一：通过Java Agent自动上传Trace数据
 
@@ -51,7 +51,7 @@
 1.  添加maven依赖。
 
     ```
-           <dependency>
+     <dependency>
                 <groupId>io.opentelemetry</groupId>
                 <artifactId>opentelemetry-sdk</artifactId>
                 <version>0.15.0</version>
@@ -78,7 +78,7 @@
     代码中的变量（例如$\{endpoint\}、$\{project\}等）需根据实际情况替换。关于变量的详细说明，请参见[表 1](#table_dnh_f2x_mb3)。
 
     ```
-            OtlpGrpcSpanExporter grpcSpanExporter = OtlpGrpcSpanExporter.builder()
+    OtlpGrpcSpanExporter grpcSpanExporter = OtlpGrpcSpanExporter.builder()
                     .setEndpoint("https://$\{endpoint\}")   //配置.setEndpoint参数时，必须添加https://，例如https://test-project.cn-hangzhou.log.aliyuncs.com:10010。
                     .addHeader("x-sls-otel-project", "$\{project\}")
                     .addHeader("x-sls-otel-instance-id", "$\{instance\}")
@@ -119,7 +119,7 @@
 
 ## 常见问题
 
-当您使用JDK 8u252之前版本时，Java Agent中可能出现Counld not find TLS ALPN provider错误，如何处理？
+当您使用JDK 8u252之前版本时，Java Agent中可能出现Could not find TLS ALPN provider错误，如何处理？
 
 ![Counld not find TLS ALPN provider](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/5125685161/p249755.png)
 
