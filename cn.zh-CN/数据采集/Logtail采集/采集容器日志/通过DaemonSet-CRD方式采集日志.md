@@ -38,9 +38,11 @@ spec:
       ...
 ```
 
-`logtailConfig`字段的详细说明请参见[Logtail配置](/cn.zh-CN/开发指南/API 参考/公共资源说明/Logtail配置.md)。`logtailConfig`的配置示例请参见[示例（标准输出）](#section_c3g_wm1_f2b)和[示例（文本文件）](#section_qlv_zm1_f2b)。
+**说明：** 请确保CRD中的configName字段值在SLS Project中唯一存在。如果多个CRD关联同一个Logtail配置，任意一个CRD的删除、修改均会影响到该Logtail配置，导致其他关联该Logtails配置的CRD状态与服务端不一致。
 
-创建完成后，自动应用该采集配置。
+logtailConfig字段的详细说明请参见[Logtail配置](/cn.zh-CN/开发指南/API 参考/公共资源说明/Logtail配置.md)。logtailConfig的配置示例请参见[示例（标准输出）](#section_c3g_wm1_f2b)和[示例（文本文件）](#section_qlv_zm1_f2b)。
+
+创建完成后，自动应用该Logtail配置。
 
 ## 查看采集配置
 
@@ -58,9 +60,9 @@ spec:
     simple-file-example    5s
     ```
 
--   执行`kubectl get aliyunlogconfigs ${config_name} -o yaml`查看采集配置的详细信息和状态。其中， `{config_name}`为采集配置的名称，请根据实际情况替换。
+-   执行`kubectl get aliyunlogconfigs ${config_name} -o yaml`查看采集配置的详细信息和状态。其中，\{config\_name\} 为Logtail配置的名称，请根据实际情况替换。
 
-    执行结果中的`status`字段表示配置执行的结果。如果`statusCode`为200，表示配置应用成功；如果`statusCode`非200，表示配置应用失败。
+    执行结果中的status字段表示配置执行的结果。如果statusCode为200，表示配置应用成功；如果statusCode非200，表示配置应用失败。
 
     ```
     [root@iZbp1dsbiaZ ~]# kubectl get aliyunlogconfigs simple-file-example -o yaml
