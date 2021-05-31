@@ -1,31 +1,33 @@
-# 控制台提示“查询结果不精确”，如何解决？
+# 经典网络切换为VPC后，是否需要更新Logtail配置
 
-在您查询和分析日志时，如果日志服务控制台提示**查询结果不精确**，可参考本文进行排查。
+经典网络切换为VPC后，需要重启Logtail，并更新Logtail机器组设置。
 
-## 问题描述
+安装Logtail后，如果您的ECS网络类型由经典网络切换为VPC，请参考以下步骤更新配置。
 
-在您查询和分析日志时，如果日志服务控制台提示**查询结果不精确**，表示日志服务未能扫描全部日志，返回的查询和分析结果不是基于全部日志的精确结果。
+1.  以管理员身份重启Logtail。
+    -   **Linux**：
 
-![查询结果不精确](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7640559951/p35302.png)
+        ```
+        sudo /etc/init.d/ilogtaild stop
+        sudo /etc/init.d/ilogtaild start
+        ```
 
-## 可能原因
+    -   **Windows**：
 
-查询结果不精确一般由以下原因造成。
+        打开**控制面板**中的**管理工具**，打开**服务**，找到LogtailWorker并右键单击**重新启动**。
 
--   查询时间范围太大
+2.  更新机器组配置。
+    -   **自定义标识**
 
-    例如查询时间范围为3个月或1年时，日志服务无法在一次查询中完整扫描这个时间段内的所有日志。为了快速返回结果，先返回部分不精确的结果。
+        若机器组中配置了自定义标识，则无需手动更新机器组配置，可以直接正常使用VPC网络。
 
--   查询条件过于复杂
+    -   **IP地址**
 
-    例如您在同一个查询语句中设置了30个查询条件，则日志服务无法一次性读取查询结果。
+        若机器组中配置了ECS云服务器IP地址，则需将机器组内的IP更换为重启Logtail后获取的IP地址，即app\_info.json中的ip字段。
 
--   SQL计算时要读取的数据量太大
+        app\_info.json文件地址：
 
-    如果您在一个分析语句中设置了多个字段，而这些字段对应的数据量很大，超过Shard读取能力（每个Shard仅能读取1 GB数据），则返回结果不精确。
-
-
-## 解决方案
-
-缩小查询和分析的时间范围，多次（10次以内）执行查询和分析语句。
+        -   Linux：/usr/local/ilogtail/app\_info.json
+        -   Windows x64：C:\\Program Files \(x86\)\\Alibaba\\Logtail\\app\_info.json
+        -   Windows x32：C:\\Program Files\\Alibaba\\Logtail\\app\_info.json
 
