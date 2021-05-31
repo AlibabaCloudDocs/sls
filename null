@@ -1,29 +1,30 @@
-# What can I do if the "The results are inaccurate" error occurs?
+# 如何配置时间格式
 
-This topic describes how to resolve the **The results are inaccurate** error that may occur when you query logs.
+在Logtail采集配置中设置时间格式，请遵循以下注意事项。
 
-## Issue
+-   日志服务的时间戳只支持到秒，所以时间格式只需配置到秒，无需配置毫秒、微秒等信息。
 
-If the **The results are inaccurate** error occurs when you query logs, Log Service fails to scan all log data and the returned results are inaccurate.
-
-## Cause
-
-The error may occur due to the following causes:
-
--   The time range specified for the query is too large.
-
-    For example, if the specified time range is three months or one year, Log Service cannot scan all data of this time period. Only partial results are returned. Therefore, data accuracy is compromised.
-
--   The conditions specified in the search statement are too complicated.
-
-    For example, if you specify 30 conditions in a query statement, Log Service cannot read all log data.
-
--   The amount of data to be read is too large.
-
-    If you specify multiple fields in an analytic statement, and the data volume to be read exceeds the read capacity of a shard, the returned results are inaccurate. This is because each shard can read only 1 GB of data.
+-   只需time字段中前面能解析出时间的部分即可，后面无需配置。
 
 
-## Solution
+常见日志格式配置示例如下：
 
-Narrow down the query time range and perform multiple queries \(up to 10 queries\) to get the complete results.
+```
+自定义1 2017-12-11 15:05:07
+%Y-%m-%d %H:%M:%S
+自定义2 [2017-12-11 15:05:07.012]
+[%Y-%m-%d %H:%M:%S
+RFC822     02 Jan 06 15:04 MST
+%d %b %y %H:%M
+RFC822Z    02 Jan 06 15:04 -0700
+%d %b %y %H:%M
+RFC850      Monday, 02-Jan-06 15:04:05 MST
+%A, %d-%b-%y %H:%M:%S
+RFC1123     Mon, 02 Jan 2006 15:04:05 MST
+%A, %d-%b-%y %H:%M:%S
+RFC3339     2006-01-02T15:04:05Z07:00
+%Y-%m-%dT%H:%M:%S
+RFC3339Nano 2006-01-02T15:04:05.999999999Z07:00
+%Y-%m-%dT%H:%M:%S
+```
 
