@@ -46,9 +46,9 @@
 3.  对比心跳状态为**OK**的节点数是否和集群中Worker节点数一致。根据对比结果选择排查方式。
 
     -   机器组中所有节点的心跳状态均为**Failed**。
-        -   若您使用[采集标准Docker容器日志](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/采集标准Docker容器日志.md)，请参见[参数说明](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/采集标准Docker容器日志.md)检查$\{your\_region\_name\}、$\{your\_aliyun\_user\_id\}和$\{your\_machine\_group\_user\_defined\_id\}是否填写正确。
-        -   若您使用[阿里云容器服务Kubernetes安装方式](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，请提交工单至日志服务。
-        -   若您使用[自建Kubernetes安装方式](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，请参见[参数说明](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，检查\{your-project-suffix\}、\{regionId\}、\{aliuid\}、\{access-key-id\}和\{access-key-secret\}是否已正确填写，若填写错误请执行命令`helm del --purge alibaba-log-controller`删除安装包，并重新安装。
+        -   若您使用[采集标准Docker容器日志](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/采集标准Docker容器日志.md)，请参见[参数说明](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/采集标准Docker容器日志.md)检查$\{your\_region\_name\}、$\{your\_aliyun\_user\_id\}和$\{your\_machine\_group\_user\_defined\_id\}是否填写正确。
+        -   若您使用[阿里云容器服务Kubernetes安装方式](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，请提交工单至日志服务。
+        -   若您使用[自建Kubernetes安装方式](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，请参见[参数说明](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，检查\{your-project-suffix\}、\{regionId\}、\{aliuid\}、\{access-key-id\}和\{access-key-secret\}是否已正确填写，若填写错误请执行命令`helm del --purge alibaba-log-controller`删除安装包，并重新安装。
     -   机器组心跳数少的节点于集群中Worker节点数。
 
         1.  判断是否使用yaml文件手动部署DaemonSet。
