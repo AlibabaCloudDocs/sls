@@ -1,21 +1,21 @@
-# 如何为历史日志配置索引
+# How do I configure an index for a historical log?
 
-日志服务不支持直接为历史日志配置索引，您可以通过Dataworks将日志重新写入另一个Logstore，或使用CLI实现。
+Log Service cannot configure indexes for historical logs directly. However, you can rewrite the logs into a new Logstore through DataWorks or use CLI commands to configure indexes as needed.
 
-索引配置仅对设置索引后采集到的日志数据有效，设置索引之前的历史数据不能被查询和分析。如果要对这部分历史数据设置索引，可以通过以下方式完成：
+Indexes are valid only for the logs that are collected after index configuration, and historical logs cannot be queried or analyzed. If you want to configure indexes for historical logs, use either of the following methods:
 
--   **通过DataWorks将数据重新写入，并设置索引**。
+-   **Rewrite data into a new Logstore through DataWorks and then configure indexes**.
 
-    为新的Logstore设置索引后，通过阿里云Dataworks产品，将历史日志从Logstore中导出，然后导入到新的Logstore即可。重新写入的历史数据就可以被查询和分析了。
+    After configuring an index for the new Logstore, use DataWorks to export historical logs from the old Logstore and then import them to the new Logstore. By dong so, you can query and analyze historical logs.
 
--   **通过日志服务CLI将数据重新写入，并设置索引**。
+-   **Rewrite data into the Logstore through CLI commands and then configure indexes**.
 
-    通过命令行工具将日志重新写入，就可以实现重新索引的效果。
+    Use a command-line tool to rewrite logs into the Logstore to configure indexes.
 
-    详细说明请参考[日志服务CLI](https://aliyun-log-cli.readthedocs.io/en/latest/tutorials/tutorial_copy_data.html#id5)。
+    china site[https://aliyun-log-cli.readthedocs.io/en/latest/tutorials/tutorial\_copy\_data.html\#id5](https://aliyun-log-cli.readthedocs.io/en/latest/tutorials/tutorial_copy_data.html#id5).
 
-    详细说明请参考[日志服务CLI](https://aliyun-log-cli.readthedocs.io/en/latest/README.html)。
+    For more information, see [Aliyun Log Service CLI](https://aliyun-log-cli.readthedocs.io/en/latest/README.html).
 
 
-**说明：** 以上两种方式均为复制数据并导入的方式，不会修改或删除您已经采集到的历史日志。
+**Note:** Both the methods achieve index configuration through data duplication and import, which does not change or delete existing historical logs.
 
