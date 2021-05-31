@@ -1,40 +1,36 @@
-# 排查容器日志采集异常
+# Troubleshoot log collection exceptions in containers
 
-当您使用Logtail采集容器（标准容器、Kubernetes）的日志时，如果采集状态异常，可以根据本文进行排查问题、检查运行状态等运维操作。
+This topic provides solutions to exceptions that may occur when you use a Logtail container \(a common container or Kubernetes\) to collect logs.
 
-## 排查异常
+Troubleshooting operations:
 
--   [排查机器组心跳异常](#section_azl_rfh_1fb)
--   [排查容器日志采集异常](#section_cps_vch_1fb)
+-   [Troubleshoot heartbeat exceptions in a machine group](#section_azl_rfh_1fb)
+-   [Troubleshoot log collection exceptions in a container](#section_cps_vch_1fb)
 
-## 其他运维操作
+Other O&M operations:
 
--   [登录Logtail容器](#section_hg2_hsb_dfb)
--   [查看Logtail的运行日志](#section_frc_wjh_1fb)
--   [Logtail的容器标准输出（stdout）](#section_g1k_5sb_dfb)
--   [查看Kubernetes集群中日志相关组件状态](#section_xls_blh_1fb)
--   [查看Logtail的版本号信息、IP地址和时间](#section_f52_2lh_1fb)
--   [误删CRD创建出的Logstore后，应如何处理](#section_uwm_hlh_1fb)
+-   [Log on to the Logtail container](#section_hg2_hsb_dfb)
+-   [View Logtail operational logs](#section_frc_wjh_1fb)
+-   [View Logtail standard output \(stdout\)](#section_g1k_5sb_dfb)
+-   [View the status of log-related components in a Kubernetes cluster](#section_xls_blh_1fb)
+-   [View the version information, IP address, and time of Logtail](#section_f52_2lh_1fb)
+-   [What do I do if I mistakenly delete a Logstore that is created through CRD?](#section_uwm_hlh_1fb)
 
-## 排查机器组心跳异常
+## Troubleshoot heartbeat exceptions in a machine group
 
-您可以通过检查机器组心跳状态的方式判断容器上的Logtail是否已正确安装。
+You can determine whether the Logtail on a container is correctly installed by checking the heartbeat status of a machine group.
 
-1.  查看机器组心跳状态。
+1.  Check the heartbeat status of the machine group.
+    1.  Log on to the [Log Service console](https://sls.console.aliyun.com), and then click the target project name.
+    2.  Log on to the [Log Service console](https://partners-intl.console.aliyun.com/#/sls), and then click the target project name.
+    3.  In the left-side navigation pane, click **Logtail Machine Group**.
+    4.  Find the target machine group and click **Status**.
 
-    1.  登录[日志服务控制台](https://sls.console.aliyun.com)，单击Project名称。
+        Record the number of nodes for which heartbeat status is **OK**.
 
-    2.  登录[日志服务控制台](https://partners-intl.console.aliyun.com/#/sls)，单击Project名称。
+2.  Check the number of Worker nodes in the cluster.
 
-    3.  在左侧导航栏中单击**Logtail机器组**。
-
-    4.  找到要查看状态的机器组，并单击**查看状态**。
-
-        记录心跳状态为**OK**的节点数。
-
-2.  检查集群中Worker节点数。
-
-    执行命令`kubectl get node | grep -v master`，查看集群中Worker节点数。
+    Run `kubectl get node | grep -v master` to view the number of Worker nodes.
 
     ```
     $kubectl get node | grep -v master
@@ -43,59 +39,57 @@
     cn-hangzhou.i-bp1ad2b02jtqd1shi2ut   Ready     <none>    220d      v1.10.4
     ```
 
-3.  对比心跳状态为**OK**的节点数是否和集群中Worker节点数一致。根据对比结果选择排查方式。
+3.  Compare whether the number of the nodes with heartbeat status of **OK** is the same as the number of Worker nodes. Then, use an appropriate troubleshooting method according to the following possible comparison results:
+    -   The heartbeat status of all nodes is **Failed**.
+        -   If you use [standard Docker logs](/intl.en-US/Data Collection/Logtail collection/Container log collection/Collect logs from standard Docker containers.md), check whether $\{your\_region\_name\}, $\{your\_aliyun\_user\_id\}, and $\{your\_machine\_group\_user\_defined\_id\} are correct by following the instructions provided in [parameter description](/intl.en-US/Data Collection/Logtail collection/Container log collection/Collect logs from standard Docker containers.md).
+        -   If you use [installation for Kubernetes on Alibaba Cloud Container Service](/intl.en-US/Data Collection/Logtail collection/Container log collection/Overview.md), open a ticket.
+        -   If you use [self-built Kubernetes installation](/intl.en-US/Data Collection/Logtail collection/Container log collection/Overview.md), check whether \{your-project-suffix\}, \{regionId\}, \{aliuid\}, \{access-key-id\}, and \{access-key-secret\} are correct by following the instructions provided in [parameter description](/intl.en-US/Data Collection/Logtail collection/Container log collection/Overview.md). If the parameters are incorrect, run `helm del --purge alibaba-log-controller` to delete the installation package and reinstall Kubernetes.
+    -   The number of nodes for which the heartbeat status is OK is smaller than the number of Worker nodes.
 
-    -   机器组中所有节点的心跳状态均为**Failed**。
-        -   若您使用[采集标准Docker容器日志](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/采集标准Docker容器日志.md)，请参见[参数说明](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/采集标准Docker容器日志.md)检查$\{your\_region\_name\}、$\{your\_aliyun\_user\_id\}和$\{your\_machine\_group\_user\_defined\_id\}是否填写正确。
-        -   若您使用[阿里云容器服务Kubernetes安装方式](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，请提交工单至日志服务。
-        -   若您使用[自建Kubernetes安装方式](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，请参见[参数说明](/intl.zh-CN/数据采集/Logtail采集/采集容器日志/概述.md)，检查\{your-project-suffix\}、\{regionId\}、\{aliuid\}、\{access-key-id\}和\{access-key-secret\}是否已正确填写，若填写错误请执行命令`helm del --purge alibaba-log-controller`删除安装包，并重新安装。
-    -   机器组心跳数少的节点于集群中Worker节点数。
+        1.  Determine whether to use the yaml file to manually deploy DaemonSet.
 
-        1.  判断是否使用yaml文件手动部署DaemonSet。
+            Run `kubectl get po -n kube-system -l k8s-app=logtail`. If any result is returned, you have manually deployed DaemonSet by using the yaml file.
 
-            执行命令`kubectl get po -n kube-system -l k8s-app=logtail`，若有返回结果，表示您之前使用yaml文件手动部署了DaemonSet。
-
-        2.  下载最新版本的[DaemonSet模板](http://logtail-release.oss-cn-hangzhou.aliyuncs.com/docker/k8s/logtail-daemonset.yaml)。
-        3.  将其中的$\{your\_region\_name\}、$\{your\_aliyun\_user\_id\}、$\{your\_machine\_group\_name\}替换为您的真实内容。
-        4.  执行命令`kubectl apply -f ./logtail-daemonset.yaml`更新DaemonSet yaml文件。
-        其他情况，请提交工单至日志服务。
+        2.  Download the latest [DaemonSet template](http://logtail-release.oss-cn-hangzhou.aliyuncs.com/docker/k8s/logtail-daemonset.yaml).
+        3.  Set $\{your\_region\_name\}, $\{your\_aliyun\_user\_id\}, and $\{your\_machine\_group\_name\} as needed.
+        4.  Run `kubectl apply -f ./logtail-daemonset.yaml` to update the DaemonSet yaml file.
+        For other comparison results, open a ticket.
 
 
-## 排查容器日志采集异常
+## Troubleshoot log collection exceptions in a container
 
-如果您在控制台的预览或查询页面未查看到日志数据，说明日志服务并未采集到您的容器日志数据。请确认容器状态后，执行以下检查。
+If you cannot find any log on the preview or query page in the console, Log Service has not collected any log from your container. In this case, check the container status and perform the following steps:
 
-1.  [确认机器组状态](#section_azl_rfh_1fb)是否正常。
+1.  [Check whether the machine group status is normal](#section_azl_rfh_1fb).
+2.  Check whether the Config identifier is correct.
 
-2.  检查采集配置标识是否正确。
+    Check whether IncludeLabel, ExcludeLabel, IncludeEnv, and ExcludeEnv in the Config match the configurations of the target container.
 
-    检查配置中IncludeLabel、ExcludeLabel、IncludeEnv、ExcludeEnv是否和您需要采集的容器配置匹配。
+    **Note:** `Label` indicates the container label \(label information in docker inspect\) instead of the one defined in Kubernetes. You can temporarily remove the parameters and check whether any log can be collected. If yes, the exception is caused by an incorrect Config identifier.
 
-    **说明：** 其中的`Label`为容器Label（docker inspect中的Label信息），并不是Kubernetes中定义的Label。 您可以通过将IncludeLabel、ExcludeLabel、IncludeEnv和ExcludeEnv配置临时去除，查看是否可以正常采集到日志，若可以采集则可以确定为标记配置问题。
+3.  Check other items.
 
-3.  检查其他注意事项。
+    If you want to collect files from your container, note that:
 
-    若您配置采集容器内文件，请注意：
+    -   Logtail does not collect any file if there are no modified files in your container.
+    -   Only the files that are stored by default or mounted to your local PC can be collected.
 
-    -   若下发采集配置后文件没有修改事件，Logtail则不采集。
-    -   采集容器日志文件，只支持采集容器默认存储或挂载到本地的文件，暂不支持其他存储方式。
+## Log on to the Logtail container
 
-## 登录Logtail容器
+-   **Common Docker**
 
--   普通Docker
-
-    1.  在宿主机执行`docker ps | grep logtail`搜索Logtail容器。
-    2.  执行`docker exec -it ****** bash`登录。
+    1.  On the host, run `docker ps | grep logtail` to search for the Logtail container.
+    2.  Run `docker exec -it ****** bash` to log on to the Logtail container.
     ```
     $docker ps | grep logtail
     223fbd3ed2a6e        registry.cn-hangzhou.aliyuncs.com/log-service/logtail                             "/usr/local/ilogta..."   8 days ago          Up 8 days                               logtail-iba
     $docker exec -it 223fbd3ed2a6e bash
     ```
 
--   Kubernetes
+-   **Kubernetes**
 
-    1.  执行`kubectl get po -n kube-system | grep logtail`搜索Logtail的Pod。
-    2.  执行`kubectl exec -it -n kube-system ****** bash`登录Pod。
+    1.  Run `kubectl get po -n kube-system | grep logtail` to search for the Logtail Pod.
+    2.  Run `kubectl exec -it -n kube-system ****** bash` to log on to the Pod.
     ```
     $kubectl get po -n kube-system | grep logtail
     logtail-ds-g5wgd                                             1/1       Running    0          8d
@@ -104,19 +98,18 @@
     ```
 
 
-## 查看Logtail的运行日志
+## View Logtail operational logs
 
-Logtail日志存储在Logtail容器中的/usr/local/ilogtail/目录中，文件名为ilogtail.LOG和logtail\_plugin.LOG。
+Logtail logs named ilogtail.LOG and logtail\_plugin.LOG are stored in the /usr/local/ilogtail/ directory.
 
-1.  [登录Logtail容器](#section_hg2_hsb_dfb)。
-
-2.  打开Logtail容器目录/usr/local/ilogtail/。
+1.  [Log on to the Logtail container](#section_hg2_hsb_dfb).
+2.  Open the /usr/local/ilogtail/ directory.
 
     ```
     cd /usr/local/ilogtail
     ```
 
-3.  查看文件ilogtail.LOG和logtail\_plugin.LOG。
+3.  View the ilogtail.LOG and logtail\_plugin.LOG files.
 
     ```
     cat ilogtail.LOG
@@ -124,9 +117,9 @@ Logtail日志存储在Logtail容器中的/usr/local/ilogtail/目录中，文件�
     ```
 
 
-## Logtail的容器标准输出（stdout）
+## View Logtail standard output \(stdout\)
 
-容器stdout并不具备参考意义，请忽略以下标准输出（stdout）：
+You can ignore the following stdout because the container stdout has no reference for application.
 
 ```
 start umount useless mount points, /shm$|/merged$|/mqueue$
@@ -142,13 +135,13 @@ logtail status:
 ilogtail is running
 ```
 
-## 查看Kubernetes集群中日志相关组件状态
+## View the status of log-related components in a Kubernetes cluster
 
-执行命令`helm status alibaba-log-controller`可以查看Kubernetes集群中日志相关组件状态。
+To view the status of log-related components in a Kubernetes cluster, you can run `helm status alibaba-log-controller`.
 
-## 查看Logtail的版本号信息、IP地址、启动时间
+## View the version information, IP address, and time of Logtail
 
-相关信息存储在Logtail容器中的/usr/local/ilogtail/目录中的app\_info.json，示例如下：
+The related information is stored in the app\_info.json file under the /usr/local/ilogtail/ directory in the Logtail container. The following is an example:
 
 ```
 kubectl exec logtail-ds-gb92k -n kube-system cat /usr/local/ilogtail/app_info.json
@@ -163,10 +156,10 @@ kubectl exec logtail-ds-gb92k -n kube-system cat /usr/local/ilogtail/app_info.js
 }
 ```
 
-## 误删CRD创建出的Logstore后，应如何处理
+## What do I do if I mistakenly delete a Logstore that is created through CRD?
 
-若您删除了CRD自动创建出的Logstore，已采集的数据无法恢复，并且针对此Logstore的CRD配置会失效，您可以选择以下方案避免日志采集异常：
+If you delete a Logstore that is automatically created through CRD, the collected data cannot be recovered, and the CRD configurations of the Logstore become invalid. In this case, you can use either of the following methods to prevent possible log collection exceptions:
 
--   在CRD配置中使用其他Logstore，避免使用手动误删的Logstore名。
--   重新启动POD alibaba-log-controller。该POD可通过命令`kubectl get po -n kube-system | grep alibaba-log-controller`查找。
+-   Use another CRD-created Logstore and take care to name the Logstore with a different name to the Logstore that was mistakenly deleted.
+-   Restart the alibaba-log-controller Pod. You can run `kubectl get po -n kube-system | grep alibaba-log-controller` to search for the Pod.
 
