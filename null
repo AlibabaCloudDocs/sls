@@ -1,43 +1,53 @@
-# 日志查询常见问题
+# FAQ about log query
 
-本文介绍日志查询常见问题。
+## How do I identify the source server from which Logtail collects logs during a query?
 
-## 如何在查询时判断日志的来源机器
+If a machine group uses IP addresses as its identifier when logs are collected by using Logtail, servers in the machine group are distinguished from one another by internal IP addresses. When querying logs, you can use the hostname and custom working IP address to identify the source server from which logs are collected.
 
-如果通过Logtail采集日志时，机器组类型为IP地址机器组，机器组中的机器通过内网IP区分。在查询时，可以通过hostname和自定义配置的工作IP来判断日志的来源机器。
+For example, you can use the following statement to count the times different hostnames appear in logs:
 
-例如，统计日志中不同hostname出现的次数。
-
-**说明：** 已配置\_\_tag\_\_:\_\_hostname\_\_的字段索引并开启统计功能。
+**Note:** You must enable the indexing feature for the Logstore and enable the statistics feature for the \_\_tag\_\_:\_\_hostname\_\_ field in advance.
 
 ```
 * | select "__tag__:__hostname__" , count(1) as count group by "__tag__:__hostname__"
 ```
 
-![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0217764161/p41659.png)
+## How do I search for IP addresses in logs?
 
-## 如何在日志数据中搜索IP地址？
+IP addresses in logs can be searched for by means of exact match. You can directly search for log information related to a specified IP address in the log data, such as whether to include a specified IP address or whether to filter out a specified IP address. Currently, partial match cannot be used for searching data. That is, you cannot search for part of an IP address because the decimal point is not a default word-breaking item in Log Service. We recommend that you filter data by yourself if necessary. For example, you can use the SDK to download data, and then use regular expressions or the string.indexof method in the code.
 
-在日志数据中搜索IP地址，支持完全匹配的方式查询。您可以直接在日志数据中直接搜索指定IP地址相关的日志信息，比如包含指定IP地址、过滤指定IP地址等。但是目前尚不支持部分匹配的方式检索，即不能直接搜索IP地址的一部分，因为小数点（.）不是日志服务默认的分词项。如果需要部分匹配，建议自行过滤，例如使用SDK先下载数据后，在代码里使用正则表达式或者用string.indexof等方法搜索。
-
-例如执行如下查询语句，查询结果中仍会出现121.42.0网段地址。
+For example, you set the following search criteria in a Log Service project:
 
 ```
 not ip:121.42.0 not status:200 not 360jk not DNSPod-Monitor not status:302 not jiankongbao
         not 301 and status:403
 ```
 
-## 如何完成双重条件查询？
+The search result still contains 121.42.0.x. Log Service regards 121.42.0.x as a word. To include or filter out 121.42.0.x in the search result, you must specify 121.42.0.x in the search criteria, but not 121.42.0.
 
-需要使用两个条件查询日志时，只需同时输入两个语句即可。
+## How do I search for a keyword that contains a space in logs?
 
-例如，需要在Logstore中查询数据状态不是OK或者Unknown的日志。直接搜索`not OK not Unknown`即可得到符合条件的日志。
+When you directly search for a keyword that contains a space, you can obtain all the logs that contain part of the keyword on the left or right of the space. We recommend that you enclose the keyword that contains a space in double quotation marks \(" "\) so that the entire enclosed content is regarded as a keyword to be searched for. In this way, you can obtain the expected search result.
 
-## 日志服务提供哪些渠道查询日志？
+For example, you need to search for the keyword `POS version` in the following log data:
 
-日志服务提供如下三种方式查询日志：
+```
+post():351]:&nbsp;device_id:&nbsp;BTAddr&nbsp;:&nbsp;B6:xF:xx:65:xx:A1&nbsp;IMEI&nbsp;:&nbsp;35847xx22xx81x9&nbsp;WifiAddr&nbsp;:&nbsp;4c:xx:0e:xx:4e:xx&nbsp;|&nbsp;user_id:&nbsp;bb07263xxd2axx43xx9exxea26e39e5f&nbsp;POS&nbsp;version:903
+```
 
-1.  通过日志服务控制台查询。更多信息，请参见[查询和分析日志](/intl.zh-CN/查询与分析/查询和分析日志.md)。
-2.  通过SDK查询。更多信息，请参见[SDK](/intl.zh-CN/开发指南/SDK 参考/概述.md)。
-3.  通过Restful API查询。更多信息，请参见[GetLogs](/intl.zh-CN/开发指南/API 参考/日志库相关接口/GetLogs.md)。
+If you directly search for `POS version`, all the logs that contain `POS` or `version` are displayed, which do not meet your expectations. If you search for `"POS version"`, all the logs that contain the keyword `POS version` are displayed.
+
+## How do I perform a double-condition search?
+
+A double-condition search requires you to enter two statements in one search.
+
+For example, you need to search for logs whose data status is neither OK nor Unknown in a Logstore. You can obtain the expected search result by searching for `not OK not Unknown`.
+
+## How can I query collected logs in Log Service?
+
+You can use one of the following methods to query logs in Log Service:
+
+1.  Use the Log Service console.
+2.  Use the SDK.
+3.  Use the Restful API.
 
