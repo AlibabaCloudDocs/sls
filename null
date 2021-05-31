@@ -1,31 +1,29 @@
-# 控制台提示“查询结果不精确”，如何解决？
+# What can I do if the "The results are inaccurate" error occurs?
 
-在您查询和分析日志时，如果日志服务控制台提示**查询结果不精确**，可参考本文进行排查。
+This topic describes how to resolve the **The results are inaccurate** error that may occur when you query logs.
 
-## 问题描述
+## Issue
 
-在您查询和分析日志时，如果日志服务控制台提示**查询结果不精确**，表示日志服务未能扫描全部日志，返回的查询和分析结果不是基于全部日志的精确结果。
+If the **The results are inaccurate** error occurs when you query logs, Log Service fails to scan all log data and the returned results are inaccurate.
 
-![查询结果不精确](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/7640559951/p35302.png)
+## Cause
 
-## 可能原因
+The error may occur due to the following causes:
 
-查询结果不精确一般由以下原因造成。
+-   The time range specified for the query is too large.
 
--   查询时间范围太大
+    For example, if the specified time range is three months or one year, Log Service cannot scan all data of this time period. Only partial results are returned. Therefore, data accuracy is compromised.
 
-    例如查询时间范围为3个月或1年时，日志服务无法在一次查询中完整扫描这个时间段内的所有日志。为了快速返回结果，先返回部分不精确的结果。
+-   The conditions specified in the search statement are too complicated.
 
--   查询条件过于复杂
+    For example, if you specify 30 conditions in a query statement, Log Service cannot read all log data.
 
-    例如您在同一个查询语句中设置了30个查询条件，则日志服务无法一次性读取查询结果。
+-   The amount of data to be read is too large.
 
--   SQL计算时要读取的数据量太大
-
-    如果您在一个分析语句中设置了多个字段，而这些字段对应的数据量很大，超过Shard读取能力（每个Shard仅能读取1 GB数据），则返回结果不精确。
+    If you specify multiple fields in an analytic statement, and the data volume to be read exceeds the read capacity of a shard, the returned results are inaccurate. This is because each shard can read only 1 GB of data.
 
 
-## 解决方案
+## Solution
 
-缩小查询和分析的时间范围，多次（10次以内）执行查询和分析语句。
+Narrow down the query time range and perform multiple queries \(up to 10 queries\) to get the complete results.
 
