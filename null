@@ -1,0 +1,21 @@
+# 如何为历史日志配置索引
+
+日志服务不支持直接为历史日志配置索引，您可以通过Dataworks将日志重新写入另一个Logstore，或使用CLI实现。
+
+索引配置仅对设置索引后采集到的日志数据有效，设置索引之前的历史数据不能被查询和分析。如果要对这部分历史数据设置索引，可以通过以下方式完成：
+
+-   **通过DataWorks将数据重新写入，并设置索引**。
+
+    为新的Logstore设置索引后，通过阿里云Dataworks产品，将历史日志从Logstore中导出，然后导入到新的Logstore即可。重新写入的历史数据就可以被查询和分析了。
+
+-   **通过日志服务CLI将数据重新写入，并设置索引**。
+
+    通过命令行工具将日志重新写入，就可以实现重新索引的效果。
+
+    详细说明请参考[日志服务CLI](https://aliyun-log-cli.readthedocs.io/en/latest/tutorials/tutorial_copy_data.html#id5)。
+
+    详细说明请参考[日志服务CLI](https://aliyun-log-cli.readthedocs.io/en/latest/README.html)。
+
+
+**说明：** 以上两种方式均为复制数据并导入的方式，不会修改或删除您已经采集到的历史日志。
+
