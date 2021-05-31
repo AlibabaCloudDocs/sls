@@ -1,47 +1,47 @@
-# 查询不到日志数据
+# What can I do if no log data is found?
 
-在使用日志服务产品的日志查询功能时，如果查询不到日志数据，请按照以下原因进行排查。
+When using LogSearch of Log Service to query data, you can troubleshoot the problem in the following ways if no log data is found.
 
-## 1. 未成功采集日志数据
+## 1. Log collection failure
 
-如果并未成功采集日志数据到日志服务，则无法查询到目标日志。请在预览界面查看是否有日志数据。
+If log data fails to be collected by Log Service, the target log cannot be queried. In this case, check whether log data is available on the consumption preview page of the target Logstore.
 
-如果有日志数据，说明日志数据已成功采集到日志服务中，建议您排查其他原因。
+If it is available, log data is collected by Log Service.
 
-如果没有日志数据，可能是以下原因造成，请进一步排查。
+If it is unavailable, possible causes are as follows:
 
--   日志源没有生产日志数据。
+-   The log source does not generate log data.
 
-    日志源没有日志产生的情况下，没有日志可以投递到日志服务。请检查您的日志源。
+    In this case, no logs can be sent to Log Service. Check your log source.
 
--   Logtail无心跳。
+-   Logtail has no heartbeat.
 
-    请在机器组状态页面中查看机器是否有心跳。没有心跳请参考[Logtail 机器无心跳](/cn.zh-CN/数据采集/FAQ/日志服务控制台中Logtail机器组无心跳的排查思路.md)。
+    On the Server Group Settings page, check whether the relevant server has a heartbeat in the Server Group Status section. If it has no heartbeat, troubleshoot the problem. For more information, see [What can I do if the Logtail client has no heartbeat?](/intl.en-US/Data Collection/FAQ/Troubleshooting for Logtail machine group without heartbeat in the log Service Console.md).
 
--   监控文件没有实时写入。
+-   The monitoring file is not written in real time.
 
-    如果监控文件没有实时写入，您可以打开/usr/local/ilogtail/ilogtail.LOG查看报错信息。常见错误如下：
+    If the monitoring file is written in real time, you can open /usr/local/ilogtail/ilogtail.LOG to view the error message. Common error messages are as follows:
 
-    -   parse delimiter log fail：分割符收集日志出错。
-    -   parse regex log fail：正则收集日志出错。
+    -   parse delimiter log fail: The error message returned because an error has occurred when Log Service collects logs in delimiter mode.
+    -   parse regex log fail: The error message returned because an error has occurred when Log Service collects logs in regex mode.
 
-## 2. 分词设置错误
+## 2. Incorrect word-breaking settings
 
-查看已设置的分词符，检验根据分词符对日志内容进行分割后，是否刚好得到关键字。例如分割符为默认的`,;=()[]{}?@&<>/:’`那么用户的日志里如果是有abc”defg,hij会被分割成abc”defg和hij两部分，用abc就搜不到这条日志。
+View the configured delimiters. Check whether you can use a keyword to search for a log after the log content is split by using a delimiter. For example, the delimiters are `, ; = ( ) [ ] { } ? @ & < > / : '` by default. If a log contains abc"defg,hij, it is split into abc"defg and hij. In this case, you cannot find this log by searching for abc.
 
-同时支持模糊查询，具体查询语法，请参考[查询语法](/cn.zh-CN/查询与分析/查询语法与功能/查询语法.md)。
+Fuzzy search is also supported. For more information, see [Search syntax](/intl.en-US/Index and query/Query/Search syntax.md).
 
-**说明：**
+**Note:**
 
--   为了节约您的索引费用，日志服务进行了索引优化，配置了字段索引的Key，不进全文索引。例如，日志中有名为message的key，并且配置了字段索引，加了空格做分词（加空格做分词，请把空格加到分词字符串的中间）。”message: this is a test message“可以用 key:value 的格式 message:this 查到，但是直接查this查询不到，因为配置了字段索引的key，不进全文索引。
--   创建索引或者对索引做任何更改，只对新进的数据有效，旧数据一律无效。
+-   To save your indexing cost, Log Service has optimized the indexing feature. If you create an index on a field, full-text indexing is ineffective for the key of this field. For example, an index is created on the field whose key is message in a log, and a space is used as a delimiter. To use a space as a delimiter, enclose it in a word-breaking string. You can find the log that contains "message: this is a test message" by searching for the message:this keyword in the format of key:value. However, you cannot find the log by searching for the this keyword because an index is created on the message field and full-text indexing is ineffective.
+-   You can create indexes or modify existing indexes. However, new or modified indexes take effect only for new data.
 
-    您可以点开索引属性，检查已设置的分词是否符合要求。
+    You can click Index Attributes to check whether the configured delimiters meet the requirements.
 
 
-## 3. 其他原因
+## 3. Other causes
 
-如果日志有产生，可以先在查询处修改查询的时间范围。另外由于日志预览的功能数据是实时的，但是查询的功能是有最多1分钟的延迟的，所以用户可以在日志产生后等1分钟再查。
+If log data is available, modify the time range of data query and try again. Log Service allows you to preview log data in real time. Due to a maximum latency of 1 minute, we recommend that you query log data at least 1 minute after logs are generated.
 
-如您的问题仍未解决，请提工单联系我们。
+If your problem persists, submit a ticket.
 
