@@ -1,47 +1,43 @@
-# What can I do if no log data is found?
+# 日志查询常见问题
 
-When using LogSearch of Log Service to query data, you can troubleshoot the problem in the following ways if no log data is found.
+本文介绍日志查询常见问题。
 
-## 1. Log collection failure
+## 如何在查询时判断日志的来源机器
 
-If log data fails to be collected by Log Service, the target log cannot be queried. In this case, check whether log data is available on the consumption preview page of the target Logstore.
+如果通过Logtail采集日志时，机器组类型为IP地址机器组，机器组中的机器通过内网IP区分。在查询时，可以通过hostname和自定义配置的工作IP来判断日志的来源机器。
 
-If it is available, log data is collected by Log Service.
+例如，统计日志中不同hostname出现的次数。
 
-If it is unavailable, possible causes are as follows:
+**说明：** 已配置\_\_tag\_\_:\_\_hostname\_\_的字段索引并开启统计功能。
 
--   The log source does not generate log data.
+```
+* | select "__tag__:__hostname__" , count(1) as count group by "__tag__:__hostname__"
+```
 
-    In this case, no logs can be sent to Log Service. Check your log source.
+![](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0217764161/p41659.png)
 
--   Logtail has no heartbeat.
+## 如何在日志数据中搜索IP地址？
 
-    On the Server Group Settings page, check whether the relevant server has a heartbeat in the Server Group Status section. If it has no heartbeat, troubleshoot the problem. For more information, see [What can I do if the Logtail client has no heartbeat?](/intl.en-US/Data Collection/FAQ/Troubleshooting for Logtail machine group without heartbeat in the log Service Console.md).
+在日志数据中搜索IP地址，支持完全匹配的方式查询。您可以直接在日志数据中直接搜索指定IP地址相关的日志信息，比如包含指定IP地址、过滤指定IP地址等。但是目前尚不支持部分匹配的方式检索，即不能直接搜索IP地址的一部分，因为小数点（.）不是日志服务默认的分词项。如果需要部分匹配，建议自行过滤，例如使用SDK先下载数据后，在代码里使用正则表达式或者用string.indexof等方法搜索。
 
--   The monitoring file is not written in real time.
+例如执行如下查询语句，查询结果中仍会出现121.42.0网段地址。
 
-    If the monitoring file is written in real time, you can open /usr/local/ilogtail/ilogtail.LOG to view the error message. Common error messages are as follows:
+```
+not ip:121.42.0 not status:200 not 360jk not DNSPod-Monitor not status:302 not jiankongbao
+        not 301 and status:403
+```
 
-    -   parse delimiter log fail: The error message returned because an error has occurred when Log Service collects logs in delimiter mode.
-    -   parse regex log fail: The error message returned because an error has occurred when Log Service collects logs in regex mode.
+## 如何完成双重条件查询？
 
-## 2. Incorrect word-breaking settings
+需要使用两个条件查询日志时，只需同时输入两个语句即可。
 
-View the configured delimiters. Check whether you can use a keyword to search for a log after the log content is split by using a delimiter. For example, the delimiters are `, ; = ( ) [ ] { } ? @ & < > / : '` by default. If a log contains abc"defg,hij, it is split into abc"defg and hij. In this case, you cannot find this log by searching for abc.
+例如，需要在Logstore中查询数据状态不是OK或者Unknown的日志。直接搜索`not OK not Unknown`即可得到符合条件的日志。
 
-Fuzzy search is also supported. For more information, see [Search syntax](/intl.en-US/Index and query/Query/Search syntax.md).
+## 日志服务提供哪些渠道查询日志？
 
-**Note:**
+日志服务提供如下三种方式查询日志：
 
--   To save your indexing cost, Log Service has optimized the indexing feature. If you create an index on a field, full-text indexing is ineffective for the key of this field. For example, an index is created on the field whose key is message in a log, and a space is used as a delimiter. To use a space as a delimiter, enclose it in a word-breaking string. You can find the log that contains "message: this is a test message" by searching for the message:this keyword in the format of key:value. However, you cannot find the log by searching for the this keyword because an index is created on the message field and full-text indexing is ineffective.
--   You can create indexes or modify existing indexes. However, new or modified indexes take effect only for new data.
-
-    You can click Index Attributes to check whether the configured delimiters meet the requirements.
-
-
-## 3. Other causes
-
-If log data is available, modify the time range of data query and try again. Log Service allows you to preview log data in real time. Due to a maximum latency of 1 minute, we recommend that you query log data at least 1 minute after logs are generated.
-
-If your problem persists, submit a ticket.
+1.  通过日志服务控制台查询。更多信息，请参见[查询和分析日志](/cn.zh-CN/查询与分析/查询和分析日志.md)。
+2.  通过SDK查询。更多信息，请参见[SDK](/cn.zh-CN/开发指南/SDK 参考/概述.md)。
+3.  通过Restful API查询。更多信息，请参见[GetLogs](/cn.zh-CN/开发指南/API 参考/日志库相关接口/GetLogs.md)。
 
