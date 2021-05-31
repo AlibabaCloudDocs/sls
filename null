@@ -1,32 +1,32 @@
-# SLB访问日志采集不到
+# Why am I unable to collect SLB access logs?
 
-如果发现无法正常采集SLB访问日志，请按照以下步骤排查。
+This topic describes how to troubleshoot in cases where you are unable to collect SLB access logs.
 
-## 1. 确认是否为SLB实例开通了访问日志
+## 1. Check whether the access log collection function has been activated for SLB instances.
 
-每个SLB实例需要单独设置，开通后的产生的访问日志将实时写入您的日志服务Logstore。
+Activate the access log collection function for each SLB instance separately. Then, the generated access logs can be written into your Logstore in real time.
 
-请登录SLB控制台， 在左侧导航栏中单击**日志管理** \> **访问日志**，查看**访问日志（7层）**列表中。
+To do so, log on to the SLB console, and choose **Logs** \> **Access Logs** to view the **Access Logs \(Layer-7\)** list.
 
--   确认列表中是否存在指定SLB实例。
--   确认SLB实例对应的**SLS日志存储**一列中记录的日志保存位置。
+-   Verify that the specified SLB instance exists.
+-   Confirm the **Storage Path** of the SLB instance.
 
-    此处显示的是日志保存的日志服务Project和Logstore，请在正确的位置查看是否存在SLB日志。
+    This column displays information about the project and Logstore. In this case, make sure that you check whether SLB logs exist in the correct location in the console.
 
 
-## 2. 确认RAM授权是否正确
+## 2. Check whether RAM users are correctly authorized.
 
-开通访问日志功能时，系统会指引您完成RAM角色授权，成功授权后才能开通访问日志功能。如果RAM角色没有正常创建、或创建后被删除，都会导致日志采集后无法投递到日志服务Logstore。
+During activation of the access log collection function, the system guides you through RAM user authorization. The function can be successfully activated only after RAM users are successfully authorized. If RAM users are incorrectly created or deleted, the collected logs cannot be delivered to your Logstore.
 
-**排查方式**
+**Troubleshooting**
 
-请登录[RAM控制台](https://ram.console.aliyun.com/#/role/list)，在**角色管理**页面查找是否存在AliyunLogArchiveRole。
+Log on to the [RAM Console](https://ram.console.aliyun.com/#/role/list). On the **RAM Roles** page, check whether the AliyunLogArchiveRole role exists.
 
--   **如果AliyunLogArchiveRole不存在**，请使用主账号登录后并单击[快速授权链接](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22%3A%20%7B%22request1%22%3A%20%7B%22RoleName%22%3A%20%22AliyunLogArchiveRole%22%2C%20%22TemplateId%22%3A%20%22Archive%22%7D%7D%2C%20%22ReturnUrl%22%3A%20%22https%3A//sls.console.aliyun.com/%22%2C%20%22Service%22%3A%20%22Log%22%7D)，完成授权所需要的RAM角色创建。
+-   **If AliyunLogArchiveRole does not exist**, use your Alibaba Cloud account to log on to the RAM console and click the [quick authorization link](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22%3A%20%7B%22request1%22%3A%20%7B%22RoleName%22%3A%20%22AliyunLogArchiveRole%22%2C%20%22TemplateId%22%3A%20%22Archive%22%7D%7D%2C%20%22ReturnUrl%22%3A%20%22https%3A//sls.console.aliyun.com/%22%2C%20%22Service%22%3A%20%22Log%22%7D) to create the RAM users required for authorization.
 
--   **如果AliyunLogArchiveRole存在**，请单击角色名称，查看角色授权策略是否正确。
+-   **If AliyunLogArchiveRole exists**, click the role name and check whether the role is correctly authorized.
 
-    以下是默认的授权策略，如果您的策略与默认策略不相同，可能之前修改过授权策略，请将授权策略改为默认的授权策略。
+    The following shows the default policy. If your policy has been modified, we recommend that you replace the current policy with the default policy.
 
     ```
     {
@@ -44,20 +44,20 @@
     ```
 
 
-## 3. 确认是否产生日志事件
+## 3. Check whether any log is generated.
 
-如果在日志服务控制台没有查看到SLB访问日志，可能是由于没有日志产生。例如：
+If you do not find any SLB access log in the Log Service console, it is likely that no log has been generated. Possible causes include:
 
--   当前实例未配置七层监听。
+-   Layer-7 listening is not configured for the current instance.
 
-    **目前只支持SLB七层监听的实例访问日志**，暂不支持四层实例日志采集。常见的七层监听协议有HTTP/HTTPS等，详细说明请查看[监听概述](/intl.zh-CN/传统型负载均衡CLB/CLB用户指南/监听/监听概述.md)。
+    **Currently, only instances configured with layer-7 listening are supported**. Common layer-7 listening protocols include HTTP and HTTPS. For more information, see [Listener overview](/intl.en-US/Classic Load Balancer/User Guide/Listeners/Listener overview.md).
 
--   不采集开通功能之前的历史日志。
+-   Historical logs that were generated before activation of the access log collection function are not collected.
 
-    开通SLB访问日志功能之后，从当前时间开始采集日志。
+    Instead, only logs that are generated after activation of the access log collection function are collected.
 
--   指定实例没有访问请求。
+-   The specified instance did not receive a request.
 
-    必须对实例上的监听进行访问请求，才会产生访问日志。
+    Logs are generated only when you request access to the listener of the instance.
 
 
