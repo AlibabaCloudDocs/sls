@@ -5,7 +5,7 @@
 ## 前提条件
 
 -   已拥有一台及以上的服务器。
--   已根据服务器类型和所在地域，确定采集日志时所需的网络类型，详情请参见[选择网络](/cn.zh-CN/数据采集/Logtail采集/选择网络.md)。
+-   已根据服务器类型和所在地域，确定采集日志时所需的网络类型。更多信息，请参见[选择网络](/cn.zh-CN/数据采集/Logtail采集/选择网络.md)。
 
 ## 支持的系统
 
@@ -22,9 +22,10 @@
 
 ## 注意事项
 
+-   本文中的安装命令适用于Logtail 0.0版本（Logtail 0.16.x）。当您需要安装、升级Logtail 1.0版本时，需要在安装命令中添加版本号，例如`sudo ./logtail.sh upgrade -v v1`、`./logtail.sh install cn-hangzhou -v v1`。
 -   Logtail采用覆盖安装模式，如果您已安装过Logtail，那么重新安装Logtail时会先执行卸载、删除/usr/local/ilogtail目录操作。安装后默认启动Logtail并注册开机启动。
 -   如果安装失败，请提[工单](https://selfservice.console.aliyun.com/ticket/category/sls/today)。
--   安装Logtail后，如果ECS的网络由经典网络切换至VPC，则需要更新logtail配置，详情请参见[经典网络切换为VPC后，是否需要更新Logtail配置]()。
+-   安装Logtail后，如果ECS的网络由经典网络切换至VPC，则需要更新logtail配置。更多信息，请参见[经典网络切换为VPC后，是否需要更新Logtail配置]()。
 
 ## 安装方式
 
@@ -58,7 +59,7 @@
 
 -   如果您无法确定ECS所在地域，可使用Logtail安装脚本中的auto参数进行安装。
 
-    在安装命令中指定auto参数后，Logtail安装脚本会通过ECS获取您的实例元数据，自动确定ECS所在地域，实例元数据介绍请参见 [实例元数据概述](/cn.zh-CN/实例/管理实例/使用实例元数据/实例元数据概述.md)。
+    在安装命令中指定auto参数后，Logtail安装脚本会通过ECS获取您的实例元数据，自动确定ECS所在地域，实例元数据介绍请参见 [ECS实例元数据概述](/cn.zh-CN/实例/管理实例/使用实例元数据/ECS实例元数据概述.md)。
 
     1.  通过公网下载Logtail安装脚本。
 
@@ -444,10 +445,9 @@ $cat /usr/local/ilogtail/app_info.json
 
 ## 卸载Logtail
 
-执行以下命令，下载logtail.sh并卸载Logtail。
+执行以下命令卸载Logtail。
 
 ```
-wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/linux64/logtail.sh -O logtail.sh
-chmod 755 logtail.sh; ./logtail.sh uninstall
+wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/linux64/logtail.sh -O logtail.sh;chmod 755 logtail.sh;./logtail.sh uninstall
 ```
 
