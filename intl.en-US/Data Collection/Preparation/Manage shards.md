@@ -1,86 +1,93 @@
 # Manage shards
 
-This topic describes how to split, merge, and delete shards in the Log Service console.
+Log data is stored on a shard of a Logstore where read and write operations are performed. This topic describes how to split, merge, and delete shards in the Log Service console.
 
 When you create a Logstore, you must set the number of shards for the Logstore. After the Logstore is created, you can split or merge shards to increase or decrease the number of shards in the Logstore.
 
--   You can write data to a shard at a maximum rate of 5 MB/s and read data from a shard at a maximum rate of 10 MB/s. If your data traffic exceeds the service capacity of a shard, we recommend that you split the shard.
+-   Each shard supports a write speed of 5 MB/s and a read speed of 10 MB/s. If the read or write speed does not meet your requirements, we recommend that you split the shard.
 
     You can split a shard of a Logstore on the **Logstore Attributes** page of the Logstore.
 
--   If the data traffic is much less than the maximum read/write capability of shards, we recommend that you merge shards.
+-   If the data traffic is less than the maximum read or write speed, we recommend that you merge shards.
 
 ## Split a shard
 
 1.  Log on to the [Log Service console](https://sls.console.aliyun.com).
 
-2.  In the **Projects** section, click the target project.
+2.  In the Projects section, click the project in which you want to query and analyze logs.
 
-3.  Choose **Log Management** \> **Logstores**. Click the management icon of the target Logstore, and then select **![Modify a Logstore](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5023359951/p52318.png)** \> **Modify**.
+3.  On the **Log Storage** \> **Logstores** tab, find the Logstore that you want to modify, and then choose **![Modify a Logstore](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5023359951/p52318.png)** \> **Modify**.
 
-4.  On the **Logstore Attributes** page, click **Modify** in the upper-right corner.
+4.  On the **Logstore Attributes** page, click **Modify**.
 
 5.  Find the shard that you want to split, and click **Split** in the Actions column.
 
     **Note:** The shard that you split must be in the readwrite state.
 
-    ![Split a shard](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2119824951/p2594.png)
+    ![Split a shard](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2119824951/p2594.png)
 
 6.  Select the number of new shards into which you want to split the original shard, and click **OK**.
 
 7.  Click **Save**.
 
-    After the shard is split, its status changes from readwrite to readonly. You can consume data from the shard, but you cannot write data to the shard. Newly generated shards are in the readwrite state, and they are listed below the original shard. Their MD5 value ranges cover the MD5 value range of the original shard.
+    After you split the shard, the readwrite state is changed to the readonly state. You can consume data from the shard that is in the readonly state. However, you cannot write data to the shard. New shards are in the readwrite state, and are listed below the original shard. The MD5 value ranges of the new shards cover the MD5 value range of the original shard.
 
 
-## Enable automatic sharding
+## Enable the automatic sharding feature
 
 Log Service provides the automatic sharding feature. If you enable the automatic sharding feature, shards are automatically split if the following two conditions are met:
 
--   The data traffic exceeds the [write capacity](/intl.en-US/Product Introduction/Limits/Data read and write.md) of the existing shards for more than 5 minutes.
--   The number of shards in the readwrite state does not exceed the specified maximum number of shards in the Logstore.
+-   The data write speed exceeds the maximum [write speed](/intl.en-US/Product Introduction/Limits/Data read and write.md) of the current shard for more than 5 minutes.
+-   The number of shards that are in the readwrite state does not exceed the specified maximum number of shards in the Logstore.
 
 **Note:** Automatic sharding does not apply to the shards that are split from a shard in the last 15 minutes.
 
-You can enable the automatic sharding feature when you create or modify a Logstore. If you enable the feature for the Logstore, you must specify the maximum number that the shards can be split into in the Logstore.
+You can enable the automatic sharding feature when you create or modify a Logstore. If you turn on the Automatic Sharding switch, you must set the Maximum Shards parameter.
 
--   Automatic sharding
+-   Automatic Sharding
 
-    If the amount of data written to the Logstore exceeds the [write capability](/intl.en-US/Product Introduction/Limits/Data read and write.md) of the existing shards for more than 5 minutes, the number of shards is increased to accommodate the data traffic.
+    For example, the Automatic Sharding switch is turned on, and the data write speed exceeds the maximum [write speed](/intl.en-US/Product Introduction/Limits/Data read and write.md) of the current shard for more than 5 minutes. In this case, Log Service automatically increases the number of shards.
 
--   Maximum shards
+-   Maximum Shards
 
-    The maximum number that shards in the Logstore can be automatically split into is 64.
+    If you turn on the Automatic Sharding switch, you must set the Maximum Shards parameter. The maximum number of shards is 64.
 
 
 ## Merge shards
 
-You can merge shards of a Logstore. When you specify a shard for merging, Log Service locates the shard next to the specified shard, and merges the two shards.
+You can merge shards of a Logstore. If you click Merge in the Actions column of a shard, Log Service locates the shard next to the specified shard, and merges the two shards.
 
-**Note:**
+**Note:** When you merge shards, you must specify a shard that is in the readwrite state. However, you cannot specify the last shard that is in the readwrite state.
 
--   The specified shard that you specify for merging must be in the readwrite state. In addition, the shard must not be the last shard that is in the readwrite state.
--   After the shards are merged, their status changes to the readonly state. The new shard is in the readwrite state. The MD5 value ranges of the two shards cover the MD5 value range of the new shard.
+1.  On the **Log Storage** \> **Logstores** tab, find the Logstore that you want to modify, and then choose **![Modify a Logstore](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5023359951/p52318.png)** \> **Modify**.
 
-1.  Choose **Log Management** \> **Logstores**. Click the management icon of the target Logstore, and then select **![Modify a Logstore](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/5023359951/p52318.png)** \> **Modify**.
-
-2.  On the **Logstore Attributes** page, click **Modify** in the upper-right corner.
+2.  On the **Logstore Attributes** page, click **Modify**.
 
 3.  Specify the shard that you want to merge, and click **Merge** in the Actions column.
 
-    ![Merge shards](https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/assets/img/en-US/2119824951/p2596.png)
+    ![Merge shards](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/2119824951/p2596.png)
 
 4.  Click **Save**.
+
+    After you merge shards, the specified shard and the shard next to the specified shard are both in the readonly state. A shard is added and is in the readwrite state. The MD5 value range of the new shard covers the MD5 value ranges of the two original shards.
 
 
 ## Delete a shard
 
 -   Automatic deletion
 
-    You can specify a data retention period when you create a Logstore. If you specify the retention period, shards in the Logstore and data stored in the shards are automatically deleted when the retention period expires.
+    You can specify a data retention period when you create a Logstore. If you specify the retention period, the shards in the Logstore and the data stored in the shards are automatically deleted when the retention period expires.
 
 -   Manual deletion
 
-    You can turn on the permanent retention switch when you create a Logstore. This allows you to delete the shards and data from the Logstore by deleting the Logstore. For more information, see [Delete a Logstore](/intl.en-US/Data Collection/Preparation/Manage a Logstore.md).
+    If you turn on the Permanent Storage switch when you create a Logstore, we recommend that you delete the shards and data of a Logstore by deleting the Logstore. For more information, see [Delete a Logstore](/intl.en-US/Data Collection/Preparation/Manage a Logstore.md).
 
+
+## Shard-related API operations
+
+|Action|Operation|
+|------|---------|
+|Split a shard|[SplitShard](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/SplitShard.md)|
+|Merge shards|[MergeShards](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/MergeShards.md)|
+|Query shards|[ListShards](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/ListShards.md)|
 
