@@ -37,7 +37,7 @@ not ip:121.42.0 not status:200 not 360jk not DNSPod-Monitor not status:302 not j
 
 日志服务提供如下三种方式查询日志：
 
-1.  通过日志服务控制台查询。更多信息，请参见[查询和分析日志](/cn.zh-CN/查询与分析/查询和分析日志.md)。
-2.  通过SDK查询。更多信息，请参见[SDK](/cn.zh-CN/开发指南/SDK 参考/概述.md)。
-3.  通过Restful API查询。更多信息，请参见[GetLogs](/cn.zh-CN/开发指南/API 参考/日志库相关接口/GetLogs.md)。
+1.  通过日志服务控制台查询。更多信息，请参见[查询和分析日志](/intl.zh-CN/查询与分析/查询和分析日志.md)。
+2.  通过SDK查询。更多信息，请参见[SDK](/intl.zh-CN/开发指南/SDK 参考/概述.md)。
+3.  通过Restful API查询。更多信息，请参见[GetLogs](/intl.zh-CN/开发指南/API 参考/日志库相关接口/GetLogs.md)。
 
