@@ -1,33 +1,29 @@
-# 经典网络切换为VPC后，是否需要更新Logtail配置
+# What can I do if the "The results are inaccurate" error occurs?
 
-经典网络切换为VPC后，需要重启Logtail，并更新Logtail机器组设置。
+This topic describes how to resolve the **The results are inaccurate** error that may occur when you query logs.
 
-安装Logtail后，如果您的ECS网络类型由经典网络切换为VPC，请参考以下步骤更新配置。
+## Issue
 
-1.  以管理员身份重启Logtail。
-    -   **Linux**：
+If the **The results are inaccurate** error occurs when you query logs, Log Service fails to scan all log data and the returned results are inaccurate.
 
-        ```
-        sudo /etc/init.d/ilogtaild stop
-        sudo /etc/init.d/ilogtaild start
-        ```
+## Cause
 
-    -   **Windows**：
+The error may occur due to the following causes:
 
-        打开**控制面板**中的**管理工具**，打开**服务**，找到LogtailWorker并右键单击**重新启动**。
+-   The time range specified for the query is too large.
 
-2.  更新机器组配置。
-    -   **自定义标识**
+    For example, if the specified time range is three months or one year, Log Service cannot scan all data of this time period. Only partial results are returned. Therefore, data accuracy is compromised.
 
-        若机器组中配置了自定义标识，则无需手动更新机器组配置，可以直接正常使用VPC网络。
+-   The conditions specified in the search statement are too complicated.
 
-    -   **IP地址**
+    For example, if you specify 30 conditions in a query statement, Log Service cannot read all log data.
 
-        若机器组中配置了ECS云服务器IP地址，则需将机器组内的IP更换为重启Logtail后获取的IP地址，即app\_info.json中的ip字段。
+-   The amount of data to be read is too large.
 
-        app\_info.json文件地址：
+    If you specify multiple fields in an analytic statement, and the data volume to be read exceeds the read capacity of a shard, the returned results are inaccurate. This is because each shard can read only 1 GB of data.
 
-        -   Linux：/usr/local/ilogtail/app\_info.json
-        -   Windows x64：C:\\Program Files \(x86\)\\Alibaba\\Logtail\\app\_info.json
-        -   Windows x32：C:\\Program Files\\Alibaba\\Logtail\\app\_info.json
+
+## Solution
+
+Narrow down the query time range and perform multiple queries \(up to 10 queries\) to get the complete results.
 
