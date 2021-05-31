@@ -127,6 +127,11 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
 仅支持Logtail 0.16.26 及以上版本。
 
 |"accept\_multi\_config": true|
+    |enable\_checkpoint\_sync\_write|Boolean|是否开启sync写功能。默认值：false，表示不开启。sync写功能主要用于搭配ExactlyOnce写入功能。开启ExactlyOnce写入功能后，Logtail会在本地磁盘记录细粒度的Checkpoint信息（文件级别）。但出于性能考虑，默认写入Checkpoint时不会调用sync落盘，所以如果机器重启导致buffer数据来不及写入磁盘时，可能导致Checkpoint丢失。此时，您可以设置enable\_checkpoint\_sync\_write为true，开启sync写功能。更多信息，请参见[附录：ExactlyOnce写入功能说明](/intl.zh-CN/开发指南/API 参考/公共资源说明/Logtail配置.md)。
+
+仅支持Logtail 1.0.20及以上版本。
+
+|"enable\_checkpoint\_sync\_write": false|
 
 3.  重启Logtail使配置生效。
 
@@ -159,4 +164,5 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
 |data\_server\_port|data\_server\_port|
 |accept\_multi\_config|accept\_multi\_config|
 |enable\_log\_time\_auto\_adjust|enable\_log\_time\_auto\_adjust|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 1.0.19及以上版本|
+|enable\_checkpoint\_sync\_write|enable\_checkpoint\_sync\_write|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 1.0.20及以上版本|
 
