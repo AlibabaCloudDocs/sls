@@ -45,7 +45,7 @@ Log Service supports multiple import methods that have different automation leve
     |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Medium|
     |NodeJS|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Node.js applications to Log Service by using OpenTelemetry SDK for JavaScript.md)|Semi-automatic|Medium|
     |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Medium|
-    |PHP|[Import trace data by using Zipkin]()|Manual|High|
+    |PHP|[Import trace data by using Zipkin](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from PHP applications to Log Service by using Zipkin.md)|Manual|High|
     |C++|[Import trace data by using Jaeger](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from C++ applications to Log Service by using Jaeger SDK for C++.md)|Manual|High|
     |C\#|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from C# applications to Log Service by using OpenTelemetry SDK for .NET.md)|Semi-automatic|Medium|
     |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Medium|
