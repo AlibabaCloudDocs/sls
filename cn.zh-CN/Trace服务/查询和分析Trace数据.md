@@ -25,7 +25,7 @@
     -   **Attribute**、**Resource**字段为JSON Object类型，日志服务支持按照该字段中的Key、Value进行过滤。
     例如，您要查询最近一小时内延迟时间大于10 ms的user服务的Trace数据，可设置过滤条件如下图所示。
 
-    ![Trace数据过滤条件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0924946161/p254120.png)
+    ![Trace数据过滤条件](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/1642162261/p254120.png)
 
 4.  在Trace分析页签中，查看查询结果。
 
@@ -39,7 +39,7 @@
 
     3.  查看分组统计结果。
 
-        日志服务将根据**service**维度，列出各个服务的相关信息（例如Span个数、OPS、平均延迟等）。
+        日志服务将根据**service**维度，列出各个服务的相关信息（例如Span个数、QPS、平均延迟等）。
 
         ![分组统计](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/0924946161/p254149.png)
 
