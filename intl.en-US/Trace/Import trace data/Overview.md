@@ -36,37 +36,37 @@ Log Service supports multiple import methods that have different automation leve
     -   Semi-automatic instrumentation: Developers need to manually install dependencies or modify related code.
     |Language|Import method|Automation level|Import complexity|
     |--------|-------------|----------------|-----------------|
-    |Java|[Import trace data by using OpenTelemetry]()|Automatic|Low|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Automatic|Medium|
-    |[Import trace data from SkyWalking]()|Automatic|Medium|
-    |Golang|[Import trace data by using OpenTelemetry]()|Semi-automatic|Low|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Semi-automatic|Low|
-    |Python|[Import trace data by using OpenTelemetry]()|Semi-automatic|Medium|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Semi-automatic|Medium|
-    |NodeJS|[Import trace data by using OpenTelemetry]()|Semi-automatic|Medium|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Semi-automatic|Medium|
+    |Java|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Java applications to Log Service by using OpenTelemetry SDK for Java.md)|Automatic|Low|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Automatic|Medium|
+    |[Import trace data from SkyWalking](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from SkyWalking.md)|Automatic|Medium|
+    |Golang|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Use OpenTelemetry to import Golang trace data.md)|Semi-automatic|Low|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Low|
+    |Python|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Python applications to Log Service by using OpenTelemetry SDK for Python.md)|Semi-automatic|Medium|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Medium|
+    |NodeJS|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Node.js applications to Log Service by using OpenTelemetry SDK for JavaScript.md)|Semi-automatic|Medium|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Medium|
     |PHP|[Import trace data by using Zipkin]()|Manual|High|
-    |C++|[Import trace data by using Jaeger]()|Manual|High|
-    |C\#|[Import trace data by using OpenTelemetry]()|Semi-automatic|Medium|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Semi-automatic|Medium|
-    |[Import trace data from SkyWalking]()|Automatic|Medium|
-    |Rust|[Import trace data by using OpenTelemetry]()|Manual|High|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Manual|High|
-    |Ruby|[Import trace data by using OpenTelemetry]()|Manual|High|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Manual|High|
+    |C++|[Import trace data by using Jaeger](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from C++ applications to Log Service by using Jaeger SDK for C++.md)|Manual|High|
+    |C\#|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from C# applications to Log Service by using OpenTelemetry SDK for .NET.md)|Semi-automatic|Medium|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Medium|
+    |[Import trace data from SkyWalking](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from SkyWalking.md)|Automatic|Medium|
+    |Rust|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Rust applications to Log Service by using OpenTelemetry SDK for Rust.md)|Manual|High|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Manual|High|
+    |Ruby|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Ruby applications to Log Service by using OpenTelemetry SDK for Ruby.md)|Manual|High|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Manual|High|
 
 -   Import methods for trace data from different platforms
 
     |Tracing platform|Import method|Import complexity|
     |----------------|-------------|-----------------|
-    |OpenTelemetry|[Import trace data from OpenTelemetry]()|Low|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Medium|
-    |Jaeger|[Import trace data from Jaeger]()|Low|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Medium|
-    |Zipkin|[Import trace data from Zipkin]()|Low|
-    |[Forward trace data by using the OpenTelemetry Collector]()|Medium|
-    |SkyWalking|[Forward trace data by using Logtail]()|Medium|
-    |OpenCensus|[Forward trace data by using the OpenTelemetry Collector]()|Medium|
+    |OpenTelemetry|[Import trace data from OpenTelemetry](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Low|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Medium|
+    |Jaeger|[Import trace data from Jaeger](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from Jaeger to Log Service.md)|Low|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from Jaeger to Log Service.md)|Medium|
+    |Zipkin|[Import trace data from Zipkin](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from Zipkin.md)|Low|
+    |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from Zipkin.md)|Medium|
+    |SkyWalking|[Forward trace data by using Logtail](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from SkyWalking.md)|Medium|
+    |OpenCensus|[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenCensus to Log Service.md)|Medium|
     |AWS X-Ray|[Forward trace data by using the OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/awsxrayreceiver)|High|
     |Splunk SignalFX|[Forward trace data by using the OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/receiver/signalfxreceiver)|High|
 
