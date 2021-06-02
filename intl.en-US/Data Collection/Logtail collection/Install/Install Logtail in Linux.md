@@ -24,7 +24,7 @@ Logtail supports the following x86-64 \(64-bit\) Linux servers:
 
 -   If you have installed Logtail, the installer uninstalls the existing version of Logtail, deletes the /usr/local/ilogtail directory, and then reinstalls Logtail. By default, Logtail runs after it is installed and launches when the system reboots.
 -   If the installation fails, [submit a ticket](https://workorder-intl.console.aliyun.com/console.htm?spm=a2796.7919406.0.dcontactus3.676a2d23RjosdV#/ticket/add/?productId=1210).
--   After Logtail is installed, you must update the Logtail configuration if the network type of the ECS instance is switched from the classic network to Virtual Private Cloud \(VPC\). For more information, see [Do I need to update Logtail settings after the network type is changed?]().
+-   After Logtail is installed, you must update the Logtail configuration if the network type of the ECS instance is switched from the classic network to Virtual Private Cloud \(VPC\). For more information, see [Do I need to update Logtail settings after the network type is changed?](/intl.en-US/Data Collection/FAQ/The Logtail configuration needs to be updated after the network type of the ECS instance is switched.md).
 
 ## Installation methods
 
@@ -57,7 +57,7 @@ Before you run the installation command, replace the $\{your\_region\_name\} par
 
 -   If you cannot identify the region where the ECS instance resides, you can use the auto parameter in the Logtail installation script to install Logtail.
 
-    After you specify the auto parameter in the installation command, the Logtail installation script obtains and uses the metadata of the ECS instance to identify the region. For more information about the metadata of the ECS instance, see [Metadata](/intl.en-US/Instance/Manage instances/Metadata/Metadata.md).
+    After you specify the auto parameter in the installation command, the Logtail installation script obtains and uses the metadata of the ECS instance to identify the region. For more information about the metadata of the ECS instance, see [Overview of ECS instance metadata](/intl.en-US/Instance/Manage instances/Manage instance metadata/Overview of ECS instance metadata.md).
 
     1.  Download the Logtail installation script over the Internet.
 
@@ -352,7 +352,7 @@ wget http://logtail-release-rus-west-1.oss-rus-west-1.aliyuncs.com/linux64/logta
 Open the /usr/local/ilogtail/app\_info.json file in the installation directory. The `logtail_version` field shows the version of Logtail.
 
 ```
-$cat /usr/local/ilogtail/app_info.json
+cat /usr/local/ilogtail/app_info.json
 {
    "UUID" : "0DF18E97-0F2D-486F-B77F-*********",
    "hostname" : "david*******",
