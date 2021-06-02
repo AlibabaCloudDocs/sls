@@ -25,7 +25,7 @@
 -   本文中的安装命令适用于Logtail 0.0版本（Logtail 0.16.x）。当您需要安装、升级Logtail 1.0版本时，需要在安装命令中添加版本号，例如`sudo ./logtail.sh upgrade -v v1`、`./logtail.sh install cn-hangzhou -v v1`。
 -   Logtail采用覆盖安装模式，如果您已安装过Logtail，那么重新安装Logtail时会先执行卸载、删除/usr/local/ilogtail目录操作。安装后默认启动Logtail并注册开机启动。
 -   如果安装失败，请提[工单](https://workorder-intl.console.aliyun.com/console.htm?spm=a2796.7919406.0.dcontactus3.676a2d23RjosdV#/ticket/add/?productId=1210)。
--   安装Logtail后，如果ECS的网络由经典网络切换至VPC，则需要更新logtail配置。更多信息，请参见[经典网络切换为VPC后，是否需要更新Logtail配置]()。
+-   安装Logtail后，如果ECS的网络由经典网络切换至VPC，则需要更新logtail配置。更多信息，请参见[经典网络切换为VPC后，是否需要更新Logtail配置](/intl.zh-CN/数据采集/FAQ/ECS实例切换网络类型后需要更新Logtail配置.md)。
 
 ## 安装方式
 
@@ -352,18 +352,26 @@ wget http://logtail-release-rus-west-1.oss-rus-west-1.aliyuncs.com/linux64/logta
 
 Logtail会将版本信息记录在/usr/local/ilogtail/app\_info.json文件中的`logtail_version`字段。
 
-```
-$cat /usr/local/ilogtail/app_info.json
-{
-   "UUID" : "0DF18E97-0F2D-486F-B77F-*********",
-   "hostname" : "david*******",
-   "instance_id" : "F4FAFADA-F1D7-11E7-846C-00163E30349E_*********_1515129548",
-   "ip" : "**********",
-   "logtail_version" : "0.16.0",
-   "os" : "Linux; 2.6.32-220.23.2.ali1113.el5.x86_64; #1 SMP Thu Jul 4 20:09:15 CST 2013; x86_64",
-   "update_time" : "2018-01-05 13:19:08"
-}
-```
+-   命令
+
+    ```
+    cat /usr/local/ilogtail/app_info.json
+    ```
+
+-   返回结果
+
+    ```
+    {
+       "UUID" : "0DF18E97-0F2D-486F-B77F-*********",
+       "hostname" : "david*******",
+       "instance_id" : "F4FAFADA-F1D7-11E7-846C-00163E30349E_*********_1515129548",
+       "ip" : "**********",
+       "logtail_version" : "0.16.0",
+       "os" : "Linux; 2.6.32-220.23.2.ali1113.el5.x86_64; #1 SMP Thu Jul 4 20:09:15 CST 2013; x86_64",
+       "update_time" : "2018-01-05 13:19:08"
+    }
+    ```
+
 
 ## 升级Logtail
 
