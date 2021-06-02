@@ -39,7 +39,7 @@ Log Service supports multiple import methods that have different automation leve
     |Java|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Java applications to Log Service by using OpenTelemetry SDK for Java.md)|Automatic|Low|
     |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Automatic|Medium|
     |[Import trace data from SkyWalking](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from SkyWalking.md)|Automatic|Medium|
-    |Golang|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Use OpenTelemetry to import Golang trace data.md)|Semi-automatic|Low|
+    |Golang|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Golang applications to Log Service by using OpenTelemetry SDK for Golang.md)|Semi-automatic|Low|
     |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Low|
     |Python|[Import trace data by using OpenTelemetry](/intl.en-US/Trace/Import trace data/New import methods/Import trace data from Python applications to Log Service by using OpenTelemetry SDK for Python.md)|Semi-automatic|Medium|
     |[Forward trace data by using the OpenTelemetry Collector](/intl.en-US/Trace/Import trace data/Integrate existing import methods/Import trace data from OpenTelemetry to Log Service.md)|Semi-automatic|Medium|
