@@ -14,22 +14,20 @@
 
 1.  登录[容器服务管理控制台](https://cs.console.aliyun.com)。
 
-2.  在左侧导航栏中，单击**集群** \> **集群**，进入集群列表页面。
+2.  在左侧导航栏中，单击**集群**。
 
-3.  单击目标集群右侧的**管理**，进入基本信息页面。
+3.  在集群列表中，单击目标集群。
 
-4.  在左侧导航栏中，单击**组件管理**，并在**可选组件**区域找到**logtail-ds**。
+4.  在左侧导航栏中，选择**运维管理** \> **组件管理**。
 
-5.  在**logtail-ds**组件右侧，单击**安装**。
-
-    ![logtail安装](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8885659951/p83541.png)
+5.  在**日志与监控**页签中，找到**logtail-ds**，然后单击**安装**。
 
 
 ## 在自建Kubernetes集群上安装
 
 1.  登录[日志服务控制台](https://sls.console.aliyun.com)。
 
-2.  创建一个以`k8s-log-custom-`开头的Project，详情请参见[创建Project](/intl.zh-CN/数据采集/准备工作/管理Project.md)。
+2.  创建一个以`k8s-log-custom-`开头的Project。具体操作，请参见[创建Project](/intl.zh-CN/数据采集/准备工作/管理Project.md)。
 
 3.  登录您的Kubernetes集群。
 
@@ -46,25 +44,25 @@
     |参数|说明|
     |:-|:-|
     |\{your-project-suffix\}|您的Project `k8s-log-custom-`的后面部分。例如Project名称为`k8s-log-custom-xxxx`，则此处填写`xxxx`。|
-    |\{regionId\}|您的Project所在的区域ID，详情请参见[服务入口](/intl.zh-CN/开发指南/API 参考/服务入口.md)。例如`华东 1 (杭州)`的Region Id为`cn-hangzhou`。|
-    |\{aliuid\}|您的阿里云主账号ID，详情请参见[获取阿里云账号ID](/intl.zh-CN/数据采集/Logtail采集/机器组/配置用户标识.md)。|
-    |\{access-key-id\}|您的阿里云账号的AccessKey ID。推荐使用子账号的AccessKey，并授予子账号AliyunLogFullAccess权限，详情请参见[RAM简介](/intl.zh-CN/开发指南/访问控制RAM/简介.md)。|
-    |\{access-key-secret\}|您的阿里云账号的AccessKey Secret。推荐使用子账号的AccessKey并授予子账号AliyunLogFullAccess权限，具体设置请参见[RAM简介](/intl.zh-CN/开发指南/访问控制RAM/简介.md)。|
+    |\{region-id\}|您的Project所在的地域ID。更多信息，请参见[服务入口](/intl.zh-CN/开发指南/API参考/服务入口.md)。例如华东1（杭州）的地域ID为`cn-hangzhou`。|
+    |\{aliuid\}|您的阿里云账号ID。更多信息，请参见[获取阿里云账号ID](/intl.zh-CN/数据采集/Logtail采集/机器组/配置用户标识.md)。|
+    |\{access-key-id\}|您的阿里云账号的AccessKey ID。推荐使用RAM用户的AccessKey，并授予RAM用户AliyunLogFullAccess权限。更多信息，请参见[授权用户角色](/intl.zh-CN/开发指南/访问控制RAM/授权用户角色.md)。|
+    |\{access-key-secret\}|您的阿里云账号的AccessKey Secret。推荐使用RAM用户的AccessKey并授予RAM用户AliyunLogFullAccess权限。更多信息，请参见[授权用户角色](/intl.zh-CN/开发指南/访问控制RAM/授权用户角色.md)。|
 
     安装完成后，在该Project下自动创建名为`k8s-group-${your_k8s_cluster_id}`的机器组和名为`config-operation-log`的Logstore。
 
     **说明：**
 
     -   请勿删除名为`config-operation-log`的Logstore。
-    -   在自建Kubernetes集群上安装时，默认为Logtail授予`privileged`权限，主要为避免删除其他Pod时可能出现的错误`container text file busy`。相关说明请参见[Bug 1468249](https://bugzilla.redhat.com/show_bug.cgi?spm=a2c4g.11186623.2.10.QhaVGc&id=1468249)、[Bug 1441737](https://bugzilla.redhat.com/show_bug.cgi?spm=a2c4g.11186623.2.11.QhaVGc&id=1441737)和 [issue 34538](https://github.com/moby/moby/issues/34538?spm=a2c4g.11186623.2.12.QhaVGc)。
+    -   在自建Kubernetes集群上安装时，默认为Logtail授予`privileged`权限，主要为避免删除其他Pod时可能出现的错误`container text file busy`。更多信息，请参见[Bug 1468249](https://bugzilla.redhat.com/show_bug.cgi?spm=a2c4g.11186623.2.10.QhaVGc&id=1468249)、[Bug 1441737](https://bugzilla.redhat.com/show_bug.cgi?spm=a2c4g.11186623.2.11.QhaVGc&id=1441737)和 [issue 34538](https://github.com/moby/moby/issues/34538?spm=a2c4g.11186623.2.12.QhaVGc)。
 
 ## 常见问题
 
 -   多集群如何使用同一个日志服务Project？
 
-    如果您希望将多个集群的日志采集到同一个日志服务Project中，您可以在安装其他集群日志服务组件时，将上述安装参数中的\{your-project-suffix\}与您第一次安装集群日志服务组件时配置相同。
+    如果您希望将多个集群的日志采集到同一个日志服务Project中，您可以在安装其他集群日志服务组件时，将上述安装参数中的\{your-project-suffix\}与您第一次安装集群日志服务组件时的参数设置为一样。
 
-    **说明：** 此方式不支持跨region的Kubernetes多集群共享。
+    **说明：** 此方式不支持跨地域的Kubernetes多集群共享。
 
 -   如何查看Logtail日志？
 
@@ -104,26 +102,40 @@
 
     **说明：** Logtail默认的namespace为`kube-system`。
 
--   如何查看Logtail的版本号、IP、启动时间等信息？
+-   如何查看Logtail的版本号、IP、启动时间、状态等信息？
+    -   查看Logtail状态等信息。
 
-    示例如下：
+        ```
+        kubectl get po -n kube-system | grep logtail
+        ```
 
-    ```
-    [root@iZbp1dsu6v77zfb40qfbiaZ ~]# kubectl get po -n kube-system | grep logtail
-    NAME            READY     STATUS    RESTARTS   AGE
-    logtail-ds-gb92k   1/1       Running   0          2h
-    logtail-ds-wm7lw   1/1       Running   0          4d
-    [root@iZbp1dsu6v77zfb40qfbiaZ ~]# kubectl exec logtail-ds-gb92k -n kube-system cat /usr/local/ilogtail/app_info.json
-    {
-       "UUID" : "",
-       "hostname" : "logtail-ds-gb92k",
-       "instance_id" : "0EBB2B0E-0A3B-11E8-B0CE-0A58AC140402_172.20.4.2_1517810940",
-       "ip" : "172.20.4.2",
-       "logtail_version" : "0.16.2",
-       "os" : "Linux; 3.10.0-693.2.2.el7.x86_64; #1 SMP Tue Sep 12 22:26:13 UTC 2017; x86_64",
-       "update_time" : "2018-02-05 06:09:01"
-    }
-    ```
+        返回结果如下：
+
+        ```
+        NAME            READY     STATUS    RESTARTS   AGE
+        logtail-ds-gb92k   1/1       Running   0          2h
+        logtail-ds-wm7lw   1/1       Running   0          4d
+        ```
+
+    -   查看Logtail的版本号、IP地址等信息。
+
+        ```
+        kubectl exec logtail-ds-gb92k -n kube-system cat /usr/local/ilogtail/app_info.json
+        ```
+
+        返回结果如下：
+
+        ```
+        {
+           "UUID" : "",
+           "hostname" : "logtail-ds-gb92k",
+           "instance_id" : "0EBB2B0E-0A3B-11E8-B0CE-0A58AC140402_172.20.4.2_1517810940",
+           "ip" : "192.0.2.0",
+           "logtail_version" : "0.16.2",
+           "os" : "Linux; 3.10.0-693.2.2.el7.x86_64; #1 SMP Tue Sep 12 22:26:13 UTC 2017; x86_64",
+           "update_time" : "2021-02-05 06:09:01"
+        }
+        ```
 
 -   如何查看Logtail的运行日志？
 
