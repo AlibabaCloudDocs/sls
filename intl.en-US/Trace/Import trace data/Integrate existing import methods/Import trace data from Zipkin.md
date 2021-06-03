@@ -2,7 +2,7 @@
 
 You can directly send the trace data from Zipkin to Log Service. You can also forward trace data from Zipkin to Log Service by using OpenTelemetry Collector.
 
-A trace instance is created. For more information, see [Create a trace instance]().
+A trace instance is created. For more information, see [Create a trace instance](/intl.en-US/Trace/Create a trace instance.md).
 
 ## Directly send trace data
 
@@ -70,8 +70,8 @@ You can send trace data from Zipkin to OpenTelemetry Collector by using the Zipk
             service:
               pipelines:
                 traces:
-                  receivers: [zipkin]      # Set the receivers parameter to[zipkin](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/zipkinreceiver). 
-                  exporters: [alibabacloud_logservice/sls-trace] # Set the exporters parameter to[alibabacloud\_logservice/sls-trace](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/master/exporter/alibabacloudlogserviceexporter). 
+                  receivers: [zipkin]      # Set the receivers parameter to [zipkin](https://github.com/open-telemetry/opentelemetry-collector/tree/main/receiver/zipkinreceiver). 
+                  exporters: [alibabacloud_logservice/sls-trace] # Set the exporters parameter to [alibabacloud\_logservice/sls-trace](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/master/exporter/alibabacloudlogserviceexporter). 
                   # for debug
                   #exporters: [logging/detail,alibabacloud_logservice/sls-trace]
             ```
@@ -99,6 +99,6 @@ You can send trace data from Zipkin to OpenTelemetry Collector by using the Zipk
     Change the output address of Zipkin to the address that is monitored by OpenTelemetry Collector. For example, if the address of OpenTelemetry Collector is $\{collector-host\}, set the output address of Zipkin to $\{collector-host\}:9411.
 
 
--   [View the details of a trace instance]()
--   [Query and analyze trace data]()
+-   [View the details of a trace instance](/intl.en-US/Trace/View the details of a trace instance.md)
+-   [Query and analyze trace data](/intl.en-US/Trace/Query and analyze trace data.md)
 
