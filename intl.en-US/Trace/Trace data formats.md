@@ -7,7 +7,7 @@ The trace data formats supported by Log Service are compatible with the data for
 |Field|Type|Required|Description|Example|
 |-----|----|--------|-----------|-------|
 |host|String|No|The hostname of the host where the resources reside. The host field is extracted from the host.name field in the resource field.|test-host|
-|service|String|Yes|The service name of the resource. The service field is extracted from the service.name field in theresource field.|test-service|
+|service|String|Yes|The service name of the resource. The service field is extracted from the service.name field in the resource field.|test-service|
 |resource|JSON Object|No|Resource fields other than host and service, such as process.pid, process.runtime.name, and pod.name. For more information, see [Resource Semantic Conventions](https://github.com/open-telemetry/opentelemetry-specification/tree/main/specification/resource/semantic_conventions).|\{"k8s.pod.name":"xxxx", "k8s.pod.namespace":"kube-system"\}|
 |otlp.name|String|No|The name of the Trace SDK.|go-sdk|
 |otlp.version|String|No|The version of the Trace SDK.|v1.0.0|
