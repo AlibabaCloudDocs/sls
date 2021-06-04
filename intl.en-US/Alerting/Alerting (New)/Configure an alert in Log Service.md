@@ -12,7 +12,7 @@ Users and user groups are used as the recipients for alert notifications. For ex
 
 2.  In the Projects section, click the name of the destination project.
 
-3.  In the left-side navigation pane, click the ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0356352261/p110115.png) icon.
+3.  In the left-side navigation pane, click the ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8943972261/p110115.png) icon.
 
 4.  Click **Open Alert Center**.
 
@@ -180,7 +180,7 @@ For more information, see [Syntax of trigger conditions in alert rules](/intl.en
 
 After you create an alert monitoring rule, Log Service monitors query results based on the rule. If the specified trigger condition is met, an alert is triggered and the associated action policy is executed.
 
-1.  In the left-side navigation pane, click the ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0356352261/p110115.png) icon.
+1.  In the left-side navigation pane, click the ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8943972261/p110115.png) icon.
 
 2.  Click **Open Alert Center**.
 
