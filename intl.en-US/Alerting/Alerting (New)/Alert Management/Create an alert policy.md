@@ -10,7 +10,7 @@ After the alert monitoring system generates an alert, Log Service merges, suppre
 
     1.  In the Projects section, click the name of a destination project.
 
-    2.  In the left-side navigation pane, click ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0356352261/p110115.png).
+    2.  In the left-side navigation pane, click ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8943972261/p110115.png).
 
     3.  Click **Open Alert Center** and choose **Alert Management** \> **Alert Policy**.
 
