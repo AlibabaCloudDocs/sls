@@ -22,9 +22,9 @@ Specify the following parameters:
 
     If the value of a **value** field in the query result is greater than 95, an alert is triggered.
 
--   **Add Annotation**: Specify the title and description of an annotation. You can quote field variables such as $\{host\} in the annotation. For more information, see [Labels and annotations]().
+-   **Add Annotation**: Specify the title and description of an annotation. You can quote field variables such as $\{host\} in the annotation. For more information, see [Labels and annotations](/intl.en-US/Alerting/Alerting (New)/Alert monitoring/Orchestration of monitoring rules/Labels and annotations.md).
 
-![Monitor time series data by group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8418812261/p263165.png)
+![Monitor time series data by group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/9295972261/p263165.png)
 
 ## Example 2: Monitor logs by group
 
@@ -47,7 +47,7 @@ Specify the following parameters:
 -   **Severity**: Select **data matches the expression** and enter **pv \> 3000**. Set **Severity** to High. Set **Default Severity to** Medium.
     -   If the value of a **pv** field in the query result is greater than 3000, an alert whose severity is High is triggered.
     -   If the value of a **pv** field in the query result is within the \(1000,3000\] value range, an alert whose severity is Medium is triggered.
--   **Add Annotation**: Specify the title and description of an annotation. You can quote field variables such as $\{host\} in the annotation. For more information, see [Labels and annotations]().
+-   **Add Annotation**: Specify the title and description of an annotation. You can quote field variables such as $\{host\} in the annotation. For more information, see [Labels and annotations](/intl.en-US/Alerting/Alerting (New)/Alert monitoring/Orchestration of monitoring rules/Labels and annotations.md).
 
 ![Monitor logs by group](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8418812261/p262885.png)
 
