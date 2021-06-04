@@ -40,7 +40,7 @@ If an alert monitoring rule is in the **Enabled** state, you can suspend or resu
 -   During the disabled duration that you have specified, Log Service checks data at the specified frequency based on the alert monitoring rule. However, Log Service does not send alert notifications even if the specified trigger condition is met.
 -   During the disabled duration that you have specified, the resumption time is displayed in the **Monitoring Status** field. If you want to resume the alert notification feature before the resumption time, click the **Modify** button next to the **Monitoring Status** parameter. In the message that appears, click OK.
 
-![guanbi](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5868812261/p263130.png)
+![guanbi](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0044972261/p263130.png)
 
 ## Delete an alert monitoring rule
 
