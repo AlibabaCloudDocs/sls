@@ -35,7 +35,7 @@
                 "log:ModifyJobInstance",
                 "log:ListJobInstance"
             ],
-            "Resource": "acs:log:*:*:project/Project名称/job/SQL作业名称/jobinstance/*"
+            "Resource": "acs:log:*:*:project/Project名称/job/*/jobinstance/*"
         },
         {
             "Effect": "Allow",
@@ -46,12 +46,37 @@
         },
         {
             "Effect": "Allow",
-            "Action": "log:*",
-            "Resource": "acs:log:*:*:project/Project名称/jobs"
+            "Action": [
+                "log:CreateJob"
+            ],
+            "Resource": "acs:log:*:*:project/Project名称/job/*"
         },
         {
             "Effect": "Allow",
-            "Action": ["ram:PassRole","ram:GetRole","ram:ListRoles"],
+            "Action": [
+                "log:ListLogStores",
+                "log:ListSavedSearch",
+                "log:ListDashboard"
+            ],
+            "Resource": "acs:log:*:*:project/Project名称/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "log:GetLogStore",
+                "log:GetIndex",
+                "log:GetLogStoreHistogram",
+                "log:GetLogStoreLogs"
+            ],
+            "Resource": "acs:log:*:*:project/Project名称/logstore/Logstore名称"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ram:PassRole",
+                "ram:GetRole",
+                "ram:ListRoles"
+            ],
             "Resource": "*"
         },
         {
@@ -59,8 +84,7 @@
             "Action": [
                 "log:CreateLogStore",
                 "log:CreateIndex",
-
-"log:UpdateIndex"
+                "log:UpdateIndex"
             ],
             "Resource": [
                 "acs:log:*:*:project/sls-alert-*/logstore/internal-alert-center-log"
