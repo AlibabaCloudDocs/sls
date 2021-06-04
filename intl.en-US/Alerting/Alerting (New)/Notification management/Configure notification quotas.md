@@ -10,7 +10,7 @@ Log Service allows you to specify a quota for notifications that are sent by usi
 
     1.  In the Projects section, click the name of the required project.
 
-    2.  In the left-side navigation pane, click the ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0356352261/p110115.png) icon.
+    2.  In the left-side navigation pane, click the ![Alerts](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/8943972261/p110115.png) icon.
 
     3.  Click **Open Alert Center** and choose **Alert Management** \> **Notification Method Quota**.
 
