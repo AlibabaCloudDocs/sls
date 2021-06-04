@@ -6,15 +6,6 @@ The alerting module is upgraded to support alert monitoring, alert management, a
 
 If alerts are triggered based on an alert monitoring rule, these alerts are denoised based on a specified alert policy. Then, the alerts are dispatched by using the notification methods that are specified in the action policy. The new alerting module can also be used to manage incident statuses and escalate alerts.
 
--   Old workflow
-
-    ![Old architecture](../images/p254337.png)
-
--   New workflow
-
-    ![New architecture](../images/p244844.png)
-
-
 ## Optimized features
 
 The upgraded features include optimized and added features.
