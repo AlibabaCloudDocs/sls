@@ -28,13 +28,13 @@ Log Service allows you to use an evaluate expression when you specify the trigge
 
 -   Example 1: If the success rate of a task is lower than 90% and the delay exceeds 60 seconds within 1 day \(relative\), an alert is triggered.
 
-    Set the **Trigger Condition** parameter to **data matches the expression**,**success < 90 && delay \> 60**.
+    Set the **Trigger Condition** parameter to **data matches the expression**, **success < 90 && delay \> 60**.
 
     ![Trigger Condition](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7624542261/p265425.png)
 
 -   Example 2: If the number of HTTP status code 500 error responses within 15 minutes exceeds 10, an alert is triggered.
 
-    Set the **Trigger Condition** parameter to **data matches the expression**,**status == 500 && total \> 10**.
+    Set the **Trigger Condition** parameter to **data matches the expression**, **status == 500 && total \> 10**.
 
     ![Example](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/6308812261/p265434.png)
 
