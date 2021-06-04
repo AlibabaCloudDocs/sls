@@ -42,7 +42,7 @@ The alerting feature of Log Service consists of the following components:
 
 ## Billing method
 
-The new alerting feature is in public preview, you are charged only when you receive alert notifications by using SMS messages and voice calls. For more information, see[Log Service pricing](https://www.alibabacloud.com/product/log-service/pricing?spm=a3c0i.139163.9288850920.1.7690637avzyiqo).
+The new alerting feature is in public preview, you are charged only when you receive alert notifications by using SMS messages and voice calls. For more information, see [Log Service pricing](https://www.alibabacloud.com/product/log-service/pricing?spm=a3c0i.139163.9288850920.1.7690637avzyiqo).
 
 |Notification method|Description|
 |-------------------|-----------|
