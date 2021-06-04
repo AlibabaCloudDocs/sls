@@ -400,7 +400,7 @@ In the alert monitoring system of Log Service, a query result is considered as a
 
         -   Configurations
 
-            ![CROSS JOIN](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/0268902261/p265331.png)
+            ![CROSS JOIN](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/7394972261/p265331.png)
 
         -   Results
             -   Result of Query Statistics 0
