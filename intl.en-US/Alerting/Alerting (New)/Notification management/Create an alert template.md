@@ -31,22 +31,22 @@ Log Service sends alert notifications based on the content that is specified in 
         |SMS|The following parameters are available:        -   **Language**: the language of the alert notification.
         -   **Content**: the content of the alert notification. The content must be 1 to 100 characters in length.
 
-You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](). |
+You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Template variables.md). |
         |Voice|The following parameters are available:        -   **Language**: the language of the alert notification.
         -   **Content**: the content of the alert notification. The content must be 1 to 100 characters in length.
 
-You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](). |
+You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Template variables.md). |
         |Email|The following parameters are available:        -   **Language**: the language of the alert notification.
         -   **Content**: the content of the alert notification. The content must be 1 to 500 characters in length.
 
-You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](). |
+You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Template variables.md). |
         |DingTalk \(Webhook\)|The following parameters are available:        -   **Title**: the title of the alert notification. The title must be 1 to 100 characters in length.
 
 You can use template variables. For more information, see [t2002327.dita\#task\_2002327/section\_7uv\_wvc\_7wh](t2002327.dita#task_2002327/section_7uv_wvc_7wh).
 
         -   **Content**: the content of the alert notification. The content must be 1 to 500 characters in length.
 
-You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](). |
+You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Template variables.md). |
         |Webhook-Custom|The following parameters are available:        -   **Sending Mode**: Valid options include Single and Batch.
 
             -   If you select Batch and specify the maximum number of items sent in a group, only the first N alerts in an alert set are sent.
@@ -57,12 +57,12 @@ For example, if you customize the content as `{"project": "${project}", "alert_n
             -   Batch: sends one alert notification. Content: `[{"project": "project-1", "alert_name": "alert-1"}, { "project": "project-2", "alert_name": "alert-2"}]`.
         -   **Content**: the content of the alert notification. The content must be 1 to 500 characters in length.
 
-You can use template variables. For more information, see [t2061590.dita\#reference\_2061590]().
+You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Template variables.md).
 
-**Note:** The default request header is **Content-Type: application/json;charset=utf-8** when Log Service sends alert notifications. If a webhook receiver requires request headers in other formats, you can customize the request headers when you configure alert notifications. For more information, see [Webhook](). |
+**Note:** The default request header is **Content-Type: application/json;charset=utf-8** when Log Service sends alert notifications. If a webhook receiver requires request headers in other formats, you can customize the request headers when you configure alert notifications. For more information, see [Webhook](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Notification methods.md). |
         |Notifications|The following parameters are available:        -   **Language**: the language of the alert notification.
         -   **Content**: the content of the alert notification. The content must be 1 to 500 characters in length.
 
-You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](). |
+You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Template variables.md). |
 
 
