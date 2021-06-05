@@ -42,7 +42,7 @@ You can use template variables. For more information, see [t2061590.dita\#refere
 You can use template variables. For more information, see [t2061590.dita\#reference\_2061590](/intl.en-US/Alerting/Alerting (New)/Notification management/Manage notification methods/Template variables.md). |
         |DingTalk \(Webhook\)|The following parameters are available:        -   **Title**: the title of the alert notification. The title must be 1 to 100 characters in length.
 
-You can use template variables. For more information, see [t2002327.dita\#task\_2002327/section\_7uv\_wvc\_7wh](t2002327.dita#task_2002327/section_7uv_wvc_7wh).
+You can use template variables.
 
         -   **Content**: the content of the alert notification. The content must be 1 to 500 characters in length.
 
