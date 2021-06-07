@@ -56,7 +56,7 @@ If you need to collect more than 1,000 log files, you can increase the threshold
 
 |"mem\_usage\_limit" : 100|
     |max\_bytes\_per\_sec|int|The maximum speed at which Logtail sends raw data per second.     -   Valid values: 1024 bytes/s to 52428800 bytes/s
-    -   Default value: 20971520, Unit: bytes.
+    -   Default value: 20971520. Unit: bytes/s.
 For example, if you set the parameter to 2097152, the speed is limited to 2 MB/s.
 
 **Note:** If you set the parameter to a value greater than 20971520 bytes/s \(20 MB/s\), the speed is not limited.
