@@ -139,7 +139,7 @@ This parameter is available only for Logtail 0.16.26 or later.
 
 ## Appendix: environment variables
 
-The following table describes the relationships between environment variables and Logtail startup parameters. For information about parameter descriptions, see [Table 1](#table_r2i_oh4_os6)
+The following table describes the relationships between environment variables and Logtail startup parameters. For information about parameter descriptions, see [Table 1](#table_r2i_oh4_os6).
 
 |Parameter|Environment variable|Priority|Supported versions|
 |---------|--------------------|--------|------------------|
