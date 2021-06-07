@@ -78,7 +78,7 @@
                 "log:CreateDashboard",
                 "log:UpdateDashboard"
             ],
-            "Resource":"acs:log:*:*:project/Project名称/dashboard/internal-etl-insight"
+            "Resource":"acs:log:*:*:project/Project名称/dashboard/internal-etl-insight*"
         },
         {
             "Effect":"Allow",
