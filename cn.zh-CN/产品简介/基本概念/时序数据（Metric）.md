@@ -1,0 +1,29 @@
+# 时序数据（Metric）
+
+日志服务的时序数据类型遵循Prometheus的[定义规范](https://prometheus.io/docs/concepts/data_model/)，在时序库中所有的数据都按照时序类型存储。时序数据由时序标识和数据点组成，相同时序标识的数据组成时间线。
+
+## 时序标识
+
+每条时间线都有一个唯一的时序标识，由Metric name和Labels组成。
+
+Metric name类型为字符串，一般用于标识指标类型，Metric name需遵循正则表达式：\[a-zA-Z\_:\]\[a-zA-Z0-9\_:\]\* 。例如http\_request\_total表示接收到的HTTP请求的总数。
+
+Labels由一组Key-Value对组成，用于标识指标的相关属性，Label的Key需遵循正则表达式：\[a-zA-Z\_\]\[a-zA-Z0-9\_\]\* ，Label的Value不能包含竖线（ \| ），其它不做限制。例如method为POST， URL为/api/v1/get。
+
+## 数据点
+
+数据点代表时间线在具体某个时间点的值，每个数据点由时间戳和值组成。其中时间戳精度为纳秒，值的类型为double。
+
+## 编码方式
+
+时序数据的写入协议和日志写入协议一致，使用Protobuf的[数据编码方式](/cn.zh-CN/开发指南/API参考/公共资源说明/数据编码方式.md)。时序标识和数据点都在content字段中，具体表示方式如下所示。
+
+|Key|说明|示例|
+|---|--|--|
+|\_\_name\_\_|Metric名称|nginx\_ingress\_controller\_response\_size|
+|\_\_labels\_\_|label信息，分隔符形式：\{key\}\#$\#\{value\}\|\{key\}\#$\#\{value\}\|\{key\}\#$\#\{value\}**说明：** Lable名称需按照字母顺序进行排序。
+
+|app\#$\#ingress-nginx\|controller\_class\#$\#nginx\|controller\_namespace\#$\#kube-system\|controller\_pod\#$\#nginx-ingress-controller-589877c6b7-hw9cj|
+|\_\_time\_nano\_\_|时间戳，单位为纳秒|1585727297293000000|
+|\_\_value\_\_|值|36.0|
+
