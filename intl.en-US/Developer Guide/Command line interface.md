@@ -7,7 +7,7 @@ The command line interface \(CLI\) of Log Service allows you to use common featu
 Log service CLI supports the following operating systems:
 
 -   Windows
--   Mac OS
+-   mac OS
 -   Linux
 
 The Installation steps, see [Install](https://github.com/aliyun/aliyun-log-cli/blob/master/README.md#installation).
