@@ -75,7 +75,7 @@ If the rate of write transactions per second \(TPS\) is high, you can set this p
 
 |"send\_request\_concurrency" : 4|
     |buffer\_file\_num|int|The maximum number of cached files.     -   Valid values: 1 to 100
-    -   Default value: 25.
+    -   Default value: 25
 If a network error occurs or the written data exceeds the specified threshold, Logtail caches parsed logs to local files in the installation directory. After the network is recovered, Logtail retries to send the cached logs.
 
 |buffer\_file\_num" : 25|
@@ -104,10 +104,10 @@ The maximum disk space that cached files can occupy is calculated by multiplying
     |max\_read\_buffer\_size|long|The maximum size of each log. Default value: 524288, Unit: bytes. If the size of a log exceeds 524288 bytes \(512 KB\), you can modify the parameter value.
 
 |"max\_read\_buffer\_size" : 524288|
-    |oas\_connect\_timeout|long|The connection timeout period after Logtail sends a request to obtain the Logtail configuration file or AccessKey pair. Default value: 5, Unit: seconds. If the network is instable, or the connection fails to be established, you can modify the value of this parameter.
+    |oas\_connect\_timeout|long|The connection timeout period after Logtail sends a request to obtain the Logtail configuration file or AccessKey pair. Default value: 5. Unit: seconds. If the network is instable, or the connection fails to be established, you can modify the value of this parameter.
 
 |"oas\_connect\_timeout" : 5|
-    |oas\_request\_timeout|long|The request timeout period after Logtail sends a request to obtain the Logtail configuration file or AccessKey pair. Default value: 10, Unit: seconds. If the network is instable, or the connection fails to be established, you can modify the value of this parameter.
+    |oas\_request\_timeout|long|The request timeout period after Logtail sends a request to obtain the Logtail configuration file or AccessKey pair. Default value: 10. Unit: seconds. If the network is instable, or the connection fails to be established, you can modify the value of this parameter.
 
 |"" : 10|
     |data\_server\_port|long|Set the value to 443. After you set the data\_server\_port parameter to 443, Logtail transfers data to Log Service over the HTTPS protocol. This parameter is available only for Logtail 1.0.10 or later.
