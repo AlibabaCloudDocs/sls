@@ -69,7 +69,7 @@ To use NGINX to configure a server that has access to the Internet in a corporat
     |Variable|Description|Example|
     |--------|-----------|-------|
     |$\{project\}|The name of the project in Log Service.|test-project|
-    |$\{region-endpoint\}|The endpoint that is used to access the project in Log Service. You can access the project by using the Internet, the classic network, or a virtual private cloud \(VPC\). For more information, see [Endpoints](https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb).|cn-hangzhou.log.aliyuncs.com|
+    |$\{region-endpoint\}|The endpoint that is used to access the project in Log Service. You can access the project by using the Internet, the classic network, or a virtual private cloud \(VPC\). For more information, see [Endpoints](/intl.en-US/Developer Guide/API Reference/Endpoints.md).|cn-hangzhou.log.aliyuncs.com|
     |$\{domain\}|The domain name of the gateway server. You can specify a custom domain name.|logtail.com|
 
 
