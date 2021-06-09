@@ -30,7 +30,7 @@ For example:
 
 ## LogHub data model
 
-This section uses the LogHub data model of Alibaba Cloud Log Service for demonstration. For more information, see [Overview](/intl.en-US/Product Introduction/Basic concepts/Overview.md).
+This section uses the LogHub data model of Alibaba Cloud Log Service for demonstration.
 
 -   A log consists of a time and a group of key-value pairs.
 -   A log group is a collection of logs that have the same metadata such as the IP address and source.
@@ -155,5 +155,5 @@ The preceding process can be abstracted into a typical log processing scenario. 
 
 You can use LogHub and the LogHub consumer library to process logs in real time in the preceding scenarios. Then, you can focus on the business logic without the need to worry about traffic scaling or failover.
 
-Based on the LogHub consumer library, you can also use Storm and Spark Streaming to consume log data in Log Service. For more information, visit [the homepage of Log Service](https://www.alibabacloud.com/product/log-service).
+Based on the LogHub consumer library, you can also use Storm and Spark Streaming to consume log data in Log Service.
 
