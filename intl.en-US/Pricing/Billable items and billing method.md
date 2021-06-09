@@ -1,6 +1,6 @@
 # Billable items and billing method
 
-You are charged for all billable items in Log Service. For example, when you store logs, you are charged for used storage space. When you collect logs, you are charged for write traffic. This topic describes the billable items and billing method of Log Service.
+You are charged for all billable items in Log Service. For example, you are charged for used storage space when you store logs, and you are charged for write traffic when you collect logs. This topic describes the billable items and billing method of Log Service.
 
 **Note:**
 
@@ -21,23 +21,25 @@ The following table describes the billable items of Log Service.
 
 **Note:**
 
--   You can use Log Service to collect log data and time series data. The pricing of stored data and indexes for time series data is different from the pricing of stored data and indexes for log data. However, the pricing of other billable items for time series data is the same as the pricing of other billable items for log data. The billable items include data transformation, data shipping, read and write traffic, and number of requests.
+-   You can use Log Service to collect log data and time series data. The pricing of stored data and indexes for time series data is different from the pricing of stored data and indexes for log data. However, the pricing of other billable items for time series data is the same as the pricing of other billable items for log data. The billable items include data transformation, data shipping, read and write traffic, and the number of requests.
 -   You can view the following statistics of the previous day in the [Log Service console](https://sls.console.aliyun.com): write traffic, read traffic, number of read and write operations, transformation traffic, shipping traffic, and used storage space.
 -   When you use Log Service to collect logs, log data is automatically compressed. The compression ratio is 10:1 to 5:1.
+
+![Billable items](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5266223261/p238972.png)
 
 |Billable item|Description|Billing formula|
 |-------------|-----------|---------------|
 |Storage space occupied by log data|The storage space is the total size of compressed log data and indexed log data. For example, the volume of raw log data that is uploaded to Log Service is 1 GB, and indexes are created for two fields. The compression ratio is 5:1, and the size of indexes that are created for the two fields is 0.5 GB. In this case, the storage space occupied by log data is 0.7 GB \(0.2 GB + 0.5 GB = 0.7 GB\).
 
 |Fee of the storage space occupied by log data = Used storage space per day × Price per GB of log data|
-|Storage space occupied by time series data|The storage space is the total size of raw time series data and indexed time series data. For example, the volume of raw time series data that is uploaded to Log Service is 1 GB, and indexes are automatically created. In this case, the storage space occupied by time series data is 2 GB \(1 GB + 1 GB = 2G GB\).
+|Storage space occupied by time series data|The storage space is the total size of raw time series data and indexed time series data. For example, the volume of raw time series data that is uploaded to Log Service is 1 GB, and indexes are automatically created. In this case, the storage space occupied by time series data is 2 GB \(1 GB + 1 GB = 2 GB\).
 
 |Fee of the storage space occupied by time series data = Used storage space per day × Price per GB of time series data|
-|Read and write traffic|Read and write traffic includes write traffic and read traffic.-   Write traffic: Write traffic is calculated based on the compressed data that is uploaded to Log Service.
+|Read and write traffic|Read and write traffic includes write traffic and read traffic.-   Write traffic: Write traffic is calculated based on the volume of transmitted raw data. The raw data is compressed and then uploaded to Log Service.
 
 For example, 10 GB of raw data is uploaded to Log Service and the compression ratio is 5:1. In this case, the write traffic is 2 GB.
 
--   Read traffic: Read traffic is calculated based on the compressed data that is transformed, shipped to AnalyticDB or TSDB, or consumed.
+-   Read traffic: Read traffic is calculated based on the volume of transmitted raw data. The raw data is compressed and then transformed, shipped to AnalyticDB for MySQL or Time Series Database \(TSDB\), or consumed.
 
 For example, 10 GB of raw data is uploaded to Log Service and then shipped to TSDB, and the compression ratio is 5:1. In this case, the write traffic is 2 GB and the read traffic is 2 GB.
 
@@ -60,21 +62,21 @@ For example, 10 GB of raw data is uploaded to Log Service and then shipped to TS
 For example, 1 GB of raw time series data is written to Log Service. In this case, the index traffic is 1 GB.
 
 |Fee of the index traffic of time series data = Index traffic per day × Price per GB of index traffic|
-|Read traffic over the Internet|-   If the data collected by Log Service is read and consumed by applications outside the Alibaba Cloud internal network, you are charged for the generated data traffic. This traffic is calculated based on the compressed data.
+|Read traffic over the Internet|-   If the data collected by Log Service is read and consumed by third-party applications, you are charged for the generated data traffic. This traffic is calculated based on the compressed data.
 -   If data is transformed across regions, you are charged for the generated data traffic. This traffic is calculated based on the transformed data that is compressed.
 
 |Fee of the read traffic over the Internet = Read traffic over the Internet per day × Price per GB of read traffic over the Internet|
-|Data transformation|You are charged for the transformed data that is not compressed. The **data transformation** billable item incurs fees based on the transformed data. When you use the data transformation feature, you are also charged for the following resources:
+|Data transformation|You are charged for the transformed raw data. The **data transformation** billable item incurs fees based on the transformed data. When you use the data transformation feature, you are also charged for the following resources:
 
 -   When you transform data, network resources are consumed and the API operation is called to read data. In this case, you are charged based on the generated read traffic and the number of read and write operations.
 -   If data is transmitted across regions for data transformation, read traffic over the Internet is generated.
 
 |Data transformation fee = Transformed data per day × Price per GB of transformed data|
-|Data shipping|You are charged for the shipped data that is not compressed. You can ship data to Object Storage Service \(OSS\), AnalyticDB, and TSDB. **Note:** When you ship data to AnalyticDB or TSDB, network resources are consumed and the API operation is called to read data. In this case, you are charged based on the generated read traffic and the number of read and write operations.
+|Data shipping|You are charged for the shipped raw data. You can ship data to Object Storage Service \(OSS\), AnalyticDB for MySQL, and TSDB. **Note:** When you ship data to AnalyticDB for MySQL or TSDB, network resources are consumed and the API operation is called to read data. In this case, you are charged based on the generated read traffic and the number of read and write operations.
 
 |Data shipping fee = Shipped data per day × Price per GB of shipped data|
 |Read and write operations|-   When you upload data to Log Service, you are charged based on the number of write operations. The number of write operations depends on the speed at which the data is generated. Log Service automatically minimizes the number of write operations.
--   When data is transformed, shipped to AnalyticDB or TSDB, or consumed, Log Service reads the data in batches. You are charged based on the number of read operations.
+-   When data is transformed, shipped to AnalyticDB for MySQL or TSDB, or consumed, Log Service reads the data in batches. You are charged based on the number of read operations.
 
 **Note:** The number of read and write operations is calculated regardless of whether these operations succeed.
 
