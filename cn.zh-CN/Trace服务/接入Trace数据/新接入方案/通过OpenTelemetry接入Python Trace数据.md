@@ -29,18 +29,13 @@
 
 您可以通过如下代码完成OpenTelemetry Provider的初始化。其中，代码中的变量需根据实际情况替换。关于变量的详细说明，请参见[表 1](#table_1lj_o0g_tnd)。
 
-**说明：** 您需要在创建Traces、注册Metrics之前，完成OpenTelemetry Provider的初始化。
+**说明：** 您需要在创建Traces之前，完成OpenTelemetry Provider的初始化。
 
 ```
 # For Opentelemetry
 import socket
-from opentelemetry import metrics
 from opentelemetry import trace
-from opentelemetry.exporter.otlp.metrics_exporter import OTLPMetricsExporter
 from opentelemetry.exporter.otlp.trace_exporter import OTLPSpanExporter
-from opentelemetry.sdk.metrics import MeterProvider
-from opentelemetry.sdk.metrics.export import ConsoleMetricsExporter
-from opentelemetry.sdk.metrics.export.controller import PushController
 from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
@@ -91,17 +86,6 @@ class OpenTelemetrySLSProvider(object):
         else:
             otlp_exporter = OTLPSpanExporter(endpoint=self.sls_otel_endpoint)
             trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(otlp_exporter))
-
-    def initMetric(self, interval=30):
-        metrics.set_meter_provider(MeterProvider(resource=self.resource))
-        if self.local_mode:
-            metric_exporter = ConsoleMetricsExporter()
-        else:
-            metric_exporter = OTLPMetricsExporter(endpoint=self.sls_otel_endpoint)
-
-        meter = metrics.get_meter(__name__)
-        PushController(meter, metric_exporter, interval)
-        return meter
         
 # debug mode
 #sls_ot_provider = OpenTelemetrySLSProvider(service="example", version="v0.1.0")
@@ -121,7 +105,7 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
 |$\{service\}|服务名。根据您的实际场景取值即可。|payment|
 |$\{version\}|服务版本号。建议按照va.b.c格式定义。|v0.1.2|
 |$\{endpoint\}|接入地址，格式为https://$\{project\}.$\{region-endpoint\}:Port，其中：-   $\{project\}：日志服务Project名称。
--   $\{region-endpoint\}：Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
+-   $\{region-endpoint\}：Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。
 -   Port：网络端口，固定为10010。
 
 **说明：**
@@ -132,7 +116,7 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
 |https://test-project.cn-hangzhou.log.aliyuncs.com:10010|
 |$\{project\}|日志服务Project名称。|test-project|
 |$\{instance\}|Trace服务实例名称。|test-traces|
-|$\{access-key-id\}|阿里云账号AccessKey ID。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey（包括AccessKey ID和AccessKey Secret）。授予RAM用户向指定Project写入数据权限的具体操作，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。如何获取AccessKey的具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)。
+|$\{access-key-id\}|阿里云账号AccessKey ID。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey（包括AccessKey ID和AccessKey Secret）。授予RAM用户向指定Project写入数据权限的具体操作，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。如何获取AccessKey的具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API参考/访问密钥.md)。
 
 |无|
 |$\{access-key-secret\}|阿里云账号AccessKey Secret。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey。
@@ -171,13 +155,8 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
         from opentelemetry.instrumentation.requests import RequestsInstrumentor
         
         # For Opentelemetry
-        from opentelemetry import metrics
         from opentelemetry import trace
-        from opentelemetry.exporter.otlp.metrics_exporter import OTLPMetricsExporter
         from opentelemetry.exporter.otlp.trace_exporter import OTLPSpanExporter
-        from opentelemetry.sdk.metrics import MeterProvider
-        from opentelemetry.sdk.metrics.export import ConsoleMetricsExporter
-        from opentelemetry.sdk.metrics.export.controller import PushController
         from opentelemetry.sdk.resources import Resource
         from opentelemetry.sdk.trace import TracerProvider
         from opentelemetry.sdk.trace.export import BatchSpanProcessor
@@ -229,18 +208,6 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
                     otlp_exporter = OTLPSpanExporter(endpoint=self.sls_otel_endpoint)
                     trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(otlp_exporter))
         
-            def initMetric(self, interval=30):
-                metrics.set_meter_provider(MeterProvider(resource=self.resource))
-                if self.local_mode:
-                    metric_exporter = ConsoleMetricsExporter()
-                else:
-                    metric_exporter = OTLPMetricsExporter(endpoint=self.sls_otel_endpoint)
-        
-                meter = metrics.get_meter(__name__)
-                PushController(meter, metric_exporter, interval)
-                return meter
-        
-        
         # write to sls
         sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{version\}",
                                                  endpoint='$\{endpoint\}',
@@ -253,7 +220,6 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
         #sls_ot_provider = OpenTelemetrySLSProvider(service="example", version="v0.1.0")
         
         sls_ot_provider.initTracer()
-        sls_ot_provider.initMetric()
         
         # flask init
         app = flask.Flask(__name__)
@@ -290,13 +256,8 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
     
     # For Opentelemetry
     import socket
-    from opentelemetry import metrics
     from opentelemetry import trace
-    from opentelemetry.exporter.otlp.metrics_exporter import OTLPMetricsExporter
     from opentelemetry.exporter.otlp.trace_exporter import OTLPSpanExporter
-    from opentelemetry.sdk.metrics import MeterProvider
-    from opentelemetry.sdk.metrics.export import ConsoleMetricsExporter
-    from opentelemetry.sdk.metrics.export.controller import PushController
     from opentelemetry.sdk.resources import Resource
     from opentelemetry.sdk.trace import TracerProvider
     from opentelemetry.sdk.trace.export import BatchSpanProcessor
@@ -348,18 +309,6 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
                 otlp_exporter = OTLPSpanExporter(endpoint=self.sls_otel_endpoint)
                 trace.get_tracer_provider().add_span_processor(BatchSpanProcessor(otlp_exporter))
     
-        def initMetric(self, interval=30):
-            metrics.set_meter_provider(MeterProvider(resource=self.resource))
-            if self.local_mode:
-                metric_exporter = ConsoleMetricsExporter()
-            else:
-                metric_exporter = OTLPMetricsExporter(endpoint=self.sls_otel_endpoint)
-    
-            meter = metrics.get_meter(__name__)
-            PushController(meter, metric_exporter, interval)
-            return meter
-    
-    
     # write to sls
     sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{version\}",
                                                endpoint='$\{endpoint\}',
@@ -379,14 +328,6 @@ sls_ot_provider = OpenTelemetrySLSProvider(service="$\{service\}", version="$\{v
     with tracer.start_as_current_span("foo"):
         print("Hello world!")
     
-    # Metric Example
-    meter = sls_ot_provider.initMetric(1)
-    requests_counter = meter.create_counter(
-        name="requests",
-        description="number of requests",
-        unit="1",
-        value_type=int,
-    )
     
     labels = {"environment": "staging"}
     requests_counter.add(25, labels)
