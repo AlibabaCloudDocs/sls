@@ -54,9 +54,9 @@
 |mysql\_perf\_active\_session|活跃连接数，单位：个。|
 |mysql\_perf\_com\_delete|平均每秒Delete语句执行次数|
 |mysql\_perf\_com\_insert|平均每秒Insert语句执行次数|
-|mysql\_perf\_com\_insert\_select|平均每秒Insert\_Select语句执行次数|
+|mysql\_perf\_com\_insert\_select|平均每秒Insert Select语句执行次数|
 |mysql\_perf\_com\_replace|平均每秒Replace语句执行次数|
-|mysql\_perf\_com\_replace\_select|平均每秒Replace\_Select语句执行次数|
+|mysql\_perf\_com\_replace\_select|平均每秒Replace Select语句执行次数|
 |mysql\_perf\_com\_select|平均每秒Select语句执行次数|
 |mysql\_perf\_com\_update|平均每秒Update语句执行次数|
 |mysql\_perf\_conn\_usage|实例连接使用率，单位：百分比。|
@@ -70,7 +70,7 @@
 |mysql\_perf\_ibuf\_use\_ratio|缓冲池脏块的百分率，单位：百分比。|
 |mysql\_perf\_inno\_data\_read|InnoDB平均每秒钟读取的数据量，单位：KB。|
 |mysql\_perf\_inno\_data\_written|InnoDB平均每秒钟写入的数据量，单位：KB。|
-|mysql\_perf\_inno\_row\_delete|平均每秒从InnoDB删除的行数|
+|mysql\_perf\_inno\_row\_delete|平均每秒从InnoDB表删除的行数|
 |mysql\_perf\_inno\_row\_insert|平均每秒从InnoDB表插入的行数|
 |mysql\_perf\_inno\_row\_readed|平均每秒从InnoDB表读取的行数|
 |mysql\_perf\_inno\_row\_update|平均每秒从InnoDB表更新的行数|
