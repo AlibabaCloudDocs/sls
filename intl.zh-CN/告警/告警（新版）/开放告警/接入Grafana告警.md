@@ -143,7 +143,7 @@ Grafana告警消息被接入到日志服务后，映射为日志服务告警内�
 |severity|severity|告警严重度。更多信息，请参见[告警严重程度](/intl.zh-CN/告警/告警（新版）/开放告警/概述.md)。|
 |policy|无|您在开放告警应用中配置的告警策略。更多信息，请参见[Policy结构](/intl.zh-CN/告警/告警（新版）/通知管理/通知渠道/内容模板变量说明.md)。|
 |project|无|告警中心所属的Project。更多信息，请参见[项目（Project）](/intl.zh-CN/产品简介/基本概念/项目（Project）.md)。|
-|drill\_down\_query|ruleUrl|展示Grafana告警消息中generatorURL字段的值。|
+|drill\_down\_query|ruleUrl|展示Grafana告警消息中ruleUrl字段的值。|
 |results|evalMatches|结果集数据，evalMatches数组中的每一个对象，分别对应results中的一个QueryData结构。具体映射关系请参见[表 1](#table_6sd_hqs_8pd)。results字段的更多信息，请参见[QueryData结构](/intl.zh-CN/告警/告警（新版）/通知管理/通知渠道/内容模板变量说明.md)。|
 
 |QueryData结构|EvalMatch字段|说明|
