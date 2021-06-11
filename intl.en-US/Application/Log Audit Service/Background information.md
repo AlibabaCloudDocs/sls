@@ -267,7 +267,7 @@ cps\_log
 
 -   For more information about Kubernetes audit logs, see [Collect log files from containers by using Log Service](/intl.en-US/User Guide for Kubernetes Clusters/Observability/Log management/Collect log files from containers by using Log Service.md).
 -   For more information about Kubernetes event centers, see [Create and use a Kubernetes event center](/intl.en-US/Application/K8s Event Center/Create and use a Kubernetes event center.md).
--   For more information about Ingress access logs, see[Monitor nginx-ingress and analyze the access log of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor nginx-ingress and analyze the access log of nginx-ingress.md).
+-   For more information about Ingress access logs, see [Monitor nginx-ingress and analyze the access log of nginx-ingress](/intl.en-US/User Guide for Kubernetes Clusters/Network/Ingress management/Monitor nginx-ingress and analyze the access log of nginx-ingress.md).
 
 |-   Logstore
     -   k8s\_log
