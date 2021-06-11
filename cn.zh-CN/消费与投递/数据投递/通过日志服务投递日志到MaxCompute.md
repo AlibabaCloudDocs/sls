@@ -2,14 +2,14 @@
 
 您可以在日志服务控制台实时查询所采集到的日志，并将日志投递到MaxCompute，进行进一步的BI分析及数据挖掘。本文介绍通过日志服务投递日志到MaxCompute的操作步骤。
 
-已开通MaxCompute，并创建表。更多信息，请参见[创建和查看表](/cn.zh-CN/快速入门/创建和查看表.md)。
+已开通MaxCompute，并创建表。更多信息，请参见[创建表](/cn.zh-CN/快速入门/通过MaxCompute客户端使用MaxCompute/创建表.md)。
 
 ## 使用限制
 
 -   只有阿里云账号能够创建投递任务，不支持RAM账号操作。
 -   不同Logstore中的数据请勿投递到同一张MaxCompute表中，可能造成多个投递任务的数据写入到一张MaxCompute表中。
 -   投递不支持日志时间（对应保留字段\_\_time\_\_）距离当前时间14天以前的数据，在投递过程中自动丢弃超过14天的数据。
--   通过日志服务投递日志到MaxCompute，暂不支持DECIMAL、DATETIME、DATE、TIMESTAMP数据类型，数据类型详情请参见[2.0数据类型版本](/cn.zh-CN/开发/数据类型/2.0数据类型版本.md)。
+-   通过日志服务投递日志到MaxCompute，暂不支持DECIMAL、DATETIME、DATE、TIMESTAMP数据类型。更多信息，请参见[2.0数据类型版本](/cn.zh-CN/开发/数据类型/2.0数据类型版本.md)。
 -   支持的地域如下所示，其他地域请使用DataWorks进行数据同步。更多信息，请参见[日志服务通过数据集成投递数据]()。
 
     |日志服务Project所在地域|MaxCompute所在地域|
@@ -51,14 +51,16 @@
     |参数|说明|
     |:-|:-|
     |**选择要投递的区域**|日志服务Project所在地域不同，所支持的MaxCompute地域不同。更多信息，请参见[使用限制](#section_olr_xqd_5cb)。|
-    |**投递名称**|投递任务的名称。|
+    |**投递名称**|投递任务的名称。命名规则如下：    -   只能包含小写字母、数字、下划线（\_）和短划线（-）。
+    -   必须以小写字母或者数字开头和结尾。
+    -   长度必须在3~63字符之间。 |
     |**项目名**|MaxCompute项目名称，支持新建或选择已创建的MaxCompute项目。|
     |**MaxCompute表名**|MaxCompute表名称，支持新建或选择已创建的MaxCompute表。|
-    |**MaxCompute普通列**|左边输入框中填写与MaxCompute表列相映射的日志字段名称，右边为MaxCompute表的列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：**
+    |**MaxCompute普通列**|左边输入框中填写与MaxCompute表列相映射的日志字段名称，右边为MaxCompute表的列名称。更多信息，请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：**
 
     -   日志服务投递日志到MaxCompute按照日志字段与MaxCompute表列的顺序进行映射，修改MaxCompute表列名不影响数据投递。如果更改MaxCompute表schema，请重新配置日志字段与MaxCompute表列映射关系。
     -   左边输入框的日志字段，不支持双引号（“”）、单引号（''）和含有空格的字符串。 |
-    |**MaxCompute分区列**|左边输入框中填写与MaxCompute表分区列相映射的日志字段名称，右边为MaxCompute表分区列名称，映射关系请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 最大配置3个分区列，请谨慎选择自定义字段作为分区列，保证一次投递任务中生成的分区数目小于512个，否则会导致投递任务写数据到MaxCompute表失败，整批数据无法投递。 |
+    |**MaxCompute分区列**|左边输入框中填写与MaxCompute表分区列相映射的日志字段名称，右边为MaxCompute表分区列名称。更多信息，请参见[数据模型映射](#section_vil_1oe_niu)。 **说明：** 最大配置3个分区列，请谨慎选择自定义字段作为分区列，保证一次投递任务中生成的分区数目小于512个，否则会导致投递任务写数据到MaxCompute表失败，整批数据无法投递。 |
     |**时间分区格式**|时间分区格式，配置示例和参数详细请参见[参考示例](#section_vil_1oe_niu)和[Java SimpleDateFormat](https://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html?spm=5176.doc29001.2.4.vP4zF4)。 **说明：**
 
     -   仅当**分区字段**配置为**\_\_partition\_time\_\_**时，时间分区格式才生效。
@@ -66,7 +68,7 @@
     -   单次投递任务的数据分区数目必须在512以内。 |
     |**导入时间间隔**|投递任务的时长，默认值为1800，单位为秒。 当投递任务的时长达到此处设置的大小时，会自动创建一个新的投递任务。 |
 
-    开启投递后，一般情况下日志数据会在写入Logstore后的1个小时导入到MaxCompute，导入成功后即可在MaxCompute内查看到相关日志数据。判断数据是否已完全投递请参见[日志投递MaxCompute后，如何检查数据完整性]()。
+    开启投递后，一般情况下日志数据会在写入Logstore后的1个小时导入到MaxCompute，导入成功后即可在MaxCompute内查看到相关日志数据。更多信息，请参见[日志投递MaxCompute后，如何检查数据完整性](/cn.zh-CN/消费与投递/数据投递/FAQ/日志服务数据投递MaxCompute后如何检查数据完整性.md)。
 
 
 ## 步骤二：查看MaxCompute数据
