@@ -66,11 +66,11 @@ userid: 292
     */
     public class jdbc {
      public static void main(String args[]){
-         final String endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"; //日志服务经典网络或VPC网络访问域名，请根据实际情况替换。更多信息，请参见[经典网络及VPC网络服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
+         final String endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"; //日志服务经典网络或VPC网络访问域名，请根据实际情况替换。更多信息，请参见[经典网络及VPC网络服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。
          final String port = "10005"; //通过JDBC访问时，默认使用10005端口。
          final String project = "trip-demo"; //Project名称。
          final String logstore = "ebike"; //Logstore名称。
-         final String accessKeyId = "";  //阿里云访问密钥AccessKey ID。更多信息，请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)。
+         final String accessKeyId = "";  //阿里云访问密钥AccessKey ID。更多信息，请参见[访问密钥](/cn.zh-CN/开发指南/API参考/访问密钥.md)。
          final String accessKey = "";  //阿里云访问密钥AccessKey Secret。
          Connection conn = null;
          Statement stmt = null;
