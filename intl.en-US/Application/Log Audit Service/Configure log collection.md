@@ -10,7 +10,7 @@ This topic describes how to configure log collection for Alibaba Cloud services 
 
     When you log on to the [Log Service console](https://sls.console.aliyun.com) for the first time, activate Log Service as prompted.
 
--   Relevant features are enabled for the Alibaba Cloud services from which you want to collect logs. For more information, see [Supported Alibaba Cloud services](/intl.en-US/Application/Log Audit Service/Overview.md).
+-   Relevant features are enabled for the Alibaba Cloud services from which you want to collect logs. For more information, see [Supported Alibaba Cloud services](/intl.en-US/Application/Log Audit Service/Background information.md).
 
 ## Initial configurations
 
@@ -37,7 +37,7 @@ This topic describes how to configure log collection for Alibaba Cloud services 
 
         You can also set **Synchronization to Central Project** for Layer 7 access logs of Server Load Balancer \(SLB\), Object Storage Service \(OSS\) access logs, and PolarDB-X audit logs. After you turn on the **Synchronization to Central Project** switch, the retention period is automatically reduced to the recommended period that is specified by the console. The project for regional storage serves as a temporary storage space.
 
-    4.  Click **OK**.
+    4.  Click **Save**.
 
 4.  In the left-side navigation pane, choose **Access to Cloud Products** \> **Status Dashboard** to view the access status of logs.
 
@@ -104,6 +104,6 @@ To delete the resources of the Log Audit Service application, such as Logstores,
 
 -   What can I do if a required feature is not enabled for an Alibaba Cloud account?
 
-    In most cases, this error occurs because you have not enabled a specific feature for an Alibaba Cloud service. For example, you have configured log audit for Security Center, but you have not activated the **Log Analysis** feature. For more information, see [Supported Alibaba Cloud services](/intl.en-US/Application/Log Audit Service/Overview.md).
+    In most cases, this error occurs because you have not enabled a specific feature for an Alibaba Cloud service. For more information, see [Supported Alibaba Cloud services](/intl.en-US/Application/Log Audit Service/Background information.md). For example, you have configured log audit for Security Center, but you have not activated the **Log Analysis** feature.
 
 
