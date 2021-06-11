@@ -68,7 +68,7 @@
 |mysql\_perf\_innodb\_data\_read|每秒从存储引擎读取数据量，单位：Byte。|
 |mysql\_perf\_innodb\_data\_reads|每秒缓冲池读取次数|
 |mysql\_perf\_innodb\_data\_writes|每秒缓冲池写次数|
-|mysql\_perf\_innodb\_data\_written|每秒往存储引起写入数据量，单位：Byte。|
+|mysql\_perf\_innodb\_data\_written|每秒往存储引擎写入数据量，单位：Byte。|
 |mysql\_perf\_innodb\_log\_write\_requests|每秒日志写请求数|
 |mysql\_perf\_innodb\_os\_log\_fsyncs|每秒向日志文件完成的fsync\(\)写数量|
 |mysql\_perf\_innodb\_rows\_deleted|每秒删除的行数|
