@@ -17,7 +17,7 @@ aliyunlog log update_consumer_group --project=<value> --logstore=<value> --consu
 |--project|String|是|aliyun-test-project|Project名称。|
 |--logstore|String|是|logstore-a|Logstore名称。|
 |--consumer\_group|String|是|consumer-group-1|消费组名称。|
-|--timeout|Integer|否|360|超时时间。单位：秒。消费者定期向日志服务服务端发送心跳消息，用于建立联系。若服务端在超时时间段内没有收到消费者发送的心跳消息，则服务端删除该消费者占用相关资源。 |
+|--timeout|Integer|否|360|超时时间。单位：秒。消费者定期向日志服务的服务端发送心跳消息，用于建立联系。若服务端在超时时间段内没有收到消费者发送的心跳消息，则服务端删除该消费者占用相关资源。 |
 |--in\_order|Boolean|否|true|在单个Shard中是否按顺序消费。 -   true：表示在单个Shard中按顺序消费。Shard分裂后，先消费原Shard数据，然后并列消费两个新Shard的数据。
 -   false：表示不按顺序消费。 |
 
