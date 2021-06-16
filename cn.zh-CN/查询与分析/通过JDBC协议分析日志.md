@@ -2,7 +2,7 @@
 
 日志服务支持您在数据库（例如MySQL）中使用JDBC协议连接日志服务，并通过标准的SQL92语法查询和分析日志。
 
--   已创建阿里云账号的AccessKey或RAM用户的AccessKey。具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)。
+-   已创建阿里云账号的AccessKey或RAM用户的AccessKey。具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API参考/访问密钥.md)。
 
     如果使用RAM用户的AccessKey，则RAM用户必须是当前Project所属阿里云账号的RAM用户，且具备Project级别的读权限。
 
@@ -13,7 +13,7 @@
 此处以MySQL数据库为例，介绍连接参数。
 
 ```
-mysql -hcn-shanghai-intranet.log.aliyuncs.com -ubq2sjzesjmo86kq -p4fdO1fTDDuZP -P10005
+mysql -hprojectname.cn-hangzhou-intranet.log.aliyuncs.com -ubq2sjzesjmo86kq -p4fdO1fTDDuZP -P10005
 use sample-project; 
 ```
 
@@ -23,7 +23,7 @@ use sample-project;
 
 |参数|说明|
 |:-|:-|
-|host|日志服务访问域名。目前仅支持经典网络和VPC网络的服务入口，例如cn-hangzhou-intranet.log.aliyuncs.com。更多信息，请参见[经典网络及VPC网络服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。|
+|host|日志服务访问域名，需添加Project名称，例如my-project.cn-hangzhou-intranet.log.aliyuncs.com。目前仅支持经典网络和VPC网络的访问域名。更多信息，请参见[经典网络及VPC网络服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。 |
 |port|默认使用10005。|
 |user|阿里云账号的AccessKey ID。|
 |password|阿里云账号的AccessKey Secret。|
@@ -52,7 +52,7 @@ use sample-project;
 
 -   计算语法
 
-    支持计算操作符。更多信息，请参见[分析语法](/cn.zh-CN/查询与分析/分析简介.md)。
+    支持计算操作符。更多信息，请参见[分析语法](/cn.zh-CN/查询与分析/分析概述.md)。
 
 -   SQL92语法
 
@@ -90,7 +90,7 @@ use sample-project;
                 Class.forName("com.mysql.jdbc.Driver");
                 //STEP 3: Open a connection
                 System.out.println("Connecting to a selected database...");
-                conn = DriverManager.getConnection("jdbc:mysql://cn-shanghai-intranet.log.aliyuncs.com:10005/sample-project","accessid","accesskey");
+                conn = DriverManager.getConnection("jdbc:mysql://projectname.cn-hangzhou-intranet.log.aliyuncs.com:10005/sample-project","accessid","accesskey");
                 System.out.println("Connected database successfully...");
                 //STEP 4: Execute a query
                 System.out.println("Creating statement...");
