@@ -1,6 +1,8 @@
 # Authorize a RAM user to manage a data transformation task
 
-This topic describes how to create and authorize a Resource Access Management \(RAM\) user to manage a data transformation task.
+This topic describes how to create a Resource Access Management \(RAM\) user and authorize the RAM user to manage a data transformation task.
+
+A RAM user is created. For more information, see [Create a RAM user](/intl.en-US/Developer Guide/Access control RAM/Create a RAM user and authorize the RAM user to access Log Service.mdsection_wz1_e6j_bdy).
 
 You can use your Alibaba Cloud account to authorize a RAM user to manage a data transformation task.
 
@@ -12,8 +14,8 @@ You can use your Alibaba Cloud account to authorize a RAM user to manage a data 
 
 You can authorize a RAM user to transform data in Log Service by using one of the following modes:
 
--   Simple mode: You can grant full access permissions on Log Service to the RAM user. You do not need to modify the related parameters.
--   Custom mode: You can customize a permission policy to grant only required permissions to the RAM user. This mode requires complex configurations and provides fine-grained access control.
+-   Simple mode: allows you to grant full access permissions on Log Service to the RAM user. You do not need to modify the related parameters.
+-   Custom mode: allows you to create custom permission policies and grant the required permissions to the RAM user. This mode requires complex configurations and provides fine-grained access control.
 
 ## Simple mode
 
@@ -27,7 +29,7 @@ Use your Alibaba Cloud account to log on to the [RAM console](https://ram.consol
 
     1.  In the left-side navigation pane, choose **Permissions** \> **Policies**.
 
-    2.  On the Policies page, click **Create Policy**.
+    2.  Click **Create Policy**.
 
     3.  On the Create Custom Policy page, set the required parameters, and then click **OK**. The following table describes the parameters.
 
@@ -35,7 +37,7 @@ Use your Alibaba Cloud account to log on to the [RAM console](https://ram.consol
         |---------|-----------|
         |**Policy Name**|The name of the policy.|
         |**Configuration Mode**|Select **Script**.|
-        |**Policy Document**|Replace the content in the editor with the following script. Replace <project name\> with the name of the project in which a data transformation rule is created. Replace <Logstore name\> with the name of the related Logstore.
+        |**Policy Document**|The content of the policy. Replace the content in the editor with the following script. Replace `Project name` with the name of the project in which a data transformation rule is created. Replace `Logstore name` with the name of the related Logstore.
 
 **Note:** If you want to use the AccessKey pair of the current RAM user to read and write Logstore data, you must add the related policy to the following sample script. For more information, see [Configure an AccessKey pair for a RAM user to access a source Logstore and a destination Logstore](/intl.en-US/Data Transformation/Authorize Log Service/Configure an AccessKey pair for a RAM user to access a source Logstore and a destination
          Logstore.md).
@@ -52,13 +54,13 @@ Use your Alibaba Cloud account to log on to the [RAM console](https://ram.consol
                 "log:UpdateIndex",
                 "log:Get*"
             ],
-            "Resource":"acs:log:*:*:project/<project name>/logstore/internal-etl-log"
+            "Resource":"acs:log:*:*:project/Project name/logstore/internal-etl-log"
         },
         {
             "Action":[
                 "log:List*"
             ],
-            "Resource":"acs:log:*:*:project/<project name>/logstore/*",
+            "Resource":"acs:log:*:*:project/Project name/logstore/*",
             "Effect":"Allow"
         },
         {
@@ -67,7 +69,7 @@ Use your Alibaba Cloud account to log on to the [RAM console](https://ram.consol
                 "log:List*"
             ],
             "Resource":[
-                "acs:log:*:*:project/<project name>/logstore/<Logstore name>"
+                "acs:log:*:*:project/Project name/logstore/Logstore name"
             ],
             "Effect":"Allow"
         },
@@ -78,34 +80,25 @@ Use your Alibaba Cloud account to log on to the [RAM console](https://ram.consol
                 "log:CreateDashboard",
                 "log:UpdateDashboard"
             ],
-            "Resource":"acs:log:*:*:project/<project name>/dashboard/internal-etl-insight"
+            "Resource":"acs:log:*:*:project/Project name/dashboard/internal-etl-insight"
         },
         {
             "Effect":"Allow",
             "Action":"log:CreateDashboard",
-            "Resource":"acs:log:*:*:project/<project name>/dashboard/*"
+            "Resource":"acs:log:*:*:project/Project name/dashboard/*"
         },
         {
             "Effect":"Allow",
             "Action":[
                 "log:*"
             ],
-            "Resource":"acs:log:*:*:project/<project name>/job/*"
-        },
-        {
-            "Effect":"Allow",
-            "Action":[
-                "log:*"
-            ],
-            "Resource":"acs:log:*:*:project/<project name>/jobschedule/*"
+            "Resource":"acs:log:*:*:project/Project name/job/*"
         }
     ]
 }
         ``` |
 
-3.  Create a RAM user. For more information, see [Create a RAM user](/intl.en-US/Developer Guide/Access control RAM/Create a RAM user and authorize the RAM user to access Log Service.mdsection_wz1_e6j_bdy).
-
-4.  Grant the required permissions to the RAM user.
+3.  Grant the required permissions to the RAM user.
 
     1.  In the left-side navigation pane, choose **Identities** \> **Users**.
 
