@@ -66,7 +66,7 @@ userid: 292
     */
     public class jdbc {
      public static void main(String args[]){
-         final String endpoint = "cn-hangzhou-intranet.sls.aliyuncs.com"; // The endpoint of Log Service that is in the classic network or a virtual private cloud (VPC). Set this variable to an endpoint that is specific to your environment. For more information, see [Endpoints for the classic network and VPC](/intl.en-US/Developer Guide/API Reference/Endpoints.md). 
+         final String endpoint = "trip-demo.cn-hangzhou-intranet.sls.aliyuncs.com"; // The endpoint of Log Service that is in the classic network or a virtual private cloud (VPC). Set this variable to an endpoint that is specific to your environment. For more information, see [Endpoints for the classic network and VPC](/intl.en-US/Developer Guide/API Reference/Endpoints.md). 
          final String port = "10005"; // If you use JDBC to access logs, set the MySQL port to 10005. 
          final String project = "trip-demo"; // The name of the project. 
          final String logstore = "ebike"; // The name of the Logstore. 
