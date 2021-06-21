@@ -34,6 +34,7 @@
 -   [阿里云内网（经典网络、VPC）](#section_inb_fbn_1fb)
 -   [公网](#section_lhn_hbn_1fb)
 -   [全球加速](#section_xpy_tvs_s2b)
+-   [离线安装](#section_4ks_s3b_vha)
 
 执行安装命令之前，您需要根据Project所在地域替换安装命令中的$\{your\_region\_name\}参数，各地域对应的$\{your\_region\_name\}参数如下所示。
 
@@ -80,11 +81,11 @@
 
     通过内网下载Logtail安装脚本，手动安装Logtail，不消耗公网流量。
 
-    1.  根据日志服务Project所在地域，获取对应的`${your_region_name}`。
+    1.  根据日志服务Project所在地域，获取对应的$\{your\_region\_name\}。
 
-        各个地域对应的`${your_region_name}`请参见[安装参数](#table_eyz_pmv_vdb)，例如**华东 1（杭州）**对应的`${your_region_name}`为`cn-hangzhou`。
+        各个地域对应的$\{your\_region\_name\}请参见[表 1](#table_eyz_pmv_vdb)，例如华东 1（杭州）对应的$\{your\_region\_name\}为cn-hangzhou。
 
-    2.  替换`${your_region_name}`后，执行安装命令。
+    2.  替换$\{your\_region\_name\}后，执行安装命令。
 
         ```
         wget http://logtail-release-$\{your\_region\_name\}.oss-$\{your\_region\_name\}-internal.aliyuncs.com/linux64/logtail.sh -O logtail.sh; chmod 755 logtail.sh; ./logtail.sh install $\{your\_region\_name\}
@@ -172,9 +173,9 @@ wget http://logtail-release-rus-west-1.oss-rus-west-1-internal.aliyuncs.com/linu
 
 1.  根据日志服务Project所在地域，获取对应的`${your_region_name}`。
 
-    各个地域对应的`${your_region_name}`请参见[安装参数](#table_eyz_pmv_vdb)，例如**华东 1（杭州）**对应的`${your_region_name}`为`cn-hangzhou`。
+    各个地域对应的$\{your\_region\_name\}请参见[表 1](#table_eyz_pmv_vdb)，例如华东 1（杭州）对应的$\{your\_region\_name\}为cn-hangzhou。
 
-2.  替换`${your_region_name}`后，执行安装命令。
+2.  替换$\{your\_region\_name\}后，执行安装命令。
 
     ```
     wget http://logtail-release-$\{your\_region\_name\}.oss-$\{your\_region\_name\}.aliyuncs.com/linux64/logtail.sh -O logtail.sh; chmod 755 logtail.sh; ./logtail.sh install $\{your\_region\_name\}-internet
@@ -262,9 +263,9 @@ wget http://logtail-release-rus-west-1.oss-rus-west-1.aliyuncs.com/linux64/logta
 
 1.  根据日志服务Project所在地域选择安装参数。
 
-    各个地域对应的`${your_region_name}`请参见[安装参数](#table_eyz_pmv_vdb)，例如**华东 1（杭州）**对应的`${your_region_name}`为`cn-hangzhou`。
+    各个地域对应的$\{your\_region\_name\}请参见[表 1](#table_eyz_pmv_vdb)。例如华东 1（杭州）对应的$\{your\_region\_name\}为cn-hangzhou。
 
-2.  替换`${your_region_name}`后，执行安装命令。
+2.  替换$\{your\_region\_name\}后，执行安装命令。
 
     ```
     wget http://logtail-release-$\{your\_region\_name\}.oss-$\{your\_region\_name\}.aliyuncs.com/linux64/logtail.sh -O logtail.sh; chmod 755 logtail.sh; ./logtail.sh install $\{your\_region\_name\}-acceleration
@@ -348,9 +349,41 @@ wget http://logtail-release-eu-west-1.oss-eu-west-1.aliyuncs.com/linux64/logtail
 wget http://logtail-release-rus-west-1.oss-rus-west-1.aliyuncs.com/linux64/logtail.sh -O logtail.sh; chmod 755 logtail.sh; ./logtail.sh install rus-west-1-acceleration
 ``` |
 
+## 离线安装
+
+1.  登录能通过公网访问的服务器。
+
+2.  替换$\{your\_region\_name\}后，执行下载命令，下载安装脚本和安装包。
+
+    各个地域公网对应的$\{your\_region\_name\}请参见[表 1](#table_eyz_pmv_vdb)。例如华东 1（杭州）公网对应的$\{your\_region\_name\}为cn-hangzhou-internet。
+
+    ```
+    wget http://logtail-release-$\{your\_region\_name\}.oss-$\{your\_region\_name\}.aliyuncs.com/linux64/logtail.sh
+    ```
+
+    ```
+    wget http://logtail-release-$\{your\_region\_name\}.oss-$\{your\_region\_name\}.aliyuncs.com/linux64/logtail-linux64.tar.gz
+    ```
+
+3.  将安装脚本和安装包拷贝至待安装Logtail的目标服务器上。
+
+4.  替换$\{your\_region\_name\}后，在目标服务器上执行安装命令。
+
+    各个地域对应的$\{your\_region\_name\}请参见[表 1](#table_eyz_pmv_vdb)。例如：
+
+    -   华东 1（杭州）内网对应的$\{your\_region\_name\}为cn-hangzhou。
+    -   华东 1（杭州）公网对应的$\{your\_region\_name\}为cn-hangzhou-internet。
+    -   华东 1（杭州）全球加速对应的$\{your\_region\_name\}为cn-hangzhou-acceleration。
+    ```
+    chmod +x logtail.sh; ./logtail.sh install-local $\{your\_region\_name\}
+    ```
+
+
+**说明：** 如果您要离线升级Logtail，可在下载最新版本的安装包后，执行`chmod +x logtail.sh; ./logtail.sh upgrade-local`命令。
+
 ## 查看Logtail版本
 
-Logtail会将版本信息记录在/usr/local/ilogtail/app\_info.json文件中的`logtail_version`字段。
+Logtail会将版本信息记录在/usr/local/ilogtail/app\_info.json文件中的logtail\_version字段。
 
 -   命令
 
@@ -366,9 +399,9 @@ Logtail会将版本信息记录在/usr/local/ilogtail/app\_info.json文件中的
        "hostname" : "david*******",
        "instance_id" : "F4FAFADA-F1D7-11E7-846C-00163E30349E_*********_1515129548",
        "ip" : "**********",
-       "logtail_version" : "0.16.0",
+       "logtail_version" : "0.16.30",
        "os" : "Linux; 2.6.32-220.23.2.ali1113.el5.x86_64; #1 SMP Thu Jul 4 20:09:15 CST 2013; x86_64",
-       "update_time" : "2018-01-05 13:19:08"
+       "update_time" : "2020-01-05 13:19:08"
     }
     ```
 
@@ -399,9 +432,9 @@ Logtail会将版本信息记录在/usr/local/ilogtail/app\_info.json文件中的
        "hostname" : "***",
        "instance_id" : "***",
        "ip" : "***",
-       "logtail_version" : "0.16.11",
+       "logtail_version" : "0.16.30",
        "os" : "Linux; 3.10.0-693.2.2.el7.x86_64; #1 SMP Tue Sep 12 22:26:13 UTC 2017; x86_64",
-       "update_time" : "2018-08-29 15:01:36"
+       "update_time" : "2020-08-29 15:01:36"
     }
     ```
 
