@@ -28,7 +28,7 @@ ActionTrail provides the operation log shipment feature. You can use this featur
 ## Billing
 
 -   The cost of ActionTrail log management is included in the billing for ActionTrail. For more information, see [Billing](/intl.en-US/Pricing/Billing.md).
--   After SQL audit logs are sent to Log Service, you are charged based on the storage space, read traffic, the number of requests, data transformation, and data shipping. For more information, see[Log Service pricing](https://www.alibabacloud.com/product/log-service/pricing?spm=a3c0i.139163.9288850920.1.7690637avzyiqo).
+-   After SQL audit logs are sent to Log Service, you are charged based on the storage space, read traffic, the number of requests, data transformation, and data shipping. For more information, see [Log Service pricing](https://www.alibabacloud.com/product/log-service/pricing?spm=a3c0i.139163.9288850920.1.7690637avzyiqo).
 
 ## Limits
 
