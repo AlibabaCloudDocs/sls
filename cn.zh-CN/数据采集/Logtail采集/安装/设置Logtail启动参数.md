@@ -22,8 +22,8 @@
     {
         ...
         "cpu_usage_limit" : 0.4,
-        "mem_usage_limit" : 100,
-        "max_bytes_per_sec" : 2097152,
+        "mem_usage_limit" : 384,
+        "max_bytes_per_sec" : 20971520,
         "process_thread_count" : 1,
         "send_request_concurrency" : 4,
         "buffer_file_num" : 25,
@@ -48,13 +48,19 @@
 一般情况下，通过极简模式采集日志时，单核处理能力约24 MB/s；通过完整正则模式采集日志时，单核处理能力约12 MB/s 。
 
 |"cpu\_usage\_limit" : 0.4|
-    |mem\_usage\_limit|int|内存使用阈值。取值如下：    -   取值范围：128（MB）~当前机器有效内存值
-    -   默认值：2048（MB）
-例如设置为100，表示日志服务将尽可能限制Logtail的内存为100 MB，超出后Logtail自动重启。
+    |mem\_usage\_limit|int|内存使用阈值。取值如下：    -   取值范围：128（MB）~ 2048（MB）
+    -   默认值：384（MB）
+**警告：** mem\_usage\_limit为软限制，实际Logtail占用的内存可能超过限制值，超限5分钟后将触发熔断保护，Logtail自动重启。
 
-如果需要同时采集的文件数目超过1000，可根据需求修改此参数。
+mem\_usage\_limit与监控的文件数的关系如下：
 
-|"mem\_usage\_limit" : 100|
+    -   使用默认值时，每台服务器上的每个Logtail采集配置最多可监控19,200个文件，每台服务器上的Logtail客户端最多可监控192,000个文件。
+    -   使用最大值时，每台服务器上的每个Logtail采集配置最多可监控100,000个文件，每台服务器上的Logtail客户端最多可监控1,000,000个文件。
+相关计算公式如下：
+
+    -   每个Logtail采集配置可监控的最大文件数=mem\_usage\_limit/100×5000
+    -   每个Logtail客户端可监控的最大文件数=mem\_usage\_limit/100×50,000
+|"mem\_usage\_limit" : 384|
     |max\_bytes\_per\_sec|int|每秒钟Logtail发送原始数据的流量限制。取值如下：    -   取值范围：1024（Byte/s）~52428800（Byte/s）
     -   默认值：20971520（Byte/s）
 例如设置为2097152，表示Logtail发送数据的速率为2 MB/s。
@@ -127,7 +133,7 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
 仅支持Logtail 0.16.26 及以上版本。
 
 |"accept\_multi\_config": true|
-    |enable\_checkpoint\_sync\_write|Boolean|是否开启sync写功能。默认值：false，表示不开启。sync写功能主要用于搭配ExactlyOnce写入功能。开启ExactlyOnce写入功能后，Logtail会在本地磁盘记录细粒度的Checkpoint信息（文件级别）。但出于性能考虑，默认写入Checkpoint时不会调用sync落盘，所以如果机器重启导致buffer数据来不及写入磁盘时，可能导致Checkpoint丢失。此时，您可以设置enable\_checkpoint\_sync\_write为true，开启sync写功能。更多信息，请参见[附录：ExactlyOnce写入功能说明](/cn.zh-CN/开发指南/API 参考/公共资源说明/Logtail配置.md)。
+    |enable\_checkpoint\_sync\_write|Boolean|是否开启sync写功能。默认值：false，表示不开启。sync写功能主要用于搭配ExactlyOnce写入功能。开启ExactlyOnce写入功能后，Logtail会在本地磁盘记录细粒度的Checkpoint信息（文件级别）。但出于性能考虑，默认写入Checkpoint时不会调用sync落盘，所以如果机器重启导致buffer数据来不及写入磁盘时，可能导致Checkpoint丢失。此时，您可以设置enable\_checkpoint\_sync\_write为true，开启sync写功能。更多信息，请参见[附录：ExactlyOnce写入功能说明](/cn.zh-CN/开发指南/API参考/公共资源说明/Logtail配置.md)。
 
 仅支持Logtail 1.0.20及以上版本。
 
