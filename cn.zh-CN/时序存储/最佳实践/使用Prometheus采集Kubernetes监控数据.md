@@ -3,10 +3,10 @@
 本文介绍如何在Kubernetes上部署Prometheus，将监控数据采集到日志服务MetricStore中，并将日志服务MetricStore对接到Grafana实现监控数据可视化展示。
 
 -   已拥有Kubernetes集群，集群版本在1.10以上。
--   已创建MetricStore。更多信息，请参见[创建MetricStore](/cn.zh-CN/时序存储/管理MetricStore.md)。
+-   已创建MetricStore。更多信息，请参见[创建MetricStore](/cn.zh-CN/准备工作/管理MetricStore.md)。
 -   已安装Grafana。更多信息，参见[安装Grafana](http://docs.grafana.org/installation/)。
 
-Prometheus作为面向云原生的监控软件，对Kubernetes提供了友好的支持。在Kubernetes中，几乎所有的组件都提供了Prometheus的指标接口，因此Prometheus基本成为Kubernetes监控的实施标准。
+Prometheus作为面向云原生的监控软件，对Kubernetes提供了友好的支持。在Kubernetes中，几乎所有的组件都提供了Prometheus的指标接口，因此Prometheus基本成为Kubernetes监控的事实标准。
 
 Grafana是一个开源的度量分析与可视化套件，兼容所有的Prometheus仪表盘模板。日志服务支持Grafana访问时序数据，您可直接将日志服务MetricStore作为Grafana的Prometheus数据源进行接入，实现时序数据可视化展示。
 
@@ -59,7 +59,7 @@ Grafana是一个开源的度量分析与可视化套件，兼容所有的Prometh
         -   调整prometheusSpec下的retention，建议修改为1d或12h。
         -   替换其中的remoteWrite配置。更多信息，请参见[RemoteWrite配置](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#remotewritespec)。
 
-            remoteWrite配置中的url为日志服务Metricstore的URL，请根据实际值替换。格式为https://\{project\}.\{sls-enpoint\}/prometheus/\{project\}/\{metricstore\}/api/v1/write。其中\{sls-enpoint\}为日志服务的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)，\{project\}和\{metricstore\}为您已创建的日志服务的Project和Metricstore。
+            remoteWrite配置中的url为日志服务Metricstore的URL，请根据实际值替换。格式为https://\{project\}.\{sls-enpoint\}/prometheus/\{project\}/\{metricstore\}/api/v1/write。其中\{sls-enpoint\}为日志服务的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)，\{project\}和\{metricstore\}为您已创建的日志服务的Project和Metricstore。
 
             **说明：** 如果您是在阿里云内网，请优先使用内网域名。
 
@@ -100,7 +100,7 @@ Grafana是一个开源的度量分析与可视化套件，兼容所有的Prometh
                   sourceLabels:
                   - __name__
                 ### url格式为https://{project}.{sls-enpoint}/prometheus/{project}/{metricstore}/api/v1/write
-                ### \{sls-enpoint\}为日志服务的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
+                ### \{sls-enpoint\}为日志服务的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。
                 ### \{project\}和\{metricstore\}替换为您已创建的日志服务的Project和Metricstore。
                 url: https://sls-prometheus-test.cn-beijing.log.aliyuncs.com/prometheus/sls-prometheus-test/prometheus-raw/api/v1/write
                                         
@@ -122,7 +122,7 @@ Grafana是一个开源的度量分析与可视化套件，兼容所有的Prometh
     |参数|说明|
     |:-|:-|
     |Name|配置数据源名称，例如Prometheus-01。|
-    |HTTP|    -   **URL**：日志服务MetricStore的URL，格式为https://\{project\}.\{sls-enpoint\}/prometheus/\{project\}/\{metricstore\}。其中\{sls-enpoint\}为日志服务的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)，\{project\}和\{metricstore\}为您已创建的日志服务的Project和Metricstore，请根据实际值替换。例如https://sls-prometheus-test.cn-hangzhou.log.aliyuncs.com/prometheus/sls-prometheus-test/prometheus。
+    |HTTP|    -   **URL**：日志服务MetricStore的URL，格式为https://\{project\}.\{sls-enpoint\}/prometheus/\{project\}/\{metricstore\}。其中\{sls-enpoint\}为日志服务的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)，\{project\}和\{metricstore\}为您已创建的日志服务的Project和Metricstore，请根据实际值替换。例如https://sls-prometheus-test.cn-hangzhou.log.aliyuncs.com/prometheus/sls-prometheus-test/prometheus。
 
 **说明：**
 
