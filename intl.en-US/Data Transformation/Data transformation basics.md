@@ -60,7 +60,7 @@ The following figure shows the transformation logic.
 The rules engine also supports log output, duplication, and splitting. For example, the following transformation rule is orchestrated by using four functions. The functions are four steps that are used to transform data:
 
 ```
-e_output("archive_Logstore") )
+e_coutput("archive_Logstore") )
 e_split("log_type")
 e_if(e_search("log_type: alert"), e_output("alert_Logstore") )
 e_set("result", "pass")
@@ -83,7 +83,7 @@ The following figure shows the transformation logic.
 
 -   **Log duplication and output**
 
-    The `e_output` function duplicates a log entry and writes the duplicated log entry to one or more destination Logstores. Then, the rules engine continues to call subsequent functions to transform the log entry. As shown in the preceding figure, log entries that are duplicated in step 1 are written to the destination Logstore named `archive_Logstore`.
+    The `e_coutput` function duplicates a log entry and writes the duplicated log entry to one or more destination Logstores. Then, the rules engine continues to call subsequent functions to transform the log entry. As shown in the preceding figure, log entries that are duplicated in step 1 are written to the destination Logstore named `archive_Logstore`.
 
 -   **Log splitting**
 
