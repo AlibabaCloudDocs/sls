@@ -3,7 +3,7 @@
 日志服务采集到日志后，支持将日志投递至OSS进行存储与分析。本文档介绍将日志投递至OSS的操作步骤。
 
 -   已创建Project和Logstore。更多信息，请参见[创建Project和Logstore](/cn.zh-CN/.md)。
--   已采集到日志。更多信息，请参见[数据采集](/cn.zh-CN/数据采集/采集方式.md)。
+-   已采集到日志。更多信息，请参见[数据采集](/cn.zh-CN/数据采集/数据采集概述.md)。
 -   已开通OSS服务，且在日志服务Project所在的地域创建Bucket。更多信息，请参见[开通OSS服务](/cn.zh-CN/控制台用户指南/开通OSS服务.md)。
 -   已完成[云资源访问授权](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22%3A%20%7B%22request1%22%3A%20%7B%22RoleName%22%3A%20%22AliyunLogDefaultRole%22%2C%20%22TemplateId%22%3A%20%22DefaultRole%22%7D%7D%2C%20%22ReturnUrl%22%3A%20%22https%3A//sls.console.aliyun.com/%22%2C%20%22Service%22%3A%20%22Log%22%7D)。
 
@@ -16,6 +16,12 @@
 
 -   OSS支持自由设置生命周期，可以长期存储日志。
 -   您可以通过数据处理平台（例如E-MapReduce和DLA）或自建程序消费OSS数据。
+
+## 支持的地域说明
+
+日志服务投递数据到OSS为同地域投递，即日志服务Project所在的地域和OSS Bucket所在地域相同。
+
+**说明：** 如果Project属于杭州金融云，则只支持投递到杭州金融业公网地域（oss-cn-hzfinance），不支持华东1金融云地域（oss-cn-hzjbp）。
 
 ## 投递数据
 
