@@ -3,7 +3,7 @@
 日志服务采集到日志后，支持将日志投递至OSS进行存储与分析。本文档介绍将日志投递至OSS的操作步骤。
 
 -   已创建Project和Logstore。更多信息，请参见[创建Project和Logstore](/intl.zh-CN/.md)。
--   已采集到日志。更多信息，请参见[数据采集](/intl.zh-CN/数据采集/采集方式.md)。
+-   已采集到日志。更多信息，请参见[数据采集](/intl.zh-CN/数据采集/数据采集概述.md)。
 -   已开通OSS服务，且在日志服务Project所在的地域创建Bucket。更多信息，请参见[开通OSS服务](/intl.zh-CN/控制台用户指南/开通OSS服务.md)。
 -   已完成[云资源访问授权](https://ram.console.aliyun.com/#/role/authorize?request=%7B%22Requests%22%3A%20%7B%22request1%22%3A%20%7B%22RoleName%22%3A%20%22AliyunLogDefaultRole%22%2C%20%22TemplateId%22%3A%20%22DefaultRole%22%7D%7D%2C%20%22ReturnUrl%22%3A%20%22https%3A//sls.console.aliyun.com/%22%2C%20%22Service%22%3A%20%22Log%22%7D)。
 
