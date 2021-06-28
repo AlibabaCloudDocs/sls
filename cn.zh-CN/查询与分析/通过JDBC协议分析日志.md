@@ -6,29 +6,43 @@
 
     如果使用RAM用户的AccessKey，则RAM用户必须是当前Project所属阿里云账号的RAM用户，且具备Project级别的读权限。
 
--   已创建Project和Logstore。具体操作，请参见[创建Project和Logstore](/cn.zh-CN/.md)。
+-   已创建Logstore。具体操作，请参见[创建Logstore](/cn.zh-CN/准备工作/管理Logstore.md)。
+
+## 版本说明
+
+目前日志服务仅支持JDBC 5.1.49版本。
 
 ## 连接参数
 
 此处以MySQL数据库为例，介绍连接参数。
 
-```
-mysql -hprojectname.cn-hangzhou-intranet.log.aliyuncs.com -ubq2sjzesjmo86kq -p4fdO1fTDDuZP -P10005
-use sample-project; 
-```
-
 **说明：** MySQL JDBC不支持分页。
 
-连接参数说明如下表所示：
+-   连接语法的格式
 
-|参数|说明|
-|:-|:-|
-|host|日志服务访问域名，需添加Project名称，例如my-project.cn-hangzhou-intranet.log.aliyuncs.com。目前仅支持经典网络和VPC网络的访问域名。更多信息，请参见[经典网络及VPC网络服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。 |
-|port|默认使用10005。|
-|user|阿里云账号的AccessKey ID。|
-|password|阿里云账号的AccessKey Secret。|
-|database|日志服务Project。|
-|table|日志服务Logstore。|
+    ```
+    mysql -hhost -user -password -port
+    use database;
+    ```
+
+-   示例
+
+    ```
+    mysql -hmy-project.cn-hangzhou-intranet.log.aliyuncs.com -ubq****mo86kq -p4f****uZP -P10005
+    use my-project; 
+    ```
+
+-   参数说明
+
+    |参数|说明|
+    |:-|:-|
+    |host|日志服务访问域名，需添加Project名称，例如my-project.cn-hangzhou-intranet.log.aliyuncs.com。目前仅支持经典网络和VPC网络的访问域名。更多信息，请参见[经典网络及VPC网络服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。 |
+    |port|默认使用10005。|
+    |user|阿里云账号的AccessKey ID。|
+    |password|阿里云账号的AccessKey Secret。|
+    |database|日志服务Project名称。|
+    |table|日志服务Logstore名称。**说明：** Logstore需在查询和分析语句中指定。 |
+
 
 ## 查询和分析语法
 
@@ -46,7 +60,7 @@ use sample-project;
     |字符串模糊搜索|    -   key has 'valu\*'
     -   key like 'value\_%'
 |查询的是分词之后模糊匹配的结果。|
-    |数值比较|num\_field \> 1|比较运算符包括\>、\>= 、= 、< 和<=。|
+    |数值比较|num\_field \> 1|比较运算符包括\>、\>=、=、<和<=。|
     |逻辑运算|and or not|例如a = "x" and b ="y"或a = "x" and not b ="y"。|
     |全文搜索|\_\_line\_\_ ="abc"|如果使用全文索引搜索，需使用特殊的key（\_\_line\_\_）。|
 
@@ -69,7 +83,7 @@ use sample-project;
     ```
 
 
-## 通过JDBC协议访问
+## 通过JDBC协议访问日志服务
 
 -   程序调用
 
