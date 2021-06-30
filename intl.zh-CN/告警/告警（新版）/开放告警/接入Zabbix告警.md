@@ -126,7 +126,9 @@ Zabbix告警消息中包含100多种变量。更多信息，请参见[Zabbix官�
 |fire\_time|无|告警首次触发时间。通过计算\{EVENT.DATE\}和\{EVENT.TIME\}所得。 |
 |resolve\_time|无|告警恢复时间。-   如果告警状态是firing，则值为0。
 -   如果告警状态为resolved，则值为具体恢复时间。通过计算\{EVENT.RECOVERY.DATE\}和\{EVENT.RECOVERY.TIME\}所得。 |
-|labels|HOST.NAME\}|告警标签信息|
+|labels|\{HOST.NAME\}|告警标签信息。如果您在创建开放告警应用时 ，在**信息加工**中添加了标签信息，则此标签信息将被添加到labels字段中。
+
+**说明：** 当您在**信息加工**中配置的标签的Key与Zabbix告警消息的tags字段中的子字段重复时，映射结果以您在**信息加工**中配置的为准。 |
 |annotations|\{EVENT.TAGS\}|Zabbix告警被接入到日志服务后，日志服务会将\{EVENT.TAGS\}字段展开为多个键值对，添加到annotations字段中。-   \{HOST.IP\}映射为\_\_host\_ip\_\_。
 -   \{TRIGGER.HOSTGROUP.NAME\}映射为\_\_host\_group\_name\_\_。
 -   \{EVENT.DURATION\}映射为event\_duration。
