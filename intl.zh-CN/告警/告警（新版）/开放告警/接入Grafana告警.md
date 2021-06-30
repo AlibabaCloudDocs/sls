@@ -121,7 +121,7 @@ Grafana告警消息被接入到日志服务后，映射为日志服务告警内�
 |fire\_time|无|日志服务接收到Grafana告警消息的时间|
 |resolve\_time|无|告警恢复时间，固定为0。|
 |labels|tags|告警标签信息。-   如果Grafana告警消息的tags字段中存在severity字段，则被接入到日志服务后，severity字段将被添加日志服务告警的annotations字段中。
--   如果您在创建开放告警应用时 ，在**信息加工**中添加了标签信息，则此标签信息将被添加到annotations字段中。
+-   如果您在创建开放告警应用时 ，在**信息加工**中添加了标签信息，则此标签信息将被添加到labels字段中。
 
 **说明：** 当您在**信息加工**中配置的标签的Key与Grafana告警消息的tags字段中的子字段重复时，映射结果以您在**信息加工**中配置的为准。 |
 |annotations|无|Grafana告警被接入到日志服务后，日志服务告警的annotations字段中将添加如下额外字段。-   \_\_config\_app\_\_: "sls\_pub\_alert"
