@@ -16,7 +16,7 @@ Authorization : LOG yourAccessKeyId:yourSignature
 x-log-date: GMT Date
 ```
 
-The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
+The value of the Host parameter consists of a project name and an endpoint. You must specify the project in the Host parameter.
 
 ## Request parameters
 
@@ -28,6 +28,7 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
     |Parameter|Type|Required|Example|Description|
     |:--------|:---|:-------|-------|:----------|
+    |projectName|String|Yes|my-project|The name of the project.|
     |logstoreName|String|Yes|test\_logstore|The name of the Logstore.|
 
 
@@ -54,7 +55,7 @@ The value of the Host parameter consists of a project name and an endpoint. You 
         'x-log-bodyrawsize': '0',
         'x-log-apiversion': '0.6.0',
         'x-log-signaturemethod': 'hmac-sha1',
-        'Host' : 'ali-test-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com',
+        'Host' : 'my-project.cn-hangzhou-devcommon-intranet.sls.aliyuncs.com',
         'Date' : 'Wed, 11 Nov 2015 08:09:38 GMT',
         'Authorization' : 'LOG yourAccessKeyId:yourSignature',
         'x-log-date' : 'Wed, 11 Nov 2015 08:09:38 GMT'      
@@ -81,6 +82,7 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
 |HTTP status code|Error code|Error message|Description|
 |:---------------|:---------|:------------|-----------|
+|404|ProjectNotExist|Project ProjectName does not exist.|The error message returned because the specified project does not exist.|
 |404|LogStoreNotExist|logstore logstoreName does not exist|The error message returned because the specified Logstore does not exist.|
 |405|InvalidMethod|invalid request method: /logstores/logstoreName|The error message returned because the value of the logstoreName parameter is invalid.|
 |500|InternalServerError|Specified Server Error Message|The error message returned because an internal server error has occurred.|
