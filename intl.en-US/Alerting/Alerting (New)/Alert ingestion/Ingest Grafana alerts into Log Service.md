@@ -121,7 +121,7 @@ The following table describes the mappings between the alert attributes of Log S
 |fire\_time|None|The time when Log Service receives the Grafana alert.|
 |resolve\_time|None|The time when the alert is cleared.|
 |labels|tags|The labels of the alert. -   If the severity field exists in the tags field of the Grafana alert, the severity field is added to the annotations field after the alert is ingested into Log Service.
--   If you add a label on the **Enrichment** tab when you create the alert ingestion application, the specified label is added to the annotations field.
+-   If you add a label on the **Enrichment** tab when you create the alert ingestion application, the specified label is added to the labels field.
 
 **Note:** If the key of the specified label on the **Enrichment** tab is the same as a subfield in the tags field of the Grafana alert, the label on the **Enrichment** tab prevails. |
 |annotations|None|After the Grafana alert is ingested into Log Service, the following fields are added to the annotations field of the corresponding Log Service alert: -   \_\_config\_app\_\_: "sls\_pub\_alert"
