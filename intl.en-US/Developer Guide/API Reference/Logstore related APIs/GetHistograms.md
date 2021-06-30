@@ -1,20 +1,21 @@
 # GetHistograms
 
-Queries the log distribution of a Logstore in a specified project. You can also query the distribution of logs that meet specified conditions.
+Queries the distribution of logs that meet the specified conditions in a specified Logstore.
 
 ## Description
 
--   The time ranges that are used in this operation are left-closed and right-open intervals. Each interval contains the specified start time but does not contain the specified end time. The intervals include the time ranges that are defined by the from and to parameters in the request and the subintervals in the response. If you specify the from and to parameters to the same value, the time range is invalid and an error message is returned.
+-   The query parameter of this operation is available only for `search statements`. However, this parameter is unavailable for `analytic statements`. For information about the syntax of search statements, see [Search syntax](/intl.en-US/Index and query/Query/Search syntax.md).
+-   The time ranges that are used in this operation are left-closed and right-open intervals. Each interval contains the specified start time but does not contain the specified end time. These intervals include the time ranges that are defined by the from and to parameters in the request and the subintervals in the response. If you set the from and to parameters to the same value, the time range is invalid and an error message is returned.
 -   The time range is evenly divided into subintervals in the response. If the time range that is specified in the request remains unchanged, the subintervals in the response also remain unchanged.
--   If the number of logs in the Logstore greatly changes, Log Service cannot predict how many times this API operation needs to be called to obtain complete results. In this case, you must check the value of the progress parameter in the returned results of each request. Based on the value, you can decide whether to call this API operation again to obtain complete results. Each time you call this operation, the same number of charge units \(CUs\) are consumed.
--   After a log is written to a Logstore, you can call the GetHistograms and GetLogs operations to query the log. However, the query has a latency that varies with the type of the log. Based on the log timestamp, Log Service classifies logs into the following two types:
-    -   Real-time data: Logs of this type are generated within the interval of \(-180 seconds, 900 seconds\] based on the current server time. For example, if a log was generated at September 25, 2014, 12:00:00 UTC and the server received the log at September 25, 2014, 12:05:00 UTC, the server processes the log as real-time data. Such logs are generated in standard query scenarios. After real-time data is written to a Logstore, the data can be queried with a latency of three seconds.
-    -   Historical data: Logs of this type are generated within the interval of \[-604,800 seconds, -180 seconds\) based on the current server time. For example, if a log was generated at September 25, 2014, 12:00:00 UTC and the server received the log at September 25, 2014, 12:05:00 UTC, the server processes the log as historical data. Such logs are generated in data supplement scenarios.
+-   If the number of logs in the Logstore significantly changes, Log Service cannot predict how many times you need to call this API operation to obtain complete results. In this case, you must check the value of the progress parameter in the returned results of each request. You can also call this API operation again to obtain the complete results based on the value. Each time you call this operation, the same number of charge units \(CUs\) are consumed.
+-   After a log is written to a Logstore, you can call the GetHistograms and GetLogs operations to query the log. However, the latency of the query varies based on the type of the log. Log Service classifies logs into the following two types based on the log timestamp:
+    -   Real-time data: Logs of this type are generated within the interval of \(-180 seconds, 900 seconds\] based on the current server time. For example, if a log was generated at 12:03:00 UTC, September 25, 2014 and the server received the log at 12:05:00 UTC, September 25, 2014, the server processes the log as real-time data. Logs of this type are generated in standard query scenarios. Real-time data can be queried 3 seconds after the data is written to a Logstore.
+    -   Historical data: Logs of this type are generated within the interval of \[-604,800 seconds, -180 seconds\) based on the current server time. For example, if a log was generated at 12:00:00 UTC, September 25, 2014 and the server received the log at 12:05:00 UTC, September 25, 2014, the server processes the log as historical data. Logs of this type are generated in data supplement scenarios.
 
 ## Request syntax
 
 ```
-GET /logstores/logstoreName? type=histogram&topic=topic&from=from&to=to&query=query HTTP/1.1
+GET /logstores/logstoreName?type=histogram&topic=topic&from=from&to=to&query=query HTTP/1.1
 Authorization: LOG yourAccessKeyId:yourSignature
 Date: GMT Date
 Host: ProjectName.Endpoint
@@ -23,7 +24,7 @@ x-log-apiversion: 0.6.0
 x-log-signaturemethod: hmac-sha1
 ```
 
-The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
+The value of the Host parameter consists of a project name and Log Service endpoint. You must specify a project in the Host parameter.
 
 ## Request parameters
 
@@ -37,11 +38,11 @@ The value of the Host parameter consists of a project name and an endpoint. You 
     |:--------|:---|:-------|-------|:----------|
     |projectName|String|Yes|big-game|The name of the project.|
     |logstoreName|String|Yes|app\_log|The name of the Logstore.|
-    |type|String|Yes|histogram|The type of data in the Logstore. This parameter must be set to histogram in the GetHistograms operation.|
-    |from|Integer|Yes|1409529600|The start time of the time range that is specified in the request. The start time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
-    |to|Integer|Yes|1409608800|The end time of the time range that is specified in the request. The time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
+    |type|String|Yes|histogram|The type of the data in the Logstore. This parameter must be set to histogram in the GetHistograms operation.|
+    |from|Integer|Yes|1409529600|The start time of the time range that is specified in the request. The start time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 UTC, Thursday, January 1, 1970.|
+    |to|Integer|Yes|1409608800|The end time of the time range that is specified in the request. The end time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 UTC, Thursday, January 1, 1970.|
     |topic|String|No|groupA|The topic of the logs.|
-    |query|String|No|error|The query statement. For more information about the query syntax, see [Search syntax](/intl.en-US/Index and query/Query/Search syntax.md).|
+    |query|String|No|error|The search statement. Only `search statements` are supported. `Analytic statements` are not supported. For information about the syntax of search statements, see [Search syntax](/intl.en-US/Index and query/Query/Search syntax.md).|
 
 
 ## Response parameters
@@ -52,12 +53,12 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
 -   Response elements
 
-    If the HTTP status code 200 is returned, the request is successful. The response body contains the distribution of the logs along the time axis. Log Service evenly divides the time range into several subintervals and returns the number of logs in each subinterval. The following table describes the parameters of the response body.
+    If the HTTP status code 200 is returned, the request is successful. The response body contains the distribution of the logs along the timeline. Log Service evenly divides the time range into subintervals and returns the number of matched logs in each subinterval. The following table describes the parameters of the response body.
 
     |Parameter|Type|Example|Description|
     |:--------|:---|-------|:----------|
-    |progress|String|Complete|The status of the query results. Valid values: Complete and incomplete.    -   Complete: The query succeeded and the query results are complete.
-    -   Incomplete: The query succeeded but the query results are incomplete. You must repeat the request to obtain complete query results. |
+    |progress|String|Complete|The status of the query results.     -   Complete: The query is successful and the query results are complete.
+    -   Incomplete: The query is successful but the query results are incomplete. You must repeat the request to obtain complete query results. |
     |count|Integer|2|The number of log entries in the query results.|
     |histograms|Array|None|The distribution of the query results in each subinterval.|
 
@@ -65,24 +66,24 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
     |Parameter|Type|Example|Description|
     |:--------|:---|-------|:----------|
-    |from|Integer|1409529600|The start time of the subinterval. The time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
-    |to|Integer|1409569200|The end time of the subinterval. The time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
+    |from|Integer|1409529600|The start time of the subinterval. The start time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 UTC, Thursday, January 1, 1970.|
+    |to|Integer|1409569200|The end time of the subinterval. The end time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 UTC, Thursday, January 1, 1970.|
     |count|Integer|2|The number of log entries in the subinterval.|
-    |progress|Sting|Complete|Indicates whether the query results in the subinterval are complete. Valid values: Complete and Incomplete.    -   Complete: The query succeeded and the query results are complete.
-    -   Incomplete: The query succeeded but the query results are incomplete. You must repeat the request to obtain complete query results. |
+    |progress|Sting|Complete|Indicates whether the query results in the subinterval are complete.     -   Complete: The query is successful and the query results are complete.
+    -   Incomplete: The query is successful but the query results are incomplete. You must repeat the request to obtain complete query results. |
 
 
 ## Examples
 
-In this example, the distribution of logs whose topic is groupA is queried in a Logstore named app\_log. The Logstore belongs to a project named big-game in the China \(Hangzhou\) region. The time range is from September 1, 2014, 00:00:00 to September 1, 2014, 22:00:00 and the keyword is "error".
+In this example, the distribution of logs whose topic is groupA is queried in a Logstore named app\_log. The Logstore belongs to a project named big-game in the China \(Hangzhou\) region. The time range is from 00:00:00 UTC, September 1, 2014 to 22:00:00 UTC, September 1, 2014 and the keyword is "error".
 
 -   Sample requests
 
     ```
-    GET /logstores/app_log? type=histogram&topic=groupA&from=1409529600&to=1409608800&query=error HTTP/1.1
+    GET /logstores/app_log?type=histogram&topic=groupA&from=1409529600&to=1409608800&query=error HTTP/1.1
     Header :
     {
-    Authorization: LOG <yourAccessKeyId>:<yourSignature>
+    Authorization: LOG yourAccessKeyId:yourSignature
     Date: Wed, 3 Sept. 2014 08:33:46 GMT
     Host: big-game.cn-hangzhou.log.aliyuncs.com
     x-log-bodyrawsize: 0
@@ -121,7 +122,7 @@ In this example, the distribution of logs whose topic is groupA is queried in a 
     }
     ```
 
-    In this sample response, the time range is evenly divided into two subintervals. The first subinterval is from September 1, 2014, 00:00:00 to September 1, 2014, 11:00:00. The second subinterval is from September 1, 2014, 11:00:00 to September 1, 2014, 22:00:00. The results of the first query are incomplete because the amount of data exceeds the limit. The response results indicate that three log entries meet the query conditions, but the results are incomplete. Two log entries are in the first subinterval and the query results are complete. One log entry is in the second subinterval, but the query results are incomplete. To obtain the complete results, you must repeat the sample request until the value of the progress parameter in the response becomes Complete. Sample responses:
+    In this sample response, the time range is evenly divided into two subintervals. The first subinterval is from 00:00:00 UTC, September 1, 2014 to 11:00:00 UTC, September 1, 2014. The second subinterval is from 11:00:00 UTC, September 1, 2014 to 22:00:00 UTC, September 1, 2014. The results of the first query are incomplete because the amount of data exceeds the limit. The response results indicate that three log entries meet the query conditions, but the results are incomplete. Two log entries are in the first subinterval and the query results are complete. One log entry is in the second subinterval, but the query results are incomplete. To obtain the complete results, you must repeat the sample request until the value of the progress parameter in the response becomes Complete. Sample responses:
 
     ```
     HTTP/1.1 200 OK
