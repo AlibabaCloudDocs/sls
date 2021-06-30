@@ -4,7 +4,7 @@ Modifies the parameters of a Logstore.
 
 ## Description
 
-Only the ttl \(data retention period\) parameter can be modified.
+You can modify only the ttl parameter, which specifies the data retention period.
 
 ## Request syntax
 
@@ -29,7 +29,7 @@ x-log-date: Wed, 11 Nov 2015 08:28:19 GMT
 }
 ```
 
-The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
+The value of the Host parameter consists of a project name and an endpoint. You must specify a project name in the Host parameter.
 
 ## Request elements
 
@@ -41,18 +41,19 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
     |Parameter|Type|Required|Example|Description|
     |:--------|:---|:-------|-------|:----------|
+    |projectName|String|Yes|ali-test-project|The name of the project.|
     |logstoreName|String|Yes|test-logstore|The name of the Logstore.|
     |ttl|Integer|Yes|1|The data retention period. Unit: days. Valid values: 1 to 3650. If you set the value to 3650, the data is permanently stored.|
-    |enable\_tracking|Boolean|No|false|Specifies whether to enable the WebTracking feature.    -   If you set the value to true, the WebTracking feature is enabled.
-    -   If you set the value to false, the WebTracking feature is disabled. |
-    |shardCount|Integer|Yes|2|The number of shards.**Note:**
+    |enable\_tracking|Boolean|No|false|Specifies whether to enable the WebTracking feature.     -   true: enables the WebTracking feature
+    -   false: disables the WebTracking feature |
+    |shardCount|Integer|Yes|2|The number of shards. **Note:**
 
     -   You cannot call the UpdateLogstore operation to modify this parameter.
     -   However, you can call the [SplitShard](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/SplitShard.md) or [MergeShards](/intl.en-US/Developer Guide/API Reference/Logstore related APIs/MergeShards.md) operation to modify this parameter. |
-    |autoSplit|Boolean|No|true|Specifies whether to enable automatic sharding.    -   If you set the value to true, automatic sharding is enabled.
-    -   If you set the value to false, automatic sharding is disabled. |
-    |maxSplitShard|Integer|No|64|The maximum number of shards for automatic sharding. Valid values: 1 to 64.**Note:** This parameter must be specified if the autoSplit parameter is set to true. |
-    |appendMeta|Boolean|No|false|Specifies whether to record public IP addresses.    -   If you set the value to true, public IP addresses are recorded.
+    |autoSplit|Boolean|No|true|Specifies whether to enable automatic sharding.     -   true: enables automatic sharding
+    -   false: disables automatic sharding |
+    |maxSplitShard|Integer|No|64|The maximum number of shards for automatic sharding. Valid values: 1 to 64. **Note:** If the autoSplit parameter is set to true, you must specify the maxSplitShard parameter. |
+    |appendMeta|Boolean|No|false|Specifies whether to record public IP addresses.     -   If you set the value to true, public IP addresses are recorded.
     -   If you set the value to false, public IP addresses are not recorded. |
 
 
@@ -122,7 +123,7 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 |404|LogStoreNotExist|logstore logstoreName does not exist.|The error message returned because the specified Logstore does not exist.|
 |400|LogStoreAlreadyExist|logstore logstoreName already exists.|The error message returned because the specified Logstore already exists.|
 |500|InternalServerError|Specified Server Error Message.|The error message returned because an internal server error has occurred.|
-|400|ParameterInvalid|invalid shard count,you can only modify shardCount by split& merge shard.|The error message returned because the specified number of shards is invalid. You can modify the number of shards by calling only the SplitShard or MergeShards operation.|
+|400|ParameterInvalid|invalid shard count,you can only modify shardCount by split& merge shard.|The error message returned because the specified number of shards is invalid. You can change the number of shards by calling only the SplitShard or MergeShards operation.|
 
 For a list of error codes, see [Common error codes](/intl.en-US/Developer Guide/API Reference/Common error codes.md).
 
