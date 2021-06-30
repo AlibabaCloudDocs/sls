@@ -1,6 +1,6 @@
 # GetLogstore
 
-Queries the parameters of a specified Logstore.
+Queries the details of a specified Logstore.
 
 ## Request syntax
 
@@ -16,7 +16,7 @@ Authorization: LOG yourAccessKeyId:yourSignature
 x-log-date: Wed, 11 Nov 2015 07:53:29 GMT
 ```
 
-The value of the Host parameter consists of a project name and an endpoint. You must specify a project name for the Host parameter.
+The value of the Host parameter consists of a project name and an endpoint. You must specify a project name in the Host parameter.
 
 ## Request parameters
 
@@ -28,6 +28,7 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
     |Parameter|Type|Required|Example|Description|
     |:--------|:---|:-------|-------|:----------|
+    |projectName|String|Yes|ali-test-project|The name of the project.|
     |logstoreName|String|Yes|test-logstore|The name of the Logstore.|
 
 
@@ -39,22 +40,22 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
 -   Response elements
 
-    If the HTTP status code 200 is returned, the request is successful. The response body contains the detailed information of the specified Logstore. The following table lists the parameters in the response body.
+    If the HTTP status code 200 is returned, the request is successful. The response body contains the details of the specified Logstore. The following table lists the parameters in the response body.
 
     |Parameter|Type|Example|Description|
     |---------|----|-------|-----------|
     |logstoreName|String|test-logstore|The name of the Logstore.|
     |ttl|Integer|1|The data retention period. Unit: days.|
     |shardCount|Integer|2|The number of shards.|
-    |enable\_tracking|Boolean|false|Specifies whether to enable the WebTracking feature. You can use the WebTracking feature to collect logs from the HTML, HTML5, iOS, and Android platforms.    -   If you set the value to true, the WebTracking feature is enabled.
-    -   If you set the value to false, the WebTracking feature is disabled. |
-    |autoSplit|Boolean|true|Specifies whether to enable automatic sharding.    -   If you set the value to true, automatic sharding is enabled.
-    -   If you set the value to false, automatic sharding is disabled. |
+    |enable\_tracking|Boolean|false|Indicates whether the WebTracking feature is enabled. You can use the WebTracking feature to collect logs from the HTML, HTML5, iOS, and Android platforms.     -   true: The WebTracking feature is enabled.
+    -   false: The WebTracking feature is disabled. |
+    |autoSplit|Boolean|true|Indicates whether automatic sharding is enabled.     -   true: Automatic sharding is enabled.
+    -   false: Automatic sharding is disabled. |
     |maxSplitShard|Integer|64|The maximum number of shards for automatic sharding. Valid values: 1 to 64.|
-    |appendMeta|Boolean|false|Specifies whether to record public IP addresses.    -   If you set the value to true, public IP addresses are recorded.
-    -   If you set the value to false, public IP addresses are not recorded. |
-    |createTime|Integer|1447833064|The timestamp when the Logstore was created. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
-    |lastModifyTime|Integer|1447833064|The timestamp when the project was last modified. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 Thursday, January 1, 1970.|
+    |appendMeta|Boolean|false|Indicates whether public IP addresses are recorded.     -   true: Public IP addresses are recorded.
+    -   false: Public IP addresses are not recorded. |
+    |createTime|Integer|1447833064|The timestamp when the Logstore was created. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00, January 1, 1970.|
+    |lastModifyTime|Integer|1447833064|The timestamp when the project was last modified. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00, January 1, 1970.|
 
 
 ## Examples
@@ -113,5 +114,5 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 |404|LogstoreNotExist|logstore logstoreName does not exist.|The error message returned because the specified Logstore does not exist.|
 |500|InternalServerError|Specified Server Error Message.|The error message returned because an internal server error has occurred.|
 
-For a list of codes, see [Common error codes](/intl.en-US/Developer Guide/API Reference/Common error codes.md).
+For a list of error codes, see [Common error codes](/intl.en-US/Developer Guide/API Reference/Common error codes.md).
 
