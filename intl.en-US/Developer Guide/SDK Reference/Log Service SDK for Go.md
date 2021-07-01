@@ -2,7 +2,7 @@
 
 This topic describes how to install and use Log Service SDK for Go.
 
--   Log Service is activated. For more information, see [Activate Log Service](https://www.aliyun.com/product/sls?spm=5176.7933691.J_8058803260.20.3eeb2a665LA0eU).
+-   Log Service is activated. For more information, see [Activate Log Service](https://www.alibabacloud.com/product/log-service?spm=a2c5t.10695662.1996646101.searchclickresult.536d31bdPTqffd).
 -   An AccessKey pair is created and obtained. For more information, see [AccessKey pair](/intl.en-US/Developer Guide/API Reference/AccessKey pair.md).
 -   A Golang development environment is installed.
 
@@ -32,12 +32,12 @@ Client = sls.CreateNormalInterface(Endpoint,AccessKeyID,AccessKeySecret,"") // C
 Log Service SDK for Go provides multiple sample programs. For more information, see [aliyun-log-go-sdk](https://github.com/aliyun/aliyun-log-go-sdk). The following sample code shows how to create a project and a Logstore:
 
 ```
-project, err := client.CreateProject("project_name","description") // Enter the project name and the description.
+project, err := client.CreateProject("project-name","description") // Enter the project name and the description.
     if err ! = nil {
         fmt.Println(err)
     }
     fmt.Println(project)
-    err = client.CreateLogStore("project_name","logstore_name",2,2,true,16) // Enter the project name, Logstore name, data retention period, and number of shards. Specify whether you want to enable automatic sharding and specify the maximum number of shards. If you set ttl to 3650, the data is permanently stored.
+    err = client.CreateLogStore("project-name","logstore-name",2,2,true,16) // Enter the project name, Logstore name, data retention period, and number of shards. Specify whether you want to enable automatic sharding and specify the maximum number of shards. If you set ttl to 3650, the data is permanently stored.
     if err ! = nil {
         fmt.Println(err)
     }
