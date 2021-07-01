@@ -1,6 +1,6 @@
 # String functions
 
-This topic describes the syntax of string functions and provides parameter descriptions and function examples.
+This topic describes the syntax and parameters of string functions. This topic also provides usage examples.
 
 ## Functions
 
@@ -8,34 +8,34 @@ This topic describes the syntax of string functions and provides parameter descr
 |----|--------|-----------|
 |Multi-string operation|[str\_format](#section_z9w_lhq_1np)|Formats a string.|
 |[str\_join](#section_m6w_z5p_dsz)|Concatenates the elements in a sequence with a specified string to generate a new string.|
-|[str\_zip](#section_3k5_k2o_9nv)|Splits two value strings or expression strings concurrently and then merges them into a single string.|
+|[str\_zip](#section_3k5_k2o_9nv)|Splits two value strings or expression strings concurrently and then merges the strings into a single string.|
 |Sorting, reversing, and replacement|[str\_sort](#section_25v_pnh_lvu)|Sorts specified objects.|
 |[str\_reverse](#section_tj4_8br_687)|Reverses a string.|
 |[str\_replace](#section_vjs_f3r_7dm)|Replaces an old string with a new string based on an applicable rule.|
-|[str\_logstash\_config\_normalize](#section_4r2_umx_8z8)|Converts the data format of the Logstash configuration language into the JSON format.|
-|[str\_translate](#section_r2e_pue_p9l)|Replaces the specified characters of a string with the corresponding characters.|
+|[str\_logstash\_config\_normalize](#section_4r2_umx_8z8)|Converts the data format of the Logstash configuration language to the JSON format.|
+|[str\_translate](#section_r2e_pue_p9l)|Replaces the specified characters of a string with mapping characters.|
 |Regular munging|[str\_strip](#section_zbr_fn2_d5q)|Deletes specified characters from a string.|
 |[str\_lstrip](#section_m5v_v05_d6m)|Deletes specified characters from the start of a string.|
 |[str\_rstrip](#section_jv3_cjm_uli)|Deletes specified characters from the end of a string.|
 |[str\_lower](#section_d7o_z79_1ok)|Converts all uppercase characters in a string to lowercase characters.|
 |[str\_upper](#section_9iy_ias_kkw)|Converts all lowercase characters in a string to uppercase characters.|
-|[str\_title](#section_d6d_haf_4f5)|Capitalizes only the first letter of all words.|
+|[str\_title](#section_d6d_haf_4f5)|Capitalizes only the first letter of all words in a string.|
 |[str\_capitalize](#section_hel_e1z_8yx)|Capitalizes only the first letter of a string.|
-|[str\_swapcase](#section_s56_fi4_znz)|Interchanges uppercase letters and lowercase letters in a string.|
+|[str\_swapcase](#section_s56_fi4_znz)|Interchanges the uppercase letters and lowercase letters in a string.|
 |Search and check|[str\_count](#section_4pc_0pt_x5r)|Counts the number of occurrences of a character in a string.|
 |[str\_find](#section_v2o_zo8_qwp)|Checks whether an original string contains a specified substring.|
 |[str\_rfind](#section_xcw_opp_d0v)|Locates the position of the last occurrence of a character or a substring in a string.|
 |[str\_endswith](#section_1av_zcw_a43)|Checks whether a string ends with a specified suffix.|
 |[str\_startswith](#section_p71_nsr_1vq)|Checks whether a string starts with a specified string.|
 |Splitting|[str\_split](#section_whb_ze9_1zp)|Splits a string with a specified delimiter.|
-|[str\_splitlines](#section_1uo_y5n_b81)|Splits a string with a line feed.|
+|[str\_splitlines](#section_1uo_y5n_b81)|Splits a string with a line break.|
 |[str\_partition](#section_brb_4tj_43x)|Splits a string with a specified delimiter into three parts from left to right.|
 |[str\_rpartition](#section_sut_jtp_tas)|Splits a string with a specified delimiter into three parts from right to left.|
 |Formatting|[str\_center](#section_w4h_xu5_6dp)|Pads a string to a specified length with a specified character.|
 |[str\_ljust](#section_ku6_3qi_jdm)|Pads a string to a specified length from the end with a specified character.|
 |[str\_rjust](#section_emy_k2l_9ha)|Pads a string to a specified length from the start with a specified character.|
 |[str\_zfill](#section_vah_zsq_2h3)|Pads a string to a specified length from the start with 0.|
-|[str\_expandtabs](#section_gkt_nd5_o46)|Converts `\t` in a string into a space character.|
+|[str\_expandtabs](#section_gkt_nd5_o46)|Converts `\t` in a string to a space character.|
 |Character set check|[str\_isalnum](#section_x55_wog_z0t)|Checks whether a string consists of only letters and digits.|
 |[str\_isalpha](#section_8zu_n32_lpq)|Checks whether a string consists of only letters.|
 |[str\_isascii](#section_8vq_m57_0b7)|Checks whether a string is in the ASCII table.|
@@ -46,16 +46,16 @@ This topic describes the syntax of string functions and provides parameter descr
 |[str\_isnumeric](#section_b92_h5s_t4w)|Checks whether a string consists of digits.|
 |[str\_isprintable](#section_x2j_ptg_7dc)|Checks whether all characters in a string are printable characters.|
 |[str\_isspace](#section_4hy_915_ljz)|Checks whether a string consists of only space characters.|
-|[str\_istitle](#section_ttk_bx5_bd7)|Checks whether the first letter of all words in a string are uppercase and whether other letters in the string are lowercase.|
+|[str\_istitle](#section_ttk_bx5_bd7)|Checks whether the first letter of all words in a string are in uppercase and whether other letters in the string are in lowercase.|
 |[str\_isupper](#section_vns_pxu_9q3)|Checks whether all letters in a string are uppercase letters.|
 
 The following table describes the functions that can be used together with string functions.
 
 |Type|Function|Description|
 |----|--------|-----------|
-|Multi-string operation|[op\_add](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Performs a logic AND operation of multiple numeric values. This function can be used for numeric values and strings.|
-|[op\_max](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Calculates the maximum value among multiple values. This function can be used for numeric values and strings.|
-|[op\_min](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Calculates the minimum value among multiple values. This function can be used for numeric values and strings.|
+|Multi-string operation|[op\_add](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Performs the AND operation on multiple numeric values and strings.|
+|[op\_max](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Returns the maximum value among multiple numeric values or strings.|
+|[op\_min](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Returns the minimum value among multiple numeric values or strings.|
 |String truncation|[op\_slice](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Truncates a string.|
 |Length calculation|[op\_len](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Operator functions.md)|Calculates the length of a string.|
 
@@ -71,9 +71,9 @@ The following table describes the functions that can be used together with strin
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |formatted string|Arbitrary \(automatically converted to a string\)|Yes|The format of the converted string, for example, `{}={}`.|
-    |value 1|Arbitrary|Yes|Value 1 to be formatted.|
-    |value 2|Arbitrary|Yes|Value 2 to be formatted.|
+    |formatted string|Arbitrary \(automatically converted to a string\)|Yes|The format of the converted string. Example: `{}={}`.|
+    |value 1|Arbitrary|Yes|The value 1 to be formatted.|
+    |value 2|Arbitrary|Yes|The value 2 to be formatted.|
 
 -   Response
 
@@ -108,14 +108,14 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    Str_join(string delimiter, value 1, value 2, ...)
+    Str_join(delimiter, value 1, value 2, ...)
     ```
 
 -   Parameters
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |string delimiter|Arbitrary \(automatically converted to a string\)|Yes|The identifier of a string delimiter, for example, `!`, `@`, `#`, `$`, and `%`.|
+    |delimiter|Arbitrary \(automatically converted to a string\)|Yes|The delimiter. You can use the exclamation point \(!\), at sign \(@\), number sign \(\#\), dollar sign \($\), or percent sign \(%\).|
     |value 1|Arbitrary \(automatically converted to a string\)|Yes|The value to be concatenated.|
     |value 2|Arbitrary \(automatically converted to a string\)|Yes|The value to be concatenated.|
 
@@ -152,7 +152,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_replace(value, old,new,count)
+    str_replace(value, old, new, count)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -170,7 +170,7 @@ The following table describes the functions that can be used together with strin
 
     A new string is returned.
 
--   Example: The following example converts a dictionary to a JSON string.
+-   Example: Convert a dictionary to a JSON string.
 
     Raw log entry:
 
@@ -212,7 +212,7 @@ The following table describes the functions that can be used together with strin
     A sorted string is returned.
 
 -   Examples
-    -   Example 1: This example sorts the str string in alphabetical order.
+    -   Example 1: Sort the str string in alphabetical order.
 
         Raw log entry:
 
@@ -233,7 +233,7 @@ The following table describes the functions that can be used together with strin
         str_sort: histw
         ```
 
-    -   Example 2: This example sorts the str string in two-letter pairs in reverse alphabetical order.
+    -   Example 2: Sort the str string in two-letter pairs in reverse alphabetical order.
 
         Raw log entry:
 
@@ -271,9 +271,9 @@ The following table describes the functions that can be used together with strin
 
 -   Response
 
-    A converted string is returned.
+    A reversed string is returned.
 
--   Example: The following function reverses the data string.
+-   Example: Reverse the data string.
 
     Raw log entry:
 
@@ -300,7 +300,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_logstash_config_normalize (value)
+    str_logstash_config_normalize(value)
     ```
 
     **Note:** For more information about the Logstash configuration language, see [Logstash](http://logstash-docs.elasticsearch.org.s3.amazonaws.com/_logstash_config_language.html).
@@ -315,7 +315,7 @@ The following table describes the functions that can be used together with strin
 
     A converted string is returned.
 
--   Example: The following example converts the logstash string.
+-   Example: Convert the logstash string.
 
     Raw log entry:
 
@@ -342,7 +342,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_strip(value, chars )
+    str_strip(value, chars)
     ```
 
 -   Parameters
@@ -357,7 +357,7 @@ The following table describes the functions that can be used together with strin
     A modified string is returned.
 
 -   Examples
-    -   Example 1: This example deletes the "\*" character from the start of the strip string.
+    -   Example 1: Delete the asterisk \(\*\) from the start of the strip string.
 
         Raw log entry:
 
@@ -378,7 +378,7 @@ The following table describes the functions that can be used together with strin
         str_strip:I love Etl
         ```
 
-    -   Example 2: This example deletes the space character from the start of the strip string.
+    -   Example 2: Delete the space character from the start of the strip string.
 
         Raw log entry:
 
@@ -399,7 +399,7 @@ The following table describes the functions that can be used together with strin
         str_strip: I love Etl
         ```
 
-    -   Example 3: This example deletes the `xy` character set.
+    -   Example 3: Delete the `xy` character set.
 
         Raw log entry:
 
@@ -439,7 +439,7 @@ The following table describes the functions that can be used together with strin
 
     A converted string is returned.
 
--   Example: The following example converts the name string into lowercase letters.
+-   Example: Convert the name string to lowercase letters.
 
     Raw log entry:
 
@@ -479,7 +479,7 @@ The following table describes the functions that can be used together with strin
 
     A converted string is returned.
 
--   Example: The following example converts the name string into uppercase letters.
+-   Example: Convert the name string to uppercase letters.
 
     Raw log entry:
 
@@ -519,7 +519,7 @@ The following table describes the functions that can be used together with strin
 
     A converted string is returned.
 
--   Example: The following example converts the first letters of all words in the word string into uppercase letters.
+-   Example: Capitalize only the first letters of all words in the word field value.
 
     Raw log entry:
 
@@ -559,7 +559,7 @@ The following table describes the functions that can be used together with strin
 
     A converted string is returned.
 
--   Example: The following example converts the letters of all words in the word string into lowercase letters.
+-   Example: Capitalize only the first letter of the word field value.
 
     Raw log entry:
 
@@ -586,22 +586,22 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_lstrip(value,chars)
+    str_lstrip(value, chars)
     ```
 
 -   Parameters
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be modified|
-    |chars|Arbitrary \(automatically converted to a string\)|No|The character set to be deleted from the start of a string. The default value is the space character.|
+    |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be modified.|
+    |chars|Arbitrary \(automatically converted to a string\)|No|The character set to be deleted from the start of a string. The default value is a space character.|
 
 -   Response
 
     A modified string is returned.
 
 -   Examples
-    -   Example 1: This example deletes the "\*" character from the start of the word string.
+    -   Example 1: Delete the asterisk \(\*\) from the start of the word field value.
 
         Raw log entry:
 
@@ -622,7 +622,7 @@ The following table describes the functions that can be used together with strin
         str_lstrip: this is string
         ```
 
-    -   Example 2: This example deletes the space character from the start of the word string.
+    -   Example 2: Delete the space character from the start of the word field value.
 
         Raw log entry:
 
@@ -643,7 +643,7 @@ The following table describes the functions that can be used together with strin
         str_lstrip: this is string
         ```
 
-    -   Example 3: This example deletes the `xy` character set.
+    -   Example 3: Delete the `xy` character set.
 
         Raw log entry:
 
@@ -678,14 +678,14 @@ The following table describes the functions that can be used together with strin
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be modified.|
-    |chars|Arbitrary \(automatically converted to a string\)|No|The character set to be deleted from the end of a string. The default value is the space character.|
+    |chars|Arbitrary \(automatically converted to a string\)|No|The character set to be deleted from the end of a string. The default value is a space character.|
 
 -   Response
 
     A modified string is returned.
 
 -   Examples
-    -   Example 1: This example deletes the "\*" character from the end of the word string.
+    -   Example 1: Delete the asterisk \(\*\) from the end of the word field value.
 
         Raw log entry:
 
@@ -706,7 +706,7 @@ The following table describes the functions that can be used together with strin
         str_rstrip: this is string
         ```
 
-    -   Example 2: This example deletes the `xy` character set.
+    -   Example 2: Delete the `xy` character set.
 
         Raw log entry:
 
@@ -786,7 +786,7 @@ The following table describes the functions that can be used together with strin
 
 -   Response
 
-    A replaced string is returned.
+    A converted string is returned.
 
 -   Example
 
@@ -815,7 +815,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    tr_endwith(value, suffix, start, end )
+    str_endwith(value, suffix, start, end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -870,7 +870,7 @@ The following table describes the functions that can be used together with strin
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be checked.|
-    |prefix|Arbitrary\(automatically converted to a string\)|Yes|The prefix rule. This parameter can be a string or an element.|
+    |prefix|Arbitrary \(automatically converted to a string\)|Yes|The prefix rule. This parameter can be a string or an element.|
     |start|Number|No|The position where the string prefix check starts. The value 0 indicates the first character and the value -1 indicates the last character. |
     |end|Number|No|The position where the string prefix check ends. The value 0 indicates the first character and the value -1 indicates the last character. |
 
@@ -905,7 +905,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_find(value,str, begin, end)
+    str_find(value, str, begin, end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -915,13 +915,13 @@ The following table describes the functions that can be used together with strin
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string in which you search for a substring.|
-    |str|Arbitrary \(automatically converted to a string\)|Yes|The substring you enter for search.|
+    |str|Arbitrary \(automatically converted to a string\)|Yes|The substring that you specify for search.|
     |begin|Number|No|The position where the substring search starts. The value 0 indicates the first character and the value -1 indicates the last character. |
     |end|Number|No|The position where the substring search ends. The default value is the length of the string. The value 0 indicates the first character and the value -1 indicates the last character. |
 
 -   Response
 
-    The position of the specified substring in the original string is returned.
+    The position of the specified substring in the original string is returned. If the original string contains multiple the specified substrings, only the position of the first substring is returned.
 
 -   Example
 
@@ -950,7 +950,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_count(value,sub,start,end)
+    str_count(value, sub, start, end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -961,8 +961,10 @@ The following table describes the functions that can be used together with strin
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string in which the number of occurrences of a specified character is counted.|
     |sub|Arbitrary \(automatically converted to a string\)|Yes|The character whose number of occurrences is counted.|
-    |start|Number|No|The position where the search for the specified character starts in the string. The value 0 indicates the first character and the value -1 indicates the last character. |
-    |end|Number|No|The position where the search for the specified character ends in the string. The default value is the last character of the string. The value 0 indicates the first character and the value -1 indicates the last character. |
+    |start|Number|No|The position where the search for the specified character starts in the string.     -   0: the first character. This is the default value.
+    -   -1: the last character. |
+    |end|Number|No|The position where the search for the specified character ends in the string.     -   0: the first character.
+    -   -1: the last character. This is the default value. |
 
 -   Response
 
@@ -995,7 +997,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_rfind(value,substr,beg,end)
+    str_rfind(value, substr, beg, end)
     ```
 
     **Note:** This function is a basic method to call variable parameters. For more information, see [Function invoking](/intl.en-US/Data Transformation/Data processing syntax/Basic syntax.md).
@@ -1005,7 +1007,7 @@ The following table describes the functions that can be used together with strin
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string in which you search for a specified character.|
-    |substr|Arbitrary \(automatically converted to a string\)|Yes|The character you enter for search.|
+    |substr|Arbitrary \(automatically converted to a string\)|Yes|The character that you specify for search.|
     |beg|Number|No|The position where the search starts. Default value: 0.|
     |end|Number|No|The position where the search ends. The default value is the length of the string.|
 
@@ -1048,14 +1050,14 @@ The following table describes the functions that can be used together with strin
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be split.|
-    |sep|Number|No|The delimiter. The value None indicates the space character.|
+    |sep|Number|No|The delimiter. The value None indicates a space character.|
     |maxsplit|Number|No|The maximum number of splits. The value -1 indicates that no limit is set.|
 
 -   Response
 
-    A split string is returned.
+    A converted string is returned.
 
--   Example: The following example splits the content string with a space character.
+-   Example: Split the content string with space characters.
 
     Raw log entry:
 
@@ -1082,7 +1084,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_splitlines(value,keepends)
+    str_splitlines(value, keepends)
     ```
 
 -   Parameters
@@ -1090,14 +1092,14 @@ The following table describes the functions that can be used together with strin
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be split.|
-    |keepends|Bool|No|Indicates whether to delete line feeds \(`\r`, `\r\n`, and `\n`\) from the result. The default value is False, which indicates that line feeds are deleted. The value True indicates that line feeds are retained.|
+    |keepends|Bool|No|Indicates whether to delete line feeds from the result. These line feeds include `\r`, `\r\n`, and `\n`. Default value: False. This value indicates that line feeds are deleted. The value True indicates that line feeds are retained.|
 
 -   Response
 
-    A list of split string is returned.
+    Split strings are returned.
 
 -   Examples
-    -   Example 1:
+    -   Example 1
 
         Raw log entry:
 
@@ -1118,7 +1120,7 @@ The following table describes the functions that can be used together with strin
         str_splitlines: ['ab c', '', 'de fg', 'kl']
         ```
 
-    -   Example 2:
+    -   Example 2
 
         Raw log entry:
 
@@ -1145,7 +1147,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_partition(value,substr)
+    str_partition(value, substr)
     ```
 
 -   Parameters
@@ -1157,9 +1159,9 @@ The following table describes the functions that can be used together with strin
 
 -   Response
 
-    A split string is returned.
+    Split strings are returned.
 
--   Example: The following example splits the website string with periods \(`.`\) into three parts from left to right.
+-   Example: Split the website string with periods \(`.`\) into three parts from left to right.
 
     Raw log entry:
 
@@ -1186,7 +1188,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_rpartition(value,substr)
+    str_rpartition(value, substr)
     ```
 
 -   Parameters
@@ -1198,9 +1200,9 @@ The following table describes the functions that can be used together with strin
 
 -   Response
 
-    A list of split string is returned.
+    Split strings are returned.
 
--   Example: The following example splits the website string with periods \(`.`\) into three parts from right to left.
+-   Example: Split the website string with periods \(`.`\) into three parts from right to left.
 
     Raw log entry:
 
@@ -1227,7 +1229,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_center(value,width,fillchar)
+    str_center(value, width, fillchar)
     ```
 
 -   Parameters
@@ -1236,16 +1238,16 @@ The following table describes the functions that can be used together with strin
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be modified.|
     |width|Number|Yes|The length of the padded string.|
-    |fillchar|Arbitrary \(automatically converted to a string\)|No|The pad character. The default pad character is the space character.|
+    |fillchar|Arbitrary \(automatically converted to a string\)|No|The pad character. The default pad character is a space character.|
 
 -   Response
 
-    A padded string is returned.
+    A converted string is returned.
 
-    **Note:** If the length of the padded string is shorter than that of the original string, the original string is returned.
+    **Note:** If the length of the padded string is shorter than the length of the original string, the original string is returned.
 
 -   Examples
-    -   Example 1: This example pads a string with asterisks \(`*`\).
+    -   Example 1: Pad a string with asterisks \(`*`\).
 
         Raw log entry:
 
@@ -1266,7 +1268,7 @@ The following table describes the functions that can be used together with strin
         str_center: *************this is center*************
         ```
 
-    -   Example 2: This example pads a string with space characters.
+    -   Example 2: Pad a string with space characters.
 
         Raw log entry:
 
@@ -1293,7 +1295,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_zfill(value,width)
+    str_zfill(value, width)
     ```
 
 -   Parameters
@@ -1305,7 +1307,7 @@ The following table describes the functions that can be used together with strin
 
 -   Response
 
-    A padded string is returned.
+    A converted string is returned.
 
 -   Example
 
@@ -1334,7 +1336,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_expandtabs(value,tabsize)
+    str_expandtabs(value, tabsize)
     ```
 
 -   Parameters
@@ -1342,14 +1344,14 @@ The following table describes the functions that can be used together with strin
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be modified.|
-    |tabsize|Number|Required|Specifies the number of space characters after the conversion.|
+    |tabsize|Number|Yes|Specifies the number of space characters after the conversion.|
 
 -   Response
 
     A converted string is returned.
 
 -   Examples
-    -   Example 1: This example converts the `\t` character in the logstash string into a space character.
+    -   Example 1: Convert `\t` in the logstash string to a space character.
 
         Raw log entry:
 
@@ -1370,7 +1372,7 @@ The following table describes the functions that can be used together with strin
         str_expandtabs: this is string
         ```
 
-    -   Example 2: This example converts the `\t` character in the center string into a space character.
+    -   Example 2: Convert `\t` in the center string to space characters.
 
         Raw log entry:
 
@@ -1397,7 +1399,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_ljust(value,width,fillchar)
+    str_ljust(value, width, fillchar)
     ```
 
 -   Parameters
@@ -1406,16 +1408,16 @@ The following table describes the functions that can be used together with strin
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be modified.|
     |width|Number|Yes|The length of the padded string.|
-    |fillchar|Arbitrary \(automatically converted to a string\)|No|The pad character. The default pad character is the space character.|
+    |fillchar|Arbitrary \(automatically converted to a string\)|No|The pad character. The default pad character is a space character.|
 
 -   Response
 
-    A padded string is returned.
+    A converted string is returned.
 
-    **Note:** If the length of the padded string is shorter than that of the original string, the original string is returned.
+    **Note:** If the length of the padded string is shorter than the length of the original string, the original string is returned.
 
 -   Examples
-    -   Example 1:
+    -   Example 1
 
         Raw log entry:
 
@@ -1436,7 +1438,7 @@ The following table describes the functions that can be used together with strin
         str_ljust: this is ljust*******
         ```
 
-    -   Example 2:
+    -   Example 2
 
         Raw log entry:
 
@@ -1484,7 +1486,7 @@ The following table describes the functions that can be used together with strin
 -   Syntax
 
     ```
-    str_ljust(value,width,fillchar)
+    str_ljust(value, width, fillchar)
     ```
 
 -   Parameters
@@ -1493,13 +1495,13 @@ The following table describes the functions that can be used together with strin
     |---------|----|--------|-----------|
     |value|Arbitrary \(automatically converted to a string\)|Yes|The original string to be modified.|
     |width|Number|Yes|The length of the padded string.|
-    |fillchar|Arbitrary \(automatically converted to a string\)|No|The pad character. The default pad character is the space character.|
+    |fillchar|Arbitrary \(automatically converted to a string\)|No|The pad character. The default pad character is a space character.|
 
 -   Response
 
-    A padded string is returned.
+    A converted string is returned.
 
-    **Note:** If the length of the padded string is shorter than that of the original string, the original string is returned.
+    **Note:** If the length of the padded string is shorter than the length of the original string, the original string is returned.
 
 -   Example
 
@@ -1535,11 +1537,11 @@ The following table describes the functions that can be used together with strin
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |value 1|Arbitrary \(automatically converted to a string\)|Yes|A value to be merged.|
-    |value 2|Arbitrary \(automatically converted to a string\)|Yes|A value to be merged.|
-    |combine\_sep|Arbitrary \(automatically converted to a string\)|No|The identifier used to merge the elements. Default value: `#`.|
-    |sep|Arbitrary \(automatically converted to a string\)|No|The delimiter between merged elements. The value must be a single character. Default value: `,`.|
-    |quote|Arbitrary \(automatically converted to a string\)|No|The character that encloses the merged elements. This parameter is required when the merged elements contain a delimiter. Default value: `"`.|
+    |value 1|Arbitrary \(automatically converted to a string\)|Yes|The value to be merged.|
+    |value 2|Arbitrary \(automatically converted to a string\)|Yes|The value to be merged.|
+    |combine\_sep|Arbitrary \(automatically converted to a string\)|No|The identifier that is used to merge the elements. Default value: `#`.|
+    |sep|Arbitrary \(automatically converted to a string\)|No|The delimiter between the merged elements. The value must be a single character. Default value: `,`.|
+    |quote|Arbitrary \(automatically converted to a string\)|No|The character that encloses the merged elements. This parameter is required if the merged elements contain a delimiter. Default value: `"`.|
     |lparse|Arbitrary \(automatically converted to a string\)|No|The delimiter and quote used among the elements of `value 1`. The default delimiter is `,` and the default quote is `"`. The format is `lparse=(',', '"')`. **Note:** The quote takes precedence over the delimiter. |
     |rparse|Arbitrary \(automatically converted to a string\)|No|The delimiter and quote used among the elements of `value 2`. The default delimiter is `,` and the default quote is `"`. The format is `rparse=(',', '"')`. **Note:** The quote takes precedence over the delimiter. |
 
@@ -1548,7 +1550,7 @@ The following table describes the functions that can be used together with strin
     A merged string is returned.
 
 -   Examples
-    -   Example 1:
+    -   Example 1
 
         Raw log entry:
 
@@ -1571,7 +1573,7 @@ The following table describes the functions that can be used together with strin
         combine: wwww.aliyun.com@o
         ```
 
-    -   Example 2:
+    -   Example 2
 
         Raw log entry:
 
@@ -1640,7 +1642,7 @@ The following table describes the functions that can be used together with strin
         combine: |a,a#x|,|b#y,y|,|c,c#z|
         ```
 
-    -   Example 5: In this example, elements of different lengths are used.
+    -   Example 5: In this example, elements with different lengths are used.
 
         Raw log entry:
 
@@ -1686,7 +1688,7 @@ The following table describes the functions that can be used together with strin
         combine: a#x,b#y,c#z
         ```
 
-    -   Example 7: In this example, the lparse and rparse parameter are specified.
+    -   Example 7: In this example, the lparse and rparse parameters are specified.
 
         Raw log entry:
 
@@ -1849,7 +1851,7 @@ The following table describes the functions that can be used together with strin
     The value True or False is returned.
 
 -   Examples
-    -   Example 1:
+    -   Example 1
 
         Raw log entry:
 
@@ -1870,7 +1872,7 @@ The following table describes the functions that can be used together with strin
         str_isdecimal: False
         ```
 
-    -   Example 2:
+    -   Example 2
 
         Raw log entry:
 
@@ -2224,14 +2226,14 @@ The following table describes the functions that can be used together with strin
 
     |Parameter|Type|Required|Description|
     |---------|----|--------|-----------|
-    |lower|Bool|No|Indicates whether the letters in the generated UUID are in lowercase. Default value: True. This value indicates that the letters are lowercase.|
+    |lower|Bool|No|Indicates whether the letters in the generated UUID are in lowercase. Default value: True. This value indicates that the letters are in lowercase.|
 
 -   Response
 
     A UUID is returned.
 
--   Example
-    -   Example 1:
+-   Examples
+    -   Example 1
 
         Raw log entry:
 
