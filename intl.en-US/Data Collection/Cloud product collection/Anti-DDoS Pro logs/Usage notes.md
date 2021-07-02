@@ -33,7 +33,7 @@ The full log feature of Anti-DDoS Pro and Anti-DDoS Premium of the previous vers
 
 ## Billing
 
--   Anti-DDoS Pro and Anti-DDoS Premium of the previous version provides the following free quotas. If the number of resources that you have used exceeds the quota, you are charged for the excess based on the standard pricing. For more information, see [Anti-DDoS Pro or Premium Pricing](https://help.aliyun.com/document_detail/40498.html?spm=a2c4g.11186623.6.985.4a4a612dALoDEq).
+-   Anti-DDoS Pro and Anti-DDoS Premium of the previous version provides the following free quotas. If the number of resources that you have used exceeds the quota, you are charged for the excess based on the standard pricing. For more information, see [Billing method](/intl.en-US/Anti-DDoS Pro Service (Old)/Pricing/Billing method.md).
     -   100 GB of write traffic per day
     -   Free rental of four Shard per day
     -   Three days of free log retention
