@@ -13,7 +13,6 @@ The following table shows the relationships between regions, cities, and region 
 |China \(Ulanqab\)|Ulanqab|cn-wulanchabu|
 |China \(Hangzhou\)|Hangzhou|cn-hangzhou|
 |China \(Shanghai\)|Shanghai|cn-shanghai|
-|China \(Nanjing\)|Nanjing \([Local Region](https://www.aliyun.com/page-source/website/infrastructure/local-regions?spm=a2c4g.11186623.2.5.78cc3e90Zp45Hb)\)|cn-nanjing|
 |China \(Shenzhen\)|Shenzhen|cn-shenzhen|
 |China \(Heyuan\)|Heyuan|cn-heyuan|
 |China \(Guangzhou\)|Guangzhou|guangzhou|
