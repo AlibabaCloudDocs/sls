@@ -24,7 +24,7 @@ This topic introduces the terms in Log Service.
 |Term|Description|
 |----|-----------|
 |Logtail|Logtail is used to collect logs in Log Service. For more information, see [Logtail overview](/intl.en-US/Data Collection/Logtail collection/Overview/Logtail overview.md).|
-|Logtail configuration|A Logtail configuration is a set of policies that are used by Logtail to collect logs. The configuration specifies the log source and the collection method. For more information, see [Logtail configuration files](/intl.en-US/Developer Guide/API Reference/Common resources/Logtail configuration files.md).|
+|Logtail configuration|A Logtail configuration is a set of policies that are used by Logtail to collect logs. The configuration specifies the log source and the collection method. For more information, see [Logtail configuration](/intl.en-US/Developer Guide/API Reference/Common resources/Logtail configuration files.md).|
 |Machine groups|A machine group is a virtual group that contains multiple servers. Log Service uses server groups to manage the servers from which you want to collect logs by using Logtail. For more information, see [machine groups](/intl.en-US/Data Collection/Logtail collection/Machine Group/Introduction.md).|
 
 ## Query and analysis
