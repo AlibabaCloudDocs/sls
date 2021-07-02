@@ -1,13 +1,12 @@
-# Logstore {#concept_btb_4qn_vdb .concept}
+# Logstore
 
-The Logstore is a unit in Log Service to collect, store, and query the log data.  Each Logstore belongs to a project, and each project can create multiple Logstores. You can create multiple Logstores for a project according to your actual needs. Typically, an independent Logstore is created for each type of logs in an application. For example, you have a game application “big-game”, and three types of logs are on the server: operation\_log, application\_log, and access\_log. You can first create a project named “big-game”, and then create three Logstores under this project for these three types of logs to collect, store, and query logs respectively.
+A Logstore in Log Service is a unit that is used to collect, store, and query logs.
 
-You must specify the Logstore for writing and querying logs. If you want to deliver log data to maxcompute for offline analysis, its data delivery is also based on the logstore as a unit for data synchronization, that is, The log data in the logstore is delivered to a maxcompute table.
+Each Logstore belongs to a project. You can create multiple Logstores in a project. You can create multiple Logstores in a specific project based on your business requirements. In most cases, you can create a Logstore for each log type of an application. For example, if you want to collect the operation logs, application logs, and access logs of App A, you can create a project named app-a, and then create three Logstores named operation\_log, application\_log, and access\_log in the project to store the logs.
 
-Specifically, Logstores provide the following functions:
+You must specify a Logstore when you write, query, analyze, transform, consume, or ship logs.
 
--   Log collection, supports real-time logging.
--   Log storage, supports real-time consumption.
--   Index creation, supports real-time log query.
--   Provides data channels delivered to maxcompute
+-   Log Service uses the Logstore as a collection unit to collect logs.
+-   Log Service uses the Logstore as a storage unit to store, transform, consume, and ship logs.
+-   Log Service creates indexes for the Logstore to query and analyze logs.
 
