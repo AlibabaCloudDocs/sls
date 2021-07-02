@@ -1,26 +1,28 @@
-# Benefits {#concept_txd_d4n_vdb .concept}
+# Benefits
 
-## Fully managed service {#section_mn4_sld_qy .section}
+This topic describes the benefits of Log Service.
 
--   Easy to use. You can access the service for usage in five minutes and use Agents to collect data in any network environment.
--   LogHub has all the functions of Kafka, provides complete functional data, such as monitoring and alarms, and supports auto scaling \(by PB/day\). The use cost is less than 50% of the self-built cost.
--   LogSearch/Analytics provides the functions of saving queries, dashboard, and alarm. The use cost is less than 20% of the self-built cost.
--   Log Service has more than 30 Access Methods, and interconnects with cloud products \(such as Object Storage Service \(OSS\), E-MapReduce, MaxCompute, Table  Store, MNS, CDN, and ARMS\) and open-source softwares \(Storm and Spark\) seamlessly.
+## Unified import method
 
-## Rich ecosystem {#section_isk_rdd_jbb .section}
+Log Service allows you to import data from multiple types of data sources.
 
--   LogHub supports over 30 collectors, including Logstash and Fluent, and can be easily accessed by using embedded devices, Web pages, servers, and programs.  It can also be interconnected with consumption systems such as  Spark Streaming, Storm, CloudMonitor, and ARMS.
--   LogShipper Supports rich data formats \(textfile, sequencefile, parquet, etc.\), custom partition, data can be taken directly by presto, hive, spark, hadoop, e-mapreduce, maxcompute, hybridgedb, etc. processing.
--   LogSearch/Analytics has complete query and analysis syntaxes and is compatible with SQL-92. Supports interconnecting with Grafana by using JDBC protocol.
+## Intelligence
 
-## Strong real-timeliness {#section_uyl_sdd_jbb .section}
+Log Service provides AIOps capabilities to intelligently detect exceptions and analyze root causes.
 
--   LogHub: Data can be used after being written. Logtail \(collection agent\) can collect and transfer data in real time to the server side within one second \(in 99.9% cases\).
--   LogSearch/Analytics: Data can be queried and analyzed after being written. When multiple query conditions are used, billions of data pieces can be queried within one second. When multiple aggregation conditions are used, hundreds of millions of data pieces can be analyzed within one second.
+## Efficiency
 
-## Complete API/SDK {#section_b3p_vc2_jbb .section}
+Log Service can collect, query, and analyze tens of billions of log data rows in real time.
 
--   Easily supports user-defined management and secondary development.
--   All functions can be implemented by using APIs/SDKs. SDKs for multiple languages are provided. Services and millions of devices can be managed in an easy way.
--   The query and analysis syntax is simple \(compatible with SQL-92\). The interfaces can be used to interconnect with the ecological softwares \(supports Grafana interconnection solution\).
+## One-stop service
+
+Log Service allows you to collect, transform, query, analyze, and visualize data. You can also configure alerts for the data.
+
+## Scalability
+
+Log Service provides auto scaling capabilities for petabytes of data.
+
+## Cost-effectiveness
+
+Log Service supports the pay-as-you-go billing method. You are charged only for the actual usage. The total cost of ownership \(TCO\) is reduced by more than 50%.
 
