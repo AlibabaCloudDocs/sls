@@ -55,7 +55,7 @@ The consumption and shipping feature allows you to consume data in real time by 
 
 ![消费与投递](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/5228125261/p286720.png)
 
-For more information, see [Log consumption and shipping](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Overview.md).
+For more information, see [Consumption](/intl.en-US/Log consumption and shipping/Real-time subscription and consumption/Overview.md) and [Shipping](/intl.en-US/Log consumption and shipping/Data shipping/Overview.md).
 
 ## Visualization
 
