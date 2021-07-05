@@ -62,7 +62,7 @@
     |**华东 2 金融云（上海）**|`.\logtail_installer.exe install cn-shanghai-finance`|.\\logtail\_installer.exe install cn-shanghai-finance-internet|无此类型网络|
     |**华南 1金融云（深圳）**|`.\logtail_installer.exe install cn-shenzhen-finance`|.\\logtail\_installer.exe install cn-shenzhen-finance-internet|无此类型网络|
 
-    **说明：** 日志服务无法获取非本账号下ECS、自建IDC或其他云厂商服务器的属主信息，在安装Logtail后需手动配置用户标识（AliUid）。更多信息，详情请参见 [配置用户标识](/cn.zh-CN/数据采集/Logtail采集/机器组/配置用户标识.md)。
+    **说明：** 日志服务无法获取非本账号下ECS、自建IDC或其他云厂商服务器的属主信息，在安装Logtail后需手动配置用户标识（AliUid）。更多信息，请参见[配置用户标识](/cn.zh-CN/数据采集/Logtail采集/机器组/配置用户标识.md)。
 
 
 ## 安装路径
@@ -122,7 +122,11 @@ Windows版本的Logtail是32位程序，所以在64位操作系统上的安装�
 
 卸载成功后，您的Logtail的安装目录会被删除，但仍有部分配置被保留在C:\\LogtailData目录中，您可以根据实际情况进行手动删除。遗留信息包括：
 
--   checkpoint：保存所有插件（比如Windows event log插件）的checkpoint信息。
--   logtail\_check\_point：保存Logtail主体部分的checkpoint信息。
--   users：保存所配置的用户标识信息。
+-   checkpoint：存放所有Logtail插件的Checkpoint信息。只有您使用了Logtail插件后，才会出现此文件。
+-   user\_config.d：存放本地采集配置的目录。
+
+    其中以.json结尾的文件会被视为采集配置，格式类似于/usr/local/ilogtail/user\_log\_config.json。
+
+-   logtail\_check\_point：存放Logtail主体部分的Checkpoint信息。
+-   users：存放您所配置的用户标识文件。
 
