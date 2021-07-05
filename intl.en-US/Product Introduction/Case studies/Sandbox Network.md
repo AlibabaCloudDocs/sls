@@ -4,7 +4,7 @@ Log Service helps Sandbox Network collect and manage data in a unified manner in
 
 ## Company profile
 
-Sandbox Network is committed to building a global user-generated content \(UGC\) gaming platform that helps players convert their ideas into games. Blockman GO, a representative game of Sandbox Network, has been released online and well received by more than 50 million players around the world. For more information, visit [the official website of Sandbox Network](https://www.baidu.com/link?url=Up9z0kW5bsJih9lVaQu7MO7GsA_w1iTlDGfJyy6xsx5k3x4Y267apT1ZOR3UhJnk&wd=&eqid=ca04b841002145b60000000460af4312).
+Sandbox Network is committed to building a global user-generated content \(UGC\) gaming platform that helps players convert their ideas into games. Blockman GO, a representative game of Sandbox Network, has been released online and well received by more than 50 million players around the world. For more information, visit [the official website of Sandbox Network](http://www.sandboxol.cn/).
 
 ## Scenarios
 
