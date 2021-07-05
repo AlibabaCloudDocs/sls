@@ -6,7 +6,7 @@ This topic describes the main features and benefits of Log Service. In this case
 
 The ELK stack is a solution that is widely used to analyze logs in real time. For information about the case studies, visit the open source ELK community.
 
-[Log Service](https://www.alibabacloud.com/zh/product/log-service?spm) is a solution dedicated to log query and analysis scenarios. The service is developed based on the monitoring and diagnosis tool that is used to develop the Apsara distributed operating system. To meet the requirement of growth in both users and business, Log Service is improved to support log analysis in Ops scenarios, such as DevOps, Market Ops, and SecOps. The service has surpassed the challenges in scenarios such as Double 11, Ant Financial Double 12, Spring Festival red envelopes, and international business.
+[Log Service](https://www.alibabacloud.com/product/log-service) is a solution dedicated to log query and analysis scenarios. The service is developed based on the monitoring and diagnosis tool that is used to develop the Apsara distributed operating system. To meet the requirement of growth in both users and business, Log Service is improved to support log analysis in Ops scenarios, such as DevOps, Market Ops, and SecOps. The service has surpassed the challenges in scenarios such as Double 11, Ant Financial Double 12, Spring Festival red envelopes, and international business.
 
 ## Overview
 
