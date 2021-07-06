@@ -84,26 +84,34 @@ mem\_usage\_limit与监控的文件数的关系如下：
     -   默认值：25
 遇到网络异常、写入配额超限等情况时，Logtail将实时解析后的日志写入本地文件（安装目录下）缓存起来，等待恢复后尝试重新发送。
 
-|buffer\_file\_num" : 25|
+|"buffer\_file\_num" : 25|
     |buffer\_file\_size|int|单个缓存文件允许的最大字节数。取值如下：    -   取值范围：1048576（Byte）~104857600（Byte）
     -   默认值：20971520（Byte）
 buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大磁盘空间。
 
 |"buffer\_file\_size" : 20971520|
-    |buffer\_file\_path|String|缓存文件存放目录。 默认值为空，即缓存文件存放于logtail安装目录/usr/local/ilogtail下。 当您设置此参数后，需手动将原目录下名为 logtail\\\_buffer\\\_file\_\*的文件移动到此目录，以保证Logtail可以读取到该缓存文件并在发送后进行删除。
+    |buffer\_file\_path|String|缓存文件存放目录。 默认值为空，即缓存文件存放于logtail安装目录/usr/local/ilogtail下。 当您设置此参数后，需手动将原目录下名为logtail\\\_buffer\\\_file\_\*的文件移动到此目录，以保证Logtail可以读取到该缓存文件并在发送后进行删除。
 
 |"buffer\_file\_path" : ""|
     |bind\_interface|String|本机绑定的网卡名。默认值为空，自动绑定可用的网卡。 如果设置为指定的网卡（例如eth1），则表示Logtail将强制使用该网卡上传日志。
 
-**说明：** 只支持Linux版本。
+只支持Linux版本。
 
 |"bind\_interface" : ""|
     |check\_point\_filename|String|Logtail的checkpoint文件的保存路径， 默认为/tmp/logtail\_check\_point。 建议Docker用户修改checkpoint文件保存路径，并将宿主机挂载此路径，否则容器释放时会因丢失checkpoint信息而造成重复采集。例如在Docker中设置check\_point\_filename为`/data/logtail/check_point.dat`，在Docker启动命令中增加`-v /data/docker1/logtail:/data/logtail`， 将宿主机/data/docker1/logtail目录挂载到Docker中的/data/logtail目录。
 
 |"check\_point\_filename" : /tmp/logtail\_check\_point|
-    |user\_config\_file\_path|String|Logtail配置文件的保存路径，默认为进程binary所在目录，文件名为user\_log\_config.json。 建议Docker用户修改Logtail配置文件保存路径，并将宿主机挂载此路径，否则容器释放时会因丢失checkpoint信息而造成重复采集。例如Docker中设置user\_config\_file\_path为/data/logtail/user\_log\_config.json，在Docker启动命令中增加`-v /data/docker1/logtail:/data/logtail`， 将宿主机/data/docker1/logtail目录挂载到Docker中的/data/logtail目录。
+    |check\_point\_dump\_interval|int|Logtail更新Checkpoint文件的周期，默认值：900，单位：秒。即默认情况下每15分钟更新一次Checkpoint文件。仅支持Logtail 1.0.19及以上版本。
+
+|"check\_point\_dump\_interval" : 900|
+    |user\_config\_file\_path|String|Logtail配置文件的保存路径，默认为进程binary所在目录，文件名为user\_log\_config.json。 建议Docker用户修改Logtail配置文件保存路径，并将宿主机挂载此路径，否则容器释放时会因丢失checkpoint信息而造成重复采集。例如在Docker中设置user\_config\_file\_path为/data/logtail/user\_log\_config.json，在Docker启动命令中增加`-v /data/docker1/logtail:/data/logtail`， 将宿主机/data/docker1/logtail目录挂载到Docker中的/data/logtail目录。
 
 |"user\_config\_file\_path" : user\_log\_config.json|
+    |docker\_file\_cache\_path|String|该文件记录了容器文件到宿主机文件的路径映射，默认为/usr/local/ilogtail/docker\_path\_config.json。建议Docker用户修改该文件路径，将Logtail容器中的此路径挂载到宿主机上，否则Logtail容器释放时会因为丢失映射信息而造成重复采集。例如在Docker中设置docker\_file\_cache\_path为/data/logtail/docker\_file\_cache.dat，在Docker启动命令中增加`-v /data/docker1/logtail:/data/logtail`，将宿主机/data/docker1/logtail目录挂载到Docker中的/data/logtail目录。
+
+仅支持Logtail 0.16.54及以上版本。
+
+|"docker\_file\_cache\_path": /usr/local/ilogtail/docker\_path\_config.json|
     |discard\_old\_data|Boolean|是否丢弃历史日志。默认值：true，表示丢弃距离当前时间超过12小时的日志。|"discard\_old\_data" : true|
     |working\_ip|String|Logtail上报本服务器的IP地址。默认值为空，表示自动从本服务器获取IP地址。|"working\_ip" : ""|
     |working\_hostname|String|Logtail上报的本服务器的主机名。默认值为空，表示自动从本服务器获取主机名。|"working\_hostname" : ""|
@@ -130,7 +138,7 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
 |"enable\_log\_time\_auto\_adjust": true|
     |accept\_multi\_config|Boolean|是否允许多个Logtail配置采集同一个文件。默认值：false，表示不允许。默认情况下，一个文件只能被一个Logtai配置采集，您可以通过该参数消除限制。每个Logtail配置的处理过程是独立的，当允许多个Logtai配置采集同一个文件时，需要消耗多倍的CPU、内存开销。
 
-仅支持Logtail 0.16.26 及以上版本。
+仅支持Logtail 0.16.26及以上版本。
 
 |"accept\_multi\_config": true|
     |enable\_checkpoint\_sync\_write|Boolean|是否开启sync写功能。默认值：false，表示不开启。sync写功能主要用于搭配ExactlyOnce写入功能。开启ExactlyOnce写入功能后，Logtail会在本地磁盘记录细粒度的Checkpoint信息（文件级别）。但出于性能考虑，默认写入Checkpoint时不会调用sync落盘，所以如果机器重启导致buffer数据来不及写入磁盘时，可能导致Checkpoint丢失。此时，您可以设置enable\_checkpoint\_sync\_write为true，开启sync写功能。更多信息，请参见[附录：ExactlyOnce写入功能说明](/intl.zh-CN/开发指南/API参考/公共资源说明/Logtail配置.md)。
@@ -160,6 +168,7 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
 |process\_thread\_count|process\_thread\_count|
 |send\_request\_concurrency|send\_request\_concurrency|
 |check\_point\_filename|ALIYUN\_LOGTAIL\_CHECK\_POINT\_PATH|如果您通过环境变量和配置文件修改了Logtail启动参数，以环境变量为准。|Logtail 0.16.36及以上版本|
+|docker\_file\_cache\_path|docker\_file\_cache\_path|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 0.16.54及以上版本|
 |user\_config\_file\_path|user\_config\_file\_path|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 0.16.56及以上版本|
 |discard\_old\_data|discard\_old\_data|
 |working\_ip|ALIYUN\_LOGTAIL\_WORKING\_IP|
@@ -170,5 +179,6 @@ buffer\_file\_size\*buffer\_file\_num是缓存文件可以实际使用的最大�
 |data\_server\_port|data\_server\_port|
 |accept\_multi\_config|accept\_multi\_config|
 |enable\_log\_time\_auto\_adjust|enable\_log\_time\_auto\_adjust|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 1.0.19及以上版本|
+|check\_point\_dump\_interval|check\_point\_dump\_interval|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 1.0.19及以上版本|
 |enable\_checkpoint\_sync\_write|enable\_checkpoint\_sync\_write|如果您通过环境变量和配置文件修改了Logtail启动参数，以配置文件为准。|Logtail 1.0.20及以上版本|
 
