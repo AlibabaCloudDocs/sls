@@ -31,9 +31,9 @@ The verification process provides the following benefits:
 
     A user must specify an AccessKey pair to generate the digital signature for an API request. When an AccessKey pair is specified, Log Service uses the AccessKey pair to identify the user and implement access control.
 
--   Check whether an API request is compromised during transmission.
+-   Check whether a request header is tampered during transmission.
 
-    The server calculates the digital signature of an API request and compares the digital signature with the signature calculated by the client. If the API request is compromised during transmission, the two signatures are different and the verification fails.
+    The server calculates the digital signature of an API request and compares the digital signature with the signature calculated by the client. If the request header is tampered during transmission, the two signatures are different and the verification fails.
 
 
 ## Sign an API request
@@ -87,7 +87,7 @@ The value of the Authorization request header field contains an AccessKey ID and
                  + CanonicalizedResource
     ```
 
-    The [x-log-date](/intl.en-US/Developer Guide/API Reference/Common request headers.md) field is a custom HTTP request header field. For more information, see ``. If you specify this field in an API request, the value of this field replaces the value of the DATE header field in signature calculation.
+    The `x-log-date` field is a custom HTTP request header field. For more information, see [Common request headers](/intl.en-US/Developer Guide/API Reference/Common request headers.md). If you specify this field in an API request, the value of this field replaces the value of the DATE header field in signature calculation.
 
     -   The following procedure describes how to construct the CanonicalizedLOGHeaders string:
         1.  Convert the names of all HTTP request fields that are prefixed with `x-log` and `x-acs` into lowercase letters.
@@ -98,7 +98,7 @@ The value of the Authorization request header field contains an AccessKey ID and
 
         1.  Set the CanonicalizedResource string to an empty string `" "`.
         2.  Enter the Log Service resources that you want to access, for example, /logstores/logstorename. If no `Logstore` is created in a project, this string can be left blank.
-        3.  If the request contains a query string `QUERY_STRING`, add a question mark \(`?`\) followed by the query stringat the end of the CanonicalizedResource string.
+        3.  If the request contains a query string `QUERY_STRING`, add a question mark \(`?`\) suffixed by the query string at the end of the CanonicalizedResource string.
         `QUERY_STRING` is the lexicographic string of the request parameters in the URL. Equal signs \(`=`\) are used between the names and values of parameters. The parameter name-value pairs are then sorted in lexicographical order and connected with ampersands \(`&`\) to form a string. The following formula shows how to construct a query string:
 
         ```
@@ -120,7 +120,7 @@ The value of the Authorization request header field contains an AccessKey ID and
 
 ## Examples
 
-The following two examples demonstrate how to sign an API request. The following AccessKey ID and AccessKey secret are used in an API request:
+The following two examples show how to sign an API request. The following AccessKey ID and AccessKey secret are used in an API request:
 
 ```
 AccessKeyId = "bq2sjzesjmo86kq*********"
@@ -129,10 +129,10 @@ AccessKeySecret = "4fdO2fTDDnZPU/L7CHNd********"
 
 -   Example 1
 
-    To list all Logstores of the project named ali-test-project, send the following GET request:
+    To list all Logstores of a project named ali-test-project, send the following GET request:
 
     ```
-    GET /logstores HTTP 1.1
+    GET /logstores?logstoreName=&offset=0&size=1000 HTTP 1.1
     Mon, 09 Nov 2015 06:11:16 GMT
     Host: ali-test-project.regionid.example.com
     x-log-apiversion: 0.6.0
@@ -151,10 +151,10 @@ AccessKeySecret = "4fdO2fTDDnZPU/L7CHNd********"
     jEYOTCJs2e88o+y5F4/S5IsnBJQ=
     ```
 
-    The following request is the signed API request:
+    The following request is a signed API request:
 
     ```
-    GET /logstores HTTP 1.1
+    GET /logstores?logstoreName=&offset=0&size=1000 HTTP 1.1
     Mon, 09 Nov 2015 06:11:16 GMT
     Host: ali-test-project.regionid.example.com
     x-log-apiversion: 0.6.0
@@ -164,7 +164,7 @@ AccessKeySecret = "4fdO2fTDDnZPU/L7CHNd********"
 
 -   Example 2
 
-    You want to write the following log entry to a Logstore named test-logstore that belongs to a project named ali-test-project:
+    You want to write the following log entry to the test-logstore Logstore that belongs to the ali-test-project project:
 
     ```
     topic=""
@@ -173,7 +173,7 @@ AccessKeySecret = "4fdO2fTDDnZPU/L7CHNd********"
     "TestKey": "TestContent"
     ```
 
-    To do this, send the following POST request:
+    To implement this, send the following POST request:
 
     ```
     POST /logstores/test-logstore HTTP/1.1
@@ -190,7 +190,7 @@ AccessKeySecret = "4fdO2fTDDnZPU/L7CHNd********"
     <The log entry is serialized to byte streams in the ProtoBuffer format.>
     ```
 
-    The log entry that you want to write to Log Service is serialized to byte streams in the ProtoBuffer format and then used as the HTTP request body. For more information about the ProtoBuffer format, see [Data encoding](/intl.en-US/Developer Guide/API Reference/Common resources/Data encoding.md). Therefore, the value of the Content-Type header field is application/x-protobuf. The value of the Content-MD5 header field is the MD5 hash of the HTTP request body. The following string is the string to be signed that is generated for the API request:
+    The log entry that you want to write to Log Service is serialized to byte streams in the ProtoBuffer format and then used as the HTTP request body. For more information about the ProtoBuffer format, see [Data encoding](/intl.en-US/Developer Guide/API Reference/Common resources/Data encoding.md). In this case, the value of the Content-Type header field is application/x-protobuf. The value of the Content-MD5 header field is the MD5 hash of the HTTP request body. The following string is the string to be signed that is generated for the API request:
 
     ```
     POST\n1DD45FA4A70A9300CC9FE7305AF2C494\napplication/x-protobuf\nMon, 09 Nov 2015 06:03:03 GMT\nx-log-apiversion:0.6.0\nx-log-bodyrawsize:50\nx-log-compresstype:lz4\nx-log-signaturemethod:hmac-sha1\n/logstores/test-logstore
@@ -202,7 +202,7 @@ AccessKeySecret = "4fdO2fTDDnZPU/L7CHNd********"
     XWLGYHGg2F2hcfxWxMLiNkGki6g=
     ```
 
-    The following request is the signed API request:
+    The following request is a signed API request:
 
     ```
     POST /logstores/test-logstore HTTP/1.1
@@ -217,7 +217,7 @@ AccessKeySecret = "4fdO2fTDDnZPU/L7CHNd********"
     x-log-compresstype:lz4
     x-log-signaturemethod:hmac-sha1
     Authorization: LOG bq2sjzesjmo86kq35behupbq:XWLGYHGg2F2hcfxWxMLiNkGki6g=
-    <The log is serialized to byte streams in the ProtoBuffer format.>
+    <The log entry is serialized to byte streams in the ProtoBuffer format.>
     ```
 
 
