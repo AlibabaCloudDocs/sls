@@ -44,7 +44,6 @@ The value of the Host parameter consists of a project name and an endpoint. You 
 
     |Parameter|Type|Example|Description|
     |:--------|:---|-------|:----------|
-    |index\_mode|String|v2|The type of the index.|
     |keys|Object|None|The field search configuration. It contains one or more key-value indexes, where the key is the field name and the value is the field value.|
     |line|Object|None|The full-text index configuration.|
     |storage|String|pg|The type of the store. Default value: pg.|
@@ -114,7 +113,6 @@ The value of the Host parameter consists of a project name and an endpoint. You 
     }
     Body :
     {
-      "index_mode": "v2",
       "keys": {
         "agent": {
           "alias": "",
