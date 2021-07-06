@@ -31,7 +31,7 @@ aliyunlog log create_machine_group --project_name=<value> --group_detail=<value>
       ],
       "machine_type": "userdefined",
       "group_name": "group_name2",
-      "group_type": "Armory",
+      "group_type": "",
       "group_attribute": {
         "externalName": "ex name",
         "groupTopic": "topic x"
@@ -51,7 +51,7 @@ aliyunlog log create_machine_group --project_name=<value> --group_detail=<value>
     -   只能包含小写字母、数字、短划线（-）和下划线（\_）。
     -   必须以小写字母或者数字开头和结尾。
     -   长度为3~128字符。 |
-    |group\_type|机器组类型，可选值为空或者Armory。|
+    |group\_type|机器组类型，取值为空字符串。|
     |group\_attribute|机器组的属性。详细请参考下表group\_attribute参数说明。|
 
     其中group\_attribute参数说明如下表所示：
@@ -85,7 +85,7 @@ aliyunlog log create_machine_group --project_name=<value> --group_detail=<value>
         "groupTopic": "topic x"
       },
       "groupName": "group_name2",
-      "groupType": "Armory",
+      "groupType": "",
       "lastModifyTime": 1622104319,
       "machineIdentifyType": "userdefined",
       "machineList": [
