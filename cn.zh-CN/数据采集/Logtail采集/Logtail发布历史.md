@@ -2,6 +2,16 @@
 
 本文档为您介绍日志服务Logtail的发布历史。
 
+## 1.0.21
+
+Logtail 1.0.21版本是首个全地域发布的Logtail 1.0版本，具备Logtail 0.16.64版本的所有功能，新增以下功能：
+
+-   新功能
+    -   新增配置项exactly\_once\_concurrency，实现了Logtail可以在本地磁盘记录细粒度的Checkpoint信息（文件级别）。更多信息，请参见[Logtail配置](/cn.zh-CN/开发指南/API参考/公共资源说明/Logtail配置.md)。
+    -   新增配置项enable\_log\_time\_auto\_adjust，实现了日志时间可自适应服务器本地时间。更多信息，请参见[设置Logtail启动参数](/cn.zh-CN/数据采集/Logtail采集/安装/设置Logtail启动参数.md)。
+    -   新增配置项enable\_log\_position\_meta，用于在日志中添加该日志所属原始文件的元数据信息。更多信息，请参见[Logtail配置](/cn.zh-CN/开发指南/API参考/公共资源说明/Logtail配置.md)。
+    -   新增配置项specified\_year，用于使用当前时间中的年份或指定年份补全日志时间。更多信息，请参见[Logtail配置](/cn.zh-CN/开发指南/API参考/公共资源说明/Logtail配置.md)。
+
 ## 0.16.64
 
 -   优化
