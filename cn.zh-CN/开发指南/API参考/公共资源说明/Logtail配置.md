@@ -130,8 +130,8 @@ inputDetail参数用于配置日志输入的相关信息。
         -   false：如果日志文件在30分钟内没有更新，则认为已超时，并不再监控该文件。 |
         |preserveDepth|integer|否|1|当设置preserve为false时，需指定最大超时目录深度，取值范围：1~3。|
         |fileEncoding|string|否|utf8|日志文件编码格式，取值为utf8、gbk。|
-        |discardUnmatch|boolean|否|true|是否丢弃匹配失败的日志。可选值如下：        -   true：匹配失败的日志被上传到日志服务。
-        -   false：不上传匹配失败的日志到日志服务。 |
+        |discardUnmatch|boolean|否|true|是否丢弃匹配失败的日志。可选值如下：        -   true：丢弃匹配失败的日志。
+        -   false：不丢弃匹配失败的日志。 |
         |maxDepth|int|否|100|设置日志目录被监控的最大深度。取值范围：0~1000，0代表只监控本层目录。|
         |delaySkipBytes|int|否|0|采集落后时是否丢弃落后数据的阈值。可选值如下：        -   0（默认）：不丢弃。
         -   其他值：当采集落后超过该值（例如1024）时，则直接丢弃落后的数据。 |
