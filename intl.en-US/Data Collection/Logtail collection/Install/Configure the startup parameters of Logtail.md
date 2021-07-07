@@ -78,7 +78,7 @@ If the rate of write transactions per second \(TPS\) is high, you can set this p
     -   Default value: 25
 If a network error occurs or the written data exceeds the specified threshold, Logtail caches parsed logs to local files in the installation directory. After the network is recovered, Logtail retries to send the cached logs.
 
-|buffer\_file\_num" : 25|
+|"buffer\_file\_num" : 25|
     |buffer\_file\_size|int|The maximum number of a single cached file.     -   Valid values: 1048576 bytes to 104857600 bytes
     -   Default value: 20971520, Unit: bytes.
 The maximum disk space that cached files can occupy is calculated by multiplying the value of the buffer\_file\_size parameter by the value of the buffer\_file\_num parameter.
