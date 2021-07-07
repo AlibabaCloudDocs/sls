@@ -109,7 +109,7 @@ The maximum disk space that cached files can occupy is calculated by multiplying
 |"oas\_connect\_timeout" : 5|
     |oas\_request\_timeout|long|The request timeout period after Logtail sends a request to obtain the Logtail configuration file or AccessKey pair. Default value: 10. Unit: seconds. If the network is instable, or the connection fails to be established, you can modify the value of this parameter.
 
-|"" : 10|
+|"oas\_request\_timeout" : 10|
     |data\_server\_port|long|Set the value to 443. After you set the data\_server\_port parameter to 443, Logtail transfers data to Log Service over the HTTPS protocol. This parameter is available only for Logtail 1.0.10 or later.
 
 |"data\_server\_port": 443|
