@@ -8,8 +8,8 @@ A公司将其网站访问日志上传到日志服务的website-log Logstore中�
 
 ## 前提条件
 
--   已采集网站日志到源Logstore（website-log）。具体操作，请参见[数据采集](/cn.zh-CN/数据采集/采集方式.md)。
--   已创建目标Logstore（dest-log）。具体操作，请参见[创建Logstore](/cn.zh-CN/数据采集/准备工作/管理Logstore.md)。
+-   已采集网站日志到源Logstore（website-log）。具体操作，请参见[数据采集](/cn.zh-CN/数据采集/数据采集概述.md)。
+-   已创建目标Logstore（dest-log）。具体操作，请参见[创建Logstore](/cn.zh-CN/准备工作/管理Logstore.md)。
 -   已配置源Logstore的索引。具体操作，请参见[配置索引](/cn.zh-CN/查询与分析/配置索引.md)。
 
 ## 步骤一：创建Scheduled SQL作业
@@ -34,6 +34,8 @@ A公司将其网站访问日志上传到日志服务的website-log Logstore中�
 
 4.  在统计图表页签中，单击**创建Scheduled SQL**。
 
+    ![创建](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/8356465261/p292241.png)
+
 5.  创建Scheduled SQL作业。
 
     1.  完成计算配置，并单击**下一步**。
@@ -41,13 +43,13 @@ A公司将其网站访问日志上传到日志服务的website-log Logstore中�
         |参数|描述|
         |--|--|
         |**作业名**|Scheduled SQL作业的名称。|
-        |**描述**|Scheduled SQL作业的描述。|
-        |**资源池**|日志服务提供默认型（免费）和增强型（付费）资源池。更多信息，请参见[分析简介](/cn.zh-CN/查询与分析/分析简介.md)。        -   **默认型**：受到Project级别的SQL并发限制，例如最多允许同时执行15个分析操作。该限制可能影响到在控制台上执行查询和分析操作，从而可能导致Scheduled SQL作业实例计算发生延迟。
+        |**作业描述**|Scheduled SQL作业的描述。|
+        |**资源池**|日志服务提供默认型（免费）和增强型（付费）资源池。更多信息，请参见[分析简介](/cn.zh-CN/查询与分析/分析概述.md)。        -   **默认型**：受到Project级别的SQL并发限制，例如最多允许同时执行15个分析操作。该限制可能影响到在控制台上执行查询和分析操作，从而可能导致Scheduled SQL作业实例计算发生延迟。
         -   **增强型**：提供足够的分析并发数，与您在控制台上的查询操作进行资源隔离。根据SQL分析的数据量收取费用，Scheduled SQL作业的调度不收取费用。 |
         |**SQL代码**|显示您在[步骤3](#step_srx_313_nvf)中输入的查询和分析语句。SQL作业运行时，日志服务将执行该查询和分析语句分析数据。 |
         |**目标Region**|目标Project所在地域。|
         |**目标Project**|用于存储SQL分析结果的目标Project名称。|
-        |**目标Logstore**|用于存储SQL分析结果的目标Logstore名称。|
+        |**目标库**|用于存储SQL分析结果的目标Logstore名称。|
         |**写目标授权**|授权日志服务使用默认角色或自定义角色访问目标Logstore，将聚合结果存储到目标Logstore中。具体说明如下：        -   **默认角色**：授权日志服务使用阿里云系统角色AliyunLogETLRole执行对应操作。
 
 **说明：** 仅在首次配置时需要操作，且需要由目标Project所属的阿里云账号完成。
