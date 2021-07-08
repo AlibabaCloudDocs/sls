@@ -11,7 +11,7 @@ The following table describes functions that use query strings.
 |Event check functions|[e\_search](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Event check functions.md)|Query strings are used to check whether the value of a field in an event meets specific conditions.|
 |Resource functions|[res\_log\_logstore\_pull](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Resource functions.md)|Query strings are used to configure a blacklist or whitelist to filter table data retrieved from a Logstore.|
 |[res\_rds\_mysql](/intl.en-US/Data Transformation/Data processing syntax/Expression functions/Resource functions.md)|Query strings are used to configure a blacklist or whitelist to filter table data retrieved from an ApsaraDB RDS for MySQL database.|
-|Event mapping functions|[e\_search\_table\_map](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Data mapping and enrichment functions.md) and [e\_search\_dict\_map](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Data mapping and enrichment functions.md)|Query strings are used to match key-value pairs in a dictionary.|
+|Event mapping functions|[e\_search\_table\_map](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Mapping and enrichment functions.md) and [e\_search\_dict\_map](/intl.en-US/Data Transformation/Data processing syntax/Global processing functions/Mapping and enrichment functions.md)|Query strings are used to match key-value pairs in a dictionary.|
 
 ## Features
 
@@ -37,7 +37,7 @@ Some special characters such as asterisks \(\*\) and backslashes \(\\\) must be 
 
     -   `\*\(1+1\)\?: abc`: Special characters are escaped by using backslashes \(\\\).
     -   `__tag__\:__container_name__: abc`: Special characters are escaped by using backslashes \(\\\).
-    -       -   `"content": abc`: The format of the field name in this example is invalid. The field name cannot be enclosed in double quotation marks \("\).
+    -   `"content": abc`: The format of the field name in this example is invalid. The field name cannot be enclosed in double quotation marks \("\).
 -   Escape special characters in a field value
     -   To query a field value that contains quotation marks \("\) and backslashes \(\\\), you must escape these characters by using backslashes \(\\\), for example, `content:%abc\%xy\\z"`.
 
