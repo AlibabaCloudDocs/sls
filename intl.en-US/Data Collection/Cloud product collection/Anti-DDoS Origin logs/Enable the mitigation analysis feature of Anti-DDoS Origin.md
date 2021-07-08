@@ -22,7 +22,7 @@ An Anti-DDoS Origin instance is created. For more information, see [Purchase an 
 
     3.  On the **Upgrade/Downgrade** page, select On for **Mitigation Analysis \(Beta\)**.
 
-    4.  Read and select **Anti-DDOS origin Terms of Service** and click **Buy Now**.
+    4.  Read and select **Anti-DDoS origin Terms of Service** and click **Buy Now**.
 
     5.  Complete the payment.
 
