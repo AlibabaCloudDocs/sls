@@ -6,7 +6,7 @@ This topic describes the fields of VPC flow logs.
 |:----|:----------|
 |\_\_topic\_\_|The topic of the log entry. Valid value: flow\_log.|
 |version|The version of the flow log.|
-|vswitch-id|The ID of the VSwitch to which the ENI is attached.|
+|vswitch-id|The ID of the vSwitch to which the ENI is attached.|
 |vm-id|The ID of the ECS instance to which the ENI is attached.|
 |vpc-id|The ID of the VPC to which the ENI belongs.|
 |account-id|The ID of the Alibaba Cloud account.|
