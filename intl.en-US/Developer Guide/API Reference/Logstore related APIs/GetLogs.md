@@ -43,16 +43,11 @@ The value of the Host parameter consists of a project name and Log Service endpo
     |from|Integer|Yes|1409529600|The start time of the time range that is specified in the request. The start time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 UTC, Thursday, January 1, 1970.|
     |to|Integer|Yes|1409608800|The end time of the time range that is specified in the request. The end time is a timestamp. The timestamp follows the UNIX time format. It is the number of seconds that have elapsed since 00:00:00 UTC, Thursday, January 1, 1970.|
     |topic|String|No|groupA|The topic of the logs.|
-    |query|String|No|`level:Information|select event_id as Key1,COUNT(*) as Key2 group by Key1`|The query statement. For more information, see [Log search](/intl.en-US/Index and query/Log search.md) and [Log analysis](/intl.en-US/Index and query/Log analysis.md). If you add `set session parallel_sql=true;` to the analytic statement in the query parameter, a dedicated SQL instance is used. For example, you can set the query parameter to `* | set session parallel_sql=true; select count(*) as pv`.
-
-**Note:** If the query parameter contains an analytic statement \(SQL statement\), the line parameter and offset parameter must be set to 0, and the LIMIT clause is used to paginate the query results. For more information, see [Display analysis results on multiple pages](/intl.en-US/Index and query/Best practices/Display query and analysis results on multiple pages.md). |
+    |query|String|No|`level:Information|select event_id as Key1,COUNT(*) as Key2 group by Key1`|The query statement. For more information, see [Log search](/intl.en-US/Index and query/Log search.md) and [Log analysis](/intl.en-US/Index and query/Log analysis.md). **Note:** If the query parameter contains an analytic statement \(SQL statement\), the line parameter and offset parameter must be set to 0, and the LIMIT clause is used to paginate the query results. For more information, see [Display analysis results on multiple pages](/intl.en-US/Index and query/Best practices/Display query and analysis results on multiple pages.md). |
     |line|Integer|No|20|The maximum number of logs to return for the request. Minimum value: 0. Maximum value: 100. Default value: 100.|
     |offset|Integer|No|0|The line from which the query starts. Default value: 0.|
     |reverse|Boolean|No|false|Specifies whether to return logs in reverse order based on the log timestamp. Unit: minutes.     -   true: Logs are returned in reverse order.
     -   false: Logs are returned in regular order. This is the default value. |
-    |powerSql|Boolean|No|false|Specifies whether to use a dedicated SQL instance. For more information, see [Enable a dedicated SQL instance]().     -   true: A dedicated SQL instance is used.
-    -   false: A standard SQL instance is used. This is the default value.
-You can use the powerSql or query parameter to configure a dedicated SQL instance. |
 
 
 ## Response parameters
