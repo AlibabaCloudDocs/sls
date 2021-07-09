@@ -81,7 +81,7 @@ inputDetail参数用于配置日志输入的相关信息。
     |参数名称|数据类型|是否必填|示例|描述|
     |----|----|----|--|--|
     |exactly\_once\_concurrency|int|否|1|是否启用ExactlyOnce功能。ExactlyOnce功能用于指定单个文件允许的发送并发数。取值范围：0~512。更多信息，请参见[附录：ExactlyOnce写入功能说明](#section_okt_nus_mpa)。可选值如下：    -   0：不启用ExactlyOnce功能。
-    -   其他值：开启ExactlyOnce功能，并指定单个文件运行的发送并发数。
+    -   其他值：开启ExactlyOnce功能，并指定单个文件允许的发送并发数。
 **说明：**
 
     -   此参数值过大会增加内存和磁盘开销。请根据本地的写入流量评估参数值。
@@ -142,7 +142,7 @@ inputDetail参数用于配置日志输入的相关信息。
         -   请勿设置相同的LabelKey，如果重名只生效一个。 |
         |dockerExcludeLabel|JSON object|否|无|如果要设置Label黑名单，则LabelKey必填。如果LabelValue不为空，则只排除容器Label中包含LabelKey=LabelValue的容器；如果LabelValue为空，则排除所有Label中包含LabelKey的容器。 **说明：**
 
-        -   多个键值对之间为或关系，即只要容器的Label满足任一键值对即可被采集。
+        -   多个键值对之间为或关系，即只要容器的Label满足任一键值对即不被采集。
         -   LabelValue默认为字符串匹配，即只有LabelValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：LabelValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。
         -   请勿设置相同的LabelKey，如果重名只生效一个。 |
         |dockerIncludeEnv|JSON object|否|无|如果要设置环境变量白名单，则EnvKey必填。如果EnvValue不为空，则只采集容器环境变量中包含EnvKey=EnvValue的容器；如果EnvValue为空，则采集所有环境变量中包含EnvKey的容器。 **说明：**
@@ -151,7 +151,7 @@ inputDetail参数用于配置日志输入的相关信息。
         -   EnvValue默认为字符串匹配，即只有EnvValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：EnvValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
         |dockerExcludeEnv|JSON object|否|无|如果要设置环境变量黑名单，则EnvKey必填。如果EnvValue不为空，则只排除容器环境变量中包含EnvKey=EnvValue的容器；若EnvValue为空，则排除所有环境变量中包含EnvKey的容器。 **说明：**
 
-        -   多个键值对之间为或关系，即只要容器的环境变量满足任一键值对即可被采集。
+        -   多个键值对之间为或关系，即只要容器的环境变量满足任一键值对即不被采集。
         -   EnvValue默认为字符串匹配，即只有EnvValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：EnvValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
 
     -   完整正则模式和极简模式特有配置
@@ -208,7 +208,7 @@ inputDetail参数用于配置日志输入的相关信息。
         |autoExtend|boolean|否|true|如果日志中分割出的字段数少于配置的Key数量，是否上传已解析的字段。例如日志为11\|22\|33\|44\|55，分隔符为竖线（\|），日志内容将被解析为11、22、33、44和55，为其分别设置Key为A、B、C、D和E。
 
         -   true：采集日志11\|22\|33\|55时，55会作为Key D的Value被上传到日志服务。
-        -   **false**：集日志11\|22\|33\|55时，该条日志会因字段与Key不匹配而被丢弃。 |
+        -   **false**：采集日志11\|22\|33\|55时，该条日志会因字段与Key不匹配而被丢弃。 |
 
         分隔符模式的Logtail配置示例如下：
 
@@ -298,7 +298,7 @@ inputDetail参数用于配置日志输入的相关信息。
 -   Checkpoint信息需要利用本地磁盘进行存储。如果是磁盘原因导致Checkpoint无法记录（磁盘满）或者内容损坏（磁盘故障），可能导致恢复失败。
 -   Checkpoint仅记录文件的元数据信息，不包含文件数据。所以如果文件本身被删除或者修改，可能导致无法恢复。
 -   ExactlyOnce写入功能依赖日志服务端记录的当前写入序号，目前每个Shard仅支持10,000条记录，在超出限制后，会产生记录替换。因此为了保证可靠性，对于写入同一个Logstore的活跃文件数\*Logtail实例数的结果不可超过9500（建议预留一定量）。
-    -   活跃文件数：正在被读取和发送的文件。同一个逻辑文件名的不同轮转文件会串行发送，它们仅被算作一个活跃文件。
+    -   活跃文件数：正在被读取和发送的文件数量。同一个逻辑文件名的不同轮转文件会串行发送，它们仅被算作一个活跃文件。
     -   Logtail实例数：即Logtail进程数。默认情况下每台机器就一个实例，即一般情况下等同于机器数。
 
 出于性能考虑，默认写入Checkpoint时不会调用sync落盘，所以如果机器重启导致buffer数据来不及写入磁盘时，可能导致Checkpoint丢失。您可以在Logtail启动参数配置文件（/usr/local/ilogtail/ilogtail\_config.json）中，增加`"enable_checkpoint_sync_write": true,`，开启sync写功能。具体操作，请参见[设置Logtail启动参数](/intl.zh-CN/数据采集/Logtail采集/安装/设置Logtail启动参数.md)。
