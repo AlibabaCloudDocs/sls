@@ -14,7 +14,7 @@ Log Service API operations are RESTful API operations that are based on the HTTP
 |Content-Length|Numerical value|No|The length of the HTTP request body that is defined in RFC 2616. For requests without bodies, this header is not required.|
 |Content-MD5|String|No|The string that is generated after the request body is calculated based on the MD5 algorithm. The value is in uppercase. For requests without bodies, this header is not required.|
 |Content-Type|String|No|The type of the HTTP request body that is defined in RFC 2616. Valid values: application/x-protobuf. For requests without bodies, this header is not required. The value varies with API definitions.|
-|Date|String|Yes|The time when the request is sent. Only the RFC 822 message format is supported. The time is in GMT. The string is in the following format: %a, %d%b%Y %H:%M:%S GMT, for example, Mon, 3 Jan 2010 08:33:47 GMT.|
+|Date|String|Yes|The time when the request is sent. Only the RFC 1123 message format is supported. The time is in GMT. The string is in the following format: %a, %d%b%Y %H:%M:%S GMT, for example, Mon, 3 Jan 2010 08:33:47 GMT.|
 |Host|String|Yes|The host name of the HTTP request. The value does not include protocol headers such as `http://`. For example, the host name is `big-game.cn-hangzhou.sls.aliyuncs.com`.|
 |x-log-apiversion|String|Yes|The API version. The current version is 0.6.0.|
 |x-log-bodyrawsize|Numeric value|No|The initial size of the request body. For requests without bodies, the value is 0. For requests with compressed bodies, the value is the size of the body before compression. Value range: 0 to 3145728. This header is required only when the body is compressed.|
