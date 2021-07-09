@@ -119,8 +119,8 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP status code|Error code|Error message|Description|
 |:---------------|:---------|:------------|-----------|
-|404|ProjectNotExist|Project projectName does not exist.|The error message returned because the specified project does not exist.|
-|404|GroupNotExist|group groupName does not exist.|The error message returned because the specified machine group does not exist.|
+|404|ProjectNotExist|The Project does not exist :projectName. |The error message returned because the specified project does not exist.|
+|404|MachineGroupNotExist|MachineGroup groupName does not exist.|The error message returned because the specified machine group does not exist.|
 |400|InvalidParameter|invalid group resource json.|The error message returned because a parameter value is invalid.|
 |500|InternalServerError|Internal server error|The error message returned because an internal server error has occurred.|
 
