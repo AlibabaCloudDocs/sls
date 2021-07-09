@@ -121,8 +121,8 @@ x-log-signaturemethod: hmac-sha1
 
 |HTTP状态码|错误码|错误信息|描述|
 |:------|:--|:---|--|
-|404|ProjectNotExist|Project ProjectName does not exist.|Project不存在。|
-|404|GroupNotExist|group groupName does not exist.|机器组不存在。|
+|404|ProjectNotExist|The Project does not exist : projectName.|Project不存在。|
+|404|MachineGroupNotExist|MachineGroup groupName does not exist.|机器组不存在。|
 |500|InternalServerError|internal server error.|内部服务调用错误。|
 
 更多错误码，请参见[通用错误码](/intl.zh-CN/开发指南/API参考/通用错误码.md)。
