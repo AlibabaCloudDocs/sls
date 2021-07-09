@@ -80,7 +80,7 @@ The value of the Host parameter consists of a project name and Log Service endpo
 |HTTP status code|Error code|Error message|Description|
 |:---------------|:---------|:------------|-----------|
 |404|ProjectNotExist|The Project does not exist : projectName|The error message returned because the specified project does not exist.|
-|404|GroupNotExist|group groupName does not exist.|The error message returned because the specified machine group does not exist.|
+|404|MachineGroupNotExist|MachineGroup groupName does not exist.|The error message returned because the specified machine group does not exist.|
 |404|ConfigNotExist|Config configName does not exist.|The error message returned because the specified Logtail configuration file does not exist.|
 |500|InternalServerError|Internal server error.|The error message returned because an internal server error has occurred.|
 
