@@ -17,7 +17,7 @@
 
 从以上几点看，当一个面向内容投放的运营需求来了后，如何能以快捷的手段满足这类用户行为采集、分析需求是一个很大的挑战。
 
-[日志服务](https://www.alibabacloud.com/zh/product/log-service?spm)提供Web Tracking/JS/Tracking Pixel SDK 就是为解决以上轻量级埋点采集场景而生，我们可以在1分钟时间内完成埋点和数据上报工作。此外日志服务每账号每月提供500MB [免费额度](/intl.zh-CN/产品定价/按量付费.md)，让您不花钱也能处理业务。
+[日志服务](https://www.alibabacloud.com/zh/product/log-service?spm)提供Web Tracking/JS/Tracking Pixel SDK 就是为解决以上轻量级埋点采集场景而生，我们可以在1分钟时间内完成埋点和数据上报工作。此外日志服务每账号每月提供500MB [免费额度](/intl.zh-CN/产品计费/按量付费.md)，让您不花钱也能处理业务。
 
 ## 功能特点
 
@@ -39,7 +39,7 @@
 
 ![采集端优势](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9240559951/p32483.png)
 
-本文档中介绍的轻量级采集方案（Web Tracking）只需一个http get请求即可将数据传输至日志服务Logstore端，适应各种无需任何验证的静态网页、广告投放、宣传资料和移动端数据采集。相比其他日志采集方案，特点如下。
+本文档中介绍的轻量级采集方案（Web Tracking）只需一个HTTP Get请求即可将数据传输至日志服务Logstore端，适应各种无需任何验证的静态网页、广告投放、宣传资料和移动端数据采集。相比其他日志采集方案，特点如下。
 
 ![Web Tracking特点](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/9240559951/p32484.png)
 
@@ -72,7 +72,7 @@ Web Tracking接入流程如下。
         track_ua.gif
         ```
 
-        除了将自定义的参数上传外，在服务端还会将http头中的UserAgent、referer也作为日志中的字段。
+        除了将自定义的参数上传外，在服务端还会将HTTP头中的UserAgent、referer也作为日志中的字段。
 
     -   通过Java Script SDK 上报数据。
 
@@ -140,7 +140,7 @@ Web Tracking接入流程如下。
 
 3.  分析日志。
 
-    在完成埋点采集后，我们使用日志服务[LogSearch/Analytics](/intl.zh-CN/查询与分析/查询简介.md)功能可以对海量日志数据进行实时查询与分析。在结果分析可视化上，除[自带Dashboard](/intl.zh-CN/可视化与告警/仪表盘/创建仪表盘.md)外，还支持[DataV](/intl.zh-CN/开发指南/可视化开发/对接DataV.md)、[Grafana](/intl.zh-CN/开发指南/可视化开发/对接Grafana.md)、Tableau等对接方式。
+    在完成埋点采集后，我们使用日志服务[LogSearch/Analytics](/intl.zh-CN/查询与分析/查询概述.md)功能可以对海量日志数据进行实时查询与分析。在结果分析可视化上，除[自带Dashboard](/intl.zh-CN/可视化/创建仪表盘.md)外，还支持[DataV](/intl.zh-CN/开发指南/可视化开发/对接DataV.md)、[Grafana](/intl.zh-CN/开发指南/可视化开发/对接Grafana.md)、Tableau等对接方式。
 
     以下是截止目前采集日志数据，您可以在搜索框中输入关键词进行查询。
 
@@ -152,7 +152,7 @@ Web Tracking接入流程如下。
 
     1.  设计查询语句。
 
-        以下是我们对用户点击/阅读日志的实时分析语句，更多字段和分析场景可以参见[分析语法](/intl.zh-CN/查询与分析/分析简介.md)。
+        以下是我们对用户点击/阅读日志的实时分析语句，更多字段和分析场景可以参见[分析语法](/intl.zh-CN/查询与分析/分析概述.md)。
 
         -   当前投放总流量与阅读数。
 
