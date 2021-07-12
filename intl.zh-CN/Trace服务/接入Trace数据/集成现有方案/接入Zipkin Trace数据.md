@@ -2,13 +2,13 @@
 
 您可以通过直接发送方式或OpenTelemetry Collector转发方式，将Zipkin平台上的Trace数据发送到日志服务。
 
-已创建Trace实例。更多信息，请参见[创建Trace实例]()。
+已创建Trace实例。更多信息，请参见[创建Trace实例](/intl.zh-CN/Trace服务/创建Trace实例.md)。
 
 ## 直接发送
 
 使用Zipkin协议直接发送Trace数据到日志服务时，您需要在Zipkin平台上配置接入点信息和鉴权信息，详细说明如下：
 
-**说明：** 为保证传输安全性，直接发送方式必须使用https协议。
+**说明：** 为保证传输安全性，直接发送方式必须使用HTTPS协议。
 
 -   接入点信息
 
@@ -99,6 +99,6 @@
     将Zipkin的输出端地址改为OpenTelemetry Collector监听的地址，例如OpenTelemetry Collector的地址为$\{collector-host\}，则将Zipkin的输出端地址设置为$\{collector-host\}:9411。
 
 
--   [查看Trace实例详情]()
--   [查询和分析Trace数据]()
+-   [查看Trace实例详情](/intl.zh-CN/Trace服务/查看Trace实例详情.md)
+-   [查询和分析Trace数据](/intl.zh-CN/Trace服务/查询和分析Trace数据.md)
 
