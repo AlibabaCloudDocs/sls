@@ -2,7 +2,7 @@
 
 本文介绍如何在控制台上创建Logtail配置，并以DaemonSet方式采集Kubernetes文件。
 
-已安装alibaba-log-controller Helm，详情请参见[安装Logtail日志组件](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/安装Logtail日志组件.md)。
+已安装alibaba-log-controller Helm。更多信息，请参见[安装Logtail日志组件](/cn.zh-CN/数据采集/Logtail采集/采集容器日志/安装Logtail日志组件.md)。
 
 ## 功能特点
 
@@ -51,12 +51,12 @@ Logtail支持采集容器内产生的文本日志，并附加容器的相关元�
     |是否为Docker文件|必须勾选|确认采集的目标文件是否为Docker文件。|
     |Label白名单|可选|如果要设置Label白名单，则LabelKey必填。如果LabelValue不为空，则只采集容器label中包含LabelKey=LabelValue的容器；如果LabelValue为空，则采集所有label中包含LabelKey的容器。 **说明：**
 
-    -   多个键值对之间为或关系，即只要容器的label满足任一键值对即可被采集。
+    -   多个键值对之间为或关系，即只要容器的Label满足任一键值对即可被采集。
     -   LabelValue默认为字符串匹配，即只有LabelValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：LabelValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。
     -   请勿设置相同的LabelKey，如果重名只生效一个。 |
     |Label黑名单|可选|如果要设置Label黑名单，则LabelKey必填。如果LabelValue不为空，则只排除容器label中包含LabelKey=LabelValue的容器；如果LabelValue为空，则排除所有label中包含LabelKey的容器。 **说明：**
 
-    -   多个键值对之间为或关系，即只要容器的label满足任一键值对即可被采集。
+    -   多个键值对之间为或关系，即只要容器的Label满足任一键值对即不被采集。
     -   LabelValue默认为字符串匹配，即只有LabelValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：LabelValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。
     -   请勿设置相同的LabelKey，如果重名只生效一个。 |
     |环境变量白名单|可选|如果要设置环境变量白名单，则EnvKey必填。如果EnvValue不为空，则只采集容器环境变量中包含EnvKey=EnvValue的容器；如果EnvValue为空，则采集所有环境变量中包含EnvKey的容器。 **说明：**
@@ -65,7 +65,7 @@ Logtail支持采集容器内产生的文本日志，并附加容器的相关元�
     -   EnvValue默认为字符串匹配，即只有EnvValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：EnvValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
     |环境变量黑名单|可选|如果要设置环境变量黑名单，则EnvKey必填。如果EnvValue不为空，则只排除容器环境变量中包含EnvKey=EnvValue的容器；若EnvValue为空，则排除所有环境变量中包含EnvKey的容器。 **说明：**
 
-    -   多个键值对之间为或关系，即只要容器的环境变量满足任一键值对即可被采集。
+    -   多个键值对之间为或关系，即只要容器的环境变量满足任一键值对即不被采集。
     -   EnvValue默认为字符串匹配，即只有EnvValue和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：EnvValue配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
     |其他配置项|无|其他采配置项及说明请参见[概述](/cn.zh-CN/数据采集/Logtail采集/采集文本日志/概述.md)。**说明：** 采集宿主机文本文件时，默认将宿主机根目录挂载到Logtail容器的`/logtail_host`目录。所以配置路径时，您需要加上此前缀。例如需要采集宿主机上`/home/logs/app_log/`目录下的日志，配置页面中日志路径设置为`/logtail_host/home/logs/app_log/`。 |
 
