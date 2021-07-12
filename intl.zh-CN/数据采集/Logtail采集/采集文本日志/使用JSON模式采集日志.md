@@ -105,7 +105,8 @@ ln -s /home/log/nginx/log /home/log/nginx/link_log
 选择**30分钟超时**时，还需设置**最大超时目录深度**，范围为1~3。 |
     |过滤器配置|只采集完全符合过滤器条件的日志。例如：     -   满足条件即采集，例如设置**Key**为**level**，**Regex**为**WARNING\|ERROR**，表示只采集level为WARNING或ERROR类型的日志。
     -   过滤不符合条件的日志。更多信息，请参见[Regular-Expressions.info](http://www.regular-expressions.info/lookaround.html)。
-        -   设置**Key**为**level**，**Regex**为**^\(?!.\*\(INFO\|DEBUG\)\).\***，表示不采集level为INFO或DEBUG类型的日志。
+        -   设置**Key**为**level**，**Regex**为**^\(?!.\*\(INFO\|DEBUG\)\).\***，表示不采集level中包含INFO或DEBUG类型的日志。
+        -   设置**Key**为**level**，**Regex**为**^\(?!\(INFO\|DEBUG\)$\).\***，表示不采集level等于INFO或DEBUG类型的日志。
         -   设置**Key**为**url**，**Regex**为**.\*^\(?!.\*\(healthcheck\)\).\***，表示不采集URL中带有healthcheck的日志。例如Key为url，Value为/inner/healthcheck/jiankong.html的日志将不会被采集。
 更多信息，请参见[regex-exclude-word](https://stackoverflow.com/questions/2404010/match-everything-except-for-specified-strings)、[regex-exclude-pattern](https://stackoverflow.com/questions/2078915/a-regular-expression-to-exclude-a-word-string)。 |
 
