@@ -12,7 +12,7 @@
 
 -   使用Web Tracking则表示该Logstore打开互联网匿名写入权限，没有经过有效鉴权，可能产生脏数据。
 -   GET请求不支持上传16 KB以上的Body内容。
--   POST请求每次写入的日志数量上限为3 MB或者4096条。更多信息，请参见[PutLogs](/cn.zh-CN/开发指南/API 参考/日志库相关接口/PutLogs.md)。
+-   POST请求每次写入的日志数量上限为3 MB或者4096条。更多信息，请参见[PutLogs](/cn.zh-CN/开发指南/API参考/日志库相关接口/PutLogs.md)。
 
 ## 步骤1：开通Web Tracking
 
@@ -75,18 +75,18 @@
     3.  配置opts参数。
 
         ```
-          const opts = {
-            host: 'cn-hangzhou.log.aliyuncs.com',      
-            project: 'my_project_name',                 
-            logstore: 'my_logstore_name',               
-            time: 10, 
-            count: 10, 
-          }
+        const opts = {
+           host: 'cn-hangzhou.log.aliyuncs.com',      
+           project: 'my_project_name',                 
+           logstore: 'my_logstore_name',               
+           time: 10, 
+           count: 10, 
+        }
         ```
 
         |参数名称|是否必填|说明|
         |----|----|--|
-        |host|是|日志服务所在地域的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。此处以杭州为例，其它地域请根据实际情况填写。|
+        |host|是|日志服务所在地域的Endpoint。此处以杭州为例，其它地域请根据实际情况填写。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。|
         |project|是|Project名称。|
         |logstore|是|Logstore名称。|
         |time|否|发送日志的时间间隔，默认值为10，单位为秒。|
@@ -119,7 +119,7 @@
     |参数|是否必填|说明|
     |:-|----|:-|
     |$\{project\}|是|Project名称。|
-    |$\{host\}|是|日志服务所在地域的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。|
+    |$\{host\}|是|日志服务所在地域的Endpoint。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。|
     |$\{logstore\}|是|Logstore名称。|
     |APIVersion=0.6.0|是|保留字段。|
     |\_\_topic\_\_=yourtopic|否|指定日志主题。|
@@ -132,12 +132,12 @@
     <img src='http://${project}.${host}/logstores/${logstore}/track_ua.gif?APIVersion=0.6.0&key1=val1&key2=val2'/>
     ```
 
-    track\_ua.gif除了上传自定义的参数外，还会将http头中的UserAgent、referer也作为日志中的字段。
+    track\_ua.gif除了上传自定义的参数外，还会将HTTP头中的UserAgent、referer也作为日志中的字段。
 
     **说明：** 如果您需要采集HTTPS页面的referer，那么上述Web Tracking的链接也必须为HTTPS。
 
 -   通过HTTP POST请求上传日志。
 
-    如果请求的数据量比较大，可以使用POST方法上传数据。更多信息，请参见[PutWebtracking](/cn.zh-CN/开发指南/API 参考/日志库相关接口/PutWebtracking.md)。
+    如果请求的数据量比较大，可以使用POST方法上传数据。更多信息，请参见[PutWebtracking](/cn.zh-CN/开发指南/API参考/日志库相关接口/PutWebtracking.md)。
 
 
