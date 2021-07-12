@@ -28,12 +28,12 @@
     |变量|说明|示例|
     |--|--|--|
     |$\{endpoint\}|日志服务的接入地址，格式为$\{project\}.$\{region-endpoint\}:Port，其中：    -   $\{project\}：日志服务Project名称。
-    -   $\{region-endpoint\}：Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API 参考/服务入口.md)。
+    -   $\{region-endpoint\}：Project访问域名，支持公网和阿里云内网（经典网络、VPC）。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。
     -   Port：网络端口，固定为10010。
 |test-project.cn-hangzhou.log.aliyuncs.com:10010|
     |$\{project\}|日志服务Project名称。|test-project|
     |$\{instance\}|Trace服务实例名称。|test-traces|
-    |$\{access-key-id\}|阿里云账号AccessKey ID。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey（包括AccessKey ID和AccessKey Secret）。授予RAM用户向指定Project写入数据权限的具体操作，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。如何获取AccessKey的具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API 参考/访问密钥.md)。
+    |$\{access-key-id\}|阿里云账号AccessKey ID。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey（包括AccessKey ID和AccessKey Secret）。授予RAM用户向指定Project写入数据权限的具体操作，请参见[授权](/cn.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。如何获取AccessKey的具体操作，请参见[访问密钥](/cn.zh-CN/开发指南/API参考/访问密钥.md)。
 
 |无|
     |$\{access-key-secret\}|阿里云账号AccessKey Secret。建议您使用只具备日志服务Project写入权限的RAM用户的AccessKey。
@@ -46,9 +46,9 @@
 
 ## 方案二：手动构造Trace数据并上传
 
-当您使用自建框架或有其他需求时，可以手动构造Trace数据并上传到日志服务。此处以maven方式为例，更多信息，请参见[OpenTelemetry QuickStart](https://github.com/open-telemetry/opentelemetry-java/blob/main/QUICKSTART.md)。
+当您使用自建框架或有其他需求时，可以手动构造Trace数据并上传到日志服务。此处以Maven方式为例，更多信息，请参见[OpenTelemetry QuickStart](https://github.com/open-telemetry/opentelemetry-java/blob/main/QUICKSTART.md)。
 
-1.  添加maven依赖。
+1.  添加Maven依赖。
 
     ```
      <dependency>
