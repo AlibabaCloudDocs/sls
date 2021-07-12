@@ -98,7 +98,7 @@ Logtail在采集容器的标准输出时，会定期将采集的点位信息保�
     -   value默认为字符串匹配，即只有value和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：value配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
     |ExcludeLabel|map类型，其中key为string，value为string|可选|默认为空，表示不排除任何容器。如果key非空，value为空时，则排除label中所有包含此key的容器。 **说明：**
 
-    -   多个键值对之间为或关系，即只要容器的label满足任一键值对即可被采集。
+    -   多个键值对之间为或关系，即只要容器的label满足任一键值对即不被采集。
     -   value默认为字符串匹配，即只有value和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：value配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
     |IncludeEnv|map类型，其中key为string，value为string|可选|默认为空，表示采集所有容器数据。当key非空，value为空时，则采集environment中所有包含此key的容器。 **说明：**
 
@@ -106,7 +106,7 @@ Logtail在采集容器的标准输出时，会定期将采集的点位信息保�
     -   value默认为字符串匹配，即只有value和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：value配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
     |ExcludeEnv|map类型，其中key为string，value为string|可选|默认为空，表示不排除任何容器。当key非空，value为空时，则排除Environment中所有包含此key的容器。 **说明：**
 
-    -   多个键值对之间为或关系，即只要容器的变量环境满足任一键值对即可被采集。
+    -   多个键值对之间为或关系，即只要容器的变量环境满足任一键值对即不被采集。
     -   value默认为字符串匹配，即只有value和容器名称完全相同才会匹配。如果该值以^开头并且以$结尾，则为正则匹配，例如：value配置为^\(kube-system\|istio-system\)$，可同时匹配kube-system和istio-system。 |
     |Stdout|bool|可选|默认为true。设置为false，表示不采集stdout数据。|
     |Stderr|bool|可选|默认为true。设置为false，表示不采集stderr数据。|
