@@ -22,8 +22,6 @@ This topic describes how to upgrade the alerting module. You can upgrade the ale
 
     After you select a region, a project named sls-alert-Alibaba Cloud account ID-region and a Logstore named internal-alert-center-log are automatically created in the region. The Logstore is used to store alert data.
 
-    ![Select a region to store alert data](https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/en-US/4720706261/p256845.png)
-
 9.  In the Confirm Upgrade dialog box, click **OK**.
 
 
