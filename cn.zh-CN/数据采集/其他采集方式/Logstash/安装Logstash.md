@@ -2,13 +2,13 @@
 
 本文介绍Logstash的安装步骤。
 
-Logstash是一款开源的数据采集软件，您可以通过logstash-output-logservice插件，将Logstash采集到的日志上传到日志服务。logstash-output-logservice插件的GitHub项目地址：[Logstash插件](https://github.com/aliyun/logstash-output-logservice)。
+Logstash是一款开源的数据采集软件，您可以通过logstash-output-logservice插件，将Logstash采集到的日志上传到日志服务。logstash-output-logservice插件的GitHub项目地址为[Logstash插件](https://github.com/aliyun/logstash-output-logservice)。
 
 1.  安装Java。
 
     1.  下载安装包。
 
-        请进入[Java 官网](http://www.oracle.com/technetwork/java/javase/downloads/index.html)下载JDK并双击进行安装。
+        请进入Java官网下载JDK并双击进行安装。更多信息，请参见[Java官网](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。
 
     2.  设置环境变量。
 
@@ -17,11 +17,11 @@ Logstash是一款开源的数据采集软件，您可以通过logstash-output-lo
         -   PATH：C:\\Program Files\\Java\\jdk1.8.0\_73\\bin
         -   CLASSPATH：C:\\Program Files\\Java\\jdk1.8.0\_73\\lib;C:\\Program Files\\Java\\jdk1.8.0\_73\\lib\\tools.jar
         -   JAVA\_HOME：C:\\Program Files\\Java\\jdk1.8.0\_73
-        其中，请根据实际的JAVA版本替换jdk1.8.0\_73。
+        其中，请根据实际的Java版本替换jdk1.8.0\_73。
 
-    3.  验证JAVA安装结果。
+    3.  验证Java安装结果。
 
-        执行java -version命令，显示如下类似结果表示安装JAVA完成。
+        执行java -version命令，显示如下类似结果表示安装Java完成。
 
         ```
         PS C:\Users\Administrator> java -version
