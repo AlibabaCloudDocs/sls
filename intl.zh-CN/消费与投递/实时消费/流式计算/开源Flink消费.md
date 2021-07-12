@@ -2,16 +2,16 @@
 
 Flink Log Connector是日志服务提供的用于对接Flink的工具。本文介绍如何对接Flink消费日志数据。
 
--   已开启Access Key，详情请参见[开启Access Key](/intl.zh-CN/准备工作/准备工作概述.md)。
--   已创建Project和Logstore，详情请参见[步骤二：创建Project和Logstore](/intl.zh-CN/.md)。
--   已为RAM用户授权，详情请参见[指定Logstore的消费权限](/intl.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。
+-   已获取Access Key。更多信息，请参见[访问密钥](/intl.zh-CN/开发指南/API参考/访问密钥.md)。
+-   已创建Project和Logstore。更多信息，请参见[创建Project](/intl.zh-CN/准备工作/管理Project.md)和[创建Logstore](/intl.zh-CN/准备工作/管理Logstore.md)。
+-   已为RAM用户授权。更多信息，请参见[配置指定Logstore的消费权限](/intl.zh-CN/开发指南/访问控制RAM/RAM自定义授权场景.md)。
 
 Flink Log Connector包括两部分，消费者（Flink Log Consumer）和生产者（Flink Log Producer），两者用途区别如下：
 
 -   消费者用于从日志服务中读取数据，支持exactly once语义，支持Shard负载均衡。
 -   生产者用于将数据写入日志服务。
 
-使用Flink Log Connector时，需要在项目中添加maven依赖，示例如下：
+使用Flink Log Connector时，需要在项目中添加Maven依赖，示例如下：
 
 ```
 <dependency>
@@ -26,7 +26,7 @@ Flink Log Connector包括两部分，消费者（Flink Log Consumer）和生产�
 </dependency>
 ```
 
-更多关于Flink Log Connector的信息请参见[Github](https://github.com/aliyun/aliyun-log-flink-connector)。
+除此之外，请您参考GitHub上源码进行代码配置。更多信息，请参见[aliyun-log-flink-connector](https://github.com/aliyun/aliyun-log-flink-connector)。
 
 ## Flink Log Consumer
 
@@ -38,7 +38,7 @@ Flink Log Consumer用到的日志服务API接口如下：
 
 -   GetCursorOrData
 
-    用于从Shard中获取数据，注意频繁的调用该接口可能会导致数据超过日志服务的Shard限额，可以通过ConfigConstants.LOG\_FETCH\_DATA\_INTERVAL\_MILLIS和ConfigConstants.LOG\_MAX\_NUMBER\_PER\_FETCH控制接口调用的时间间隔和每次调用获取的日志数量，Shard的限额请参见[分区（Shard）](/intl.zh-CN/产品简介/基本概念/分区（Shard）.md)。
+    用于从Shard中获取数据，注意频繁的调用该接口可能会导致数据超过日志服务的Shard限额，可以通过ConfigConstants.LOG\_FETCH\_DATA\_INTERVAL\_MILLIS和ConfigConstants.LOG\_MAX\_NUMBER\_PER\_FETCH控制接口调用的时间间隔和每次调用获取的日志数量。Shard的限额请参见[分区（Shard）](/intl.zh-CN/产品简介/基本概念/分区（Shard）.md)。
 
     示例如下：
 
@@ -112,7 +112,7 @@ Flink Log Consumer用到的日志服务API接口如下：
 
 3.  设置消费进度监控。
 
-    Flink Log Consumer支持设置消费进度监控，获取每一个Shard的实时消费位置，使用时间戳表示，详情请参见[查看消费组状态](/intl.zh-CN/消费与投递/实时消费/多语言应用/消费组消费/通过消费组消费日志数据.md)。
+    Flink Log Consumer支持设置消费进度监控，获取每一个Shard的实时消费位置，使用时间戳表示。更多信息，请参见[查看消费组状态](/intl.zh-CN/消费与投递/实时消费/多语言应用/消费组消费/通过消费组消费日志数据.md)。
 
     示例如下：
 
@@ -161,7 +161,7 @@ Flink Log Producer用到的日志服务API接口如下：
         ConfigConstants.LOG_SENDER_IO_THREAD_COUNT
         // 该值定义日志数据被缓存发送的时间，默认是3000。
         ConfigConstants.LOG_PACKAGE_TIMEOUT_MILLIS
-        // 缓存发送的包中日志的数量，默认是4096
+        // 缓存发送的包中日志的数量，默认是4096。
         ConfigConstants.LOG_LOGS_COUNT_PER_PACKAGE
         // 缓存发送的包的大小，默认是3 MB。
         ConfigConstants.LOG_LOGS_BYTES_PER_PACKAGE
