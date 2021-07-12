@@ -49,10 +49,12 @@ userid: 292
 
 2.  使用Java程序通过JDBC查询日志数据，示例代码如下所示。
 
-    **说明：** 在where条件中必须包含\_\_date\_\_字段或\_\_time\_\_字段来限制查询的时间范围。\_\_date\_\_字段是timestamp类型，\_\_time\_\_字段是bigint类型。例如：
+    在where条件中必须包含\_\_date\_\_字段或\_\_time\_\_字段来限制查询的时间范围。\_\_date\_\_字段是timestamp类型，\_\_time\_\_字段是bigint类型。例如：
 
     -   \_\_date\_\_ \> '2017-08-07 00:00:00' and \_\_date\_\_ < '2017-08-08 00:00:00'
     -   \_\_time\_\_ \> 1502691923 and \_\_time\_\_ < 1502692923
+    **说明：** 使用Java的JDBC、Python的MySQLdb等库在程序中访问日志服务时，服务入口必须使用日志服务的经典网络或VPC网络访问域名。
+
     ```
     /**
     * Created by mayunlei on 2017/6/19.
@@ -66,7 +68,7 @@ userid: 292
     */
     public class jdbc {
      public static void main(String args[]){
-         final String endpoint = "trip-demo.cn-hangzhou-intranet.log.aliyuncs.com"; //包括Project名称和日志服务经典网络或VPC网络访问域名，请根据实际情况替换。更多信息，请参见[经典网络及VPC网络服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。
+         final String endpoint = "trip-demo.cn-hangzhou-intranet.log.aliyuncs.com"; //包括Project名称和日志服务经典网络或VPC网络访问域名，请根据实际情况替换。更多信息，请参见[服务入口](/cn.zh-CN/开发指南/API参考/服务入口.md)。    
          final String port = "10005"; //通过JDBC访问时，默认使用10005端口。
          final String project = "trip-demo"; //Project名称。
          final String logstore = "ebike"; //Logstore名称。
